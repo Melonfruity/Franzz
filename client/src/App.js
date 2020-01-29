@@ -1,11 +1,15 @@
 import React from 'react';
 
-function App() {
+import Channel from './components/Channel/Container/Channel';
+
+const App = () => {
+  const title = 'JEK';
   return (
     <div>
-      JEK
+      {title}
+      <Channel />
     </div>
   );
-}
+};
 
 export default App;
