@@ -3,7 +3,6 @@ import React from 'react';
 
 const Message = ({ message }) => (
   <div>
-    Message
     {message}
   </div>
 );

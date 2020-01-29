@@ -5,17 +5,19 @@ import Message from './Message';
 
 const TextContainer = ({ messages }) => {
   const formattedMessages = messages.map((msg) => (
-    <Message
+    <article
       key={msg.id}
-      message={msg.text}
-    />
+    >
+      <Message
+        message={msg.text}
+      />
+    </article>
   ));
 
   return (
-    <article>
-      Messages
+    <div>
       {formattedMessages}
-    </article>
+    </div>
   );
 };
 

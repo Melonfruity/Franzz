@@ -6,6 +6,7 @@ const Input = ({ message, sendMessage }) => (
     Input
     <input
       {...message}
+      reset={undefined}
       onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
     />
     <button
