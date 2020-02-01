@@ -1,0 +1,21 @@
+###
+POST http://localhost:3333/api/auth/register
+content-type: application/json
+
+{
+  "name": "username",
+  "password": "pass",
+  "passConfirm": "pass",
+  "email": "email@gmail.com"
+}
+
+###
+POST http://localhost:3333/api/auth/login
+content-type: application/json
+
+{
+  "name": "username",
+  "password": "pass",
+  "email": "email@gmail.com"
+}
+

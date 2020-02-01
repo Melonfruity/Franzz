@@ -5,6 +5,7 @@ const {
   MONGODB_URL,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
+  secretOrKey,
 } = process.env;
 
 module.exports = {
@@ -12,4 +13,5 @@ module.exports = {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   MONGODB_URL,
+  secretOrKey,
 };
