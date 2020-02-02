@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const socketio = require('socket.io');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 // utils
 const { info, errm } = require('./utils/logger');
@@ -26,7 +27,7 @@ const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
 
 // connecting to mongodb
-info('Connecting to MONGO DB');
+info('Connecting to MongoDB');
 
 mongoose
   .connect(
@@ -40,7 +41,10 @@ mongoose
   .then(() => info('Connected to MongoDB'))
   .catch((err) => errm(err));
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+}));
+app.use(cookieParser());
 
 // URL-encoded content (from the form)
 app.use(

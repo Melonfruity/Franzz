@@ -39,7 +39,6 @@ channelRouter.put('/join', async (req, res, next) => {
     const { channelLink, userID } = req.body;
     info(channelLink);
   } catch (err) {
-    errm(err);
     next(err);
   }
 });

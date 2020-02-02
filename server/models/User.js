@@ -1,9 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = mongoose.Schema({
-  name: {
+  username: {
     type: String,
     require: true,
   },
@@ -12,18 +11,25 @@ const UserSchema = mongoose.Schema({
     require: true,
     unique: true,
   },
-  password: {
-    type: String,
-    require: true,
+  googleProvider: {
+    type: {
+      id: String,
+      token: String,
+    },
+    select: false,
   },
+  // channels: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Channel',
+  // }],
+  channels: [{
+    type: String,
+  }],
   date: {
     type: Date,
     default: Date.now,
   },
 });
-
-// This will check if the DB has only one unique instance of this User
-UserSchema.plugin(uniqueValidator);
 
 // This will get rid of some unneeded formatting from mongoDB
 UserSchema.set('toJSON', {
