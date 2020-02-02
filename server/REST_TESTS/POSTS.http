@@ -1,34 +1,20 @@
-###
-POST http://localhost:3333/api/auth/register
+### can register
+POST http://localhost:8001/api/auth/register
 content-type: application/json
 
 {
-  "name": "username",
-  "password": "pass",
-  "passConfirm": "pass",
+  "password": "password",
   "email": "email@gmail.com"
 }
-
-###
-POST http://localhost:3333/api/auth/login
+### can login with email@gmail.com
+POST http://localhost:8001/api/auth/login
 content-type: application/json
 
 {
-  "name": "username",
-  "password": "pass",
+  "password": "password",
   "email": "email@gmail.com"
 }
-
-###
-POST http://localhost:8001/api/channel/new
-content-type: application/json
-
-{
-  "name": "sdasdasdsadas",
-  "userID": "321321321321321"
-}
-
-###
+### bad login
 POST http://localhost:8001/api/auth/login
 content-type: application/json
 
@@ -37,6 +23,14 @@ content-type: application/json
   "password": ""
 }
 
-### access token check
+### update username
+POST http://localhost:8001/api/auth/username
+content-type: application/json
 
+{
+  "userID": "5e3733a64ff5ba670af13189",
+  "newUsername": "SDsadasdsa"
+}
+
+### access token check
 POST https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.ImC8B8LjZTyPN5ItQPFHoopaBPSBXPAV3C_9AJcrdPPcHlqTdQUr6QquLamArOSwX8GwAfBiEbgyFd1_NJhVGBCdpNYWQi_LLvK52uJVSI6-ssERwp4Vvdg7SaQE58WN9DA

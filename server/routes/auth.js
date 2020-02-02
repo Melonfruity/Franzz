@@ -106,7 +106,7 @@ authRouter.post('/login', async (req, res, next) => {
         }
       }
     } else {
-      res.json({ error: errors });
+      res.status(404).json({ error: errors });
     }
   } catch (err) {
     errm(err);
@@ -118,26 +118,15 @@ authRouter.post('/login', async (req, res, next) => {
 // update the username of the user
 authRouter.post('/username', async (req, res, next) => {
   try {
-    const { userID } = req.body;
-    // check if valid email, password
-    if (isValid) {
-      const user = await User.findOne({ email });
-      if (user) {
-        const check = login(password, user.password);
-        if (check) {
-          res.status(200).json(user);
-        } else {
-          res.status(404).json({ error: 'incorrect password' });
-        }
-      }
-    } else {
-      res.json({ error: errors });
-    }
+    const { userID, newUsername } = req.body;
+    const user = await User.findOneAndUpdate(userID, { username: newUsername });
+    res.status(200).json(user.username);
   } catch (err) {
     errm(err);
     next(err);
   }
 });
+
 // stretch
 // update password
 

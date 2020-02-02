@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = mongoose.Schema({
   username: {
@@ -30,14 +32,15 @@ const UserSchema = mongoose.Schema({
   },
 });
 
+UserSchema.plugin(uniqueValidator);
+
 // This will get rid of some unneeded formatting from mongoDB
 UserSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    const newObject = returnedObject;
-    newObject.id = newObject._id.toString();
-    delete newObject._id;
-    delete newObject.__v;
-    delete newObject.password;
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+    delete returnedObject.password;
   },
 });
 
