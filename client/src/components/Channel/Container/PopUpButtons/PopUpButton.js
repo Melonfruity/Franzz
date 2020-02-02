@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function PopUpButton(props) {
+export default function PopUpButton({ toggleButton }) {
   return (
-    <button>
+    <button onClick={ toggleButton }>
       Click me for toggling window
     </button>
   )
