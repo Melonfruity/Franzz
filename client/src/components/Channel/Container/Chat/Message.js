@@ -2,9 +2,9 @@
 import React from 'react';
 
 const Message = ({ message }) => (
-  <div>
+  <article>
     {message}
-  </div>
+  </article>
 );
 
 export default Message;
