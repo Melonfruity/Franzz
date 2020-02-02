@@ -3,7 +3,6 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
-const { info, errm } = require('../utils/logger');
 const { login, register } = require('../utils/helpers/authHelper');
 
 // Validation

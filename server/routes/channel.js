@@ -27,7 +27,16 @@ channelRouter.post('/new', async (req, res, next) => {
 
     const newChannel = await channel.save();
     info(newChannel);
+  } catch (err) {
+    next(err);
+  }
+});
 
+// join a channel
+channelRouter.get('/link', async (req, res, next) => {
+  try {
+    const { channelID } = req.body;
+    info(channelID);
   } catch (err) {
     next(err);
   }

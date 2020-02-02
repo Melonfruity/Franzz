@@ -7,12 +7,9 @@ const ChannelSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  // users: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  // }],
   users: [{
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
   }],
   date: {
     type: Date,

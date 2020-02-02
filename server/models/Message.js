@@ -1,6 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-// const uniqueValidator = require('mongoose-unique-validator');
 
 const MessageSchema = mongoose.Schema({
   text: {
@@ -9,7 +9,6 @@ const MessageSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     require: true,
-    unique: true,
   },
   channel: {
     type: String,
@@ -21,16 +20,12 @@ const MessageSchema = mongoose.Schema({
   },
 });
 
-// This will check if the DB has only one unique instance of this User
-// MessageSchema.plugin(uniqueValidator);
-
 // This will get rid of some unneeded formatting from mongoDB
 MessageSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    const newObject = returnedObject;
-    newObject.id = newObject._id.toString();
-    delete newObject._id;
-    delete newObject.__v;
+    returnedObject = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
   },
 });
 
