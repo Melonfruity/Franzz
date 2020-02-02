@@ -5,7 +5,6 @@ import { GOOGLE_CLIENT_ID } from '../../utils/config';
 
 const Login = () => {
   const googleResponse = (data) => {
-    console.log(data);
     axios
       .post('http://localhost:8001/api/auth/google', data)
       .then((res) => console.log(res));
