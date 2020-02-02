@@ -27,3 +27,16 @@ content-type: application/json
   "name": "sdasdasdsadas",
   "userID": "321321321321321"
 }
+
+###
+POST http://localhost:8001/api/auth/register
+content-type: application/json
+
+{
+  "email": "eluo.dev@gmail.com",
+  "password": "221322222"
+}
+
+### access token check
+
+POST https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.ImC8B8LjZTyPN5ItQPFHoopaBPSBXPAV3C_9AJcrdPPcHlqTdQUr6QquLamArOSwX8GwAfBiEbgyFd1_NJhVGBCdpNYWQi_LLvK52uJVSI6-ssERwp4Vvdg7SaQE58WN9DA

@@ -6,6 +6,9 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  password: {
+    type: String,
+  },
   email: {
     type: String,
     require: true,
@@ -16,14 +19,10 @@ const UserSchema = mongoose.Schema({
       id: String,
       token: String,
     },
-    select: false,
   },
-  // channels: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Channel',
-  // }],
   channels: [{
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Channel',
   }],
   date: {
     type: Date,
@@ -42,4 +41,4 @@ UserSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Users', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
