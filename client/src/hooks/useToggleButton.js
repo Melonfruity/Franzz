@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function PopupButtonDisplay(initialMode) {
+export default function useToggleButton(initialMode) {
   let [ boxDisplay, changeDisplay ] = useState(initialMode);
 
   const clickedButton = function() {
