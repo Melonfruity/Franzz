@@ -1,17 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
 import Message from './Message';
 
 const TextContainer = ({ messages }) => {
   const formattedMessages = messages.map((msg) => (
-    <article
+    <Message
       key={msg.id}
-    >
-      <Message
-        message={msg.text}
-      />
-    </article>
+      message={msg.text}
+    />
   ));
 
   return (
