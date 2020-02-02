@@ -56,7 +56,6 @@ authRouter.post('/google', async (req, res, next) => {
       res.json({ error: 'nice try hacker' });
     }
   } catch (err) {
-    errm(err);
     next(err);
   }
 });
@@ -84,7 +83,6 @@ authRouter.post('/register', async (req, res, next) => {
       res.json({ error: errors });
     }
   } catch (err) {
-    errm(err);
     next(err);
   }
 });
@@ -109,7 +107,6 @@ authRouter.post('/login', async (req, res, next) => {
       res.status(404).json({ error: errors });
     }
   } catch (err) {
-    errm(err);
     next(err);
   }
 });
@@ -119,10 +116,14 @@ authRouter.post('/login', async (req, res, next) => {
 authRouter.post('/username', async (req, res, next) => {
   try {
     const { userID, newUsername } = req.body;
-    const user = await User.findOneAndUpdate(userID, { username: newUsername });
-    res.status(200).json(user.username);
+    const user = await User
+      .findByIdAndUpdate(userID, { username: newUsername });
+    if (user) {
+      res.status(200).json(user.username);
+    } else {
+      res.status(404).json({ error: 'userID bad' });
+    }
   } catch (err) {
-    errm(err);
     next(err);
   }
 });
