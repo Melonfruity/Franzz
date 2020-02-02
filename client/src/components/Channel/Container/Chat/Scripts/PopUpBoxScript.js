@@ -1,20 +1,25 @@
-const BORDER_SIZE = 4;
-const panel = document.getElementById("resize_box");
+let mousePosition;
+let box;
+let boxHeight;
 
-let m_pos;
 function resize(e){
-  const dx = m_pos - e.y;
-  m_pos = e.y;
-  panel.style.height = (parseInt(getComputedStyle(panel, '').height) - dx) + "px";
+  if (e.offsetY >= boxHeight) {
+    const dx = mousePosition - e.y;
+    mousePosition = e.y;
+    box.style.height = (parseInt(getComputedStyle(box, '').height) - dx) + "px";
+  }
 }
-
-panel.addEventListener("mousedown", function(e){
-  if (e.offsetY > BORDER_SIZE) {
-    m_pos = e.y;
+const mouseDownFunction = function(e){
+  box = e.target;
+  boxHeight=parseInt(getComputedStyle(box, '').height) - 10
+  if (e.nativeEvent.offsetY >= boxHeight) {
+    mousePosition = e.y;
     document.addEventListener("mousemove", resize, false);
   }
-}, false);
+};
 
 document.addEventListener("mouseup", function(){
-    document.removeEventListener("mousemove", resize, false);
+  document.removeEventListener("mousemove", resize, false);
 }, false);
+
+module.exports = { mouseDownFunction }

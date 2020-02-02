@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function PopUpBox(props) {
+export default function PopUpBox({ mouseDown }) {
   return (
-    <div id="resize-box">
-      <h1>HelloJek</h1>
+    <div id="resize-box" onMouseDown={mouseDown}>
+      Hellllloooo
     </div>
   )
 }
