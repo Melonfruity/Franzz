@@ -27,10 +27,6 @@ const Chatbox = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    console.log(message)
-    socket.emit('message', 'sent a message', () => {
-      console.log('server recieved the message');
-    });
   };
 
   useEffect(() => {
