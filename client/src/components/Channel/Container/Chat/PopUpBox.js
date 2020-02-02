@@ -1,8 +1,8 @@
-import react from 'react';
+import React from "react";
 
 export default function PopUpBox(props) {
   return (
-    <div>
+    <div id="resize-box">
       <h1>HelloJek</h1>
     </div>
   )
