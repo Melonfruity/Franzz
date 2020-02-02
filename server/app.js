@@ -26,7 +26,7 @@ const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
 
 // connecting to mongodb
-info('--- Connecting to MONGO DB ---');
+info('Connecting to MONGO DB');
 
 mongoose
   .connect(
@@ -37,7 +37,7 @@ mongoose
       useCreateIndex: true,
     },
   )
-  .then(() => info('--- Connected to MongoDB ---'))
+  .then(() => info('Connected to MongoDB'))
   .catch((err) => errm(err));
 
 app.use(cors());
@@ -58,6 +58,7 @@ app.use(requestLogger);
 
 // use routes
 app.use('/api/auth', authRouter);
+app.use('/api/channel', channelRouter);
 
 // sockets channel namespace
 require('./socketsio/channel')(io);

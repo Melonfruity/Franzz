@@ -2,7 +2,7 @@ const { info } = require('../utils/logger');
 
 module.exports = (io) => {
   const channel = io.of('/channel');
-  info('--- Namespace of Channel ---');
+
   channel.on('connection', (socket) => {
     // server
     channel.emit('serverMsg', {

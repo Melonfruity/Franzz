@@ -19,3 +19,11 @@ content-type: application/json
   "email": "email@gmail.com"
 }
 
+###
+POST http://localhost:8001/api/channel/new
+content-type: application/json
+
+{
+  "name": "sdasdasdsadas",
+  "userID": "321321321321321"
+}
