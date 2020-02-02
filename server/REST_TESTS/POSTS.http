@@ -29,12 +29,12 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:8001/api/auth/register
+POST http://localhost:8001/api/auth/login
 content-type: application/json
 
 {
   "email": "eluo.dev@gmail.com",
-  "password": "221322222"
+  "password": ""
 }
 
 ### access token check

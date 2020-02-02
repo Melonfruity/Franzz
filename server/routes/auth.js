@@ -7,8 +7,7 @@ const { info, errm } = require('../utils/logger');
 const { login, register } = require('../utils/helpers/authHelper');
 
 // Validation
-const loginValidator = require('../utils/validation/login_validator');
-const registerValidator = require('../utils/validation/register_validation');
+const formValidator = require('../utils/formValidator');
 
 const { secretOrKey } = require('../utils/config');
 require('../utils/passportSetup');
@@ -66,7 +65,7 @@ authRouter.post('/google', async (req, res, next) => {
 authRouter.post('/register', async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const { isValid, errors } = registerValidator({ email, password });
+    const { isValid, errors } = formValidator({ email, password });
     // check if valid email, password
     if (isValid) {
       // find the user through their email
@@ -94,14 +93,14 @@ authRouter.post('/register', async (req, res, next) => {
 authRouter.post('/login', async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const { isValid, errors } = registerValidator({ email, password });
+    const { isValid, errors } = formValidator({ email, password });
     // check if valid email, password
     if (isValid) {
       const user = await User.findOne({ email });
       if (user) {
         const check = login(password, user.password);
         if (check) {
-          
+          res.status(200).json(user);
         } else {
           res.status(404).json({ error: 'incorrect password' });
         }
@@ -114,5 +113,32 @@ authRouter.post('/login', async (req, res, next) => {
     next(err);
   }
 });
+
+// add a password the the user
+// update the username of the user
+authRouter.post('/username', async (req, res, next) => {
+  try {
+    const { userID } = req.body;
+    // check if valid email, password
+    if (isValid) {
+      const user = await User.findOne({ email });
+      if (user) {
+        const check = login(password, user.password);
+        if (check) {
+          res.status(200).json(user);
+        } else {
+          res.status(404).json({ error: 'incorrect password' });
+        }
+      }
+    } else {
+      res.json({ error: errors });
+    }
+  } catch (err) {
+    errm(err);
+    next(err);
+  }
+});
+// stretch
+// update password
 
 module.exports = authRouter;
