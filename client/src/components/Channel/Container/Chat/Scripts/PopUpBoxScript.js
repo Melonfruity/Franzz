@@ -3,9 +3,9 @@ let box;
 let boxHeight;
 
 function resize(e){
-  mousePosition = e.y;
-  if (mousePosition > 195) {
+  if (e.offsetY > 195) {
   const dx = mousePosition - e.y;
+  mousePosition = e.y;
   box.style.height = (parseInt(getComputedStyle(box, '').height) - dx) + "px";
   }
 }
