@@ -47,17 +47,14 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-// URL-encoded content (from the form)
+// Form and JSON data
 app.use(
   bodyParser.urlencoded({
     extended: false,
   }),
 );
+app.use(bodyParser.json()); // JSON
 
-// this is for JSON data
-app.use(bodyParser.json());
-
-// this comes after the body is parsed
 // the request with relevant data is logged
 app.use(requestLogger);
 
@@ -69,9 +66,7 @@ app.use('/api/channel', channelRouter);
 require('./socketsio/channel')(io);
 
 // error handling
-// this is after all the routes are passed and none are found
 app.use(unknownEndpoint);
-// prints the error, will handle the type later //:TODO
 app.use(errorHandler);
 
 module.exports = server;

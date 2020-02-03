@@ -32,5 +32,14 @@ content-type: application/json
   "newUsername": "GOOD"
 }
 
+### create new channel
+POST http://localhost:8001/api/channel/new
+content-type: application/json
+
+{
+  "userID": "5e3652149a2bb67ad7b9fbdd",
+  "channelName": "GOOD CHANNEL"
+}
+
 ### access token check
 POST https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.ImC8B8LjZTyPN5ItQPFHoopaBPSBXPAV3C_9AJcrdPPcHlqTdQUr6QquLamArOSwX8GwAfBiEbgyFd1_NJhVGBCdpNYWQi_LLvK52uJVSI6-ssERwp4Vvdg7SaQE58WN9DA

@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-// const uniqueValidator = require('mongoose-unique-validator');
 
 const ChannelSchema = mongoose.Schema({
   name: {
@@ -16,9 +15,6 @@ const ChannelSchema = mongoose.Schema({
     default: Date.now,
   },
 });
-
-// This will check if the DB has only one unique instance of this User
-// ChannelSchema.plugin(uniqueValidator);
 
 // This will get rid of some unneeded formatting from mongoDB
 ChannelSchema.set('toJSON', {

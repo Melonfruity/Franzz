@@ -1,5 +1,4 @@
 const authRouter = require('express').Router();
-const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
@@ -9,7 +8,6 @@ const { login, register } = require('../utils/helpers/authHelper');
 const formValidator = require('../utils/formValidator');
 
 const { secretOrKey } = require('../utils/config');
-require('../utils/passportSetup');
 
 // User model
 const User = require('../models/User');

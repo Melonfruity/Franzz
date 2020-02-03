@@ -4,6 +4,7 @@ const { info, errm } = require('../utils/logger');
 // Models
 const Channel = require('../models/Channel');
 const Message = require('../models/Message');
+const User = require('../models/User');
 
 // get channels for a user
 channelRouter.get('/list', async (req, res, next) => {
@@ -18,15 +19,29 @@ channelRouter.get('/list', async (req, res, next) => {
 // create a new channel
 channelRouter.post('/new', async (req, res, next) => {
   try {
-    const { name, userID } = req.body;
+    const { channelName, userID } = req.body;
 
-    const channel = new Channel({
-      name,
-      users: [userID],
-    });
+    // check if there is a user by this id
+    const user = await User.findById(userID);
 
-    const newChannel = await channel.save();
-    info(newChannel);
+    if (user) {
+      const channel = new Channel({
+        name: channelName,
+        users: [user.id],
+      });
+      const newChannel = await channel.save();
+
+      user.channels = user.channels.concat(newChannel.id);
+
+      const updatedUser = await user.save();
+
+      info(updatedUser);
+      info(newChannel);
+
+      res.json(newChannel);
+    } else {
+      res.status(404).json({ error: 'user not found' });
+    }
   } catch (err) {
     next(err);
   }
@@ -35,8 +50,8 @@ channelRouter.post('/new', async (req, res, next) => {
 // join a channel
 channelRouter.get('/link', async (req, res, next) => {
   try {
-    const { channelID } = req.body;
-    info(channelID);
+    const { channelID, userID } = req.body;
+    const user = await User.findById();
   } catch (err) {
     next(err);
   }

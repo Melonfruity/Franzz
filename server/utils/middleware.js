@@ -14,6 +14,7 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' });
 };
 
+// eslint-disable-next-line consistent-return
 const errorHandler = (err, req, res, next) => {
   errm(err.name, err.message);
   if (err.name === 'CastError' && err.kind === 'ObjectId') {
