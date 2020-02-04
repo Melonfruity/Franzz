@@ -2,28 +2,25 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 
-const MessageSchema = mongoose.Schema({
-  text: {
-    type: String,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Users',
-    require: true,
-  },
+const BlobSchema = mongoose.Schema({
   channel: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Channels',
-    require: true,
   },
+  messages: [{
+    message: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Messages',
+    },
+  }],
   created: {
     type: Date,
-    default: Date.now,
+    default: new Date(),
   },
 });
 
 // This will get rid of some unneeded formatting from mongoDB
-MessageSchema.set('toJSON', {
+BlobSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject = returnedObject._id.toString();
     delete returnedObject._id;
@@ -31,4 +28,4 @@ MessageSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Messages', MessageSchema);
+module.exports = mongoose.model('Blobs', BlobSchema);

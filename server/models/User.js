@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = mongoose.Schema({
   username: {
@@ -14,7 +13,6 @@ const UserSchema = mongoose.Schema({
   email: {
     type: String,
     require: true,
-    unique: true,
   },
   googleProvider: {
     type: {
@@ -32,8 +30,6 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-UserSchema.plugin(uniqueValidator);
-
 // This will get rid of some unneeded formatting from mongoDB
 UserSchema.set('toJSON', {
   transform: (document, returnedObject) => {
@@ -45,4 +41,4 @@ UserSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Users', UserSchema);
