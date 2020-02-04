@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function useToggleButton(initialMode) {
-  let [ boxDisplay, changeDisplay ] = useState(initialMode);
+  const [boxDisplay, changeDisplay] = useState(initialMode);
 
-  const clickedButton = function() {
+  const clickedButton = function () {
     if (boxDisplay === 'off') {
-      changeDisplay('on')
-    } else{
-      changeDisplay('off')
+      changeDisplay('on');
+    } else {
+      changeDisplay('off');
     }
-  }
+  };
 
-  return { 
+  return {
     boxDisplay,
-    clickedButton
-  }
+    clickedButton,
+  };
 }
