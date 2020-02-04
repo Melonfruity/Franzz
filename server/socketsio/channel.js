@@ -14,9 +14,10 @@ module.exports = (io) => {
       info(data);
     });
 
-    // namespace is channel but room is going to be called channel
-    socket.on('join channel', (roomData) => {
-      info(roomData);
+    // namespace is channel and room will be called channel
+    socket.on('join channel', (channelData) => {
+      info(channelData);
+      
     });
 
     socket.on('disconnect', () => {
