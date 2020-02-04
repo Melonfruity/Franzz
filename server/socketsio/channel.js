@@ -5,7 +5,7 @@ module.exports = (io) => {
 
   channel.on('connection', (socket) => {
     // server
-    channel.emit('serverMsg', {
+    channel.emit('server message', {
       serverMsg: 'connected to server',
     });
 
@@ -14,7 +14,8 @@ module.exports = (io) => {
       info(data);
     });
 
-    socket.on('joinRoom', (roomData) => {
+    // namespace is channel but room is going to be called channel
+    socket.on('join channel', (roomData) => {
       info(roomData);
     });
 

@@ -25,6 +25,7 @@ const io = socketio(server);
 // routes
 const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
+const rootRouter = require('./routes/root');
 
 // connecting to mongodb
 info('Connecting to MongoDB');
@@ -61,6 +62,7 @@ app.use(requestLogger);
 // use routes
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
+app.use('/', rootRouter);
 
 // sockets channel namespace
 require('./socketsio/channel')(io);

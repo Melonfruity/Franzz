@@ -45,7 +45,7 @@ const Channel = () => {
     socket = io('http://localhost:8001/channel');
     socket.on('connect', () => {
       // from servers
-      socket.on('serverMsg', (data) => {
+      socket.on('server message', (data) => {
         info(data);
       });
 
@@ -53,6 +53,10 @@ const Channel = () => {
         info('sent message to server');
       });
     });
+
+    return () => {
+      socket.off();
+    };
   }, []);
 
   return (

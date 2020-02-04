@@ -1,6 +1,4 @@
-const partOfChannel = (users, userID) => {
-  return users.includes(userID);
-};
+const partOfChannel = () => {};
 
 module.exports = {
   partOfChannel,
