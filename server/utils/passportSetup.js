@@ -7,6 +7,7 @@ const { secretOrKey } = require('./config');
 // User model
 const User = require('../models/User');
 
+// this only happens when the user sends in a request and is used on a protected route
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey,
