@@ -10,7 +10,7 @@ const register = (password) => bcrypt.hashSync(password, saltRounds);
 
 const signJWT = (res, user) => {
   const payload = {
-    id: user.id,
+    userID: user.id,
   };
 
   jwt.sign(

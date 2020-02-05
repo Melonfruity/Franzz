@@ -3,8 +3,8 @@ const JwtStrategy = require('passport-jwt').Strategy; // JwtStrategy
 const { ExtractJwt } = require('passport-jwt');
 const passport = require('passport');
 const { secretOrKey } = require('./config');
-const { errm } = require('../utils/logger');
 
+// User model
 const User = require('../models/User');
 
 passport.use(new JwtStrategy({
@@ -12,8 +12,8 @@ passport.use(new JwtStrategy({
   secretOrKey,
 }, async (jwtPayload, done) => {
   try {
-    const user = await User.findById(jwtPayload.id);
-    console.log(jwtPayload);
+    const { userID } = jwtPayload;
+    const user = await User.findById(userID);
     if (!user) {
       return done(null, false);
     }

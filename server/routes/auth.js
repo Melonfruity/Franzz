@@ -123,7 +123,4 @@ authRouter.post('/username', async (req, res, next) => {
   }
 });
 
-// stretch
-// update password
-
 module.exports = authRouter;

@@ -16,18 +16,10 @@ content-type: application/json
   "email": "email@gmail.com"
 }
 
-### update username
-POST http://localhost:8001/api/auth/username
-content-type: application/json
-
-{
-  "userID": "5e39ef3f458c2b44ab410e56",
-  "newUsername": "updated username"
-}
-
 ### create new channel
 POST http://localhost:8001/api/channel/new
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTNhMzIxZDI3NjQ4NjEyZDI1ZTUzMGUiLCJpYXQiOjE1ODA4NzUyMzIsImV4cCI6MTYxMjQzMjE1OH0.Fo5CIpJMXuHIeVoXCRy6nc2cS-MWk_SxHa6fp7ssh-M
 
 {
   "userID": "5e3a321d27648612d25e530e",
@@ -41,16 +33,6 @@ content-type: application/json
 {
   "userID": "5e39ef3f458c2b44ab410e56",
   "channelName": "Channel Name TWO"
-}
-
-### send a message
-POST http://localhost:8001/api/channel/messages
-content-type: application/json
-
-{
-  "userID": "5e39ef3f458c2b44ab410e56",
-  "channelID": "5e39ef67458c2b44ab410e57",
-  "message": "message"
 }
 
 ### send a message
