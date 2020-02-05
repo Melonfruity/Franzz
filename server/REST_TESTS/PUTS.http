@@ -1,0 +1,15 @@
+### join a channel with existing user
+PUT http://localhost:8001/api/channel/join/5e389da66861514a679688c7
+content-type: application/json
+
+{
+  "userID": "5e389d596861514a679688c6"
+}
+
+### join a channel with new user
+PUT http://localhost:8001/api/channel/join/5e389da66861514a679688c7
+content-type: application/json
+
+{
+  "userID": "5e389e136861514a679688c8"
+}

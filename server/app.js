@@ -1,9 +1,11 @@
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const socketio = require('socket.io');
+const http = require('http');
+const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const socketio = require('socket.io');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // utils
 const { info, errm } = require('./utils/logger');
@@ -24,9 +26,10 @@ const io = socketio(server);
 // routes
 const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
+const rootRouter = require('./routes/root');
 
 // connecting to mongodb
-info('Connecting to MONGO DB');
+info('Connecting to MongoDB');
 
 mongoose
   .connect(
@@ -34,39 +37,43 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
       useCreateIndex: true,
     },
   )
   .then(() => info('Connected to MongoDB'))
   .catch((err) => errm(err));
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+}));
+app.use(cookieParser());
 
-// URL-encoded content (from the form)
+// Form and JSON data
 app.use(
   bodyParser.urlencoded({
     extended: false,
   }),
 );
+app.use(bodyParser.json()); // JSON
 
-// this is for JSON data
-app.use(bodyParser.json());
-
-// this comes after the body is parsed
 // the request with relevant data is logged
 app.use(requestLogger);
+
+// passport initialize
+app.use(passport.initialize());
+require('./utils/passportSetup')(passport);
 
 // use routes
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
+app.use('/', rootRouter);
 
 // sockets channel namespace
 require('./socketsio/channel')(io);
 
 // error handling
-// this is after all the routes are passed and none are found
 app.use(unknownEndpoint);
-// prints the error, will handle the type later //:TODO
 app.use(errorHandler);
 
 module.exports = server;

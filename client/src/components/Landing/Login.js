@@ -1,35 +1,27 @@
 import React from 'react';
-import useField from '../../hooks/useField';
-import { API_ENDPOINT } from '../../utils/config';
 import axios from 'axios';
+import { GoogleLogin } from 'react-google-login';
+import { GOOGLE_CLIENT_ID } from '../../utils/config';
 
 const Login = () => {
+  const googleResponse = (data) => {
+    axios
+      .post('http://localhost:8001/api/auth/google', data)
+      .then((res) => console.log(res.data));
+  };
 
-  const username = useField('text');
-  const password = useField('password');
-  console.log(API_ENDPOINT)
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(e.target);
+  const onFailure = (err) => {
+    console.log(err);
   };
 
   return (
-    // <form onSubmit={handleLogin}>
-    //   <input
-    //     {...username}
-    //     reset={undefined}
-    //   />
-    //   <input
-    //     {...password}
-    //     reset={undefined}
-    //   />
-    //   <button type="submit">
-    //     Login
-    //   </button>
-    // </form>
-    <button type="button" onClick={(e) => axios.get(`${API_ENDPOINT}/api/auth/google`).then(data => console.log(data))}>
-      Google
-    </button>
+    <GoogleLogin
+      clientId={GOOGLE_CLIENT_ID}
+      buttonText="Google Login"
+      onSuccess={googleResponse}
+      onFailure={onFailure}
+      cookiePolicy="single_host_origin"
+    />
   );
 };
 

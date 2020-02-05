@@ -1,111 +1,131 @@
 const authRouter = require('express').Router();
-const passport = require('passport');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { info, errm } = require('../utils/logger');
+const axios = require('axios');
+
+const { login, register } = require('../utils/helpers/authHelper');
 
 // Validation
-const loginValidator = require('../utils/validation/login_validator');
-const registerValidator = require('../utils/validation/register_validation');
+const formValidator = require('../utils/formValidator');
 
 const { secretOrKey } = require('../utils/config');
-require('../utils/passportSetup');
 
 // User model
 const User = require('../models/User');
 
-// Google
-authRouter.get('/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+// login using google
+authRouter.post('/google', async (req, res, next) => {
+  try {
+    const { accessToken } = req.body;
 
-// exchanges code for details
-authRouter.get('/google/redirect',
-  passport.authenticate('google'),
-  (req, res) => {
-    res.send('/google/redirect');
-  });
+    // check if it's a valid google access token
+    const accessTokenCheck = await axios.post(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`);
 
+    // if there's no error
+    if (!accessTokenCheck.error) {
+      const { profileObj } = req.body;
+      const { email, googleId } = profileObj;
+      // find the user through their email
+      const user = await User.findOne({ email });
+
+      // if there is no user, make a new one
+      if (!user) {
+        const newUser = new User({
+          username: '',
+          email,
+          googleProvider: {
+            id: googleId,
+            token: accessToken,
+          },
+        });
+        await newUser.save();
+        res.json({ user: newUser });
+      // update the access token for that google user
+      } else {
+        user.googleProvider = {
+          id: googleId,
+          token: accessToken,
+        };
+        await user.save();
+        res.json({ user });
+      }
+    // someone is trying to use a fake access token!
+    } else {
+      res.json({ error: 'nice try hacker' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// register route for users not using a google account
 authRouter.post('/register', async (req, res, next) => {
   try {
-    const { body } = req; // destructuring of req to body
-    const { errors, isValid } = registerValidator(body);
-
-    if (!isValid) {
-      errm(errors);
-      return res.status(401).json(errors);
+    const { email, password } = req.body;
+    const { isValid, errors } = formValidator({ email, password });
+    // check if valid email, password
+    if (isValid) {
+      // find the user through their email
+      const user = await User.findOne({ email });
+      if (!user) {
+        const newUser = new User({
+          email,
+          password: register(password),
+        });
+        await newUser.save();
+        res.json(newUser);
+      } else {
+        res.json({ error: 'email already taken' });
+      }
+    } else {
+      res.json({ error: errors });
     }
-    const saltRounds = 10;
-    const passwordHash = await bcrypt.hash(body.password, saltRounds);
-    const user = new User({
-      name: body.name.toLowerCase(),
-      email: body.email.toLowerCase(),
-      password: passwordHash,
-    });
-
-    await user.save()
-      // eslint-disable-next-line no-unused-vars
-      .then((newUser) => {
-        info(newUser);
-        res.status(200).json({ success: true });
-      })
-      .catch((err) => next(err));
   } catch (err) {
-    errm(err);
+    next(err);
   }
-  return false;
 });
 
+// login route for users not using a google account
 authRouter.post('/login', async (req, res, next) => {
   try {
-    const { body } = req;
-    const { errors, isValid } = loginValidator(body);
-
-    if (!isValid) {
-      res.status(401).json(errors);
-    }
-
-    const { email, password } = body;
-
-    User.findOne({ email: email.toLowerCase() })
-      .then((user) => {
-        // Check if there is a user with that email and if one is found
-        if (!user) {
-          res.status(404).json({ error: 'email not found' });
+    const { email, password } = req.body;
+    const { isValid, errors } = formValidator({ email, password });
+    // check if valid email, password
+    if (isValid) {
+      const user = await User.findOne({ email });
+      if (user) {
+        const check = login(password, user.password);
+        if (check) {
+          res.status(200).json({ user });
+        } else {
+          res.status(404).json({ error: 'incorrect password' });
         }
-        // Check if password is good
-        bcrypt.compare(password, user.password)
-          .then((isMatch) => {
-            if (isMatch) {
-              const payload = {
-                id: user.id,
-                name: user.name,
-              };
-
-              jwt.sign(
-                payload,
-                secretOrKey,
-                {
-                  expiresIn: 31556926, // 1 year
-                },
-                (err, token) => {
-                  res.json({
-                    success: true,
-                    token: 'Bearer '.concat(token),
-                  });
-                },
-              );
-            } else {
-              return res
-                .status(400)
-                .json({ error: 'password incorrect' });
-            }
-            return false;
-          });
-      })
-      .catch((err) => next(err));
+      }
+    } else {
+      res.status(404).json({ error: errors });
+    }
   } catch (err) {
-    errm(err);
+    next(err);
   }
 });
+
+// add a password the the user
+// update the username of the user
+authRouter.post('/username', async (req, res, next) => {
+  try {
+    const { userID, newUsername } = req.body;
+    const user = await User
+      .findByIdAndUpdate(userID, { username: newUsername });
+    if (user) {
+      res.status(200).json(user.username);
+    } else {
+      res.status(404).json({ error: 'userID bad' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// stretch
+// update password
 
 module.exports = authRouter;

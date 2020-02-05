@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import axios from 'axios';
 
 import ChannelItem from './ChannelItem';
 import NewChannelItem from './NewChannelItem';
 
 const ChannelList = ({ channels, selectChannel, newChannel }) => {
+
   const list = channels.map((channel) => (
     <ChannelItem
       key={channel.id}

@@ -14,9 +14,18 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' });
 };
 
+// eslint-disable-next-line consistent-return
 const errorHandler = (err, req, res, next) => {
   errm(err.name, err.message);
-  // need to fill in types of errors
+  if (err.name === 'CastError' && err.kind === 'ObjectId') {
+    return res.status(400).send({ error: 'malformatted id' });
+  } if (err.name === 'ValidationError') {
+    return res.status(400).json({ error: err.message });
+  } if (err.name === 'JsonWebTokenError') {
+    return res.status(401).json({
+      err: 'invalid token',
+    });
+  }
   next();
 };
 
