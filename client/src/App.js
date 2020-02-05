@@ -24,9 +24,12 @@ const App = () => {
     axios
       .post('http://localhost:8001/api/auth/login', credentials)
       .then((res) => {
-        const { user } = res.data;
-        console.log(res.data);
-        return user.channels;
+        const { channels } = res.data;
+        console.log(res.data.token);
+        if (res.data.user) {
+          window.localStorage.token = res.data.token;
+        }
+        return channels;
       });
   });
 

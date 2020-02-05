@@ -27,7 +27,7 @@ const signJWT = (res, user) => {
       res.status(200).json({
         success: true,
         token: 'Bearer '.concat(token),
-        user,
+        channels: user.channels,
       });
     },
   );

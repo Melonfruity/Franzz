@@ -62,7 +62,7 @@ app.use(requestLogger);
 
 // passport initialize
 app.use(passport.initialize());
-require('./utils/passportSetup')(passport);
+require('./utils/passportSetup');
 
 // use routes
 app.use('/api/auth', authRouter);

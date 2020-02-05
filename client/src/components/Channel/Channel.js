@@ -11,7 +11,7 @@ import { info } from '../../utils/logger';
 let socket;
 
 const Channel = () => {
-  const [channels, setChannels] = useState([]); // list of user channels
+  // const [channels, setChannels] = useState([]); // list of user channels
   const [channel, setChannel] = useState({}); // current channel
 
   const [showCreateJoin, setShowCreateJoin] = useState(false);
@@ -47,11 +47,11 @@ const Channel = () => {
   return (
     <div>
       Channels
-      <ChannelList
+      {/* <ChannelList
         channels={channels === undefined ? [] : channels}
         selectChannel={selectChannel}
         newChannel={newChannel}
-      />
+      /> */}
       <Chatbox
         channel={channel}
       />

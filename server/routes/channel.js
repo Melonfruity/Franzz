@@ -1,4 +1,5 @@
 const channelRouter = require('express').Router();
+const passport = require('passport');
 const { partOfChannel } = require('../utils/helpers/channelHelper');
 
 // Models
@@ -85,17 +86,20 @@ channelRouter.put('/join/:channelID', async (req, res, next) => {
 });
 
 // new messages to the server
-channelRouter.post('/messages', async (req, res, next) => {
+channelRouter.post('/messages', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
+
   try {
     const { channelID, userID, message } = req.body;
 
-    const newMessage = new Message({
-      text: message,
-      channel: channelID,
-      user: userID,
-    });
+    // const newMessage = new Message({
+    //   message,
+    //   channel: channelID,
+    //   user: userID,
+    // });
 
-    await newMessage.save();
+    // await newMessage.save();
+
+    res.json({ message });
   } catch (err) {
     next(err);
   }

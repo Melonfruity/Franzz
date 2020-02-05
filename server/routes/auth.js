@@ -1,13 +1,10 @@
 const authRouter = require('express').Router();
-const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
 const { login, register, signJWT } = require('../utils/helpers/authHelper');
 
 // Validation
 const formValidator = require('../utils/formValidator');
-
-const { secretOrKey } = require('../utils/config');
 
 // User model
 const User = require('../models/User');
@@ -46,7 +43,7 @@ authRouter.post('/google', async (req, res, next) => {
           token: accessToken,
         };
         await user.save();
-        signJWT(res, user);''
+        signJWT(res, user);
       }
     // someone is trying to use a fake access token!
     } else {
