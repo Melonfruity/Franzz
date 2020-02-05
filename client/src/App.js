@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // import PopUpBox from './components/Channel/Container/Chat/PopUpBox';
 // import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
@@ -14,11 +15,23 @@ import Login from './components/Landing/Login';
 const App = () => {
   // const { boxDisplay, clickedButton } = PopUpButtonDisplay('off');
 
-  const title = 'JEK';
+  const credentials = {
+    email: 'email@gmail.com',
+    password: 'password',
+  };
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:8001/api/auth/login', credentials)
+      .then((res) => {
+        const { user } = res.data;
+        console.log(res.data);
+        return user.channels;
+      });
+  });
 
   return (
     <div>
-      {title}
       <Channel />
       {/* { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> } */}
       {/* <PopUpButton toggleButton={clickedButton} /> */}

@@ -26,21 +26,6 @@ const Channel = () => {
 
   useEffect(() => {
 
-    const credentials = {
-      email: 'email@gmail.com',
-      password: 'password',
-    };
-
-    axios
-      .post('http://localhost:8001/api/auth/login', credentials)
-      .then((res) => {
-        const { user } = res.data;
-        return user.channels;
-      })
-      .then((chns) => {
-        setChannels(chns);
-      });
-
     // do it in initial render cause then it will connect before that...
     socket = io('http://localhost:8001/channel');
     socket.on('connect', () => {

@@ -2,7 +2,7 @@ const authRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
-const { login, register } = require('../utils/helpers/authHelper');
+const { login, register, signJWT } = require('../utils/helpers/authHelper');
 
 // Validation
 const formValidator = require('../utils/formValidator');
@@ -46,7 +46,7 @@ authRouter.post('/google', async (req, res, next) => {
           token: accessToken,
         };
         await user.save();
-        res.json({ user });
+        signJWT(res, user);''
       }
     // someone is trying to use a fake access token!
     } else {
@@ -72,7 +72,8 @@ authRouter.post('/register', async (req, res, next) => {
           password: register(password),
         });
         await newUser.save();
-        res.json(newUser);
+        // sign a token and send it
+        signJWT(res, newUser);
       } else {
         res.json({ error: 'email already taken' });
       }
@@ -95,7 +96,7 @@ authRouter.post('/login', async (req, res, next) => {
       if (user) {
         const check = login(password, user.password);
         if (check) {
-          res.status(200).json({ user });
+          signJWT(res, user);
         } else {
           res.status(404).json({ error: 'incorrect password' });
         }
