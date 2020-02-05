@@ -17,7 +17,7 @@ const Channel = () => {
   const [showCreateJoin, setShowCreateJoin] = useState(false);
 
   const selectChannel = (id) => {
-    setChannel(channelData.filter((chn) => chn.id === id)[0]);
+    setChannel(id);
   };
 
   const newChannel = () => {
@@ -25,14 +25,22 @@ const Channel = () => {
   };
 
   useEffect(() => {
-    const user = '5e39ef3f458c2b44ab410e56'
-    const getChannels = async () => {
-      await axios.get('http://localhost:8001/api/channel');
-    };
-  });
 
-  useEffect(() => {
-    setChannels(channelData);
+    const credentials = {
+      email: 'email@gmail.com',
+      password: 'password',
+    };
+
+    axios
+      .post('http://localhost:8001/api/auth/login', credentials)
+      .then((res) => {
+        const { user } = res.data;
+        return user.channels;
+      })
+      .then((chns) => {
+        setChannels(chns);
+      });
+
     // do it in initial render cause then it will connect before that...
     socket = io('http://localhost:8001/channel');
     socket.on('connect', () => {
@@ -55,7 +63,7 @@ const Channel = () => {
     <div>
       Channels
       <ChannelList
-        channels={channels}
+        channels={channels === undefined ? [] : channels}
         selectChannel={selectChannel}
         newChannel={newChannel}
       />

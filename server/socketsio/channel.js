@@ -17,7 +17,6 @@ module.exports = (io) => {
     // namespace is channel and room will be called channel
     socket.on('join channel', (channelData) => {
       info(channelData);
-      
     });
 
     socket.on('disconnect', () => {

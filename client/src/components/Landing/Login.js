@@ -7,7 +7,7 @@ const Login = () => {
   const googleResponse = (data) => {
     axios
       .post('http://localhost:8001/api/auth/google', data)
-      .then((res) => console.log(res));
+      .then((res) => console.log(res.data));
   };
 
   const onFailure = (err) => {

@@ -1,5 +1,4 @@
 const channelRouter = require('express').Router();
-const { info, errm } = require('../utils/logger');
 const { partOfChannel } = require('../utils/helpers/channelHelper');
 
 // Models
@@ -8,10 +7,24 @@ const Message = require('../models/Message');
 // const Blob = require('../models/Blob');
 const User = require('../models/User');
 
-// get channels for a user
-channelRouter.get('/list', async (req, res, next) => {
+// get channel and initial messages
+channelRouter.get('/initialize', async (req, res, next) => {
   try {
-    const { userID } = req.body;
+    const { channelIDs } = req.params;
+
+    // const messages = await Message.find({
+    //   created: {
+    //     $gte: new Date(new Date().setHours('00', '00', '00')),
+    //     $lt: new Date(new Date().setHours('23', '59', '59')),
+    //   },
+    //   channel: channelID,
+    // }).sort({ created: 'asc' });
+    const channels = await Message.find({
+      channel: {
+        $in: channelIDs,
+      },
+    });
+    res.json(channels);
   } catch (err) {
     next(err);
   }
@@ -83,24 +96,6 @@ channelRouter.post('/messages', async (req, res, next) => {
     });
 
     await newMessage.save();
-  } catch (err) {
-    next(err);
-  }
-});
-
-// get initial messages
-channelRouter.get('/messages', async (req, res, next) => {
-  try {
-    const { channelID } = req.body;
-    const messages = await Message.find({
-      created: {
-        $gte: new Date(new Date().setHours('00', '00', '00')),
-        $lt: new Date(new Date().setHours('23', '59', '59')),
-      },
-      channel: channelID,
-    }).sort({ created: 'asc' });
-
-    res.json({ messages });
   } catch (err) {
     next(err);
   }

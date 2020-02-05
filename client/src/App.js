@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 // import PopUpButtonDisplay from './hooks/PopupButton';
 
 import Channel from './components/Channel/Channel';
-// import Login from './components/Landing/Login';
+import Login from './components/Landing/Login';
 
 // const ON = 'on';
 
@@ -22,7 +22,7 @@ const App = () => {
       <Channel />
       {/* { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> } */}
       {/* <PopUpButton toggleButton={clickedButton} /> */}
-      {/* <Login /> */}
+      <Login />
     </div>
   );
 };

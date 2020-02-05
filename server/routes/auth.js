@@ -38,7 +38,7 @@ authRouter.post('/google', async (req, res, next) => {
           },
         });
         await newUser.save();
-        res.json(newUser);
+        res.json({ user: newUser });
       // update the access token for that google user
       } else {
         user.googleProvider = {
@@ -46,7 +46,7 @@ authRouter.post('/google', async (req, res, next) => {
           token: accessToken,
         };
         await user.save();
-        res.json(user);
+        res.json({ user });
       }
     // someone is trying to use a fake access token!
     } else {
@@ -95,7 +95,7 @@ authRouter.post('/login', async (req, res, next) => {
       if (user) {
         const check = login(password, user.password);
         if (check) {
-          res.status(200).json(user);
+          res.status(200).json({ user });
         } else {
           res.status(404).json({ error: 'incorrect password' });
         }

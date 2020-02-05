@@ -1,9 +1,10 @@
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const socketio = require('socket.io');
+const http = require('http');
+const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const socketio = require('socket.io');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 // utils
@@ -58,6 +59,10 @@ app.use(bodyParser.json()); // JSON
 
 // the request with relevant data is logged
 app.use(requestLogger);
+
+// passport initialize
+app.use(passport.initialize());
+require('./utils/passportSetup')(passport);
 
 // use routes
 app.use('/api/auth', authRouter);
