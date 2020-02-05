@@ -11,8 +11,6 @@ channelRouter.get('/initialize',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      const { channelIDs } = req.params;
-
       // const messages = await Message.find({
       //   created: {
       //     $gte: new Date(new Date().setHours('00', '00', '00')),
@@ -20,12 +18,20 @@ channelRouter.get('/initialize',
       //   },
       //   channel: channelID,
       // }).sort({ created: 'asc' });
-      const channels = await Message.find({
-        channel: {
-          $in: channelIDs,
-        },
-      });
-      res.json(channels);
+
+      const { channels } = req.user;
+
+      const dbMessages = await Promise.all(
+        channels.map((channel) => Message
+          .find({ channel })
+          .sort({ created: 'desc' })),
+      );
+      const formattedMessages = dbMessages
+        .map((message) => ({
+          channel: message[0].channel,
+          messages: message,
+        }));
+      res.json({ messages: formattedMessages });
     } catch (err) {
       next(err);
     }

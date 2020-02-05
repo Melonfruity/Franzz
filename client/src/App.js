@@ -25,10 +25,8 @@ const App = () => {
       .post('http://localhost:8001/api/auth/login', credentials)
       .then((res) => {
         const { channels } = res.data;
-        console.log(res.data.token);
-        if (res.data.user) {
-          window.localStorage.token = res.data.token;
-        }
+        console.log(res.data);
+        window.localStorage.setItem('token', res.data.token);
         return channels;
       });
   });

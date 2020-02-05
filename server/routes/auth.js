@@ -123,4 +123,17 @@ authRouter.post('/username', async (req, res, next) => {
   }
 });
 
+authRouter.post('/guest', async (req, res, next) => {
+  try {
+    const { username } = req.body;
+    const guest = new User({
+      username,
+    });
+    const tempGuest = await guest.save();
+    signJWT(res, tempGuest);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = authRouter;
