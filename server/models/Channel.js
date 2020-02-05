@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const ChannelSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   users: [{
     type: mongoose.Schema.Types.ObjectId,

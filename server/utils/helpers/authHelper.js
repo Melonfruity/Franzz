@@ -4,13 +4,9 @@ const { secretOrKey } = require('../../utils/config');
 
 const saltRounds = 10;
 
-const login = (password, passHash) => {
-  return bcrypt.compareSync(password, passHash);
-};
+const login = (password, passHash) => bcrypt.compareSync(password, passHash);
 
-const register = (password) => {
-  return bcrypt.hashSync(password, saltRounds);
-};
+const register = (password) => bcrypt.hashSync(password, saltRounds);
 
 const signJWT = (res, user) => {
   const payload = {

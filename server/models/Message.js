@@ -9,12 +9,12 @@ const MessageSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
-    require: true,
+    required: true,
   },
   channel: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Channels',
-    require: true,
+    required: true,
   },
   created: {
     type: Date,
