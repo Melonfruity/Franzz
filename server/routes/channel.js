@@ -13,7 +13,9 @@ cloudinary.config({
 // Example of uploading file to the cloud
 cloudinary.v2.uploader.upload("https://www.example.com/mysample.jpg",
   { public_id: "sample_woman" }, 
-  function(error, result) { return result; });
+  function(error, result) { info(result); 
+  }
+);
 
 // Models
 const Channel = require('../models/Channel');
