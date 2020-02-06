@@ -7,7 +7,7 @@ import axios from 'axios';
 // import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
 // import PopUpButtonDisplay from './hooks/PopupButton';
 
-import Channel from './components/Channel/Channel';
+// import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login/Login';
 
 // const ON = 'on';
@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div>
-      <Channel />
+      {/* <Channel /> */}
       {/* { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> } */}
       {/* <PopUpButton toggleButton={clickedButton} /> */}
       <Login />

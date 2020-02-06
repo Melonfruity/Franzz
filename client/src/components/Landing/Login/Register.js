@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { useField } from '../../../hooks/useField';
 
 const Register = () => {
