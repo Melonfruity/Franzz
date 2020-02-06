@@ -21,17 +21,15 @@ channelRouter.get('/initialize',
 
       const { channels } = req.user;
 
-      const dbMessages = await Promise.all(
-        channels.map((channel) => Message
-          .find({ channel })
-          .sort({ created: 'desc' })),
+      const messages = await Promise.all(
+        channels.map(async (channel) => ({
+          channel,
+          messages: await Message
+            .find({ channel })
+            .sort({ created: 'desc' }),
+        })),
       );
-      const formattedMessages = dbMessages
-        .map((message) => ({
-          channel: message[0].channel,
-          messages: message,
-        }));
-      res.json({ messages: formattedMessages });
+      res.json(messages);
     } catch (err) {
       next(err);
     }

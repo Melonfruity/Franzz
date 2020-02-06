@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import { GOOGLE_CLIENT_ID } from '../../utils/config';
+import { GOOGLE_CLIENT_ID } from '../../../utils/config';
 
 const Login = () => {
   const googleResponse = (data) => {

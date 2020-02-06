@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { secretOrKey } = require('../../utils/config');
 
+const User = require('../../models/User');
+
 const saltRounds = 10;
 
 const login = (password, passHash) => bcrypt.compareSync(password, passHash);
@@ -29,8 +31,16 @@ const signJWT = (res, user) => {
   );
 };
 
+const extractJWT = async (token) => {
+  if (!token) {
+    return false;
+  }
+  return jwt.verify(token.slice(8, token.length - 1), secretOrKey);
+};
+
 module.exports = {
   login,
   register,
   signJWT,
+  extractJWT,
 };

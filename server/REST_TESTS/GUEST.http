@@ -8,6 +8,7 @@ content-type: application/json
 
 ### register as guest normal
 POST http://localhost:8001/api/auth/register
+content-type: application/json
 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTNiM2UwMzNhZDZjMDE4ZmI3ZmVmYmEiLCJpYXQiOjE1ODA5NDA4MDMsImV4cCI6MTYxMjQ5NzcyOX0.idgHGvNKogyw27jEWGx7khG0TsLb3iEDumiq74HC6FE"
 
 {
@@ -15,6 +16,6 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTNi
   "password": "password"
 }
 
-### register as guest google
-POST http://localhost:8001/api/auth/register
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTNiM2UwMzNhZDZjMDE4ZmI3ZmVmYmEiLCJpYXQiOjE1ODA5NDA4MDMsImV4cCI6MTYxMjQ5NzcyOX0.idgHGvNKogyw27jEWGx7khG0TsLb3iEDumiq74HC6FE"
+# ### register as guest google
+# POST http://localhost:8001/api/auth/register
+# Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTNiM2UwMzNhZDZjMDE4ZmI3ZmVmYmEiLCJpYXQiOjE1ODA5NDA4MDMsImV4cCI6MTYxMjQ5NzcyOX0.idgHGvNKogyw27jEWGx7khG0TsLb3iEDumiq74HC6FE"

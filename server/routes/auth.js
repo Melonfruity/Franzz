@@ -1,7 +1,12 @@
 const authRouter = require('express').Router();
 const axios = require('axios');
 
-const { login, register, signJWT } = require('../utils/helpers/authHelper');
+const {
+  login,
+  register,
+  signJWT,
+  extractJWT,
+} = require('../utils/helpers/authHelper');
 
 // Validation
 const formValidator = require('../utils/formValidator');
@@ -59,6 +64,10 @@ authRouter.post('/register', async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const { isValid, errors } = formValidator({ email, password });
+    const { authorization } = req.headers;
+
+    // const guest = extractJWT(authorization);
+
     // check if valid email, password
     if (isValid) {
       // find the user through their email

@@ -8,7 +8,7 @@ import axios from 'axios';
 // import PopUpButtonDisplay from './hooks/PopupButton';
 
 import Channel from './components/Channel/Channel';
-import Login from './components/Landing/Login';
+import Login from './components/Landing/Login/Login';
 
 // const ON = 'on';
 
@@ -25,7 +25,6 @@ const App = () => {
       .post('http://localhost:8001/api/auth/login', credentials)
       .then((res) => {
         const { channels } = res.data;
-        console.log(res.data);
         window.localStorage.setItem('token', res.data.token);
         return channels;
       });
