@@ -25,6 +25,7 @@ const io = socketio(server);
 // routes
 const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
+const photoRouter = require('./routes/photos');
 
 // connecting to mongodb
 info('Connecting to MongoDB');
@@ -64,9 +65,11 @@ app.use(requestLogger);
 // use routes
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
+app.use('/api/photos', photoRouter);
 
 // sockets channel namespace
 require('./socketsio/channel')(io);
+
 
 // error handling
 // this is after all the routes are passed and none are found

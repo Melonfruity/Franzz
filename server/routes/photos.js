@@ -1,5 +1,6 @@
 const photosRouter = require('express').Router();
 const cloudinary = require('cloudinary');
+const formidable = require('formidable');
 const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = require('../utils/config');
 
 // Setup for cloud-based api for photos
@@ -10,6 +11,12 @@ cloudinary.config({
 });
 
 // uploads photos to the cloud (cloudinary)
-channelRouter.post('/uploadPhoto', async (req, res) => {
-  console.log(req);
+photosRouter.post('/uploadPhoto', async (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, (err, fields, files) => {
+    console.log(files);
+    res.send('NOT IMPLEMENTED: pollsController createPost');
+  });
 });
+
+module.exports = photosRouter;
