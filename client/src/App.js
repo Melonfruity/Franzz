@@ -8,6 +8,7 @@ import useToggleButton from './hooks/useToggleButton';
 
 import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login';
+import DragAndDrop from './components/Channel/Container/Photos/DragAndDrop';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 const ON = 'on';
@@ -19,12 +20,13 @@ const App = () => {
 
   return (
     <div>
-      {title}
+      {/* {title}
       <Image cloudName="demo" publicId="samples/food/spices" width="300" crop="scale" />
       <Channel />
       { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> }
       <PopUpButton toggleButton={clickedButton} />
-      <Login />
+      <Login /> */}
+      <DragAndDrop />
     </div>
   );
 };
