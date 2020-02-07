@@ -31,11 +31,13 @@ const signJWT = (res, user) => {
   );
 };
 
-const extractJWT = async (token) => {
-  if (!token) {
-    return false;
+const extractJWT = async (authorization, updateGuest) => {
+  if (authorization.toLowerCase().startsWith('bearer ')) {
+    const token = authorization.substring(7);
+    const { userID } = jwt.verify(token, secretOrKey);
+    const user = await User.findByIdAndUpdate(userID, updateGuest);
+    return user;
   }
-  return jwt.verify(token.slice(8, token.length - 1), secretOrKey);
 };
 
 module.exports = {

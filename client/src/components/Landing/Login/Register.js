@@ -1,12 +1,23 @@
 import React from 'react';
 import { useField } from '../../../hooks/useField';
+import auth from '../../../service/authService';
 
 const Register = () => {
   const email = useField('text');
   const password = useField('password');
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const registerObj = {
+      email: email.value,
+      password: password.value,
+      username: window.localStorage.username ? window.localStorage.username : '',
+    };
+    auth.register(registerObj);
+  };
+
   return (
-    <div>
+    <form>
       <input
         {...email}
         reset={undefined}
@@ -15,7 +26,8 @@ const Register = () => {
         {...password}
         reset={undefined}
       />
-    </div>
+      <button type="button" onClick={handleRegister}> Register </button>
+    </form>
   );
 };
 

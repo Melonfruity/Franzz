@@ -62,24 +62,32 @@ authRouter.post('/google', async (req, res, next) => {
 // register route for users not using a google account
 authRouter.post('/register', async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
     const { isValid, errors } = formValidator({ email, password });
     const { authorization } = req.headers;
-
-    // const guest = extractJWT(authorization);
-
     // check if valid email, password
     if (isValid) {
       // find the user through their email
       const user = await User.findOne({ email });
       if (!user) {
-        const newUser = new User({
-          email,
-          password: register(password),
-        });
-        await newUser.save();
-        // sign a token and send it
-        signJWT(res, newUser);
+        // if there is a token and the user has a username token
+        if (authorization && typeof username === 'string') {
+          const updateGuest = {
+            email,
+            password: register(password),
+            username,
+          };
+          const updatedUser = extractJWT(res, authorization, updateGuest);
+          signJWT(res, updatedUser);
+        } else {
+          const newUser = new User({
+            email,
+            password: register(password),
+          });
+          await newUser.save();
+          // sign a token and send it
+          signJWT(res, newUser);
+        }
       } else {
         res.json({ error: 'email already taken' });
       }
@@ -120,8 +128,7 @@ authRouter.post('/login', async (req, res, next) => {
 authRouter.post('/username', async (req, res, next) => {
   try {
     const { userID, newUsername } = req.body;
-    const user = await User
-      .findByIdAndUpdate(userID, { username: newUsername });
+    const user = await User.findByIdAndUpdate(userID, { username: newUsername });
     if (user) {
       res.status(200).json(user.username);
     } else {
