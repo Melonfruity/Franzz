@@ -9,7 +9,6 @@ import useToggleButton from './hooks/useToggleButton';
 // Temp styling for drop-box
 import './styling/DragAndDropBox.scss';
 
-
 import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login';
 import DragAndDrop from './components/Channel/Container/Photos/DragAndDrop';
@@ -21,6 +20,8 @@ const ON = 'on';
 
 const App = () => {
   const { boxDisplay, clickedButton } = useToggleButton('off');
+
+  //Maybe keep this, this highlights the box when image is dragged over
   const [highlightClass, change] = useState('');
 
   const title = 'JEK';
