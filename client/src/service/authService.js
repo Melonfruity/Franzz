@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
-const serverURL = 'http://localhost:8001/api/auth';
+const serverURL = 'http://localhost:8001/api';
 
 const login = async (loginObj) => {
-  const res = await axios.post(`${serverURL}/login`, loginObj);
+  const res = await axios.post(`${serverURL}/auth/login`, loginObj);
   const { error, token } = res.data;
   if (error) {
     console.log(error);
@@ -17,7 +17,7 @@ const register = async (registerObj) => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
-  const res = await axios.post(`${serverURL}/register`, registerObj, config);
+  const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
   const { error, token } = res.data;
   if (error) {
     console.log(error);
@@ -27,7 +27,7 @@ const register = async (registerObj) => {
 };
 
 const guest = async (guestObj) => {
-  const res = await axios.post(`${serverURL}/guest`, guestObj);
+  const res = await axios.post(`${serverURL}/auth/guest`, guestObj);
   const { error, token } = res.data;
   if (error) {
     console.log(error);

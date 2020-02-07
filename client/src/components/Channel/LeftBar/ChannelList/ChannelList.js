@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import axios from 'axios';
 
 import ChannelItem from './ChannelItem';
 import NewChannelItem from './NewChannelItem';
