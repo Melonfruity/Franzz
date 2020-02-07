@@ -1,4 +1,7 @@
-
+function preventDefaults(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
 
 function handleFiles(files) {
   ([...files]).forEach((file) => console.log(file));
@@ -9,6 +12,7 @@ function handleDrop(e) {
   const { files } = dt;
 
   handleFiles(files);
+  preventDefaults(e);
 }
 
 function highlight() {
@@ -19,19 +23,19 @@ function unhighlight() {
   change('');
 }
 
-function DragEnter() {
+function dragEnter(e) {
   highlight();
+  preventDefaults(e);
 }
 
-function DragLeave() {
+function dragLeave(e) {
   unhighlight();
+  preventDefaults(e);
 }
 
-function DragOver() {
+function dragOver(e) {
   highlight();
+  preventDefaults(e);
 }
 
-function preventDefaults(e) {
-  e.preventDefault();
-  e.stopPropagation();
-}
+module.exports = { dragEnter, dragLeave, dragOver, handleDrop}
