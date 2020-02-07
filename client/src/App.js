@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// import PopUpBox from './components/Channel/Container/Chat/PopUpBox';
-// import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
-// import './components/Channel/Container/Chat/Styling/PopUpBoxStyling.css';
-// import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
-// import PopUpButtonDisplay from './hooks/PopupButton';
+import PopUpBox from './components/Channel/Container/Chat/PopUpBox';
+import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
+import './components/Channel/Container/Chat/Styling/PopUpBoxStyling.css';
+import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
+import useToggleButton from './hooks/useToggleButton';
 
 // import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login/Login';
@@ -13,7 +13,7 @@ import Login from './components/Landing/Login/Login';
 // const ON = 'on';
 
 const App = () => {
-  // const { boxDisplay, clickedButton } = PopUpButtonDisplay('off');
+  const { boxDisplay, clickedButton } = useToggleButton('off');
 
   const credentials = {
     email: 'email@gmail.com',
