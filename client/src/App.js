@@ -5,7 +5,7 @@ import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton
 import './components/Channel/Container/Chat/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
 import useToggleButton from './hooks/useToggleButton';
-import { PreventDefaults, handleDrop } from './components/Channel/Container/Chat/Scripts/DragAndDropPhotos';
+import { preventDefaults, handleDrop } from './components/Channel/Container/Chat/Scripts/DragAndDropPhotos';
 import useChangeHighlightClass from './hooks/useHighlightClass';
 
 // Temp styling for drop-box
@@ -25,6 +25,7 @@ const App = () => {
 
   function boxEvent(e) {
     changeHighlightClass(e.type);
+    preventDefaults(e);
   }
 
   return (
