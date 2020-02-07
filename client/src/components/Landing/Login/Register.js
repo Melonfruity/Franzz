@@ -19,10 +19,12 @@ const Register = () => {
   return (
     <form>
       <input
+        placeholder="email"
         {...email}
         reset={undefined}
       />
       <input
+        placeholder="password"
         {...password}
         reset={undefined}
       />

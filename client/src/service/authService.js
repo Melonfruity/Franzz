@@ -3,11 +3,20 @@ import axios from 'axios';
 
 const serverURL = 'http://localhost:8001/api/auth';
 
+const login = async (loginObj) => {
+  const res = await axios.post(`${serverURL}/login`, loginObj);
+  const { error, token } = res.data;
+  if (error) {
+    console.log(error);
+  } else {
+    window.localStorage.setItem('authorization', token);
+  }
+};
+
 const register = async (registerObj) => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
-  console.log(config);
   const res = await axios.post(`${serverURL}/register`, registerObj, config);
   const { error, token } = res.data;
   if (error) {
@@ -18,7 +27,7 @@ const register = async (registerObj) => {
 };
 
 const guest = async (guestObj) => {
-  const res = await axios.post(`${serverURL}/guest`, guestObj)
+  const res = await axios.post(`${serverURL}/guest`, guestObj);
   const { error, token } = res.data;
   if (error) {
     console.log(error);
@@ -30,4 +39,5 @@ const guest = async (guestObj) => {
 export default {
   register,
   guest,
+  login,
 };

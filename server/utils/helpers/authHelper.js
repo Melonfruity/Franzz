@@ -31,7 +31,7 @@ const signJWT = (res, user) => {
   );
 };
 
-const extractJWT = async (authorization, updateGuest) => {
+const extractJWT = async (res, authorization, updateGuest) => {
   if (authorization.toLowerCase().startsWith('bearer ')) {
     const token = authorization.substring(7);
     const { userID } = jwt.verify(token, secretOrKey);

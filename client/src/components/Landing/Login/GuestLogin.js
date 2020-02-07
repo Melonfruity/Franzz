@@ -15,6 +15,7 @@ const GoogleLoginButton = () => {
   return (
     <form>
       <input
+        placeholder="username"
         {...username}
         reset={undefined}
       />
