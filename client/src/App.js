@@ -5,8 +5,8 @@ import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton
 import './components/Channel/Container/Chat/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
 import useToggleButton from './hooks/useToggleButton';
-import { dragEnter, dragLeave, dragOver, handleDrop } from './components/Channel/Container/Photos/DragAndDrop'
-
+import { PreventDefaults, handleDrop } from './components/Channel/Container/Chat/Scripts/DragAndDropPhotos';
+import useChangeHighlightClass from './hooks/useHighlightClass';
 
 // Temp styling for drop-box
 import './styling/DragAndDropBox.scss';
@@ -18,15 +18,14 @@ import {
   Image, Video, Transformation, CloudinaryContext,
 } from 'cloudinary-react';
 
-const ON = 'on';
-
 const App = () => {
-  const { boxDisplay, clickedButton } = useToggleButton('off');
-
-  //Maybe keep this, this highlights the box when image is dragged over
-  const [highlightClass, change] = useState('');
-
   const title = 'JEK';
+  const { boxDisplay, clickedButton } = useToggleButton('off');
+  const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
+
+  function boxEvent(e) {
+    changeHighlightClass(e.type);
+  }
 
   return (
     <div>
@@ -36,7 +35,7 @@ const App = () => {
       { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> }
       <PopUpButton toggleButton={clickedButton} />
       <Login /> */}
-      <DragAndDrop Highlight={highlightClass} Drop={handleDrop} DragEnter={dragEnter} DragLeave={dragLeave} DragOver={dragOver} />
+      <DragAndDrop Highlight={highlightClass} Drop={handleDrop} DragEnter={boxEvent} DragLeave={boxEvent} DragOver={boxEvent} />
     </div>
   );
 };

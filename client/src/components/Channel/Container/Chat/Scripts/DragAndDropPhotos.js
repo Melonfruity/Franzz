@@ -8,34 +8,15 @@ function handleFiles(files) {
 }
 
 function handleDrop(e) {
+  preventDefaults(e);
   const dt = e.dataTransfer;
   const { files } = dt;
 
   handleFiles(files);
-  preventDefaults(e);
 }
 
-function highlight() {
-  change('highlight');
-}
 
-function unhighlight() {
-  change('');
-}
-
-function dragEnter(e) {
-  highlight();
-  preventDefaults(e);
-}
-
-function dragLeave(e) {
-  unhighlight();
-  preventDefaults(e);
-}
-
-function dragOver(e) {
-  highlight();
-  preventDefaults(e);
-}
-
-module.exports = { dragEnter, dragLeave, dragOver, handleDrop}
+module.exports = {
+  preventDefaults,
+  handleDrop,
+};
