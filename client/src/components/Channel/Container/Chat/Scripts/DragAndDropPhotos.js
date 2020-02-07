@@ -1,10 +1,25 @@
+
 function preventDefaults(e) {
   e.preventDefault();
   e.stopPropagation();
 }
 
+function uploadFile(file) {
+  const url = '/uploadPhoto';
+  const formData = new FormData();
+
+  formData.append('file', file);
+
+  fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+    .then(() => { /* Done. Inform the user */ })
+    .catch(() => { /* Error. Inform the user */ });
+}
+
 function handleFiles(files) {
-  ([...files]).forEach((file) => console.log(file));
+  ([...files]).forEach(uploadFile);
 }
 
 function handleDrop(e) {

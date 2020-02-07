@@ -8,7 +8,7 @@ const {
   secretOrKey,
   CLOUD_NAME,
   CLOUD_KEY,
-  CLOUD_SECRET
+  CLOUD_SECRET,
 } = process.env;
 
 
@@ -18,4 +18,7 @@ module.exports = {
   GOOGLE_CLIENT_SECRET,
   MONGODB_URL,
   secretOrKey,
+  CLOUD_NAME,
+  CLOUD_KEY,
+  CLOUD_SECRET,
 };
