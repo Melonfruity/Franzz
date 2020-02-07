@@ -1,21 +1,21 @@
+const cloudinary = require('cloudinary').v2;
 const channelRouter = require('express').Router();
 const { info, errm } = require('../utils/logger');
-const cloudinary = require('cloudinary').v2
 const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = require('../utils/config');
 
 // Setup for cloud-based api for photos
-cloudinary.config({ 
-  cloud_name: CLOUD_NAME, 
-  api_key: CLOUD_KEY, 
-  api_secret: CLOUD_SECRET 
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: CLOUD_KEY,
+  api_secret: CLOUD_SECRET,
 });
 
 // Example of uploading file to the cloud
-cloudinary.v2.uploader.upload("https://www.example.com/mysample.jpg",
-  { public_id: "sample_woman" }, 
-  function(error, result) { info(result); 
-  }
-);
+cloudinary.v2.uploader.upload('https://www.example.com/mysample.jpg',
+  { public_id: 'sample_woman' },
+  (error, result) => {
+    info(result);
+  });
 
 // Models
 const Channel = require('../models/Channel');
@@ -43,7 +43,6 @@ channelRouter.post('/new', async (req, res, next) => {
 
     const newChannel = await channel.save();
     info(newChannel);
-
   } catch (err) {
     next(err);
   }
