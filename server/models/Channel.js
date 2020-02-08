@@ -1,27 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-// const uniqueValidator = require('mongoose-unique-validator');
 
 const ChannelSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
-  // users: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  // }],
   users: [{
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
   }],
   date: {
     type: Date,
     default: Date.now,
   },
 });
-
-// This will check if the DB has only one unique instance of this User
-// ChannelSchema.plugin(uniqueValidator);
 
 // This will get rid of some unneeded formatting from mongoDB
 ChannelSchema.set('toJSON', {

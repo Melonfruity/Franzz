@@ -1,16 +1,15 @@
 const authRouter = require('express').Router();
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
-const { info, errm } = require('../utils/logger');
-const { login, register } = require('../utils/helpers/authHelper');
+const {
+  login,
+  register,
+  signJWT,
+  extractJWT,
+} = require('../utils/helpers/authHelper');
 
 // Validation
 const formValidator = require('../utils/formValidator');
-
-const { secretOrKey } = require('../utils/config');
-require('../utils/passportSetup');
 
 // User model
 const User = require('../models/User');
@@ -41,7 +40,7 @@ authRouter.post('/google', async (req, res, next) => {
           },
         });
         await newUser.save();
-        res.json(newUser);
+        res.json({ user: newUser });
       // update the access token for that google user
       } else {
         user.googleProvider = {
@@ -49,7 +48,7 @@ authRouter.post('/google', async (req, res, next) => {
           token: accessToken,
         };
         await user.save();
-        res.json(user);
+        signJWT(res, user);
       }
     // someone is trying to use a fake access token!
     } else {
@@ -65,6 +64,10 @@ authRouter.post('/register', async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const { isValid, errors } = formValidator({ email, password });
+    const { authorization } = req.headers;
+
+    // const guest = extractJWT(authorization);
+
     // check if valid email, password
     if (isValid) {
       // find the user through their email
@@ -75,7 +78,8 @@ authRouter.post('/register', async (req, res, next) => {
           password: register(password),
         });
         await newUser.save();
-        res.json(newUser);
+        // sign a token and send it
+        signJWT(res, newUser);
       } else {
         res.json({ error: 'email already taken' });
       }
@@ -98,7 +102,7 @@ authRouter.post('/login', async (req, res, next) => {
       if (user) {
         const check = login(password, user.password);
         if (check) {
-          res.status(200).json(user);
+          signJWT(res, user);
         } else {
           res.status(404).json({ error: 'incorrect password' });
         }
@@ -128,7 +132,17 @@ authRouter.post('/username', async (req, res, next) => {
   }
 });
 
-// stretch
-// update password
+authRouter.post('/guest', async (req, res, next) => {
+  try {
+    const { username } = req.body;
+    const guest = new User({
+      username,
+    });
+    const tempGuest = await guest.save();
+    signJWT(res, tempGuest);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = authRouter;
