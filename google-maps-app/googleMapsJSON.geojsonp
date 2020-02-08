@@ -1,0 +1,7 @@
+eqfeed_callback({"type":"FeatureCollection","metadata":{"generated":1581187533000,"url":"","title":"Friend Locations","status":200,"api":"1.8.1","count":510},
+
+"features":[
+  {"type":"Feature","geometry":{"type":"Point","coordinates":[43.644175,-79.4043927]},"id":"pr2020039041"},
+  {"type":"Feature","geometry":{"type":"Point","coordinates":[43.4722854,-80.5470463]},"id":"pr2020039042"},
+  {"type":"Feature","geometry":{"type":"Point","coordinates":[43.6576624,-79.3809904]},"id":"pr2020039043"}
+  ],"bbox":[-179.9795,-60.108,-1.53,179.6275,69.6071,627.2]});
