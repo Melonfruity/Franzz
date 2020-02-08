@@ -33,4 +33,5 @@ function handleDrop(e) {
 module.exports = {
   preventDefaults,
   handleDrop,
+  handleFiles,
 };
