@@ -14,7 +14,14 @@ cloudinary.config({
 photosRouter.post('/uploadPhoto', async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-    cloudinary.v2.uploader.upload(files.file.path);
+
+    // If it is a video upload do this
+    if (files.file.type.includes('video')) {
+      cloudinary.v2.uploader.upload(files.file.path,
+        { resource_type: 'video' });
+    } else { // if it is a photo
+      cloudinary.v2.uploader.upload(files.file.path);
+    }
   });
   res.send('file has been uploaded :)');
 });
