@@ -93,17 +93,15 @@ channelRouter.put('/join/:channelID',
 
 // new messages to the server
 channelRouter.post('/messages',
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      const { channel, message } = req.body;
-      const userID = req.user.id;
+      const { channelID, message, userID } = req.body;
 
       // new message object
       const newMessage = new Message({
         message,
         user: userID,
-        channel,
+        channel: channelID,
       });
 
       await newMessage.save();

@@ -1,62 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import axios from 'axios';
+import React from 'react';
 
-import Chatbox from './Container/Chat/Chatbox';
-import ChannelList from './LeftBar/ChannelList/ChannelList';
-import NewChannel from './NewChannel';
+const Chat = React.lazy(() => import('./Container/Chat/Chat'));
 
-import { info } from '../../utils/logger';
-
-let socket;
-
-const Channel = () => {
-  // const [channels, setChannels] = useState([]); // list of user channels
-  const [channel, setChannel] = useState({}); // current channel
-
-  const [showCreateJoin, setShowCreateJoin] = useState(false);
-
-  const selectChannel = (id) => {
-    setChannel(id);
-  };
-
-  const newChannel = () => {
-    setShowCreateJoin((prev) => !prev);
-  };
-
-  useEffect(() => {
-
-    // do it in initial render cause then it will connect before that...
-    socket = io('http://localhost:8001/channel');
-    socket.on('connect', () => {
-      // from servers
-      socket.on('server message', (data) => {
-        info(data);
-      });
-
-      socket.emit('message', 'client connected', () => {
-        info('sent message to server');
-      });
-    });
-
-    return () => {
-      socket.off();
-    };
-  }, []);
+const Channel = ({ socket, channel, messages }) => {
 
   return (
-    <div>
-      Channels
-      {/* <ChannelList
-        channels={channels === undefined ? [] : channels}
-        selectChannel={selectChannel}
-        newChannel={newChannel}
-      /> */}
-      <Chatbox
-        channel={channel}
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Chat
+        key={channel}
+        channelID={channel}
+        initialMessages={messages}
+        socket={socket}
       />
-      { showCreateJoin ? <NewChannel /> : <></>}
-    </div>
+    </React.Suspense>
   );
 };
 

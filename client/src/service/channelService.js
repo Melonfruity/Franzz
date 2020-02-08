@@ -6,8 +6,8 @@ const getMessages = async () => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
-  const res = await axios.get(`${serverURL}/channel/initalize`, config);
-  console.log(res);
+  const res = await axios.get(`${serverURL}/channel/initialize`, config);
+  return res.data;
 };
 
 const createChannel = async (createChannelObj) => {

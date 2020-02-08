@@ -6,7 +6,9 @@ const TextContainer = ({ messages }) => {
   const formattedMessages = messages.map((msg) => (
     <Message
       key={msg.id}
-      message={msg.text}
+      message={msg.message}
+      username={msg.username}
+      created={msg.created}
     />
   ));
 

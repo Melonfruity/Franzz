@@ -14,7 +14,6 @@ const signJWT = (res, user) => {
   const payload = {
     userID: user.id,
   };
-
   jwt.sign(
     payload,
     secretOrKey,
@@ -26,12 +25,13 @@ const signJWT = (res, user) => {
         success: true,
         token: 'Bearer '.concat(token),
         channels: user.channels,
+        username: user.username,
       });
     },
   );
 };
 
-const extractJWT = async (res, authorization, updateGuest) => {
+const extractJWT = async (authorization, updateGuest) => {
   if (authorization.toLowerCase().startsWith('bearer ')) {
     const token = authorization.substring(7);
     const { userID } = jwt.verify(token, secretOrKey);
