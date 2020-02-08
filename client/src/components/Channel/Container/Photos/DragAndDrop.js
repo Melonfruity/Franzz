@@ -1,16 +1,30 @@
 import React from 'react';
 
-export default function DragAndDrop({
-  Highlight, DragEnter, DragLeave, DragOver, Drop,
-}) {
+// Styling work (temporary)
+import '../Chat/Styling/DragAndDropBox.scss';
+
+// Scripting work
+import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
+import { preventDefaults, handleDrop } from '../Chat/Scripts/DragAndDropPhotos';
+
+
+export default function DragAndDrop(props) {
+  const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
+
+  // Changes the class depending on the event
+  function boxEvent(e) {
+    changeHighlightClass(e.type);
+    preventDefaults(e);
+  }
+
   return (
     <div
       id="drop-area"
-      className={Highlight}
-      onDragEnter={DragEnter}
-      onDragLeave={DragLeave}
-      onDragOver={DragOver}
-      onDrop={Drop}
+      className={highlightClass}
+      onDragEnter={boxEvent}
+      onDragLeave={boxEvent}
+      onDragOver={boxEvent}
+      onDrop={handleDrop}
     >
       <form className="my-form">
         <p>

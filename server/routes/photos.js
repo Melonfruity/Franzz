@@ -14,9 +14,11 @@ cloudinary.config({
 photosRouter.post('/uploadPhoto', async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-    console.log(files);
-    res.send('NOT IMPLEMENTED: pollsController createPost');
+    cloudinary.v2.uploader.upload(files.file,
+    res.send('NOT IMPLEMENTED: pollsController createPost'));
   });
 });
+
+// returns all the files
 
 module.exports = photosRouter;

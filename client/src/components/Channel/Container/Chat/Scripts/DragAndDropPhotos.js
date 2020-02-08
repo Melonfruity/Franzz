@@ -5,11 +5,10 @@ function preventDefaults(e) {
 }
 
 function uploadFile(file) {
-  const url = 'http://localhost:8001/api/channel/uploadPhoto';
+  const url = 'http://localhost:8001/api/photos/uploadPhoto';
   const formData = new FormData();
 
   formData.append('file', file);
-  console.log(formData.values);
 
   fetch(url, {
     method: 'POST',
