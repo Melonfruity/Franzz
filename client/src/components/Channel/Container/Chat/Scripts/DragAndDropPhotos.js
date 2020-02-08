@@ -7,15 +7,14 @@ function preventDefaults(e) {
 function uploadFile(file) {
   const url = 'http://localhost:8001/api/photos/uploadPhoto';
   const formData = new FormData();
-
   formData.append('file', file);
 
   fetch(url, {
     method: 'POST',
     body: formData,
   })
-    .then(() => { /* Done. Inform the user */ })
-    .catch(() => { /* Error. Inform the user */ });
+    .then((res) => { console.log(res); })
+    .catch((err) => { console.log(err); });
 }
 
 function handleFiles(files) {
