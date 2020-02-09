@@ -33,13 +33,13 @@ const Chat = ({ channelID, initialMessages, socket }) => {
   }, [initialMessages]);
 
   return (
-      <div className="container">
-        <TextContainer messages={messages} />
-        <Input
-          message={message}
-          sendMessage={sendMessage}
-        />
-      </div>
+    <div className="container">
+      <TextContainer messages={messages} />
+      <Input
+        message={message}
+        sendMessage={sendMessage}
+      />
+    </div>
   );
 };
 
