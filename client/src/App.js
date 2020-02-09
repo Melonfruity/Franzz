@@ -6,11 +6,10 @@ import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton
 import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login';
 import DragAndDrop from './components/Channel/Container/Photos/DragAndDrop';
-
+import ImageBox from './components/Channel/Container/Photos/photoDisplay';
 
 // Hooks
 import useToggleButton from './hooks/useToggleButton';
-
 
 const ON = 'on';
 
@@ -22,10 +21,11 @@ const App = () => {
     <div>
       {title}
       <Channel />
-      { boxDisplay === ON && <PopUpBox /> }
       <PopUpButton toggleButton={clickedButton} />
       <Login />
       <DragAndDrop />
+      { boxDisplay === ON && <PopUpBox />}
+      <ImageBox />
     </div>
   );
 };

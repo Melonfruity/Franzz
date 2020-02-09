@@ -6,8 +6,10 @@
   min-height: 200px;
   height: 200px;
   top: 200px;
-  background-color: aliceblue;
+  background-color: white;
   border: 1px solid black;
+  // overflow: scroll;
+  // overflow-x: hidden;
 }
 
 #resize-box:after {

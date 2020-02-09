@@ -14,7 +14,6 @@ cloudinary.config({
 photosRouter.post('/uploadPhoto', async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-
     // If it is a video upload do this
     if (files.file.type.includes('video')) {
       cloudinary.v2.uploader.upload(files.file.path,
@@ -27,6 +26,12 @@ photosRouter.post('/uploadPhoto', async (req, res) => {
 });
 
 // returns all the files
-
+photosRouter.get('/getChannelPhotos', async (req, res) => {
+  cloudinary.v2.search
+    .expression('folder:samples/food')
+    .max_results(30)
+    .execute()
+    .then((result) => res.send(result));
+});
 
 module.exports = photosRouter;
