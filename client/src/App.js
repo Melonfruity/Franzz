@@ -25,7 +25,7 @@ const App = () => {
       <Login />
       <DragAndDrop />
       { boxDisplay === ON && <PopUpBox />}
-      <ImageBox />
+      { boxDisplay === ON && <ImageBox />}
     </div>
   );
 };

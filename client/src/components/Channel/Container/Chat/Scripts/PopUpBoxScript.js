@@ -3,11 +3,10 @@ let box;
 let boxHeight;
 
 function resize(e) {
-  if (e.offsetY > 195) {
-    const dx = mousePosition - e.y;
-    mousePosition = e.y;
-    box.style.height = `${parseInt(getComputedStyle(box, '').height) - dx}px`;
-  }
+  e.preventDefault();
+  const dx = mousePosition - e.y;
+  mousePosition = e.y;
+  box.style.height = `${parseInt(getComputedStyle(box, '').height) - dx}px`;
 }
 const mouseDownFunction = function (e) {
   box = e.target;

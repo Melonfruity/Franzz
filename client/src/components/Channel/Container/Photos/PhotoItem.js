@@ -4,11 +4,11 @@ import {
 } from 'cloudinary-react';
 
 
-export default function PhotoItem({ key, url }) {
+export default function PhotoItem({ url }) {
   return (
     <CloudinaryContext cloudName="jekmessaging">
       <div>
-        <Image publicId={url} width="20" />
+        <Image publicId={url} width="100%" />
       </div>
     </CloudinaryContext>
   );
