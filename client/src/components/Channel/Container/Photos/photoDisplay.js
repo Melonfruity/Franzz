@@ -20,10 +20,34 @@ export default function ImageBox(props) {
     />
   ));
 
+  const images = [[], [], [], []];
+  let column = 0;
+  for (const image of allImages) {
+    images[column].push(image);
+    if (column === 3) {
+      column = 0;
+    } else {
+      column += 1;
+    }
+  }
+
   return (
     <div id="resize-box" onMouseDown={mouseDownFunction}>
       <div id="imageBox">
-        {allImages}
+        <div className="row">
+          <div className="column">
+            {images[0]}
+          </div>
+          <div className="column">
+            {images[1]}
+          </div>
+          <div className="column">
+            {images[2]}
+          </div>
+          <div className="column">
+            {images[3]}
+          </div>
+        </div>
       </div>
     </div>
   );

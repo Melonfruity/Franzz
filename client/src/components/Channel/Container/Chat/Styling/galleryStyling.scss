@@ -1,6 +1,24 @@
-#imageBox {
+// #imageBox {
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex: 25%;
+//   padding: 0 4px;
+// }
+
+.row {
   display: flex;
   flex-wrap: wrap;
-  flex: 25%;
-  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 24%;
+  max-width: 25%;
+  padding: 1px;
+}
+
+.column img {
+  margin: 2px;
+  vertical-align: middle;
+  width: 100%;
 }

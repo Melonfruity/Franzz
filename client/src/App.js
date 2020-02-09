@@ -24,7 +24,7 @@ const App = () => {
       <PopUpButton toggleButton={clickedButton} />
       <Login />
       <DragAndDrop />
-      { boxDisplay === ON && <PopUpBox />}
+      {/* { boxDisplay === ON && <PopUpBox />} */}
       { boxDisplay === ON && <ImageBox />}
     </div>
   );

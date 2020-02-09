@@ -17,6 +17,11 @@ export default function DragAndDrop(props) {
     preventDefaults(e);
   }
 
+  function dropFile(e) {
+    changeHighlightClass(e.type);
+    handleDrop(e);
+  }
+
   return (
     <div
       id="drop-area"
@@ -24,7 +29,7 @@ export default function DragAndDrop(props) {
       onDragEnter={boxEvent}
       onDragLeave={boxEvent}
       onDragOver={boxEvent}
-      onDrop={handleDrop}
+      onDrop={dropFile}
     >
       <form className="my-form">
         <p>

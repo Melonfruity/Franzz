@@ -17,9 +17,12 @@ photosRouter.post('/uploadPhoto', async (req, res) => {
     // If it is a video upload do this
     if (files.file.type.includes('video')) {
       cloudinary.v2.uploader.upload(files.file.path,
-        { resource_type: 'video' });
+        {
+          resource_type: 'video',
+          public_id: `samples/food/${files.file.name}`,
+        });
     } else { // if it is a photo
-      cloudinary.v2.uploader.upload(files.file.path);
+      cloudinary.v2.uploader.upload(files.file.path, { public_id: `samples/food/${files.file.name}` });
     }
   });
   res.send('file has been uploaded :)');
