@@ -20,16 +20,26 @@ channelRouter.get('/initialize',
       // }).sort({ created: 'asc' });
 
       const { channels } = req.user;
-
+      console.log(channels);
       const messages = await Promise.all(
         channels.map(async (channel) => ({
           channel,
           messages: await Message
             .find({ channel })
+            .populate('user')
             .sort({ created: 'desc' }),
         })),
       );
-      res.json(messages);
+
+      const members = await Channel.find({
+        id: {
+          $in: [...channels],
+        },
+      });
+      res.json({
+        messages,
+        members,
+      });
     } catch (err) {
       next(err);
     }
@@ -86,26 +96,6 @@ channelRouter.put('/join/:channelID',
         await req.user.save();
       }
       res.status(200).json(channel);
-    } catch (err) {
-      next(err);
-    }
-  });
-
-// new messages to the server
-channelRouter.post('/messages',
-  async (req, res, next) => {
-    try {
-      const { channelID, message, userID } = req.body;
-
-      // new message object
-      const newMessage = new Message({
-        message,
-        user: userID,
-        channel: channelID,
-      });
-
-      await newMessage.save();
-      res.json({ message: newMessage });
     } catch (err) {
       next(err);
     }

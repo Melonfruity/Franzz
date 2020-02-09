@@ -7,8 +7,9 @@ const TextContainer = ({ messages }) => {
     <Message
       key={msg.id}
       message={msg.message}
-      username={msg.username}
+      username={msg.user.username}
       created={msg.created}
+      id={msg.id}
     />
   ));
 

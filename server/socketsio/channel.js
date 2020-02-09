@@ -12,7 +12,7 @@ module.exports = (io) => {
 
     // socket (client)
     socket.on('message', async ({
-      message, channelID, authorization, username,
+      message, channelID, authorization,
     }) => {
       try {
         const user = await extractJWT(authorization);
@@ -24,8 +24,15 @@ module.exports = (io) => {
             channel: channelID,
           });
           const savedMessage = await newMessage.save();
-          console.log(channelID);
-          io.to(channelID).emit(`message ${channelID}`, { username, message: savedMessage.message, created: savedMessage.created });
+          const newMessageObj = {
+            user: {
+              username: user.username,
+            },
+            message: savedMessage.message,
+            created: savedMessage.created,
+            id: savedMessage.id,
+          };
+          io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
         }
       } catch (err) {
         errm(err);

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 
@@ -19,8 +20,9 @@ const ChannelSchema = mongoose.Schema({
 // This will get rid of some unneeded formatting from mongoDB
 ChannelSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    const newObject = returnedObject;
-    newObject.id = newObject._id.toString();
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
   },
 });
 

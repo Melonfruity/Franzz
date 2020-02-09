@@ -9,7 +9,7 @@ const socket = io('http://localhost:8001/');
 
 const App = () => {
   const [channels, setChannels] = useState([]);
-
+  const [channelMembers, setChannelMembers] = useState([]);
   useEffect(() => {
     auth.login({
       email: 'email@gmail.com',
@@ -18,8 +18,11 @@ const App = () => {
 
     channelService
       .getMessages()
-      .then((channelMessages) => {
-        setChannels([...channelMessages]);
+      .then(({ members, messages }) => {
+        console.log('messages:', messages);
+        console.log('members:', members);
+        setChannels([...messages]);
+        setChannelMembers([...members]);
       });
     console.log(socket);
     socket.on('connect', () => {
@@ -40,13 +43,14 @@ const App = () => {
   }, []);
 
 
-  console.log(channels);
+  console.log(channelMembers);
   const channelViews = channels.map(({ channel, messages }) => (
     <Channel
       key={channel}
       socket={socket}
       channel={channel}
       messages={messages}
+      members={setChannelMembers}
     />
   ));
 

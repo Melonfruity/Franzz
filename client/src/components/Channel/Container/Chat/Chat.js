@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Chatbox from './Chatbox';
 import { useField } from '../../../../hooks/useField';
 import TextContainer from './TextContainer';
+import Input from './Input';
 
 const Chat = ({ channelID, initialMessages, socket }) => {
   // define emit message event
@@ -21,7 +21,8 @@ const Chat = ({ channelID, initialMessages, socket }) => {
     });
   };
 
-  socket.on(`message ${channelID}`, (messageObj) => {
+  socket.on(`new message ${channelID}`, (messageObj) => {
+    console.log(messageObj);
     setMessages([...messages, messageObj]);
   });
 
@@ -32,7 +33,7 @@ const Chat = ({ channelID, initialMessages, socket }) => {
   return (
     <>
       <TextContainer messages={messages} />
-      <Chatbox
+      <Input
         message={message}
         sendMessage={sendMessage}
       />
