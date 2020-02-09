@@ -4,11 +4,14 @@ import {
 } from 'cloudinary-react';
 
 
-export default function PhotoItem({ url }) {
+export default function PhotoItem({ publicKey, url, fileType }) {
   return (
     <CloudinaryContext cloudName="jekmessaging">
       <div>
-        <Image publicId={url} width="100%" />
+        {fileType === 'image' && <Image publicId={url} width="100%" />}
+        {fileType === 'video' && (
+        <Video publicId={publicKey} width="100%" />
+        )}
       </div>
     </CloudinaryContext>
   );
