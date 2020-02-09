@@ -27,7 +27,7 @@ channelRouter.get('/initialize',
           messages: await Message
             .find({ channel })
             .populate('user')
-            .sort({ created: 'desc' }),
+            .sort({ created: 'asc' }),
         })),
       );
 

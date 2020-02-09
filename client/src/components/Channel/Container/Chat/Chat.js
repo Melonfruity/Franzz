@@ -3,6 +3,8 @@ import { useField } from '../../../../hooks/useField';
 import TextContainer from './TextContainer';
 import Input from './Input';
 
+import './Chat.css';
+
 const Chat = ({ channelID, initialMessages, socket }) => {
   // define emit message event
   const message = useField('text');
@@ -31,13 +33,13 @@ const Chat = ({ channelID, initialMessages, socket }) => {
   }, [initialMessages]);
 
   return (
-    <>
-      <TextContainer messages={messages} />
-      <Input
-        message={message}
-        sendMessage={sendMessage}
-      />
-    </>
+      <div className="container">
+        <TextContainer messages={messages} />
+        <Input
+          message={message}
+          sendMessage={sendMessage}
+        />
+      </div>
   );
 };
 

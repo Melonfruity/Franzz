@@ -39,27 +39,63 @@ module.exports = (io) => {
       }
     });
 
-    // socket (client)
-    socket.on('edit', async ({
-      message, channelID, authorization, username,
-    }) => {
-      try {
-        const user = await extractJWT(authorization);
-        if (typeof message === 'string' && user) {
-          info(message, channelID);
-          const newMessage = new Message({
-            message,
-            user: user.id,
-            channel: channelID,
-          });
-          const savedMessage = await newMessage.save();
-          console.log(channelID);
-          io.to(channelID).emit(`edit ${channelID}`, { username, message: savedMessage.message, created: savedMessage.created });
-        }
-      } catch (err) {
-        errm(err);
-      }
-    });
+    // // socket (client)
+    // socket.on('message', async ({
+    //   message, channelID, authorization,
+    // }) => {
+    //   try {
+    //     const user = await extractJWT(authorization);
+    //     if (typeof message === 'string' && user) {
+    //       info(message, channelID);
+    //       const newMessage = new Message({
+    //         message,
+    //         user: user.id,
+    //         channel: channelID,
+    //       });
+    //       const savedMessage = await newMessage.save();
+    //       const newMessageObj = {
+    //         user: {
+    //           username: user.username,
+    //         },
+    //         message: savedMessage.message,
+    //         created: savedMessage.created,
+    //         id: savedMessage.id,
+    //       };
+    //       io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
+    //     }
+    //   } catch (err) {
+    //     errm(err);
+    //   }
+    // });
+
+    // // socket (client)
+    // socket.on('message', async ({
+    //   message, channelID, authorization,
+    // }) => {
+    //   try {
+    //     const user = await extractJWT(authorization);
+    //     if (typeof message === 'string' && user) {
+    //       info(message, channelID);
+    //       const newMessage = new Message({
+    //         message,
+    //         user: user.id,
+    //         channel: channelID,
+    //       });
+    //       const savedMessage = await newMessage.save();
+    //       const newMessageObj = {
+    //         user: {
+    //           username: user.username,
+    //         },
+    //         message: savedMessage.message,
+    //         created: savedMessage.created,
+    //         id: savedMessage.id,
+    //       };
+    //       io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
+    //     }
+    //   } catch (err) {
+    //     errm(err);
+    //   }
+    // });
 
     // namespace is channel and room will be called channel
     socket.on('join channels', async (channelData) => {
