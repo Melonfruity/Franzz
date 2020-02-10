@@ -1,61 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import axios from 'axios';
+import React, {} from 'react';
+import { useField } from '../../hooks/useField';
+import Chat from './Container/Chat/Chat';
 
-import Chatbox from './Container/Chat/Chatbox';
-import ChannelList from './LeftBar/ChannelList/ChannelList';
-import NewChannel from './NewChannel';
+const Channel = ({
+  channel, users, name, messages, emitMessage,
+}) => {
+  const message = useField('text');
 
-import { info } from '../../utils/logger';
-
-let socket;
-
-const Channel = () => {
-  // const [channels, setChannels] = useState([]); // list of user channels
-  const [channel, setChannel] = useState({}); // current channel
-
-  const [showCreateJoin, setShowCreateJoin] = useState(false);
-
-  const selectChannel = (id) => {
-    setChannel(id);
+  const sendMessage = (e) => {
+    e.preventDefault();
+    emitMessage(message.value, channel);
+    message.reset();
   };
-
-  const newChannel = () => {
-    setShowCreateJoin((prev) => !prev);
-  };
-
-  useEffect(() => {
-
-    // do it in initial render cause then it will connect before that...
-    socket = io('http://localhost:8001/channel');
-    socket.on('connect', () => {
-      // from servers
-      socket.on('server message', (data) => {
-        info(data);
-      });
-
-      socket.emit('message', 'client connected', () => {
-        info('sent message to server');
-      });
-    });
-
-    return () => {
-      socket.off();
-    };
-  }, []);
 
   return (
     <div>
-      Channels
-      {/* <ChannelList
-        channels={channels === undefined ? [] : channels}
-        selectChannel={selectChannel}
-        newChannel={newChannel}
-      /> */}
-      <Chatbox
-        channel={channel}
+      {name}
+      <Chat
+        messages={messages}
+        sendMessage={sendMessage}
+        message={message}
       />
-      { showCreateJoin ? <NewChannel /> : <></>}
     </div>
   );
 };

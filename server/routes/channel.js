@@ -11,25 +11,24 @@ channelRouter.get('/initialize',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      // const messages = await Message.find({
-      //   created: {
-      //     $gte: new Date(new Date().setHours('00', '00', '00')),
-      //     $lt: new Date(new Date().setHours('23', '59', '59')),
-      //   },
-      //   channel: channelID,
-      // }).sort({ created: 'asc' });
-
       const { channels } = req.user;
 
-      const messages = await Promise.all(
+      const channelData = await Promise.all(
         channels.map(async (channel) => ({
-          channel,
+          data: await Channel
+            .findById(channel)
+            .then((data) => ({
+              users: data.users,
+              channel: data.id,
+              name: data.name,
+            })),
           messages: await Message
             .find({ channel })
-            .sort({ created: 'desc' }),
+            .populate('user')
+            .sort({ created: 'asc' }),
         })),
       );
-      res.json(messages);
+      res.json({ channelData });
     } catch (err) {
       next(err);
     }
@@ -86,28 +85,6 @@ channelRouter.put('/join/:channelID',
         await req.user.save();
       }
       res.status(200).json(channel);
-    } catch (err) {
-      next(err);
-    }
-  });
-
-// new messages to the server
-channelRouter.post('/messages',
-  passport.authenticate('jwt', { session: false }),
-  async (req, res, next) => {
-    try {
-      const { channel, message } = req.body;
-      const userID = req.user.id;
-
-      // new message object
-      const newMessage = new Message({
-        message,
-        user: userID,
-        channel,
-      });
-
-      await newMessage.save();
-      res.json({ message: newMessage });
     } catch (err) {
       next(err);
     }

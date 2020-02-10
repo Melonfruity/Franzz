@@ -1,0 +1,13 @@
+.textContainer {
+  display: flex;
+  height: 500px;
+  border: 1px solid black;
+  width: 700px;
+  overflow: auto;
+}
+
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}

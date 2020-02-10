@@ -1,41 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-import PopUpBox from './components/Channel/Container/Chat/PopUpBox';
-import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
-import './components/Channel/Container/Chat/Styling/PopUpBoxStyling.css';
-import { mouseDownFunction } from './components/Channel/Container/Chat/Scripts/PopUpBoxScript';
-import useToggleButton from './hooks/useToggleButton';
-
-// import Channel from './components/Channel/Channel';
-import Login from './components/Landing/Login/Login';
-
-// const ON = 'on';
+import Landing from './components/Landing/Landing';
+import Home from './components/Home';
 
 const App = () => {
-  const { boxDisplay, clickedButton } = useToggleButton('off');
-
-  const credentials = {
-    email: 'email@gmail.com',
-    password: 'password',
-  };
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    axios
-      .post('http://localhost:8001/api/auth/login', credentials)
-      .then((res) => {
-        const { channels } = res.data;
-        window.localStorage.setItem('token', res.data.token);
-        return channels;
-      });
-  });
+    setLoggedIn(window.localStorage.getItem('authorization'));
+  }, []);
+
+  const logOut = (e) => {
+    e.preventDefault();
+    window.localStorage.clear();
+    setLoggedIn(!loggedIn);
+  };
 
   return (
     <div>
-      {/* <Channel /> */}
-      {/* { boxDisplay === ON && <PopUpBox mouseDown={mouseDownFunction} /> } */}
-      {/* <PopUpButton toggleButton={clickedButton} /> */}
-      <Login />
+      <Router>
+        <Route exact path="/" render={() => (loggedIn ? <Redirect to="/home" /> : <Landing setLoggedIn={setLoggedIn} />)} />
+        <Route exact path="/home" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
+        <Route path="/channel" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
+      </Router>
     </div>
   );
 };
