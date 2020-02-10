@@ -1,11 +1,10 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
+import axios from 'axios';
 import { GOOGLE_CLIENT_ID } from '../../../utils/config';
 
-import axios from 'axios';
 
 const GoogleLoginButton = () => {
-
   const onSuccess = (data) => {
     axios
       .post('http://localhost:8001/api/auth/google', data)

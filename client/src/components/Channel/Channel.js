@@ -1,18 +1,27 @@
-import React from 'react';
+import React, {} from 'react';
+import { useField } from '../../hooks/useField';
+import Chat from './Container/Chat/Chat';
 
-const Chat = React.lazy(() => import('./Container/Chat/Chat'));
+const Channel = ({
+  channel, users, name, messages, emitMessage,
+}) => {
+  const message = useField('text');
 
-const Channel = ({ socket, channel, messages }) => {
-  console.log(messages[0], messages[messages.length - 1]);
+  const sendMessage = (e) => {
+    e.preventDefault();
+    emitMessage(message.value, channel);
+    message.reset();
+  };
+
   return (
-    <React.Suspense fallback={<div>Loading...</div>}>
+    <div>
+      {name}
       <Chat
-        key={channel}
-        channelID={channel}
-        initialMessages={messages}
-        socket={socket}
+        messages={messages}
+        sendMessage={sendMessage}
+        message={message}
       />
-    </React.Suspense>
+    </div>
   );
 };
 

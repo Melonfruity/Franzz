@@ -2,7 +2,7 @@ import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 
-const Register = () => {
+const Register = ({ setLoggedIn }) => {
   const email = useField('text');
   const password = useField('password');
 
@@ -13,7 +13,7 @@ const Register = () => {
       password: password.value,
       username: window.localStorage.username ? window.localStorage.username : '',
     };
-    auth.register(registerObj);
+    setLoggedIn(auth.register(registerObj));
   };
 
   return (
@@ -22,11 +22,13 @@ const Register = () => {
         placeholder="email"
         {...email}
         reset={undefined}
+        onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
       />
       <input
         placeholder="password"
         {...password}
         reset={undefined}
+        onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
       />
       <button type="button" onClick={handleRegister}> Register </button>
     </form>

@@ -11,35 +11,24 @@ channelRouter.get('/initialize',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      // const messages = await Message.find({
-      //   created: {
-      //     $gte: new Date(new Date().setHours('00', '00', '00')),
-      //     $lt: new Date(new Date().setHours('23', '59', '59')),
-      //   },
-      //   channel: channelID,
-      // }).sort({ created: 'asc' });
-
       const { channels } = req.user;
-      console.log(channels);
-      const messages = await Promise.all(
+
+      const channelData = await Promise.all(
         channels.map(async (channel) => ({
-          channel,
+          data: await Channel
+            .findById(channel)
+            .then((data) => ({
+              users: data.users,
+              channel: data.id,
+              name: data.name,
+            })),
           messages: await Message
             .find({ channel })
             .populate('user')
             .sort({ created: 'asc' }),
         })),
       );
-
-      const members = await Channel.find({
-        id: {
-          $in: [...channels],
-        },
-      });
-      res.json({
-        messages,
-        members,
-      });
+      res.json({ channelData });
     } catch (err) {
       next(err);
     }

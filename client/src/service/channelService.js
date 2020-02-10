@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const serverURL = 'http://localhost:8001/api';
 
-const getMessages = async () => {
+const getUserData = async () => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
@@ -27,7 +27,7 @@ const joinChannel = async (channelID) => {
 };
 
 export default {
-  getMessages,
+  getUserData,
   createChannel,
   joinChannel,
 };

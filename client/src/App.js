@@ -1,63 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import auth from './service/authService';
-import channelService from './service/channelService';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-const Channel = React.lazy(() => import('./components/Channel/Channel'));
-
-const socket = io('http://localhost:8001/');
+import Landing from './components/Landing/Landing';
+import Home from './components/Home';
 
 const App = () => {
-  const [channels, setChannels] = useState([]);
-  const [channelMembers, setChannelMembers] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+
   useEffect(() => {
-    auth.login({
-      email: 'email@gmail.com',
-      password: 'password',
-    });
-
-    channelService
-      .getMessages()
-      .then(({ members, messages }) => {
-        console.log('messages:', messages);
-        console.log('members:', members);
-        setChannels([...messages]);
-        setChannelMembers([...members]);
-      });
-    console.log(socket);
-    socket.on('connect', () => {
-      // from servers
-      socket.on('server message', (data) => {
-        console.log(data);
-      });
-
-      const joinChannelsObj = {
-        authorization: window.localStorage.getItem('authorization'),
-        username: window.localStorage.getItem('username'),
-      };
-      console.log(joinChannelsObj)
-      socket.emit('join channels', joinChannelsObj, (data) => {
-        console.log(data);
-      });
-    });
+    setLoggedIn(window.localStorage.getItem('authorization'));
   }, []);
 
-
-  console.log(channelMembers);
-  const channelViews = channels.map(({ channel, messages }) => (
-    <Channel
-      key={channel}
-      socket={socket}
-      channel={channel}
-      messages={messages}
-      members={setChannelMembers}
-    />
-  ));
+  const logOut = (e) => {
+    e.preventDefault();
+    window.localStorage.clear();
+    setLoggedIn(!loggedIn);
+  };
 
   return (
-    <React.Suspense fallback={<div>Loading...</div>}>
-      {channelViews}
-    </React.Suspense>
+    <div>
+      <Router>
+        <Route exact path="/" render={() => (loggedIn ? <Redirect to="/home" /> : <Landing setLoggedIn={setLoggedIn} />)} />
+        <Route exact path="/home" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
+        <Route path="/channel" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
+      </Router>
+    </div>
   );
 };
 

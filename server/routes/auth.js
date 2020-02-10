@@ -109,14 +109,18 @@ authRouter.post('/login', async (req, res, next) => {
       const user = await User.findOne({ email });
       if (user) {
         const check = login(password, user.password);
+        console.log(user);
         if (check) {
           signJWT(res, user);
         } else {
           res.status(404).json({ error: 'incorrect password' });
         }
+      } else {
+        res.json({ error: 'user does not exist' });
       }
     } else {
-      res.status(404).json({ error: errors });
+      console.log('sdsada');
+      res.json({ error: errors });
     }
   } catch (err) {
     next(err);

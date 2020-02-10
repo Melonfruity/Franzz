@@ -2,12 +2,9 @@
 import React from 'react';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ id, username, message, created }) => {
-  const byUser = false;
+const Message = ({ username, message, created }) => {
   return (
     <article>
-      {id}
-      {' '}
       {username}
       {': '}
       {ReactEmoji.emojify(message)}

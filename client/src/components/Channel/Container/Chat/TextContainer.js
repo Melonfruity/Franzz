@@ -12,7 +12,6 @@ const TextContainer = ({ messages }) => {
       message={msg.message}
       username={msg.user.username}
       created={msg.created}
-      id={msg.id}
     />
   ));
 

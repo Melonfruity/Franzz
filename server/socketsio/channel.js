@@ -6,24 +6,27 @@ module.exports = (io) => {
 
   io.on('connection', (socket) => {
     // server
-    io.emit('server message', {
+    socket.emit('server message', {
       serverMsg: 'connected to server',
     });
 
     // socket (client)
     socket.on('message', async ({
       message, channelID, authorization,
-    }) => {
+    }, callback) => {
       try {
         const user = await extractJWT(authorization);
         if (typeof message === 'string' && user) {
           info(message, channelID);
+          // create the mongo message obj
           const newMessage = new Message({
             message,
             user: user.id,
             channel: channelID,
           });
+          // save it
           const savedMessage = await newMessage.save();
+          // message obj to return
           const newMessageObj = {
             user: {
               username: user.username,
@@ -32,7 +35,9 @@ module.exports = (io) => {
             created: savedMessage.created,
             id: savedMessage.id,
           };
-          io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
+          callback(newMessageObj);
+          console.log(channelID);
+          socket.to(channelID).emit('new message', { channelID, newMessageObj });
         }
       } catch (err) {
         errm(err);
@@ -102,8 +107,10 @@ module.exports = (io) => {
       info(channelData);
       const { authorization } = channelData;
       const user = await extractJWT(authorization);
-      socket.join(user.channels);
-      socket.emit('server message', { serverMsg: `joined rooms ${user.channels}` });
+      if (user) {
+        socket.join(user.channels);
+        socket.emit('server message', { serverMsg: `joined rooms ${user.channels}` });
+      }
       console.log('rooms:', Object.keys(io.sockets.adapter.rooms));
     });
 
