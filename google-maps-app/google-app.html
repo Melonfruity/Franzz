@@ -12,10 +12,14 @@
   <div id="map"></div>
   <script>
     var map, infowindow;
+    const markerArray = []
+    const infoBoxOpen = []
     const infoWindowArray = []
+    const latArray = []
+    const lngArray = []
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 10,
         center: new google.maps.LatLng(43.644175, -79.4043927),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: [
@@ -239,24 +243,25 @@
         '</div>' +
         '<p>Kalvin Low</p>' +
         '</div>';
+        
 
       const infowindow = new google.maps.InfoWindow({
             content: contentString
       });
 
-      google.maps.event.addListener(map, 'click', function(event) {
-        placeMarker(event.latLng);
-      });
+      
 
-      function placeMarker(location) {
-          var marker = new google.maps.Marker({
-            position: location, 
-            map: map,
-            draggable: true,
-      });
-}
+//       google.maps.event.addListener(map, 'click', function(event) {
+//         placeMarker(event.latLng);
+//       });
 
-
+//       function placeMarker(location) {
+//           var marker = new google.maps.Marker({
+//             position: location, 
+//             map: map,
+//             draggable: true,
+//       });
+// }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -267,25 +272,30 @@
 
 
           var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-          var markerPerson = new google.maps.Marker({
+          const markerPerson = new google.maps.Marker({
             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
             map: map,
-            title: 'Current Location'
-            // icon: "images/male.svg"
+            title: 'Current Location',
+            icon: "images/malesmaller.svg"
           });
+          infowindow.open(map, markerPerson);
           markerPerson.addListener('mouseover', function () {
             infowindow.open(map, markerPerson);
           });
-          markerPerson.addListener('mouseout', function () {
+          // markerPerson.addListener('click', function () {
+          //   infowindow.open(map, markerPerson);
+          // });
+          markerPerson.addListener('click', function () {
             infowindow.close(map, markerPerson);
           });
+          
 
 
           // infoWindow.setPosition(pos);
           // infoWindow.setContent('Location found.');
           // infoWindow.open(map);
           map.setCenter(pos);
-          map.setZoom(12)
+          map.setZoom(13)
         }, function () {
           handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -315,30 +325,68 @@
     // set of coordinates.
     window.eqfeed_callback = function (results) {
 
+      function isInfoWindowOpen(infoWindow){
+        var map = infoWindow.getMap();
+        return (map !== null && typeof map !== "undefined");
+      }   
+
       for (var i = 0; i < results.features.length; i++) {
         var coords = results.features[i].geometry.coordinates;
+        if (latArray.includes(coords[0])) {
+          coords[0] = coords[0] + 0.00002
+          coords[1] = coords[1] + 0.00002
+        }
         var latLng = new google.maps.LatLng(coords[0], coords[1]);
+        latArray.push(coords[0])
+        lngArray.push(coords[1])
+        console.log(latArray, lngArray)
         var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        
-        let marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: latLng,
           map: map,
-          icon: "images/male.svg"
+          icon: "images/malesmaller.svg"
         });
         const infowindow = new google.maps.InfoWindow({
             content: results.features[i].properties.name
         });
+        
+
         infowindow.open(map, marker);
-        marker.addListener('mouseover', function () {
-          // infowindow.setContent("test")
-          infowindow.open(map, marker);
-        });
-        marker.addListener('click', function () {
-          infowindow.close(map, marker);
-        });
-        console.log(marker)
+
+      marker.addListener('click', function () {
+          if (isInfoWindowOpen(infowindow)){
+            infowindow.close(map, marker);
+          } else {
+            infowindow.open(map, marker);
+          }
+      });
+
+      // marker.addListener('mouseover', function () {
+      //       infowindow.open(map, marker);
+      //     });
+      //     marker.addListener('mouseout', function () {
+      //       infowindow.close(map, marker);
+      //     });
+
       }
+      // console.log(JSON.stringify(markerArray[1].position))
     }
+    // CODE FOR MAKING MARKERS MOVE
+    // setInterval(function( ){ 
+    //     let stringed = JSON.parse(JSON.stringify(markerArray[1].position))
+    //     let lat = stringed["lat"]
+    //     let lng = stringed["lng"]
+    //     lat += 0.002;
+    //     markerArray[1].setPosition({lat, lng})
+    //   }, 100);
+    //   setInterval(function( ){ 
+    //     let stringed = JSON.parse(JSON.stringify(markerArray[2].position))
+    //     let lat = stringed["lat"]
+    //     let lng = stringed["lng"]
+    //     lng -= 0.002;
+    //     markerArray[2].setPosition({lat, lng})
+    //   }, 100);
+    
   </script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcxNp81FsNx7KV-PVqj9eu0ix0npqZl-U&callback=initMap">
