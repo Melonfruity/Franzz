@@ -59,9 +59,25 @@ const Home = ({ logOut }) => {
   };
 
   const emitCreateChannel = (channelName) => {
-    console.log(channelName)
-    socket.emit('create channel', channelName, (data) => {
-      console.log(data);
+    const createChannelObj = {
+      channelName,
+      authorization: state.authorization,
+    };
+    socket.emit('create channel', createChannelObj, (channelData) => {
+      const { data, messages } = channelData;
+      const { channel } = data;
+      setState((prev) => (
+        {
+          ...prev,
+          channelStates: {
+            ...prev.channelStates,
+            [channel]: {
+              ...data,
+              messages,
+            },
+          },
+        }
+      ));
     });
   };
 
@@ -77,6 +93,7 @@ const Home = ({ logOut }) => {
             obj[ele.data.channel] = {
               users: ele.data.users,
               name: ele.data.name,
+              channel:ele.data.channel,
               messages: ele.messages,
             };
           }

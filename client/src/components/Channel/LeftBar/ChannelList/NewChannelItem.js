@@ -12,6 +12,7 @@ const NewChannelItem = ({ emitCreateChannel }) => {
   const createChannel = (e) => {
     e.preventDefault();
     emitCreateChannel(channelName.value);
+    channelName.reset();
   };
 
   const joinChannel = (e) => {

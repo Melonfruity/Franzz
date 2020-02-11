@@ -63,10 +63,16 @@ module.exports = (io) => {
           // update that user
           await user.save();
 
-          const newChannelObj = {
-            channelName,
+          const channelData = {
+            data: {
+              users: savedChannel.users,
+              channel: savedChannel.id,
+              name: savedChannel.name,
+            },
+            messages: [],
           };
-          callback(newChannelObj);
+          console.log(channelData)
+          callback(channelData);
         }
       } catch (err) {
         errm(err);
