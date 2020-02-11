@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  useParams,
 } from 'react-router-dom';
 
 import Landing from './components/Landing/Landing';

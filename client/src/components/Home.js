@@ -53,8 +53,29 @@ const Home = ({ logOut }) => {
   };
 
   const emitJoinChannel = (channelLink) => {
-    socket.emit('join channel', channelLink, (data) => {
-      console.log(data);
+    const joinChannelObj = {
+      channelLink,
+      authorization: state.authorization,
+    };
+    socket.emit('join channel', joinChannelObj, (channelData) => {
+      const { error, data, messages } = channelData;
+      if (!error) {
+        const { channel } = data;
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channel]: {
+                ...data,
+                messages,
+              },
+            },
+          }
+        ));
+      } else {
+        console.log(error)
+      }
     });
   };
 
@@ -93,7 +114,7 @@ const Home = ({ logOut }) => {
             obj[ele.data.channel] = {
               users: ele.data.users,
               name: ele.data.name,
-              channel:ele.data.channel,
+              channel: ele.data.channel,
               messages: ele.messages,
             };
           }
@@ -118,20 +139,21 @@ const Home = ({ logOut }) => {
 
   useEffect(() => {
     socket.on('new message', (data) => {
-      console.log(data);
-      // console.log(state.channelStates[data.channelID]);
-
+      const { channelID, newMessageObj } = data;
       setState((prev) => (
         {
           ...prev,
           channelStates: {
             ...prev.channelStates,
-            [data.channelID]: {
-              ...prev.channelStates[data.channelID],
-              messages: prev.channelStates[data.channelID].messages.concat(data.newMessageObj),
+            [channelID]: {
+              ...prev.channelStates[channelID],
+              messages: prev.channelStates[channelID].messages.concat(newMessageObj),
             },
           },
         }));
+    });
+    socket.on('new user', (data) => {
+
     });
     return () => {
       socket.emit('disconnect');
