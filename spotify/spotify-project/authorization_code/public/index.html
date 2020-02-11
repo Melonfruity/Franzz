@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Example of the Authorization Code flow with Spotify</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="login">
+        <h1>This is an example of the Authorization Code flow</h1>
+        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+      </div>
+      <div id="loggedin">
+        <div id="user-profile">
+        </div>
+        <div id="user-listening">
+        </div>
+        <div id="user-history">
+          </div>
+        <div id="oauth">
+        </div>
+        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+      </div>
+    </div>
+
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h1>Logged in as {{display_name}}</h1>
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body">
+          <dl class="dl-horizontal">
+            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Id</dt><dd>{{id}}</dd>
+            <dt>Email</dt><dd>{{email}}</dd>
+            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Country</dt><dd>{{country}}</dd>
+          </dl>
+        </div>
+      </div>
+    </script>
+
+    <script id="user-listening-template" type="text/x-handlebars-template">
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body">
+          <p style="font-weight: bold;">Currently Playing:</p>
+          <div href="{{item.external_urls.spotify}}" style="display: flex;">
+          <img class="media-object resize" src="{{item.album.images.0.url}}" />
+          <div style="display: flex; flex-direction: column; margin-left: 10px; justify-content: center;">
+          <a href="{{item.external_urls.spotify}}">{{item.album.name}} - {{item.artists.0.name}}</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="user-history-template" type="text/x-handlebars-template">
+      <div class="media" style="margin-top: 50px;">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body previous-songs-container">
+          <p class="previous-songs-title" style="font-weight:bold">Previous Songs:</p>
+          <section class="previous-songs">
+            <div>
+              <!-- <dt style="margin:0">1st Song:</dt> -->
+              <img class="media-object resize" src="{{items.0.track.album.images.0.url}}" />
+              <dd><a href="{{items.0.track.external_urls.spotify}}">{{items.0.track.name}} - {{items.0.track.artists.0.name}}</a></dd>
+            </div>
+            <div>
+              <!-- <dt>2st Song:</dt> -->
+              <img class="media-object resize" src="{{items.1.track.album.images.0.url}}" />
+              <dd><a href="{{items.1.track.external_urls.spotify}}">{{items.1.track.name}} - {{items.1.track.artists.0.name}}</a></dd>
+            </div>
+            <div>
+              <!-- <dt>3rd Song:</dt> -->
+              <img class="media-object resize" src="{{items.2.track.album.images.0.url}}" />
+              <dd><a href="{{items.2.track.external_urls.spotify}}">{{items.2.track.name}} - {{items.2.track.artists.0.name}}</a></dd>
+            </div>
+            <div>
+              <!-- <dt>4th Song:</dt> -->
+              <img class="media-object resize" src="{{items.3.track.album.images.0.url}}" />
+              <dd><a href="{{items.3.track.external_urls.spotify}}">{{items.3.track.name}} - {{items.3.track.artists.0.name}}</a></dd>
+            </div>
+            <div>
+              <!-- <dt>5th Song:</dt> -->
+              <img class="media-object resize" src="{{items.4.track.album.images.0.url}}" />
+              <dd><a href="{{items.4.track.external_urls.spotify}}">{{items.4.track.name}} - {{items.4.track.artists.0.name}}</a></dd>
+            </div>
+          </section>
+        </div>
+      </div>
+    </script>
+
+    <script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
+      </dl>
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+      (function() {
+
+        /**
+         * Obtains parameters from the hash of the URL
+         * @return Object
+         */
+        function getHashParams() {
+          var hashParams = {};
+          var e, r = /([^&;=]+)=?([^&;]*)/g,
+              q = window.location.hash.substring(1);
+          while ( e = r.exec(q)) {
+            hashParams[e[1]] = decodeURIComponent(e[2]);
+          }
+          return hashParams;
+        }
+
+        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+            userProfileTemplate = Handlebars.compile(userProfileSource),
+            userProfilePlaceholder = document.getElementById('user-profile');
+            
+        var userListeningSource = document.getElementById('user-listening-template').innerHTML,
+            userListeningTemplate = Handlebars.compile(userListeningSource),
+            userListeningPlaceholder = document.getElementById('user-listening');
+
+        var userHistorySource = document.getElementById('user-history-template').innerHTML,
+            userHistoryTemplate = Handlebars.compile(userHistorySource),
+            userHistoryPlaceholder = document.getElementById('user-history');
+
+        var oauthSource = document.getElementById('oauth-template').innerHTML,
+            oauthTemplate = Handlebars.compile(oauthSource),
+            oauthPlaceholder = document.getElementById('oauth');
+
+        var params = getHashParams();
+
+        var access_token = params.access_token,
+            refresh_token = params.refresh_token,
+            error = params.error;
+
+        if (error) {
+          alert('There was an error during the authentication');
+        } else {
+          if (access_token) {
+            // render oauth info
+            oauthPlaceholder.innerHTML = oauthTemplate({
+              access_token: access_token,
+              refresh_token: refresh_token
+            });
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  // console.log(typeof response)
+                  // console.log(JSON.stringify(response))
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/player/recently-played',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                console.log(response) 
+                  userHistoryPlaceholder.innerHTML = userHistoryTemplate(response);
+                }
+            });
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/player/currently-playing',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  // console.log(typeof response)
+                  console.log(response)
+                  // console.log(response.item.name)
+                  userListeningPlaceholder.innerHTML = userListeningTemplate(response);
+                }
+            });
+          } else {
+              // render initial screen
+              $('#login').show();
+              $('#loggedin').hide();
+          }
+
+
+          document.getElementById('obtain-new-token').addEventListener('click', function() {
+            $.ajax({
+              url: '/refresh_token',
+              data: {
+                'refresh_token': refresh_token
+              }
+            }).done(function(data) {
+              access_token = data.access_token;
+              oauthPlaceholder.innerHTML = oauthTemplate({
+                access_token: access_token,
+                refresh_token: refresh_token
+              });
+            });
+          }, false);
+        }
+      })();
+    </script>
+  </body>
+</html>
+
