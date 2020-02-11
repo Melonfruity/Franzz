@@ -93,7 +93,7 @@ const Home = ({ logOut }) => {
             obj[ele.data.channel] = {
               users: ele.data.users,
               name: ele.data.name,
-              channel:ele.data.channel,
+              channel: ele.data.channel,
               messages: ele.messages,
             };
           }

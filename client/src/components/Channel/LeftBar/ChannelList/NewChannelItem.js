@@ -3,11 +3,13 @@
 import React from 'react';
 import { useField } from '../../../../hooks/useField';
 
-const NewChannelItem = ({ emitCreateChannel }) => {
+const NewChannelItem = ({ emitCreateChannel, emitJoinChannel }) => {
   const ChannelItemStyle = {
     border: '1px solid black',
   };
+
   const channelName = useField('text');
+  const channelLink = useField('text');
 
   const createChannel = (e) => {
     e.preventDefault();
@@ -17,6 +19,8 @@ const NewChannelItem = ({ emitCreateChannel }) => {
 
   const joinChannel = (e) => {
     e.preventDefault();
+    emitJoinChannel((channelLink.value));
+    channelLink.reset();
   };
 
   return (
@@ -29,6 +33,12 @@ const NewChannelItem = ({ emitCreateChannel }) => {
         reset={undefined}
         placeholder="channel name"
         onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
+      />
+      <input
+        {...channelName}
+        reset={undefined}
+        placeholder="channel link"
+        onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}
       />
     </article>
   );

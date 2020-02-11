@@ -34,39 +34,13 @@ channelRouter.get('/initialize',
     }
   });
 
-// create a new channel
-channelRouter.post('/new',
+channelRouter.get('/invite/:channelID',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      const { channelName } = req.body;
-      const userID = req.user.id;
-      // check if there is a user by this id
-
-      const newChannel = new Channel({
-        name: channelName,
-        users: [userID],
-      });
-
-      // save the new channel to the db
-      const savedChannel = await newChannel.save();
-
-      // add the new channel id to the user channels array
-      req.user.channels = req.user.channels.concat(savedChannel.id);
-
-      // update that user
-      await req.user.save();
-
-      const channelData = {
-        data: {
-          users: savedChannel.users,
-          channel: savedChannel.id,
-          name: savedChannel.name,
-        },
-        messages: [],
-      };
-      // send back the channel data, subjected to change
-      res.json({ channelData });
+      const { channelID } = req.params;
+      console.log(channelID)
+      res.json({ channelID });
     } catch (err) {
       next(err);
     }
