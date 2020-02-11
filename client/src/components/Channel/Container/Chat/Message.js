@@ -2,7 +2,12 @@
 import React from 'react';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ username, message, created }) => {
+const Message = ({
+  id, username, message, created, emitDeleteMessage,
+}) => {
+
+  // implement delete, edit, emoji
+
   return (
     <article>
       {username}
@@ -11,6 +16,9 @@ const Message = ({ username, message, created }) => {
       {'<created at '}
       {created}
       {'>'}
+      <button type="button"> delete </button>
+      <button type="button"> edit </button>
+      <button type="button"> emoji </button>
     </article>
   );
 };
