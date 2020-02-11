@@ -7,14 +7,6 @@ import {
 
 import Landing from './components/Landing/Landing';
 import Home from './components/Home';
-import ImageBox from './components/Channel/Container/Photos/photoDisplay';
-import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
-import DragAndDrop from './components/Channel/Container/Photos/DragAndDrop';
-
-// Hooks
-import useToggleButton from './hooks/useToggleButton';
-
-const ON = 'on';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,15 +22,9 @@ const App = () => {
   };
 
   const title = 'JEK';
-  const { boxDisplay, clickedButton } = useToggleButton('off');
-
   return (
     <div>
       {title}
-      <PopUpButton toggleButton={clickedButton} />
-      <DragAndDrop />
-      {/* { boxDisplay === ON && <PopUpBox />} */}
-      { boxDisplay === ON && <ImageBox />}
       <Router>
         <Route exact path="/" render={() => (loggedIn ? <Redirect to="/home" /> : <Landing setLoggedIn={setLoggedIn} />)} />
         <Route exact path="/home" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />

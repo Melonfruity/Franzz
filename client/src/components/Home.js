@@ -67,7 +67,8 @@ const Home = ({ logOut }) => {
       const { data, messages } = channelData;
       const { channel } = data;
 
-      const request = { channelId: channel, albumName: false };
+      // initializes a folder in the photo cloud for this channel
+      const request = { channelId: `${channel}/chat`, albumName: false };
       fetch('http://localhost:8001/api/photos/createEmptyFolder', {
         method: 'POST',
         body: JSON.stringify(request),
@@ -76,7 +77,6 @@ const Home = ({ logOut }) => {
         .then((res) => { console.log(res); })
         .catch((err) => { console.log(err); });
 
-      // creates a photo album for
       fetch('/channel', {
         method: 'POST',
         body: channel,
