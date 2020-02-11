@@ -1,6 +1,6 @@
 const { info, errm } = require('../utils/logger');
 const { extractJWT } = require('../utils/helpers/authHelper');
-const { createInviteLink, getChannel } = require('../utils/helpers/socketHelper');
+const { partOfChannel, getChannel } = require('../utils/helpers/channelHelper');
 const Message = require('../models/Message');
 const Channel = require('../models/Channel');
 
@@ -36,8 +36,8 @@ module.exports = (io) => {
             created: savedMessage.created,
             id: savedMessage.id,
           };
-          callback(newMessageObj);
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
+          callback(newMessageObj);
         }
       } catch (err) {
         errm(err);
@@ -52,7 +52,7 @@ module.exports = (io) => {
         // Check if channel name is a string
         if (typeof channelName === 'string' && user) {
           info(channelName);
-
+          console.log(channelName);
           const newChannel = new Channel({
             name: channelName,
             users: user.id,
@@ -72,7 +72,7 @@ module.exports = (io) => {
             },
             messages: [],
           };
-          console.log(channelData)
+          socket.join(savedChannel.id);
           callback(channelData);
         }
       } catch (err) {
@@ -85,76 +85,48 @@ module.exports = (io) => {
     }, callback) => {
       try {
         const user = await extractJWT(authorization);
-        // Check if channel name is a string
-        if (typeof channelName === 'string' && user) {
-          info(channelLink);
-          const newChannelObj = {
-            channelLink,
-          };
-          callback(newChannelObj);
+        const channelID = getChannel(channelLink);
+
+        if (channelID && user) {
+          info(channelLink, channelID);
+          const channel = await Channel.findById(channelID);
+          const isPartOfChannel = partOfChannel(channel.users, user.id);
+          if (!isPartOfChannel) {
+            channel.users = channel.users.concat(user.id);
+            user.channels = user.channels.concat(channel.id);
+            await user.save();
+
+            const savedChannel = await channel.save();
+            const messages = await Message
+              .find({ channel: savedChannel.id })
+              .populate('user')
+              .sort({ created: 'asc' });
+
+            const channelData = {
+              data: {
+                users: savedChannel.users,
+                channel: savedChannel.id,
+                name: savedChannel.name,
+              },
+              messages,
+            };
+            socket.join(channelID);
+            socket.emit('server message', {
+              serverMsg: {
+                'joining room': channelID,
+              },
+            });
+            callback(channelData);
+          } else {
+            callback({ error: 'Already part of channel' });
+          }
+        } else {
+          callback({ error: 'Invalid invite link' });
         }
       } catch (err) {
         errm(err);
       }
     });
-
-    // // socket (client)
-    // socket.on('message', async ({
-    //   message, channelID, authorization,
-    // }) => {
-    //   try {
-    //     const user = await extractJWT(authorization);
-    //     if (typeof message === 'string' && user) {
-    //       info(message, channelID);
-    //       const newMessage = new Message({
-    //         message,
-    //         user: user.id,
-    //         channel: channelID,
-    //       });
-    //       const savedMessage = await newMessage.save();
-    //       const newMessageObj = {
-    //         user: {
-    //           username: user.username,
-    //         },
-    //         message: savedMessage.message,
-    //         created: savedMessage.created,
-    //         id: savedMessage.id,
-    //       };
-    //       io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
-    //     }
-    //   } catch (err) {
-    //     errm(err);
-    //   }
-    // });
-
-    // // socket (client)
-    // socket.on('message', async ({
-    //   message, channelID, authorization,
-    // }) => {
-    //   try {
-    //     const user = await extractJWT(authorization);
-    //     if (typeof message === 'string' && user) {
-    //       info(message, channelID);
-    //       const newMessage = new Message({
-    //         message,
-    //         user: user.id,
-    //         channel: channelID,
-    //       });
-    //       const savedMessage = await newMessage.save();
-    //       const newMessageObj = {
-    //         user: {
-    //           username: user.username,
-    //         },
-    //         message: savedMessage.message,
-    //         created: savedMessage.created,
-    //         id: savedMessage.id,
-    //       };
-    //       io.to(channelID).emit(`new message ${channelID}`, newMessageObj);
-    //     }
-    //   } catch (err) {
-    //     errm(err);
-    //   }
-    // });
 
     // namespace is channel and room will be called channel
     socket.on('join channels', async (channelData) => {
@@ -163,9 +135,13 @@ module.exports = (io) => {
       const user = await extractJWT(authorization);
       if (user) {
         socket.join(user.channels);
-        socket.emit('server message', { serverMsg: `joined rooms ${user.channels}` });
+        const joinedRooms = Object.keys(io.sockets.adapter.rooms);
+        socket.emit('server message', {
+          serverMsg: {
+            'joined rooms': joinedRooms,
+          },
+        });
       }
-      console.log('rooms:', Object.keys(io.sockets.adapter.rooms));
     });
 
     socket.on('disconnect', () => {

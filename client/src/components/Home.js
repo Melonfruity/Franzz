@@ -53,8 +53,29 @@ const Home = ({ logOut }) => {
   };
 
   const emitJoinChannel = (channelLink) => {
-    socket.emit('join channel', channelLink, (data) => {
-      console.log(data);
+    const joinChannelObj = {
+      channelLink,
+      authorization: state.authorization,
+    };
+    socket.emit('join channel', joinChannelObj, (channelData) => {
+      const { error, data, messages } = channelData;
+      if (!error) {
+        const { channel } = data;
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channel]: {
+                ...data,
+                messages,
+              },
+            },
+          }
+        ));
+      } else {
+        console.log(error)
+      }
     });
   };
 

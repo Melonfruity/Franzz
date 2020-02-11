@@ -35,7 +35,7 @@ const NewChannelItem = ({ emitCreateChannel, emitJoinChannel }) => {
         onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
       />
       <input
-        {...channelName}
+        {...channelLink}
         reset={undefined}
         placeholder="channel link"
         onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}

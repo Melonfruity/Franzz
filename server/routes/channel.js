@@ -1,6 +1,6 @@
 const channelRouter = require('express').Router();
 const passport = require('passport');
-const { partOfChannel } = require('../utils/helpers/channelHelper');
+const { createInviteLink, getChannel, partOfChannel } = require('../utils/helpers/channelHelper');
 
 // Models
 const Channel = require('../models/Channel');
@@ -39,15 +39,14 @@ channelRouter.get('/invite/:channelID',
   async (req, res, next) => {
     try {
       const { channelID } = req.params;
-      console.log(channelID)
-      res.json({ channelID });
+      res.json({ channelID: createInviteLink(channelID) });
     } catch (err) {
       next(err);
     }
   });
 
 // join a channel using channel id... should change that
-channelRouter.put('/join/:channelID',
+channelRouter.put('/join',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
