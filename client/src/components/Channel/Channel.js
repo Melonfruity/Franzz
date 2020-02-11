@@ -1,75 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import Chatbox from './Container/Chat/Chatbox';
-import ChannelList from './LeftBar/ChannelList/ChannelList';
-import NewChannel from './NewChannel';
+import React, {} from 'react';
+import { useField } from '../../hooks/useField';
+import Chat from './Container/Chat/Chat';
 
-import { info } from '../../utils/logger';
+const Channel = ({
+  channel, users, name, messages, emitMessage,
+}) => {
+  const message = useField('text');
 
-let socket;
-
-const channelData = [
-  {
-    id: 1,
-    name: 'channel 1',
-  },
-  {
-    id: 2,
-    name: 'channel 2',
-  },
-  {
-    id: 3,
-    name: 'channel 3',
-  },
-  {
-    id: 4,
-    name: 'channel 4',
-  },
-];
-
-const Channel = () => {
-  const [channels, setChannels] = useState([]); // list of user channels
-  const [channel, setChannel] = useState({}); // current channel
-
-  const [showCreateJoin, setShowCreateJoin] = useState(false);
-
-  const selectChannel = (id) => setChannel(channelData.filter((chn) => chn.id === id)[0]);
-
-  const newChannel = () => {
-    setShowCreateJoin((prev) => !prev);
+  const sendMessage = (e) => {
+    e.preventDefault();
+    emitMessage(message.value, channel);
+    message.reset();
   };
-
-  useEffect(() => {
-    setChannels(channelData);
-    // do it in initial render cause then it will connect before that...
-    socket = io('http://localhost:8001/channel');
-    socket.on('connect', () => {
-      // from servers
-      socket.on('serverMsg', (data) => {
-        info(data);
-      });
-
-      socket.emit('message', 'client connected', () => {
-        info('sent message to server');
-      });
-    });
-  }, []);
 
   return (
     <div>
-      Channels
-      <ChannelList
-        channels={channels}
-        selectChannel={selectChannel}
-        newChannel={newChannel}
+      {name}
+      <Chat
+        messages={messages}
+        sendMessage={sendMessage}
+        message={message}
       />
-      <Chatbox
-        channel={channel}
-      />
-      {
-        // change this later as a popup
-      }
-      { showCreateJoin ? <NewChannel /> : <></>}
     </div>
   );
 };

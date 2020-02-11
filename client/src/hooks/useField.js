@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-const useField = (type) => {
+// eslint-disable-next-line import/prefer-default-export
+export const useField = (type) => {
   const [value, setValue] = useState('');
 
   const onChange = (e) => {
@@ -18,5 +19,3 @@ const useField = (type) => {
     reset,
   };
 };
-
-export default useField;

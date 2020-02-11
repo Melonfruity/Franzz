@@ -5,6 +5,7 @@ import ChannelItem from './ChannelItem';
 import NewChannelItem from './NewChannelItem';
 
 const ChannelList = ({ channels, selectChannel, newChannel }) => {
+
   const list = channels.map((channel) => (
     <ChannelItem
       key={channel.id}

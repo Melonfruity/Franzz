@@ -1,10 +1,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import ReactEmoji from 'react-emoji';
 
-const Message = ({ message }) => (
-  <article>
-    {message}
-  </article>
-);
+const Message = ({ username, message, created }) => {
+  return (
+    <article>
+      {username}
+      {': '}
+      {ReactEmoji.emojify(message)}
+      {'<created at '}
+      {created}
+      {'>'}
+    </article>
+  );
+};
 
 export default Message;

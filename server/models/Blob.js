@@ -2,29 +2,30 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 
-const ChannelSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  users: [{
+const BlobSchema = mongoose.Schema({
+  channel: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Users',
+    ref: 'Channels',
+  },
+  messages: [{
+    message: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Messages',
+    },
   }],
-  date: {
+  created: {
     type: Date,
-    default: Date.now,
+    default: new Date(),
   },
 });
 
 // This will get rid of some unneeded formatting from mongoDB
-ChannelSchema.set('toJSON', {
+BlobSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
+    returnedObject = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
-    return returnedObject;
   },
 });
 
-module.exports = mongoose.model('Channels', ChannelSchema);
+module.exports = mongoose.model('Blobs', BlobSchema);

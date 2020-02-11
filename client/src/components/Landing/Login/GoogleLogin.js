@@ -1,13 +1,14 @@
 import React from 'react';
-import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import { GOOGLE_CLIENT_ID } from '../../utils/config';
+import axios from 'axios';
+import { GOOGLE_CLIENT_ID } from '../../../utils/config';
 
-const Login = () => {
-  const googleResponse = (data) => {
+
+const GoogleLoginButton = () => {
+  const onSuccess = (data) => {
     axios
       .post('http://localhost:8001/api/auth/google', data)
-      .then((res) => console.log(res));
+      .then((res) => console.log(res.data));
   };
 
   const onFailure = (err) => {
@@ -18,11 +19,11 @@ const Login = () => {
     <GoogleLogin
       clientId={GOOGLE_CLIENT_ID}
       buttonText="Google Login"
-      onSuccess={googleResponse}
+      onSuccess={onSuccess}
       onFailure={onFailure}
       cookiePolicy="single_host_origin"
     />
   );
 };
 
-export default Login;
+export default GoogleLoginButton;
