@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image, Video, Transformation, CloudinaryContext,
+  Image, CloudinaryContext,
 } from 'cloudinary-react';
 
 
@@ -9,16 +9,13 @@ export default function PhotoItem({ publicKey, url, fileType }) {
     <CloudinaryContext cloudName="jekmessaging">
       <div>
         {fileType === 'image' && <Image publicId={url} width="100%" />}
-        {fileType === 'video' && (
-          <iframe
-            src={`https://player.cloudinary.com/embed/?cloud_name=jekmessaging&public_id=${publicKey}.mp4`}
-            width="100%"
-            height="100%"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen
-            frameBorder="0"
-          />
-        // <Video publicId={publicKey} width="100%" format="webm" />
+        {fileType === 'video'
+        && (
+        <video width="100%" controls>
+          <source src={url} type="video/webm" />
+          <source src={url} type="video/mp4" />
+          <source src={url} type="video/ogg" />
+        </video>
         )}
       </div>
     </CloudinaryContext>
