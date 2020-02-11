@@ -14,7 +14,7 @@ const createChannel = async (createChannelObj) => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
-  const res = await axios.post(`${serverURL}`, createChannelObj, config);
+  const res = await axios.post(`${serverURL}/channel/new`, createChannelObj, config);
   console.log(res);
 };
 

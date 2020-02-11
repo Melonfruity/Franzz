@@ -1,24 +1,34 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
 import NewChannelItem from './NewChannelItem';
 
-const ChannelList = ({ channels, selectChannel, newChannel }) => {
-
-  const list = channels.map((channel) => (
-    <ChannelItem
-      key={channel.id}
-      channel={channel}
-      selectChannel={selectChannel}
-    />
-  ));
+const ChannelList = ({
+  selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
+}) => {
+  const channelList = channelIdNamePair.map((pair) => {
+    const { name, id } = pair;
+    return (
+      <li key={id}>
+        <ChannelItem
+          name={name}
+          id={id}
+          selectCurrentChannel={selectCurrentChannel}
+        />
+      </li>
+    );
+  });
 
   return (
     <div>
-      {list}
+      <li>
+        <Link to="/home">Home</Link>
+      </li>
+      {channelList}
       <NewChannelItem
-        newChannel={newChannel}
+        emitCreateChannel={emitCreateChannel}
+        emitJoinChannel={emitJoinChannel}
       />
     </div>
   );

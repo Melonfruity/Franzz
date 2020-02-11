@@ -57,8 +57,16 @@ channelRouter.post('/new',
       // update that user
       await req.user.save();
 
+      const channelData = {
+        data: {
+          users: savedChannel.users,
+          channel: savedChannel.id,
+          name: savedChannel.name,
+        },
+        messages: [],
+      };
       // send back the channel data, subjected to change
-      res.json(savedChannel);
+      res.json({ channelData });
     } catch (err) {
       next(err);
     }

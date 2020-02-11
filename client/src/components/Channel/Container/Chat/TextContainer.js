@@ -5,13 +5,15 @@ import Message from './Message';
 
 import './TextContainer.css';
 
-const TextContainer = ({ messages }) => {
+const TextContainer = ({ messages, deleteMessage }) => {
   const formattedMessages = messages.map((msg) => (
     <Message
       key={msg.id}
+      id={msg.id}
       message={msg.message}
-      username={msg.user.username}
       created={msg.created}
+      username={msg.user.username}
+      deleteMessage={deleteMessage}
     />
   ));
 
