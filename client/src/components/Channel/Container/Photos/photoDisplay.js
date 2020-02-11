@@ -36,6 +36,7 @@ export default function ImageBox(props) {
   return (
     <div id="resize-box" onMouseDown={mouseDownFunction}>
       <div id="imageBox">
+      <button>New Album</button>
         <div className="row">
           <div className="column">
             {images[0]}

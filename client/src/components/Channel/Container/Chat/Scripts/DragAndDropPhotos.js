@@ -9,6 +9,7 @@ function uploadFile(file) {
   const formData = new FormData();
   formData.append('file', file);
 
+
   fetch(url, {
     method: 'POST',
     body: formData,

@@ -6,9 +6,6 @@ import {
   Link,
 } from 'react-router-dom';
 import io from 'socket.io-client';
-import {
-  Image, Video, Transformation, CloudinaryContext,
-} from 'cloudinary-react';
 import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
@@ -69,6 +66,25 @@ const Home = ({ logOut }) => {
     socket.emit('create channel', createChannelObj, (channelData) => {
       const { data, messages } = channelData;
       const { channel } = data;
+
+      const request = { channelId: channel, albumName: false };
+      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
+        method: 'POST',
+        body: JSON.stringify(request),
+        headers: { 'content-type': 'application/json' },
+      })
+        .then((res) => { console.log(res); })
+        .catch((err) => { console.log(err); });
+
+      // creates a photo album for
+      fetch('/channel', {
+        method: 'POST',
+        body: channel,
+      })
+        .then((res) => { console.log(res); })
+        .catch((err) => { console.log(err); });
+
+
       setState((prev) => (
         {
           ...prev,
