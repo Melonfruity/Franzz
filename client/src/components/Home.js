@@ -6,6 +6,9 @@ import {
   Link,
 } from 'react-router-dom';
 import io from 'socket.io-client';
+import {
+  Image, Video, Transformation, CloudinaryContext,
+} from 'cloudinary-react';
 import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
@@ -93,7 +96,7 @@ const Home = ({ logOut }) => {
             obj[ele.data.channel] = {
               users: ele.data.users,
               name: ele.data.name,
-              channel:ele.data.channel,
+              channel: ele.data.channel,
               messages: ele.messages,
             };
           }
@@ -114,7 +117,7 @@ const Home = ({ logOut }) => {
         console.log(data);
       });
     });
-  }, []);
+  }, [state.authorization]);
 
   useEffect(() => {
     socket.on('new message', (data) => {
