@@ -52,13 +52,11 @@
           <img class="media-object" width="150" src="{{images.0.url}}" />
         </div>
         <div class="media-body">
-          <p style="font-weight: bold;">Currently Playing:</p>
-          <div href="{{item.external_urls.spotify}}" style="display: flex;">
+          <p class="currently-playing-title" style="font-weight: bold;">Currently Playing:</p>
+          <div class="currently-playing-section">
           <img class="media-object resize" src="{{item.album.images.0.url}}" />
-          <div style="display: flex; flex-direction: column; margin-left: 10px; justify-content: center;">
           <a href="{{item.external_urls.spotify}}">{{item.album.name}} - {{item.artists.0.name}}</a>
           </div>
-        </div>
         </div>
       </div>
     </script>

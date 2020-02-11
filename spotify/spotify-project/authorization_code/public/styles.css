@@ -26,7 +26,19 @@ body {
 .previous-songs-title {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.currently-playing-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.currently-playing-section {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
 }
 
 .previous-songs {
