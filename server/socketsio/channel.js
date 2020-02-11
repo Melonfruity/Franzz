@@ -1,9 +1,9 @@
 const { info, errm } = require('../utils/logger');
 const { extractJWT } = require('../utils/helpers/authHelper');
 const Message = require('../models/Message');
+const Channel = require('../models/Channel');
 
 module.exports = (io) => {
-
   io.on('connection', (socket) => {
     // server
     socket.emit('server message', {
@@ -36,8 +36,55 @@ module.exports = (io) => {
             id: savedMessage.id,
           };
           callback(newMessageObj);
-          console.log(channelID);
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
+        }
+      } catch (err) {
+        errm(err);
+      }
+    });
+
+    socket.on('create channel', async ({
+      channelName, authorization,
+    }, callback) => {
+      try {
+        const user = await extractJWT(authorization);
+        // Check if channel name is a string
+        if (typeof channelName === 'string' && user) {
+          info(channelName);
+
+          const newChannel = new Channel({
+            name: channelName,
+            users: user.id,
+          });
+
+          const savedChannel = await newChannel.save();
+          user.channels = user.channels.concat(savedChannel.id);
+
+          // update that user
+          await user.save();
+
+          const newChannelObj = {
+            channelName,
+          };
+          callback(newChannelObj);
+        }
+      } catch (err) {
+        errm(err);
+      }
+    });
+
+    socket.on('join channel', async ({
+      channelLink, authorization,
+    }, callback) => {
+      try {
+        const user = await extractJWT(authorization);
+        // Check if channel name is a string
+        if (typeof channelName === 'string' && user) {
+          info(channelLink);
+          const newChannelObj = {
+            channelLink,
+          };
+          callback(newChannelObj);
         }
       } catch (err) {
         errm(err);

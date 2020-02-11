@@ -9,41 +9,64 @@ import io from 'socket.io-client';
 import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
+import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
 
 let socket;
 
 const Home = ({ logOut }) => {
   const [state, setState] = useState({
     currentUser: '',
-    selectedChannel: '',
-    username: '',
-    authorization: '',
+    currentChannel: '',
+    authorization: window.localStorage.getItem('authorization'),
+    username: window.localStorage.getItem('username'),
     channelStates: {},
   });
 
-  const joinChannelsObj = {
-    authorization: window.localStorage.getItem('authorization'),
-    username: window.localStorage.getItem('username'),
+  console.log(state);
+  const emitDeleteMessage = (messageID) => {
   };
 
-  const emitMessage = (message, channelID) => {
+  const emitEditMessage = (messageID) => {
+  };
+
+  const emitSendMessage = (message) => {
+    const channelID = state.currentChannel;
     const messageObj = {
       message,
       channelID,
       authorization: state.authorization,
       username: state.username,
     };
-    socket.emit('message', messageObj, (data) => {
+    socket.emit('message', messageObj, (newMessageObj) => {
+      setState((prev) => (
+        {
+          ...prev,
+          channelStates: {
+            ...prev.channelStates,
+            [channelID]: {
+              ...prev.channelStates[channelID],
+              messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+            },
+          },
+        }));
+    });
+  };
+
+  const emitJoinChannel = (channelLink) => {
+    socket.emit('join channel', channelLink, (data) => {
+      console.log(data);
+    });
+  };
+
+  const emitCreateChannel = (channelName) => {
+    console.log(channelName)
+    socket.emit('create channel', channelName, (data) => {
       console.log(data);
     });
   };
 
   // handle initial state
   useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      ...joinChannelsObj,
-    }));
     // grab all channel data, messages
     channelService
       .getUserData()
@@ -70,8 +93,7 @@ const Home = ({ logOut }) => {
       socket.on('server message', (data) => {
         console.log(data);
       });
-      console.log(joinChannelsObj);
-      socket.emit('join channels', joinChannelsObj, (data) => {
+      socket.emit('join channels', { authorization: state.authorization }, (data) => {
         console.log(data);
       });
     });
@@ -80,7 +102,19 @@ const Home = ({ logOut }) => {
   useEffect(() => {
     socket.on('new message', (data) => {
       console.log(data);
-      console.log(state.channelStates);
+      // console.log(state.channelStates[data.channelID]);
+
+      setState((prev) => (
+        {
+          ...prev,
+          channelStates: {
+            ...prev.channelStates,
+            [data.channelID]: {
+              ...prev.channelStates[data.channelID],
+              messages: prev.channelStates[data.channelID].messages.concat(data.newMessageObj),
+            },
+          },
+        }));
     });
     return () => {
       socket.emit('disconnect');
@@ -88,8 +122,12 @@ const Home = ({ logOut }) => {
     };
   }, [state.channelStates]);
 
-  console.log(state);
   const channels = Object.keys(state.channelStates);
+  const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
+
+  const selectCurrentChannel = (channel) => {
+    setState((prev) => ({ ...prev, currentChannel: channel }));
+  };
 
   const channelItems = channels.map((id) => {
     const { users, name, messages } = state.channelStates[id];
@@ -103,18 +141,9 @@ const Home = ({ logOut }) => {
           name={name}
           messages={messages}
           users={users}
-          emitMessage={emitMessage}
+          emitSendMessage={emitSendMessage}
         />
       </Route>
-    );
-  });
-
-  const channelList = channels.map((id) => {
-    const { name } = state.channelStates[id];
-    return (
-      <li key={id}>
-        <Link to={`/channel/${id}`}>{name}</Link>
-      </li>
     );
   });
 
@@ -124,10 +153,12 @@ const Home = ({ logOut }) => {
         <Link to="/" onClick={logOut}> Logout</Link>
         <nav>
           <ul>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            {channelList}
+            <ChannelList
+              selectCurrentChannel={selectCurrentChannel}
+              channelIdNamePair={channelIdNamePair}
+              emitJoinChannel={emitJoinChannel}
+              emitCreateChannel={emitCreateChannel}
+            />
           </ul>
         </nav>
         <Switch>

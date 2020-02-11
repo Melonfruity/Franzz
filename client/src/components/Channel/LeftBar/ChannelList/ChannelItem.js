@@ -2,21 +2,21 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ChannelItem = ({ channel, selectChannel }) => {
+const ChannelItem = ({ name, id, selectCurrentChannel }) => {
   const ChannelItemStyle = {
     border: '1px solid black',
   };
 
   return (
-    <div
+    <Link
       style={ChannelItemStyle}
-      onClick={() => selectChannel(channel.id)}
+      to={`/channel/${id}`}
+      onClick={() => selectCurrentChannel(id)}
     >
-      {channel.id}
-      {' '}
-      {channel.name}
-    </div>
+      {name}
+    </Link>
   );
 };
 

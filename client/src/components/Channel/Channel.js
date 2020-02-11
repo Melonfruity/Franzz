@@ -3,23 +3,16 @@ import { useField } from '../../hooks/useField';
 import Chat from './Container/Chat/Chat';
 
 const Channel = ({
-  channel, users, name, messages, emitMessage,
+  channel, users, name, messages, emitSendMessage, emitDeleteMessage,
 }) => {
-  const message = useField('text');
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-    emitMessage(message.value, channel);
-    message.reset();
-  };
-
   return (
     <div>
       {name}
       <Chat
         messages={messages}
-        sendMessage={sendMessage}
-        message={message}
+        emitSendMessage={emitSendMessage}
+        emitDeleteMessage={emitDeleteMessage}
+        channel={channel}
       />
     </div>
   );

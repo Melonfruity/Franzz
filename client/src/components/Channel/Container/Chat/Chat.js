@@ -4,16 +4,18 @@ import Input from './Input';
 
 import './Chat.css';
 
-const Chat = ({ messages, sendMessage, message }) => {
-
+const Chat = ({
+  messages, emitDeleteMessage, emitSendMessage, channel,
+}) => {
+  console.log(channel);
   return (
     <div className="container">
       <TextContainer
         messages={messages}
+        emitDeleteMessage={emitDeleteMessage}
       />
       <Input
-        sendMessage={sendMessage}
-        message={message}
+        emitSendMessage={emitSendMessage}
       />
     </div>
   );
