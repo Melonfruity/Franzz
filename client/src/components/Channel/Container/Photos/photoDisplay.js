@@ -13,7 +13,6 @@ export default function ImageBox(props) {
       .then((allPhotos) => setPhotos(allPhotos));
   }, []);
 
-  console.log(photos)
   const allImages = photos.map((img) => (
     <PhotoItem
       key={img.public_id}

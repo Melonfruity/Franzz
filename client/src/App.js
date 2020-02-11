@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Components
-import PopUpBox from './components/Channel/Container/Chat/PopUpBox';
 import PopUpButton from './components/Channel/Container/PopUpButtons/PopUpButton';
 import Channel from './components/Channel/Channel';
 import Login from './components/Landing/Login';
