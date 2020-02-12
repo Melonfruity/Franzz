@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styling work (temporary)
-import '../Chat/Styling/DragAndDropBox.scss';
+//import '../Chat/Styling/DragAndDropBox.scss';
 
 // Scripting work
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
