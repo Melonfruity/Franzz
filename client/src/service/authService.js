@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
-const serverURL = 'http://localhost:8001/api';
+// const serverURL = 'http://localhost:8001/api';
+const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
 
 const login = async (loginObj) => {
   const res = await axios.post(`${serverURL}/auth/login`, loginObj);
@@ -22,7 +23,6 @@ const register = async (registerObj) => {
   };
   const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
   const { error, token } = res.data;
-  console.log(res);
   if (error) {
     console.log(error);
     return false;
@@ -31,18 +31,23 @@ const register = async (registerObj) => {
   return true;
 };
 
-const guest = async (guestObj) => {
+const guestLogin = async (guestObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, guestObj);
-  const { error, token } = res.data;
+  const {
+    error, token, username, guest,
+  } = res.data;
   if (error) {
     console.log(error);
-  } else {
-    window.localStorage.setItem('authorization', token);
+    return false;
   }
+  window.localStorage.setItem('authorization', token);
+  window.localStorage.setItem('username', username);
+  window.localStorage.setItem('guest', guest);
+  return true;
 };
 
 export default {
   register,
-  guest,
+  guestLogin,
   login,
 };

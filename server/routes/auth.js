@@ -69,6 +69,7 @@ authRouter.post('/register', async (req, res, next) => {
     if (isValid) {
       // find the user through their email
       const user = await User.findOne({ email });
+      console.log('existing', user)
       if (!user) {
         // if there is a token and the user has a username token
         if (authorization && typeof username === 'string') {
@@ -86,6 +87,7 @@ authRouter.post('/register', async (req, res, next) => {
           });
           await newUser.save();
           // sign a token and send it
+          console.log('new user', newUser);
           signJWT(res, newUser);
         }
       } else {

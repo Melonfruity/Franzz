@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../service/channelService';
@@ -13,8 +12,9 @@ import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
 
 let socket;
 
-const Home = ({ logOut }) => {
+const Home = () => {
   const [state, setState] = useState({
+    guest: window.localStorage.getItem('guest'),
     currentUser: '',
     currentChannel: '',
     authorization: window.localStorage.getItem('authorization'),
@@ -22,12 +22,11 @@ const Home = ({ logOut }) => {
     channelStates: {},
   });
 
-  console.log(state);
-  const emitDeleteMessage = (messageID) => {
-  };
+  // const emitDeleteMessage = (messageID) => {
+  // };
 
-  const emitEditMessage = (messageID) => {
-  };
+  // const emitEditMessage = (messageID) => {
+  // };
 
   const emitSendMessage = (message) => {
     const channelID = state.currentChannel;
@@ -74,7 +73,7 @@ const Home = ({ logOut }) => {
           }
         ));
       } else {
-        console.log(error)
+        console.log(error);
       }
     });
   };
@@ -105,27 +104,31 @@ const Home = ({ logOut }) => {
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
-    channelService
-      .getUserData()
-      .then(({ channelData }) => {
-        const channelStates = channelData.reduce((obj, ele) => {
-          if (!obj[ele.data.channel]) {
-            // eslint-disable-next-line no-param-reassign
-            obj[ele.data.channel] = {
-              users: ele.data.users,
-              name: ele.data.name,
-              channel: ele.data.channel,
-              messages: ele.messages,
-            };
-          }
-          return obj;
-        }, {});
-        setState((prev) => ({ ...prev, channelStates }));
-      });
-  }, []);
+    if (state.authorization) {
+      channelService
+        .getUserData()
+        .then(({ channelData }) => {
+          const channelStates = channelData.reduce((obj, ele) => {
+            if (!obj[ele.data.channel]) {
+              // eslint-disable-next-line no-param-reassign
+              obj[ele.data.channel] = {
+                users: ele.data.users,
+                name: ele.data.name,
+                channel: ele.data.channel,
+                messages: ele.messages,
+              };
+            }
+            return obj;
+          }, {});
+          setState((prev) => ({ ...prev, channelStates }));
+        });
+    }
+  }, [state.authorization]);
 
   useEffect(() => {
-    socket = io('http://localhost:8001/');
+    // change api end point later
+    // socket = io('http://localhost:8001/');
+    socket = io('https://arcane-bastion-72484.herokuapp.com/');
     socket.on('connect', () => {
       // from servers
       socket.on('server message', (data) => {
@@ -135,7 +138,7 @@ const Home = ({ logOut }) => {
         console.log(data);
       });
     });
-  }, []);
+  }, [state.authorization]);
 
   useEffect(() => {
     socket.on('new message', (data) => {
@@ -159,7 +162,7 @@ const Home = ({ logOut }) => {
       socket.emit('disconnect');
       socket.off();
     };
-  }, [state.channelStates]);
+  }, []);
 
   const channels = Object.keys(state.channelStates);
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
@@ -189,7 +192,6 @@ const Home = ({ logOut }) => {
   return (
     <div>
       <Router>
-        <Link to="/" onClick={logOut}> Logout</Link>
         <nav>
           <ul>
             <ChannelList

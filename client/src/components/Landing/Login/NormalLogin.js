@@ -2,7 +2,7 @@ import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 
-const NormalLogin = ({ setLoggedIn }) => {
+const NormalLogin = ({ setUserExists }) => {
   const email = useField('text');
   const password = useField('password');
   const handleLogin = (e) => {
@@ -13,7 +13,7 @@ const NormalLogin = ({ setLoggedIn }) => {
     };
     auth
       .login(loginObj)
-      .then((loggedIn) => setLoggedIn(loggedIn));
+      .then((loggedIn) => setUserExists(loggedIn));
   };
 
   return (
