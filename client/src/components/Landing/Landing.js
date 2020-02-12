@@ -1,11 +1,12 @@
 import React from 'react';
-import Login from './Login/Login';
+import NormalLogin from './Login/NormalLogin';
+import Username from './Login/Username';
 
-const Landing = ({ setLoggedIn }) => {
-
+const Landing = ({ setUserExists }) => {
   return (
     <div>
-      <Login setLoggedIn={setLoggedIn} />
+      <Username setUserExists={setUserExists} />
+      <NormalLogin setUserExists={setUserExists} />
     </div>
   );
 };

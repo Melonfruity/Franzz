@@ -26,6 +26,7 @@ const signJWT = (res, user) => {
         token: 'Bearer '.concat(token),
         channels: user.channels,
         username: user.username,
+        guest: !user.email,
       });
     },
   );

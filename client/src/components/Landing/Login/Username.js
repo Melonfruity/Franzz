@@ -2,14 +2,16 @@ import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 
-const GoogleLoginButton = () => {
+const Username = ({ setUserExists }) => {
   const username = useField('text');
-  const handleGuestLogin = (e) => {
+  const handleSelectUser = async (e) => {
     e.preventDefault();
     const guestObj = {
       username: username.value,
     };
-    auth.guest(guestObj);
+    auth
+      .guestLogin(guestObj)
+      .then((loggedIn) => setUserExists(loggedIn));
   };
 
   return (
@@ -19,9 +21,9 @@ const GoogleLoginButton = () => {
         {...username}
         reset={undefined}
       />
-      <button type="button" onClick={handleGuestLogin}>gooo</button>
+      <button type="button" onClick={handleSelectUser}>-&gt;</button>
     </form>
   );
 };
 
-export default GoogleLoginButton;
+export default Username;
