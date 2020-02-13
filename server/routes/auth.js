@@ -18,37 +18,32 @@ const User = require('../models/User');
 authRouter.post('/google', async (req, res, next) => {
   try {
     const { accessToken } = req.body;
-
+    const { authorization } = req.headers;
     // check if it's a valid google access token
-    const accessTokenCheck = await axios.post(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`);
-
+    const { data } = await axios.post(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`);
+    const { email } = data;
     // if there's no error
-    if (!accessTokenCheck.error) {
-      const { profileObj } = req.body;
-      const { email, googleId } = profileObj;
-      // find the user through their email
-      const user = await User.findOne({ email });
-
-      // if there is no user, make a new one
-      if (!user) {
-        const newUser = new User({
-          username: '',
-          email,
-          googleProvider: {
-            id: googleId,
-            token: accessToken,
-          },
-        });
-        await newUser.save();
-        res.json({ user: newUser });
-      // update the access token for that google user
-      } else {
+    if (data) {
+      // check if logging in or registering
+      // if this is a registering guest using google
+      if (authorization !== 'undefined') {
+        const user = await extractJWT(authorization);
+        if (!user.email) {
+          user.email = email;
+        }
         user.googleProvider = {
-          id: googleId,
           token: accessToken,
         };
         await user.save();
         signJWT(res, user);
+      } else {
+        // just logging in
+        const googleUser = await User.findOne({ email });
+        if (googleUser) {
+          signJWT(res, googleUser);
+        } else {
+          res.json({ error: 'not registered!' });
+        }
       }
     // someone is trying to use a fake access token!
     } else {
@@ -62,7 +57,7 @@ authRouter.post('/google', async (req, res, next) => {
 // register route for users not using a google account
 authRouter.post('/register', async (req, res, next) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, password } = req.body;
     const { isValid, errors } = formValidator({ email, password });
     const { authorization } = req.headers;
     // check if valid email, password
@@ -72,12 +67,11 @@ authRouter.post('/register', async (req, res, next) => {
       if (!user) {
         // if there is a token and the user has a username token
         if (authorization && typeof username === 'string') {
-          const updateGuest = {
+          const updateGuestObj = {
             email,
             password: register(password),
-            username,
           };
-          const updatedUser = extractJWT(res, authorization, updateGuest);
+          const updatedUser = extractJWT(authorization, updateGuestObj);
           signJWT(res, updatedUser);
         } else {
           const newUser = new User({
@@ -85,7 +79,6 @@ authRouter.post('/register', async (req, res, next) => {
             password: register(password),
           });
           await newUser.save();
-          // sign a token and send it
           signJWT(res, newUser);
         }
       } else {
@@ -109,7 +102,6 @@ authRouter.post('/login', async (req, res, next) => {
       const user = await User.findOne({ email });
       if (user) {
         const check = login(password, user.password);
-        console.log(user);
         if (check) {
           signJWT(res, user);
         } else {
@@ -119,7 +111,6 @@ authRouter.post('/login', async (req, res, next) => {
         res.json({ error: 'user does not exist' });
       }
     } else {
-      console.log('sdsada');
       res.json({ error: errors });
     }
   } catch (err) {

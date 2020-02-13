@@ -6,10 +6,13 @@ import Chat from './Container/Chat/Chat';
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage,
 }) => {
+  const [userStatus, setUserStatus] = useState(users);
+
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
   });
+
   const createInvite = () => {
     channelService
       .getInvite(channel)

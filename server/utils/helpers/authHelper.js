@@ -26,18 +26,23 @@ const signJWT = (res, user) => {
         token: 'Bearer '.concat(token),
         channels: user.channels,
         username: user.username,
+        guest: !user.email,
       });
     },
   );
 };
 
-const extractJWT = async (authorization, updateGuest) => {
+const extractJWT = async (authorization, updateGuestObj) => {
+  console.log('extractJWT')
   if (authorization.toLowerCase().startsWith('bearer ')) {
     const token = authorization.substring(7);
     const { userID } = jwt.verify(token, secretOrKey);
-    const user = await User.findByIdAndUpdate(userID, updateGuest);
+    const user = updateGuestObj
+      ? await User.findByIdAndUpdate(userID, updateGuestObj)
+      : await User.findById(userID);
     return user;
   }
+  return false;
 };
 
 module.exports = {
