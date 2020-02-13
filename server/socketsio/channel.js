@@ -52,7 +52,6 @@ module.exports = (io) => {
         // Check if channel name is a string
         if (typeof channelName === 'string' && user) {
           info(channelName);
-          console.log(channelName);
           const newChannel = new Channel({
             name: channelName,
             users: user.id,
@@ -110,12 +109,32 @@ module.exports = (io) => {
               },
               messages,
             };
+
+            // welcome message
+            const welcomeMessage = new Message({
+              message: 'has joined the channel!',
+              user: user.id,
+              channel: channelID,
+            });
+            // save it
+            const savedMessage = await welcomeMessage.save();
+            // message obj to return
+            const newMessageObj = {
+              user: {
+                username: user.username,
+              },
+              message: savedMessage.message,
+              created: savedMessage.created,
+              id: savedMessage.id,
+            };
+
             socket.join(channelID);
             socket.emit('server message', {
               serverMsg: {
                 'joining room': channelID,
               },
             });
+            socket.to(channelID).emit('new message', { channelID, newMessageObj });
             callback(channelData);
           } else {
             callback({ error: 'Already part of channel' });

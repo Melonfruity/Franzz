@@ -128,17 +128,20 @@ const Home = ({ state, setState }) => {
   useEffect(() => {
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
-      setState((prev) => (
-        {
-          ...prev,
-          channelStates: {
-            ...prev.channelStates,
-            [channelID]: {
-              ...prev.channelStates[channelID],
-              messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+      console.log(data)
+      if (channelID && newMessageObj) {
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channelID]: {
+                ...prev.channelStates[channelID],
+                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+              },
             },
-          },
-        }));
+          }));
+      }
     });
     socket.on('new user', (data) => {
 
