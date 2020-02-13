@@ -49,8 +49,6 @@ const TextContainer = ({ messages, deleteMessage, channelId }) => {
       <ScrollToBottom class="messages">
         {formattedMessages}
       </ScrollToBottom>
-      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files)} />
-        <label className="button" htmlFor="fileElem">Select some files</label>
     </div>
   );
 };

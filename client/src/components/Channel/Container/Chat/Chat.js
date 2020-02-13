@@ -4,6 +4,7 @@ import Input from './Input';
 import ImageBox from '../Photos/photoDisplay';
 import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
+import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 import './Chat.css';
 
@@ -27,6 +28,8 @@ const Chat = ({
       <Input
         emitSendMessage={emitSendMessage}
       />
+      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel)} />
+      <label className="button" htmlFor="fileElem">Select some files</label>
     </div>
   );
 };
