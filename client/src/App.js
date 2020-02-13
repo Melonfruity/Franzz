@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   useParams,
 } from 'react-router-dom';
+
 
 import Landing from './components/Landing/Landing';
 import Home from './components/Home';
