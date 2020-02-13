@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  useParams,
 } from 'react-router-dom';
 
 import Landing from './components/Landing/Landing';
@@ -33,6 +34,7 @@ const App = () => {
     });
   };
 
+  const title = 'JEK';
   // load the data if the user was already logged in
   useEffect(() => {
     setState((prev) => ({
@@ -46,6 +48,7 @@ const App = () => {
   // TODO: Reloading channel should bring back to channel
   return (
     <div>
+      {title}
       <Router>
         <NavBar
           logOut={logOut}

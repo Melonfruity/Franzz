@@ -1,12 +1,12 @@
 
 #resize-box {
+  z-index: 1000;
   position: absolute;
-  width: 60%;
+  width: 80%;
   padding-left: 4px;
   min-height: 200px;
   height: 200px;
-  top: 200px;
-  background-color: aliceblue;
+  background-color: white;
   border: 1px solid black;
 }
 
@@ -19,4 +19,10 @@ content: " ";
   height: 10px;
   left: 0;
   cursor: ns-resize;
+}
+
+#imageBox {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 100%;
 }

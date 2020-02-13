@@ -9,6 +9,7 @@ import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
+import DragAndDrop from './Channel/Container/Photos/DragAndDrop';
 
 let socket;
 
@@ -71,6 +72,17 @@ const Home = ({ state, setState }) => {
     socket.emit('create channel', createChannelObj, (channelData) => {
       const { data, messages } = channelData;
       const { channel } = data;
+
+      // initializes a folder in the photo cloud for this channel
+      const request = { channelId: `${channel}/chat`, albumName: false };
+      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
+        method: 'POST',
+        body: JSON.stringify(request),
+        headers: { 'content-type': 'application/json' },
+      })
+        .then((res) => { console.log(res); })
+        .catch((err) => { console.log(err); });
+
       setState((prev) => (
         {
           ...prev,
@@ -123,7 +135,7 @@ const Home = ({ state, setState }) => {
         console.log(data);
       });
     });
-  }, []);
+  }, [state.authorization]);
 
   useEffect(() => {
     socket.on('new message', (data) => {
