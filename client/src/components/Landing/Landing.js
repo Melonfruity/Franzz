@@ -1,12 +1,14 @@
 import React from 'react';
 import NormalLogin from './Login/NormalLogin';
 import Username from './Login/Username';
+import GoogleLogin from './Login/GoogleLogin';
 
-const Landing = ({ setUserExists }) => {
+const Landing = ({ setState }) => {
   return (
     <div>
-      <Username setUserExists={setUserExists} />
-      <NormalLogin setUserExists={setUserExists} />
+      <Username setState={setState} />
+      <NormalLogin setState={setState} />
+      <GoogleLogin setState={setState} />
     </div>
   );
 };

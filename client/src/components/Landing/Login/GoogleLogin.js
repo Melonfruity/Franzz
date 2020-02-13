@@ -1,14 +1,34 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
+import { GoogleLogin } from 'react-google-login';
 import { GOOGLE_CLIENT_ID } from '../../../utils/config';
+import auth from '../../../service/authService';
 
 
-const GoogleLoginButton = () => {
-  const onSuccess = (data) => {
+const GoogleLoginButton = ({ setState }) => {
+  const onSuccess = (googleData) => {
+    const { accessToken } = googleData;
+    const config = {
+      headers: { authorization: window.localStorage.authorization },
+    };
     axios
-      .post('http://localhost:8001/api/auth/google', data)
-      .then((res) => console.log(res.data));
+      .post('http://localhost:8001/api/auth/google', { accessToken }, config)
+      .then((res) => {
+        const {
+          success, error, token, username, guest,
+        } = res.data;
+        if (success) {
+          auth.setLocalStorage({ token, username, guest });
+          setState((prev) => ({
+            ...prev,
+            authorization: window.localStorage.getItem('authorization'),
+            username: window.localStorage.getItem('username'),
+            guest: localStorage.getItem('guest'),
+          }));
+        } else {
+          console.log(error);
+        }
+      });
   };
 
   const onFailure = (err) => {

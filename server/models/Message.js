@@ -6,6 +6,12 @@ const MessageSchema = mongoose.Schema({
   message: {
     type: String,
   },
+  video: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',

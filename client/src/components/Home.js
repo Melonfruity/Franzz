@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,22 +12,7 @@ import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
 
 let socket;
 
-const Home = () => {
-  const [state, setState] = useState({
-    guest: window.localStorage.getItem('guest'),
-    currentUser: '',
-    currentChannel: '',
-    authorization: window.localStorage.getItem('authorization'),
-    username: window.localStorage.getItem('username'),
-    channelStates: {},
-  });
-
-  // const emitDeleteMessage = (messageID) => {
-  // };
-
-  // const emitEditMessage = (messageID) => {
-  // };
-
+const Home = ({ state, setState }) => {
   const emitSendMessage = (message) => {
     const channelID = state.currentChannel;
     const messageObj = {
@@ -123,12 +108,12 @@ const Home = () => {
           setState((prev) => ({ ...prev, channelStates }));
         });
     }
-  }, [state.authorization]);
+  }, []);
 
   useEffect(() => {
     // change api end point later
-    // socket = io('http://localhost:8001/');
-    socket = io('https://arcane-bastion-72484.herokuapp.com/');
+    socket = io('http://localhost:8001/');
+    // socket = io('https://arcane-bastion-72484.herokuapp.com/');
     socket.on('connect', () => {
       // from servers
       socket.on('server message', (data) => {
@@ -138,7 +123,7 @@ const Home = () => {
         console.log(data);
       });
     });
-  }, [state.authorization]);
+  }, []);
 
   useEffect(() => {
     socket.on('new message', (data) => {
