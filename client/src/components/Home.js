@@ -98,14 +98,6 @@ const Home = ({ logOut }) => {
         .then((res) => { console.log(res); })
         .catch((err) => { console.log(err); });
 
-      fetch('/channel', {
-        method: 'POST',
-        body: channel,
-      })
-        .then((res) => { console.log(res); })
-        .catch((err) => { console.log(err); });
-
-
       setState((prev) => (
         {
           ...prev,

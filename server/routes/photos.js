@@ -47,7 +47,7 @@ photosRouter.get('/getChannelPhotos', async (req, res) => {
 
 // creates an empty folder (used for new channels and creating albums)
 // input => {channelId: 'example', albunName: 'exampleAlbum'}
-photosRouter.post('/createEmptyFolder', async (req, res) => {
+photosRouter.post('/createEmptyFolder', (req, res) => {
 
   // gather path names for folder/album
   const channelFolder = req.body.channelId;
