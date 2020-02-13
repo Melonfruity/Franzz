@@ -2,7 +2,6 @@ import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
 import ImageBox from '../Photos/photoDisplay';
-import DragAndDrop from '../Photos/DragAndDrop';
 import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
 
@@ -19,12 +18,11 @@ const Chat = ({
   return (
     <div className="container">
       <PopUpButton toggleButton={clickedButton} />
-      <DragAndDrop />
-      {/* { boxDisplay === ON && <PopUpBox />} */}
       { boxDisplay === ON && <ImageBox />}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}
+        channelId={channel}
       />
       <Input
         emitSendMessage={emitSendMessage}

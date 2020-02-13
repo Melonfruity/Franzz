@@ -9,6 +9,7 @@ import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
+import DragAndDrop from './Channel/Container/Photos/DragAndDrop';
 
 let socket;
 

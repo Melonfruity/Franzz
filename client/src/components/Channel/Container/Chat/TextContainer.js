@@ -5,7 +5,15 @@ import Message from './Message';
 
 import './TextContainer.css';
 
-const TextContainer = ({ messages, deleteMessage }) => {
+// Scripting work for adding photos to the cloud through the text container
+import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
+import { preventDefaults, handleDrop, handleFiles } from './Scripts/DragAndDropPhotos';
+
+const TextContainer = ({ messages, deleteMessage, channelId }) => {
+
+  // Used to highlight the box when dragging photos in
+  const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
+
   const formattedMessages = messages.map((msg) => (
     <Message
       key={msg.id}
@@ -17,11 +25,32 @@ const TextContainer = ({ messages, deleteMessage }) => {
     />
   ));
 
+  // Changes the class depending on the event
+  // and tracks event
+  function boxEvent(e) {
+    changeHighlightClass(e.type);
+    preventDefaults(e);
+  }
+
+  function dropFile(e) {
+    changeHighlightClass(e.type);
+    handleDrop(e, channelId);
+  }
+
   return (
-    <div className="textContainer">
+    <div
+      id="drop-area"
+      className={`textContainer ${highlightClass}`}
+      onDragEnter={boxEvent}
+      onDragLeave={boxEvent}
+      onDragOver={boxEvent}
+      onDrop={dropFile}
+    >
       <ScrollToBottom class="messages">
         {formattedMessages}
       </ScrollToBottom>
+      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files)} />
+        <label className="button" htmlFor="fileElem">Select some files</label>
     </div>
   );
 };
