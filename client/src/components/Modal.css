@@ -1,0 +1,38 @@
+.header {
+  text-align: center;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+
+form {
+  display:flex;
+  flex-direction:column;
+  width: 49%;
+  /* justify-content: space-between; */
+  /* align-items: space-around; */
+}
+
+.seperate {
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toast {
+  height: 200px;
+  width: 500px;
+  margin: 0 auto;
+  /* display:flex; */
+  /* flex-direction:row; */
+}
+
+
+.modalButton {
+  margin: auto;
+
+}
