@@ -6,7 +6,11 @@ const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   secretOrKey,
+  CLOUD_NAME,
+  CLOUD_KEY,
+  CLOUD_SECRET,
 } = process.env;
+
 
 module.exports = {
   PORT,
@@ -14,4 +18,7 @@ module.exports = {
   GOOGLE_CLIENT_SECRET,
   MONGODB_URL,
   secretOrKey,
+  CLOUD_NAME,
+  CLOUD_KEY,
+  CLOUD_SECRET,
 };

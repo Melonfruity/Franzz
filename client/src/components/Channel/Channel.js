@@ -12,7 +12,6 @@ const Channel = ({
     ready: false,
     link: '',
   });
-
   const createInvite = () => {
     channelService
       .getInvite(channel)
