@@ -7,7 +7,6 @@ import '../Chat/Styling/galleryStyling.scss';
 export default function ImageBox({ channelId }) {
   const [photos, setPhotos] = useState([]);
 
-  let fetchedImages = '';
   const folderPath = `${channelId}`;
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
@@ -40,6 +39,7 @@ export default function ImageBox({ channelId }) {
   return (
     <div id="resize-box" onMouseDown={mouseDownFunction}>
       <div id="imageBox">
+      <h4>Chat Images</h4>
         <button>New Album</button>
         <div className="row">
           <div className="column">
