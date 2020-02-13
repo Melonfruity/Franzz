@@ -19,7 +19,7 @@ const Chat = ({
   return (
     <div className="container">
       <PopUpButton toggleButton={clickedButton} />
-      { boxDisplay === ON && <ImageBox />}
+      { boxDisplay === ON && <ImageBox channelId={channel} />}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}

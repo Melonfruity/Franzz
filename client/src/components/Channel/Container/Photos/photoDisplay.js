@@ -4,14 +4,16 @@ import '../Chat/Styling/PopUpBoxStyling.scss';
 import PhotoItem from './PhotoItem';
 import '../Chat/Styling/galleryStyling.scss';
 
-export default function ImageBox(props) {
+export default function ImageBox({ channelId }) {
   const [photos, setPhotos] = useState([]);
 
+  const folderPath = `${channelId}`;
   useEffect(() => {
-    fetch('http://localhost:8001/api/photos/getChannelPhotos')
+    fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
       .then((allPhotos) => setPhotos(allPhotos));
-  }, []);
+  }, [folderPath, photos]);
+
 
   const allImages = photos.map((img) => (
     <PhotoItem
@@ -36,7 +38,7 @@ export default function ImageBox(props) {
   return (
     <div id="resize-box" onMouseDown={mouseDownFunction}>
       <div id="imageBox">
-      <button>New Album</button>
+        <button>New Album</button>
         <div className="row">
           <div className="column">
             {images[0]}

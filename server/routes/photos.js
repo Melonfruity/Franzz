@@ -35,10 +35,10 @@ photosRouter.post('/uploadPhotoToChat', async (req, res) => {
   res.send('file has been uploaded :)');
 });
 
-// returns all the files
-photosRouter.get('/getChannelPhotos', async (req, res) => {
+// returns all the images/videos from the chat
+photosRouter.get('/getChannelPhotos/:path', async (req, res) => {
   cloudinary.v2.search
-    .expression('folder:samples/food')
+    .expression(`folder:${req.params.path}/chat`)
     .max_results(30)
     .execute()
     .then((result) => res.send(result));
