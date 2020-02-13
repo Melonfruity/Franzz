@@ -1,11 +1,14 @@
 import React from 'react';
-import Login from './Login/Login';
+import NormalLogin from './Login/NormalLogin';
+import Username from './Login/Username';
+import GoogleLogin from './Login/GoogleLogin';
 
-const Landing = ({ setLoggedIn }) => {
-
+const Landing = ({ setState }) => {
   return (
     <div>
-      <Login setLoggedIn={setLoggedIn} />
+      <Username setState={setState} />
+      <NormalLogin setState={setState} />
+      <GoogleLogin setState={setState} />
     </div>
   );
 };

@@ -2,18 +2,25 @@
 import axios from 'axios';
 
 const serverURL = 'http://localhost:8001/api';
+// const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
 
-const login = async (loginObj) => {
-  const res = await axios.post(`${serverURL}/auth/login`, loginObj);
-  const { error, token, username } = res.data;
-  console.log(res);
+const setLocalStorage = (data) => {
+  const {
+    error, token, username, guest,
+  } = data;
   if (error) {
     console.log(error);
     return false;
   }
   window.localStorage.setItem('authorization', token);
   window.localStorage.setItem('username', username);
+  window.localStorage.setItem('guest', guest);
   return true;
+};
+
+const login = async (loginObj) => {
+  const res = await axios.post(`${serverURL}/auth/login`, loginObj);
+  return setLocalStorage(res.data);
 };
 
 const register = async (registerObj) => {
@@ -21,28 +28,17 @@ const register = async (registerObj) => {
     headers: { authorization: window.localStorage.authorization },
   };
   const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
-  const { error, token } = res.data;
-  console.log(res);
-  if (error) {
-    console.log(error);
-    return false;
-  }
-  window.localStorage.setItem('authorization', token);
-  return true;
+  return setLocalStorage(res.data);
 };
 
-const guest = async (guestObj) => {
+const guestLogin = async (guestObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, guestObj);
-  const { error, token } = res.data;
-  if (error) {
-    console.log(error);
-  } else {
-    window.localStorage.setItem('authorization', token);
-  }
+  return setLocalStorage(res.data);
 };
 
 export default {
   register,
-  guest,
+  guestLogin,
   login,
+  setLocalStorage,
 };

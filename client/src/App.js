@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -8,28 +8,92 @@ import {
 
 import Landing from './components/Landing/Landing';
 import Home from './components/Home';
+import NavBar from './components/Navbar/NavBar';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // state of the client app
+  const [state, setState] = useState({
+    guest: true,
+    currentUser: '',
+    currentChannel: '',
+    authorization: '',
+    username: '',
+    channelStates: {},
+  });
 
-  useEffect(() => {
-    setLoggedIn(window.localStorage.getItem('authorization'));
-  }, []);
-
-  const logOut = (e) => {
-    e.preventDefault();
+  // logout resets app
+  const logOut = () => {
     window.localStorage.clear();
-    setLoggedIn(!loggedIn);
+    setState({
+      guest: true,
+      currentUser: '',
+      currentChannel: '',
+      authorization: '',
+      username: '',
+      channelStates: {},
+    });
   };
 
-  const title = 'JEK';
+  // load the data if the user was already logged in
+  useEffect(() => {
+    setState((prev) => ({
+      ...prev,
+      authorization: window.localStorage.getItem('authorization'),
+      username: window.localStorage.getItem('username'),
+      guest: window.localStorage.getItem('guest'),
+    }));
+  }, []);
+
+  // TODO: Reloading channel should bring back to channel
   return (
     <div>
       {title}
       <Router>
-        <Route exact path="/" render={() => (loggedIn ? <Redirect to="/home" /> : <Landing setLoggedIn={setLoggedIn} />)} />
-        <Route exact path="/home" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
-        <Route path="/channel" render={() => (loggedIn ? <Home logOut={logOut} /> : <Redirect to="/" />)} />
+        <NavBar
+          logOut={logOut}
+          state={state}
+          setState={setState}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            state.authorization
+              ? <Redirect to="/home" />
+              : (
+                <Landing
+                  setState={setState}
+                />
+              )
+          )}
+        />
+        <Route
+          exact
+          path="/home"
+          render={() => (
+            state.authorization
+              ? (
+                <Home
+                  state={state}
+                  setState={setState}
+                />
+              )
+              : <Redirect to="/" />
+          )}
+        />
+        <Route
+          path="/channel"
+          render={() => (
+            state.authorization
+              ? (
+                <Home
+                  state={state}
+                  setState={setState}
+                />
+              )
+              : <Redirect to="/" />
+          )}
+        />
       </Router>
     </div>
   );
