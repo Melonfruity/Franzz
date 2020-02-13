@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const serverURL = 'http://localhost:8001/api';
-const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
+const serverURL = 'http://localhost:8001/api';
+// const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
 
 const getUserData = async () => {
   const config = {

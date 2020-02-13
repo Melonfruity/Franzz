@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,25 +9,11 @@ import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
+import DragAndDrop from './Channel/Container/Photos/DragAndDrop';
 
 let socket;
 
-const Home = () => {
-  const [state, setState] = useState({
-    guest: window.localStorage.getItem('guest'),
-    currentUser: '',
-    currentChannel: '',
-    authorization: window.localStorage.getItem('authorization'),
-    username: window.localStorage.getItem('username'),
-    channelStates: {},
-  });
-
-  // const emitDeleteMessage = (messageID) => {
-  // };
-
-  // const emitEditMessage = (messageID) => {
-  // };
-
+const Home = ({ state, setState }) => {
   const emitSendMessage = (message) => {
     const channelID = state.currentChannel;
     const messageObj = {
@@ -86,6 +72,17 @@ const Home = () => {
     socket.emit('create channel', createChannelObj, (channelData) => {
       const { data, messages } = channelData;
       const { channel } = data;
+
+      // initializes a folder in the photo cloud for this channel
+      const request = { channelId: `${channel}/chat`, albumName: false };
+      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
+        method: 'POST',
+        body: JSON.stringify(request),
+        headers: { 'content-type': 'application/json' },
+      })
+        .then((res) => { console.log(res); })
+        .catch((err) => { console.log(err); });
+
       setState((prev) => (
         {
           ...prev,
@@ -123,12 +120,12 @@ const Home = () => {
           setState((prev) => ({ ...prev, channelStates }));
         });
     }
-  }, [state.authorization]);
+  }, []);
 
   useEffect(() => {
     // change api end point later
-    // socket = io('http://localhost:8001/');
-    socket = io('https://arcane-bastion-72484.herokuapp.com/');
+    socket = io('http://localhost:8001/');
+    // socket = io('https://arcane-bastion-72484.herokuapp.com/');
     socket.on('connect', () => {
       // from servers
       socket.on('server message', (data) => {
@@ -143,17 +140,20 @@ const Home = () => {
   useEffect(() => {
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
-      setState((prev) => (
-        {
-          ...prev,
-          channelStates: {
-            ...prev.channelStates,
-            [channelID]: {
-              ...prev.channelStates[channelID],
-              messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+      console.log(data)
+      if (channelID && newMessageObj) {
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channelID]: {
+                ...prev.channelStates[channelID],
+                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+              },
             },
-          },
-        }));
+          }));
+      }
     });
     socket.on('new user', (data) => {
 

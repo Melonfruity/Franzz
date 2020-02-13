@@ -13,7 +13,7 @@ module.exports = (io) => {
 
     // socket (client)
     socket.on('message', async ({
-      message, channelID, authorization,
+      message, channelID, authorization, video, image,
     }, callback) => {
       try {
         const user = await extractJWT(authorization);
@@ -22,18 +22,23 @@ module.exports = (io) => {
           // create the mongo message obj
           const newMessage = new Message({
             message,
+            video,
+            image,
             user: user.id,
             channel: channelID,
           });
           // save it
           const savedMessage = await newMessage.save();
           // message obj to return
+          console.log(savedMessage);
           const newMessageObj = {
             user: {
               username: user.username,
             },
             message: savedMessage.message,
             created: savedMessage.created,
+            video: savedMessage.video,
+            image: savedMessage.image,
             id: savedMessage.id,
           };
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
@@ -52,7 +57,6 @@ module.exports = (io) => {
         // Check if channel name is a string
         if (typeof channelName === 'string' && user) {
           info(channelName);
-          console.log(channelName);
           const newChannel = new Channel({
             name: channelName,
             users: user.id,
@@ -110,12 +114,32 @@ module.exports = (io) => {
               },
               messages,
             };
+
+            // welcome message
+            const welcomeMessage = new Message({
+              message: 'has joined the channel!',
+              user: user.id,
+              channel: channelID,
+            });
+            // save it
+            const savedMessage = await welcomeMessage.save();
+            // message obj to return
+            const newMessageObj = {
+              user: {
+                username: user.username,
+              },
+              message: savedMessage.message,
+              created: savedMessage.created,
+              id: savedMessage.id,
+            };
+
             socket.join(channelID);
             socket.emit('server message', {
               serverMsg: {
                 'joining room': channelID,
               },
             });
+            socket.to(channelID).emit('new message', { channelID, newMessageObj });
             callback(channelData);
           } else {
             callback({ error: 'Already part of channel' });

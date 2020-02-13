@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
+import { mouseDownFunction } from './Scripts/PopUpBoxScript';
+//import './Styling/PopUpBoxStyling.scss';
 
-export default function PopUpBox({ mouseDown }) {
-  
+export default function PopUpBox(props) {
   return (
-    <div id="resize-box" onMouseDown={mouseDown}>
+    <div id="resize-box" onMouseDown={mouseDownFunction}>
       Hellllloooo
     </div>
-  )
+  );
 }

@@ -26,6 +26,7 @@ const io = socketio(server);
 // routes
 const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
+const photoRouter = require('./routes/photos');
 const rootRouter = require('./routes/root');
 
 // connecting to mongodb
@@ -67,10 +68,12 @@ require('./utils/passportSetup');
 // use routes
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
+app.use('/api/photos', photoRouter);
 app.use('/', rootRouter);
 
 // sockets channel namespace
 require('./socketsio/channel')(io);
+
 
 // error handling
 app.use(unknownEndpoint);
