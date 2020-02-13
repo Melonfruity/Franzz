@@ -34,6 +34,7 @@ const App = () => {
     });
   };
 
+  const title = 'JEK';
   // load the data if the user was already logged in
   useEffect(() => {
     setState((prev) => ({

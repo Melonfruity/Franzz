@@ -19,14 +19,6 @@ const getInvite = async (channelID) => {
   return res.data;
 };
 
-const getInvite = async (channelID) => {
-  const config = {
-    headers: { authorization: window.localStorage.authorization },
-  };
-  const res = await axios.get(`${serverURL}/channel/invite/${channelID}`, config);
-  return res.data;
-};
-
 export default {
   getUserData,
   getInvite,
