@@ -13,7 +13,7 @@ module.exports = (io) => {
 
     // socket (client)
     socket.on('message', async ({
-      message, channelID, authorization,
+      message, channelID, authorization, video, image,
     }, callback) => {
       try {
         const user = await extractJWT(authorization);
@@ -22,18 +22,23 @@ module.exports = (io) => {
           // create the mongo message obj
           const newMessage = new Message({
             message,
+            video,
+            image,
             user: user.id,
             channel: channelID,
           });
           // save it
           const savedMessage = await newMessage.save();
           // message obj to return
+          console.log(savedMessage);
           const newMessageObj = {
             user: {
               username: user.username,
             },
             message: savedMessage.message,
             created: savedMessage.created,
+            video: savedMessage.video,
+            image: savedMessage.image,
             id: savedMessage.id,
           };
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
