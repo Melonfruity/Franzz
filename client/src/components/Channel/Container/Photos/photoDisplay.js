@@ -7,12 +7,14 @@ import '../Chat/Styling/galleryStyling.scss';
 export default function ImageBox({ channelId }) {
   const [photos, setPhotos] = useState([]);
 
+  let fetchedImages = '';
   const folderPath = `${channelId}`;
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
       .then((allPhotos) => setPhotos(allPhotos));
-  }, [folderPath, photos]);
+  }, [folderPath]);
+
 
 
   const allImages = photos.map((img) => (
