@@ -19,7 +19,6 @@ cloudinary.config({
 // uploads photos to the cloud (cloudinary)
 photosRouter.post('/uploadPhotoToChat', async (req, res) => {
   const form = new formidable.IncomingForm();
-  let linkPath = '';
   form.parse(req, (err, fields, files) => {
     // If it is a video upload do this
     const filePath = `${fields.album}/chat`;

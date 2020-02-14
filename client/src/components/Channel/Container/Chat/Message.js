@@ -12,6 +12,7 @@ const Message = ({
 }) => {
   // implement delete, edit, emoji
   const [toggler, changeToggle] = useState(false);
+
   return (
     <div>
       <FsLightbox
