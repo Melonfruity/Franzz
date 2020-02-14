@@ -1,9 +1,9 @@
 import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
-import ImageBox from '../Photos/photoDisplay';
+import ImageBox from './Channel/Container/Photos/photoDisplay';
 import PopUpButton from '../PopUpButtons/PopUpButton';
-import GoogleMapsButton from '../PopUpButtons/GoogleMapsButton'
+import GoogleMapsButton from '../PopUpButtons/GoogleMapsButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
@@ -20,7 +20,7 @@ const Chat = ({
   return (
     <div className="container">
       <PopUpButton toggleButton={clickedButton} />
-      <GoogleMapsButton toggleButton={clickedButton}/>
+      <GoogleMapsButton toggleButton={clickedButton} />
       { boxDisplay === ON && <ImageBox channelId={channel} />}
       <TextContainer
         messages={messages}
