@@ -1,22 +1,39 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ReactEmoji from 'react-emoji';
+import {
+  Image, CloudinaryContext,
+} from 'cloudinary-react';
 
 const Message = ({
-  id, username, message, created, emitDeleteMessage,
+  id, username, message, created, emitDeleteMessage, video, image,
 }) => {
   // implement delete, edit, emoji
 
   // if image make <img> tag
   // if video make <video> tag
-
+  console.log('this is my message', message);
+  console.log(message);
   return (
     <article>
       {username}
       {': '}
-      {ReactEmoji.emojify(message)}
+      {image && (
+      <CloudinaryContext cloudName="jekmessaging">
+        <Image publicId={message} width="50%" />
+      </CloudinaryContext>
+      )}
+      { video && (
+      <CloudinaryContext cloudName="jekmessaging">
+        <video width="50%" controls>
+          <source src={message} type="video/webm" />
+          <source src={message} type="video/mp4" />
+          <source src={message} type="video/ogg" />
+        </video>
+      </CloudinaryContext>
+      )}
+      {!image && !video && ReactEmoji.emojify(message)}
       {'<created at '}
-      {/* <img src="/var/folders/jg/j2j8jlkd4yz9q0scv_fryp6w0000gn/T/upload_db6f76e83f08dd92a95a7fb4074e1966" alt="example" /> */}
       {created}
       {'>'}
       {/* <button type="button"> delete </button>

@@ -23,6 +23,8 @@ const TextContainer = ({ messages, deleteMessage, channelId, emitSendMessage }) 
       created={msg.created}
       username={msg.user.username}
       deleteMessage={deleteMessage}
+      video={msg.video}
+      image={msg.image}
     />
   ));
 
