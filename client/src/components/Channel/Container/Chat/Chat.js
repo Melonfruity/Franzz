@@ -1,12 +1,12 @@
 import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
-import ImageBox from '../Photos/photoDisplay';
+import ImageBox from '../../RightBar/Photos/photoDisplay';
 import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
-import './Chat.css';
+//import './Chat.css';
 
 const ON = 'on';
 
@@ -23,12 +23,13 @@ const Chat = ({
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}
-        // channelId={channel}
+        emitSendMessage={emitSendMessage}
+        channelId={channel}
       />
       <Input
         emitSendMessage={emitSendMessage}
       />
-      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel)} />
+      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, emitSendMessage)} />
       <label className="button" htmlFor="fileElem">Select some files</label>
     </div>
   );

@@ -9,19 +9,19 @@ import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
-import DragAndDrop from './Channel/Container/Photos/DragAndDrop';
 
 let socket;
 
 const Home = ({ state, setState }) => {
-  const emitSendMessage = (message) => {
+  const emitSendMessage = (message, video, image) => {
     const channelID = state.currentChannel;
     const messageObj = {
       message,
       channelID,
       authorization: state.authorization,
       username: state.username,
-      // video and image check to see if it true and add to object
+      video,
+      image,
     };
     socket.emit('message', messageObj, (newMessageObj) => {
       setState((prev) => (

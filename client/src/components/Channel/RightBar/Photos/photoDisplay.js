@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { mouseDownFunction } from '../../Container/Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
-import '../Chat/Styling/galleryStyling.scss';
+//import '../Chat/Styling/galleryStyling.scss';
 
 export default function ImageBox({ channelId }) {
   const [photos, setPhotos] = useState([]);

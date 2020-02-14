@@ -19,6 +19,7 @@ cloudinary.config({
 // uploads photos to the cloud (cloudinary)
 photosRouter.post('/uploadPhotoToChat', async (req, res) => {
   const form = new formidable.IncomingForm();
+  let linkPath = '';
   form.parse(req, (err, fields, files) => {
     // If it is a video upload do this
     const filePath = `${fields.album}/chat`;
@@ -27,15 +28,14 @@ photosRouter.post('/uploadPhotoToChat', async (req, res) => {
         {
           resource_type: 'video',
           folder: filePath,
-        });
+        }).then((result) => res.send({ result, video: true, image: false }));
     } else { // if it is a photo
       cloudinary.v2.uploader.upload(files.file.path,
         {
           folder: filePath,
-        });
+        }).then((result) => res.send({ result, video: false, image: true }));
     }
   });
-  res.send('file has been uploaded :)');
 });
 
 // returns all the images/videos from the chat

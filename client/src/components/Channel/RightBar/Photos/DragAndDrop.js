@@ -5,7 +5,7 @@ import React from 'react';
 
 // Scripting work
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
-import { preventDefaults, handleDrop, handleFiles } from '../Chat/Scripts/DragAndDropPhotos';
+// import { preventDefaults, handleDrop, handleFiles } from '../Chat/Scripts/DragAndDropPhotos';
 
 
 export default function DragAndDrop(props) {

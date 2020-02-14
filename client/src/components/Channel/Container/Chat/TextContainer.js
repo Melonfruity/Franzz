@@ -9,7 +9,7 @@ import Message from './Message';
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
 import { preventDefaults, handleDrop } from './Scripts/DragAndDropPhotos';
 
-const TextContainer = ({ messages, deleteMessage, channelId }) => {
+const TextContainer = ({ messages, deleteMessage, channelId, emitSendMessage }) => {
 
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
@@ -35,7 +35,7 @@ const TextContainer = ({ messages, deleteMessage, channelId }) => {
 
   function dropFile(e) {
     changeHighlightClass(e.type);
-    handleDrop(e, channelId);
+    handleDrop(e, channelId, emitSendMessage);
   }
 
 

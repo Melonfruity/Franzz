@@ -16,7 +16,7 @@ const Message = ({
       {': '}
       {ReactEmoji.emojify(message)}
       {'<created at '}
-      {/* <img src="https://res.cloudinary.com/jekmessaging/image/upload/v1580958253/sample.jpg" alt="example" /> */}
+      {/* <img src="/var/folders/jg/j2j8jlkd4yz9q0scv_fryp6w0000gn/T/upload_db6f76e83f08dd92a95a7fb4074e1966" alt="example" /> */}
       {created}
       {'>'}
       {/* <button type="button"> delete </button>
