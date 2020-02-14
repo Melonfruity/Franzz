@@ -1,18 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 import { mouseDownFunction } from '../../Container/Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
-//import '../Chat/Styling/galleryStyling.scss';
+import '../Styling/galleryStyling.scss';
+import '../Styling/PopUpBoxStyling.scss';
+
+let socket;
 
 export default function ImageBox({ channelId }) {
+  socket = io('http://localhost:8001/');
+
   const [photos, setPhotos] = useState([]);
+
+  // const folderPath = `${channelId}`;
+  // useEffect(() => {
+  //   fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
+  //     .then((res) => res.json()).then((data) => data.resources)
+  //     .then((allPhotos) => setPhotos(allPhotos)); // use this data, send it to the socket (new socket) then send it back here where you change the state of photos
+  // }, [folderPath]);
 
   const folderPath = `${channelId}`;
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => setPhotos(allPhotos)); // use this data, send it to the socket (new socket) then send it back here where you change the state of photos
-  }, [folderPath]);
+      .then((allPhotos) => {
 
+        // need help with this
+        socket.emit('chat photos', allPhotos);
+        socket.on('show photos', (chatPhotos) => setPhotos(chatPhotos));
+      });
+  }, [folderPath]);
 
   const allImages = photos.map((img) => (
     <PhotoItem

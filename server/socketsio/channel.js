@@ -151,5 +151,10 @@ module.exports = (io) => {
     socket.on('disconnect', () => {
       info('client disconnected');
     });
+
+    socket.on('chat photos', (photos) => {
+      console.log('hi im in the server')
+      socket.emit('show photos', photos);
+    });
   });
 };

@@ -6,7 +6,7 @@ import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
-//import './Chat.css';
+import './Chat.css';
 
 const ON = 'on';
 

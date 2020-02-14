@@ -25,7 +25,7 @@ const Message = ({
       )}
       { video && (
       <CloudinaryContext cloudName="jekmessaging">
-        <video width="50%" controls>
+        <video width="20%" controls>
           <source src={message} type="video/webm" />
           <source src={message} type="video/mp4" />
           <source src={message} type="video/ogg" />

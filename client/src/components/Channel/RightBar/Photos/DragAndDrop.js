@@ -1,7 +1,7 @@
 import React from 'react';
 // This is a temporary file used for the outline of the chatbox
 // Styling work (temporary)
-// import '../Chat/Styling/DragAndDropBox.scss';
+// import '../Styling/DragAndDropBox.scss';
 
 // Scripting work
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';

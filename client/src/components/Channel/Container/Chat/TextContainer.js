@@ -3,19 +3,20 @@ import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import Message from './Message';
 
-// import './TextContainer.css';
+import './TextContainer.css';
+import '../../RightBar/Styling/DragAndDropBox.scss';
 
 // Scripting work for adding photos to the cloud through the text container
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
 import { preventDefaults, handleDrop } from './Scripts/DragAndDropPhotos';
 
-const TextContainer = ({ messages, deleteMessage, channelId, emitSendMessage }) => {
-
+const TextContainer = ({
+  messages, deleteMessage, channelId, emitSendMessage,
+}) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
 
   const formattedMessages = messages.map((msg) => (
-    // need to add image/object true or false
     <Message
       key={msg.id}
       id={msg.id}
