@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { mouseDownFunction } from '../Chat/Scripts/PopUpBoxScript';
-import '../Chat/Styling/PopUpBoxStyling.scss';
+import { mouseDownFunction } from '../../Container/Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
-import '../Chat/Styling/galleryStyling.scss';
 
 export default function ImageBox({ channelId }) {
   const [photos, setPhotos] = useState([]);
@@ -11,9 +9,8 @@ export default function ImageBox({ channelId }) {
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => setPhotos(allPhotos));
+      .then((allPhotos) => setPhotos(allPhotos)); // use this data, send it to the socket (new socket) then send it back here where you change the state of photos
   }, [folderPath]);
-
 
 
   const allImages = photos.map((img) => (
@@ -39,7 +36,7 @@ export default function ImageBox({ channelId }) {
   return (
     <div id="resize-box" onMouseDown={mouseDownFunction}>
       <div id="imageBox">
-      <h4>Chat Images</h4>
+        <h4>Chat Images</h4>
         <button>New Album</button>
         <div className="row">
           <div className="column">

@@ -7,6 +7,9 @@ const Message = ({
 }) => {
   // implement delete, edit, emoji
 
+  // if image make <img> tag
+  // if video make <video> tag
+
   return (
     <article>
       {username}

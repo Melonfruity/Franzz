@@ -13,7 +13,7 @@ module.exports = (io) => {
 
     // socket (client)
     socket.on('message', async ({
-      message, channelID, authorization,
+      message, channelID, authorization, // add if video and if photo
     }, callback) => {
       try {
         const user = await extractJWT(authorization);
@@ -28,7 +28,7 @@ module.exports = (io) => {
           // save it
           const savedMessage = await newMessage.save();
           // message obj to return
-          const newMessageObj = {
+          const newMessageObj = {  // add video/image field 
             user: {
               username: user.username,
             },

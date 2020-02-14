@@ -6,6 +6,9 @@ const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = require('../utils/config');
 
 photosRouter.use(bodyParser.json());
 
+// create a socket here where we send the data to the server and send it back to
+// the client (photos and video display)
+
 // Setup for cloud-based api for photos
 cloudinary.config({
   cloud_name: CLOUD_NAME,

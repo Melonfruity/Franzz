@@ -23,7 +23,7 @@ const Chat = ({
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}
-        channelId={channel}
+        // channelId={channel}
       />
       <Input
         emitSendMessage={emitSendMessage}

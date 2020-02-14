@@ -10,6 +10,10 @@ function uploadFile(file, albumId) {
   formData.append('file', file);
   formData.append('album', `${albumId}`);
 
+  // check what formdata looks like and grab the image address
+  // send the message to the socket send { message, video:true, photo:false}
+  // use emitsendmessage here
+
   fetch(url, {
     method: 'POST',
     body: formData,
@@ -25,6 +29,7 @@ function handleFiles(files, albumId) {
 }
 
 function handleDrop(e, albumId) {
+  // get emitsendmessage to be passed through as a function
   preventDefaults(e);
   const dt = e.dataTransfer;
   const { files } = dt;
