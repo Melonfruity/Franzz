@@ -7,7 +7,8 @@ import '../../RightBar/Styling/DragAndDropBox.scss';
 import '../../RightBar/Styling/PopUpBoxStyling.scss';
 
 let socket;
-
+const CHAT = 'chat';
+const ALBUMS = 'albums';
 export default function ImageBox({ channelId }) {
   socket = io('http://localhost:8001/');
 
@@ -16,6 +17,7 @@ export default function ImageBox({ channelId }) {
     slide: 0,
   });
   const [photos, setPhotos] = useState([]);
+  const [view, changeView] = useState([]);
 
   // shows slide depending what photo it is
   function openLightboxOnSlide(number) {
@@ -31,7 +33,7 @@ export default function ImageBox({ channelId }) {
       .then((res) => res.json()).then((data) => data.resources)
       .then((allPhotos) => setPhotos(allPhotos));
     // use this data,
-    // send it to the socket (new socket) then send it back
+    // send it to the socket (new socket) then send it backp
     // here where you change the state of photos
   }, [folderPath]);
 
