@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
 import FsLightbox from 'fslightbox-react';
 import { mouseDownFunction } from '../Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
 import '../../RightBar/Styling/DragAndDropBox.scss';
 import '../../RightBar/Styling/PopUpBoxStyling.scss';
+import NewAlbumForm from './newAlbumForm';
+import GalleryDisplay from './galleryDisplay';
 
-let socket;
 const CHAT = 'chat';
 const ALBUMS = 'albums';
+const ALBUMFORM = 'albumForm';
 export default function ImageBox({ channelId }) {
-  socket = io('http://localhost:8001/');
-
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
     slide: 0,
   });
   const [photos, setPhotos] = useState([]);
-  const [view, changeView] = useState([]);
+  const [view, changeView] = useState('chat');
+
+  // Changes view of gallery
+  function newView(v) {
+    changeView(v);
+  }
 
   // shows slide depending what photo it is
   function openLightboxOnSlide(number) {
@@ -32,21 +36,7 @@ export default function ImageBox({ channelId }) {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
       .then((allPhotos) => setPhotos(allPhotos));
-    // use this data,
-    // send it to the socket (new socket) then send it backp
-    // here where you change the state of photos
   }, [folderPath]);
-
-  // const folderPath = `${channelId}`;
-  // useEffect(() => {
-  //   fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
-  //     .then((res) => res.json()).then((data) => data.resources)
-  //     .then((allPhotos) => {
-  //       // need help with this
-  //       socket.emit('chat photos', allPhotos);
-  //       socket.on('show photos', (chatPhotos) => setPhotos(chatPhotos));
-  //     });
-  // }, [folderPath]);
 
   const allImages = [];
   let slide = 0;
@@ -64,18 +54,6 @@ export default function ImageBox({ channelId }) {
     );
   });
 
-  // formats the images for the grid
-  const images = [[], [], [], []];
-  let column = 0;
-  allImages.forEach((image) => {
-    images[column].push(image);
-    if (column === 3) {
-      column = 0;
-    } else {
-      column += 1;
-    }
-  });
-
   // used for lightbox view
   const imageLinks = photos.map((image) => image.url);
 
@@ -89,22 +67,8 @@ export default function ImageBox({ channelId }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          <h4>Chat Images</h4>
-          <button>New Album</button>
-          <div className="row">
-            <div className="column">
-              {images[0]}
-            </div>
-            <div className="column">
-              {images[1]}
-            </div>
-            <div className="column">
-              {images[2]}
-            </div>
-            <div className="column">
-              {images[3]}
-            </div>
-          </div>
+          { view === ALBUMFORM && <NewAlbumForm cancel={newView} />}
+          { view === CHAT && <GalleryDisplay change={newView} content={allImages} />}
         </div>
       </div>
     </div>
