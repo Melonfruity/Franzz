@@ -29,7 +29,10 @@ export default function ImageBox({ channelId }) {
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => setPhotos(allPhotos)); // use this data, send it to the socket (new socket) then send it back here where you change the state of photos
+      .then((allPhotos) => setPhotos(allPhotos));
+    // use this data,
+    // send it to the socket (new socket) then send it back
+    // here where you change the state of photos
   }, [folderPath]);
 
   // const folderPath = `${channelId}`;
@@ -59,6 +62,7 @@ export default function ImageBox({ channelId }) {
     );
   });
 
+  // formats the images for the grid
   const images = [[], [], [], []];
   let column = 0;
   allImages.forEach((image) => {
@@ -72,6 +76,7 @@ export default function ImageBox({ channelId }) {
 
   // used for lightbox view
   const imageLinks = photos.map((image) => image.url);
+
   return (
     <div>
       <FsLightbox
