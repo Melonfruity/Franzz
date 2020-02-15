@@ -9,6 +9,7 @@ import channelService from '../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
+import axios from 'axios';
 
 let socket;
 
@@ -76,13 +77,7 @@ const Home = ({ state, setState }) => {
 
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
-      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
-        method: 'POST',
-        body: JSON.stringify(request),
-        headers: { 'content-type': 'application/json' },
-      })
-        .then((res) => { console.log(res); })
-        .catch((err) => { console.log(err); });
+      axios.post('http://localhost:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
 
       setState((prev) => (
         {
