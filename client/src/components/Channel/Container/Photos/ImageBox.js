@@ -6,6 +6,7 @@ import '../../RightBar/Styling/DragAndDropBox.scss';
 import '../../RightBar/Styling/PopUpBoxStyling.scss';
 import NewAlbumForm from './newAlbumForm';
 import GalleryDisplay from './galleryDisplay';
+import AlbumDisplay from './AlbumDisplay';
 
 const CHAT = 'chat';
 const ALBUMS = 'albums';
@@ -68,8 +69,17 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          { view === ALBUMFORM && <NewAlbumForm cancel={newView} channelId={channelId} emitSendMessage={emitSendMessage} />}
+        <button onClick={() => newView('chat')}>Chat</button>
+        <button onClick={() => newView('albums')}>Albums</button>
+          { view === ALBUMFORM
+          && (
+          <NewAlbumForm
+            channelId={channelId}
+            emitSendMessage={emitSendMessage}
+          />
+          )}
           { view === CHAT && <GalleryDisplay change={newView} content={allImages} />}
+          { view === ALBUMS && <AlbumDisplay change={newView} channelId={channelId} />}
         </div>
       </div>
     </div>

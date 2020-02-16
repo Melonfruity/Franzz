@@ -15,7 +15,6 @@ export default function GalleryDisplay({ change, content }) {
 
   return (
     <div>
-      <button onClick={() => change('albumForm')}>New Album</button>
       <h4>Chat Images</h4>
       <div className="row">
         <div className="column">

@@ -14,9 +14,6 @@ const ON = 'on';
 const Chat = ({
   messages, emitDeleteMessage, emitSendMessage, channel,
 }) => {
-  console.log(channel);
-  console.log(emitSendMessage);
-
   const { boxDisplay, clickedButton } = useToggleButton('off');
   return (
     <div className="container">

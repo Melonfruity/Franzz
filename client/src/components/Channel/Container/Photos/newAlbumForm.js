@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { handleFiles } from '../Chat/Scripts/DragAndDropPhotos';
 
 
-export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
+export default function NewAlbumForm({ channelId, emitSendMessage }) {
   const [fields, changeFields] = useState(
     {
       album: '',
@@ -40,7 +40,6 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
 
   return (
     <div>
-      <button onClick={() => cancel('chat')}>Cancel</button>
       <form id="album-upload-form" onSubmit={handleSubmit}>
         <label>
           Album Name:

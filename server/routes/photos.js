@@ -50,7 +50,6 @@ photosRouter.get('/getChannelPhotos/:path', async (req, res) => {
 // creates an empty folder (used for new channels and creating albums)
 // input => {channelId: 'example', albunName: 'exampleAlbum'}
 photosRouter.post('/createEmptyFolder', (req, res) => {
-
   // gather path names for folder/album
   const channelFolder = req.body.channelId;
   const albumFolder = req.body.albumName;
@@ -64,10 +63,19 @@ photosRouter.post('/createEmptyFolder', (req, res) => {
     },
     (error, result) => {
       // deletes the placeholder photo to empty album
-      cloudinary.v2.uploader.destroy(result.public_id)
+      cloudinary.v2.uploader.destroy(result.public_id);
     });
 
   res.send('file has been uploaded :)');
+});
+
+// Gets the album for a channel
+photosRouter.get('/getAlbums/:channelId', (req, res) => {
+  const { channelId } = req.params;
+  const path = `${channelId}/albums`;
+  cloudinary.v2.api.sub_folders(path, (error, result) => {
+    res.send(result);
+  });
 });
 
 module.exports = photosRouter;

@@ -8,7 +8,7 @@ function uploadFile(file, channelId, albumName, emitSendMessage) {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('channel', `${channelId}`);
-  formData.append('album', `${albumName}`);
+  formData.append('album', `albums/${albumName}`);
 
   fetch(url, {
     method: 'POST',
