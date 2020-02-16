@@ -15,11 +15,9 @@ export default function Album({ name, path }) {
   }, [path]);
   return (
     <div className="albumCover">
-      <div className="coverPhoto">
-        <CloudinaryContext cloudName="jekmessaging">
-          <Image publicId={cover} width="80%" />
-        </CloudinaryContext>
-      </div>
+      <CloudinaryContext className="coverPhoto" cloudName="jekmessaging">
+        <Image publicId={cover} width="80%" />
+      </CloudinaryContext>
       {name}
     </div>
   );
