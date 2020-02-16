@@ -29,6 +29,7 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    document.getElementById('album-upload-form').reset();
     [...fields.files].forEach((file) => {
       handleFiles(file, channelId, fields.album, emitSendMessage);
     });
@@ -37,7 +38,7 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
   return (
     <div>
       <button onClick={() => cancel('chat')}>Cancel</button>
-      <form onSubmit={handleSubmit}>
+      <form id="album-upload-form" onSubmit={handleSubmit}>
         <label>
           Album Name:
           <input type="text" name="album" onChange={handleOnChange} />
