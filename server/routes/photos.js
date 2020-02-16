@@ -28,7 +28,7 @@ photosRouter.post('/uploadPhotos', async (req, res) => {
           resource_type: 'video',
           folder: filePath,
         }).then((result) => res.send({ result, video: true, image: false }));
-    } else { // if it is a photo
+    } else { // if it is a photoa
       cloudinary.v2.uploader.upload(files.file.path,
         {
           folder: filePath,

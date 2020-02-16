@@ -17,7 +17,9 @@ function uploadFile(file, channelId, albumName, emitSendMessage) {
     // send the url of image/video to socket to be used for messaging
     .then((res) => res.json())
     .then((data) => {
-      emitSendMessage(data.result.url, data.video, data.image);
+      if (!albumName) {
+        emitSendMessage(data.result.url, data.video, data.image);
+      }
     })
     .catch((err) => { console.log(err); });
 }

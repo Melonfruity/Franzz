@@ -29,10 +29,13 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    document.getElementById('album-upload-form').reset();
     [...fields.files].forEach((file) => {
       handleFiles(file, channelId, fields.album, emitSendMessage);
     });
+    document.getElementById('album-upload-form').reset();
+    const message = `🚨A new album '${fields.album}' has been uploaded🚨`;
+    emitSendMessage(message, false, false);
+    // Change view (later)
   }
 
   return (
