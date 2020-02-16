@@ -21,7 +21,7 @@ const Chat = ({
     <div className="container">
       <PopUpButton toggleButton={clickedButton} />
       <GoogleMapsButton toggleButton={clickedButton} />
-      { boxDisplay === ON && <ImageBox channelId={channel} />}
+      { boxDisplay === ON && <ImageBox channelId={channel} emitSendMessage={emitSendMessage}/>}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}

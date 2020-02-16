@@ -10,7 +10,7 @@ import GalleryDisplay from './galleryDisplay';
 const CHAT = 'chat';
 const ALBUMS = 'albums';
 const ALBUMFORM = 'albumForm';
-export default function ImageBox({ channelId }) {
+export default function ImageBox({ channelId, emitSendMessage }) {
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
     slide: 0,
@@ -31,6 +31,7 @@ export default function ImageBox({ channelId }) {
     });
   }
 
+  // Gets photos from chat
   const folderPath = `${channelId}`;
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
@@ -67,7 +68,7 @@ export default function ImageBox({ channelId }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          { view === ALBUMFORM && <NewAlbumForm cancel={newView} />}
+          { view === ALBUMFORM && <NewAlbumForm cancel={newView} channelId={channelId} emitSendMessage={emitSendMessage}/>}
           { view === CHAT && <GalleryDisplay change={newView} content={allImages} />}
         </div>
       </div>

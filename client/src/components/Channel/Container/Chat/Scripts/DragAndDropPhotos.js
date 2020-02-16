@@ -15,7 +15,9 @@ function uploadFile(file, albumId, EmitSendMessage) {
   })
     // send the url of image/video to socket to be used for messaging
     .then((res) => res.json())
-    .then((data) => EmitSendMessage(data.result.url, data.video, data.image))
+    .then((data) => {
+      EmitSendMessage(data.result.url, data.video, data.image);
+    })
     .catch((err) => { console.log(err); });
 }
 
