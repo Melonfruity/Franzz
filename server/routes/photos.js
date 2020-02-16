@@ -78,4 +78,14 @@ photosRouter.get('/getAlbums/:channelId', (req, res) => {
   });
 });
 
+photosRouter.get('/coverPhoto/:channelId/:album/:albumName', (req, res) => {
+  const albumPath = `${req.params.channelId}/${req.params.album}/${req.params.albumName}`;
+  cloudinary.v2.search
+    .expression(`folder=${albumPath}`)
+    .sort_by('uploaded_at', 'desc')
+    .execute().then((result) => {
+      res.send(result.resources[0].url);
+    });
+});
+
 module.exports = photosRouter;

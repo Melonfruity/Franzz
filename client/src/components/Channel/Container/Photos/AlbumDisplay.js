@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Album from './Album';
+import './Styling/albumStyling.scss';
 
 export default function AlbumDisplay({ change, channelId }) {
   const [albums, setAlbums] = useState([]);

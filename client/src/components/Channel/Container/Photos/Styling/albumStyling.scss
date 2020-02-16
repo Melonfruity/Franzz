@@ -1,0 +1,22 @@
+.albumCover {
+  width: 25%;
+  padding: 10px;
+  height: 200px;
+}
+
+.coverPhoto {
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 80%;
+  
+}
+
+.coverPhoto img {
+  width: 100%
+}
+
+#album-box {
+  display: flex;
+  flex-wrap: wrap;
+
+}
