@@ -1,7 +1,7 @@
 import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
-import ImageBox from '../Photos/photoDisplay';
+import ImageBox from '../Photos/ImageBox';
 import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
@@ -20,7 +20,7 @@ const Chat = ({
   return (
     <div className="container">
       <PopUpButton toggleButton={clickedButton} />
-      { boxDisplay === ON && <ImageBox channelId={channel} />}
+      { boxDisplay === ON && <ImageBox channelId={channel} emitSendMessage={emitSendMessage} />}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}
@@ -30,7 +30,7 @@ const Chat = ({
       <Input
         emitSendMessage={emitSendMessage}
       />
-      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, emitSendMessage)} />
+      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, '', emitSendMessage)} />
       <label className="button" htmlFor="fileElem">Select some files</label>
     </div>
   );

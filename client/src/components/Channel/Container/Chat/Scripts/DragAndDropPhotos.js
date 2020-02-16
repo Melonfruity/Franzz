@@ -3,11 +3,12 @@ function preventDefaults(e) {
   e.stopPropagation();
 }
 
-function uploadFile(file, albumId, EmitSendMessage) {
-  const url = 'http://localhost:8001/api/photos/uploadPhotoToChat';
+function uploadFile(file, channelId, albumName, emitSendMessage) {
+  const url = 'http://localhost:8001/api/photos/uploadPhotos';
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('album', `${albumId}`);
+  formData.append('channel', `${channelId}`);
+  formData.append('album', `${albumName}`);
 
   fetch(url, {
     method: 'POST',
@@ -16,24 +17,24 @@ function uploadFile(file, albumId, EmitSendMessage) {
     // send the url of image/video to socket to be used for messaging
     .then((res) => res.json())
     .then((data) => {
-      EmitSendMessage(data.result.url, data.video, data.image);
+      emitSendMessage(data.result.url, data.video, data.image);
     })
     .catch((err) => { console.log(err); });
 }
 
-function handleFiles(files, albumId, EmitSendMessage) {
+function handleFiles(files, channelId, albumName, emitSendMessage) {
   [...files].forEach((file) => {
-    uploadFile(file, albumId, EmitSendMessage);
+    uploadFile(file, channelId, albumName, emitSendMessage);
   });
 }
 
-function handleDrop(e, albumId, emitSendMessage) {
+function handleDrop(e, channelId, albumName, emitSendMessage) {
   // get emitsendmessage to be passed through as a function
   preventDefaults(e);
   const dt = e.dataTransfer;
   const { files } = dt;
 
-  handleFiles(files, albumId, emitSendMessage);
+  handleFiles(files, channelId, albumName, emitSendMessage);
 }
 
 

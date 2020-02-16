@@ -68,7 +68,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          { view === ALBUMFORM && <NewAlbumForm cancel={newView} channelId={channelId} emitSendMessage={emitSendMessage}/>}
+          { view === ALBUMFORM && <NewAlbumForm cancel={newView} channelId={channelId} emitSendMessage={emitSendMessage} />}
           { view === CHAT && <GalleryDisplay change={newView} content={allImages} />}
         </div>
       </div>

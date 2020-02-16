@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { handleFiles, handleDrop } from '../Chat/Scripts/DragAndDropPhotos';
+import React, { useState } from 'react';
+import { handleFiles } from '../Chat/Scripts/DragAndDropPhotos';
 
 
 export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
@@ -10,13 +10,10 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
     },
   );
 
-  function dropFile(e) {
-    handleDrop(e, channelId, false);
-  }
-
   // Handles form events when adding files and
   // creating a name
   function handleOnChange(event) {
+    event.preventDefault();
     if (event.target.name === 'album') {
       changeFields({
         ...fields,
@@ -25,25 +22,25 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
     } else {
       changeFields({
         album: fields.album,
-        files: [...fields.files, event],
+        files: [...fields.files, event.target.files],
       });
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    [...fields.files].forEach((e) => {
-      console.log(e);
+    [...fields.files].forEach((file) => {
+      handleFiles(file, channelId, fields.album, emitSendMessage);
     });
   }
 
   return (
     <div>
       <button onClick={() => cancel('chat')}>Cancel</button>
-      <form onSubmit={handleSubmit} onChange={handleOnChange}>
+      <form onSubmit={handleSubmit}>
         <label>
           Album Name:
-          <input type="text" name="album" />
+          <input type="text" name="album" onChange={handleOnChange} />
         </label>
         <input
           id="drop-area"
@@ -52,6 +49,7 @@ export default function NewAlbumForm({ cancel, channelId, emitSendMessage }) {
           multiple
           accept="image/*"
           className="textContainer"
+          onChange={handleOnChange}
         />
         <input type="submit" value="Submit" />
       </form>

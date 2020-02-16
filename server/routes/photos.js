@@ -16,12 +16,12 @@ cloudinary.config({
   api_secret: CLOUD_SECRET,
 });
 
-// uploads photos to the cloud (cloudinary)
-photosRouter.post('/uploadPhotoToChat', async (req, res) => {
+// uploads files to the cloud (cloudinary)
+photosRouter.post('/uploadPhotos', async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
     // If it is a video upload do this
-    const filePath = `${fields.album}/chat`;
+    const filePath = `${fields.channel}/${fields.album}`;
     if (files.file.type.includes('video')) {
       cloudinary.v2.uploader.upload(files.file.path,
         {
