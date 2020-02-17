@@ -72,8 +72,7 @@ app.use('/api/photos', photoRouter);
 app.use('/', rootRouter);
 
 // sockets channel
-require('./socketsio/channel')(io);
-require('./socketsio/youtube')(io);
+require('./socketsio/socketio')(io);
 
 // error handling
 app.use(unknownEndpoint);
