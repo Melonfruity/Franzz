@@ -10,92 +10,17 @@ import channelService from '../../service/channelService';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
 
+import useChat from '../../hooks/useChat';
+
 let socket;
 
 const Home = ({ state, setState }) => {
-  const emitSendMessage = (message) => {
-    const channelID = state.currentChannel;
-    const messageObj = {
-      message,
-      channelID,
-      authorization: state.authorization,
-      username: state.username,
-    };
-    socket.emit('message', messageObj, (newMessageObj) => {
-      setState((prev) => (
-        {
-          ...prev,
-          channelStates: {
-            ...prev.channelStates,
-            [channelID]: {
-              ...prev.channelStates[channelID],
-              messages: prev.channelStates[channelID].messages.concat(newMessageObj),
-            },
-          },
-        }));
-    });
-  };
 
-  const emitJoinChannel = (channelLink) => {
-    const joinChannelObj = {
-      channelLink,
-      authorization: state.authorization,
-    };
-    socket.emit('join channel', joinChannelObj, (channelData) => {
-      const { error, data, messages } = channelData;
-      if (!error) {
-        const { channel } = data;
-        setState((prev) => (
-          {
-            ...prev,
-            channelStates: {
-              ...prev.channelStates,
-              [channel]: {
-                ...data,
-                messages,
-              },
-            },
-          }
-        ));
-      } else {
-        console.log(error);
-      }
-    });
-  };
-
-  const emitCreateChannel = (channelName) => {
-    const createChannelObj = {
-      channelName,
-      authorization: state.authorization,
-    };
-    socket.emit('create channel', createChannelObj, (channelData) => {
-      const { data, messages } = channelData;
-      const { channel } = data;
-
-      // initializes a folder in the photo cloud for this channel
-      const request = { channelId: `${channel}/chat`, albumName: false };
-      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
-        method: 'POST',
-        body: JSON.stringify(request),
-        headers: { 'content-type': 'application/json' },
-      })
-        .then((res) => { console.log(res); })
-        .catch((err) => { console.log(err); });
-
-      setState((prev) => (
-        {
-          ...prev,
-          channelStates: {
-            ...prev.channelStates,
-            [channel]: {
-              ...data,
-              messages,
-            },
-          },
-        }
-      ));
-    });
-  };
+  const {
+    emitSendMessage,
+    emitJoinChannel,
+    emitCreateChannel,
+  } = useChat(state, setState, socket);
 
   // handle initial state
   useEffect(() => {
@@ -119,9 +44,6 @@ const Home = ({ state, setState }) => {
           setState((prev) => ({ ...prev, channelStates }));
         });
     }
-  }, []);
-
-  useEffect(() => {
     // change api end point later
     socket = io('http://localhost:8001/');
     // socket = io('https://arcane-bastion-72484.herokuapp.com/');
