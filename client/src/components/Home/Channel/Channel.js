@@ -3,6 +3,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
 
+// modules
+import StalkerMap from './Modules/StalkerMap/StalkerMap';
+
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage,
 }) => {
@@ -23,6 +26,7 @@ const Channel = ({
 
   return (
     <div>
+      {/* <StalkerMap /> */}
       {name}
       {
         // modal this!

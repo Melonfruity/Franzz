@@ -13,7 +13,6 @@ const ON = 'on';
 const Chat = ({
   messages, emitDeleteMessage, emitSendMessage, channel,
 }) => {
-  console.log(channel);
 
   const { boxDisplay, clickedButton } = useToggleButton('off');
   return (
