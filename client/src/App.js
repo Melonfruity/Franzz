@@ -20,6 +20,8 @@ const App = () => {
     currentChannel: '',
     authorization: '',
     username: '',
+    location: { lat: 5.6219868, lng: -0.23223 },
+    locations: {},
     channelStates: {},
   });
 

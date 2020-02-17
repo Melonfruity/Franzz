@@ -26,8 +26,8 @@ const Channel = ({
 
   return (
     <div>
-      {/* <StalkerMap /> */}
-      {name}
+      <StalkerMap />
+      {/* {name}
       {
         // modal this!
       }
@@ -48,7 +48,7 @@ const Channel = ({
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
-      />
+      /> */}
     </div>
   );
 };
