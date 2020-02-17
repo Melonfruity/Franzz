@@ -43,7 +43,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
 
   async function viewChatPhotos() {
     changePath(`${channelId}/chat/false`);
-    changeTitle('Chat')
+    changeTitle('Chat');
     changeView('chat');
   }
 
@@ -91,7 +91,15 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
           />
           )}
-          { view === CHAT && <GalleryDisplay change={newView} content={allImages} title={title} />}
+          { view === CHAT
+          && (
+          <GalleryDisplay
+            change={newView}
+            content={allImages}
+            title={title}
+            isAlbum={false}
+          />
+          )}
           { view === ALBUMS
           && (
           <AlbumDisplay
@@ -100,7 +108,15 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             viewAlbum={viewAlbum}
           />
           )}
-          {view === ALBUMPHOTOS && <GalleryDisplay change={newView} content={allImages} title={title} />}
+          {view === ALBUMPHOTOS
+          && (
+          <GalleryDisplay
+            change={newView}
+            content={allImages}
+            title={title}
+            isAlbum
+          />
+          )}
         </div>
       </div>
     </div>
