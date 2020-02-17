@@ -56,7 +56,7 @@ const Home = ({ state, setState }) => {
         console.log(data);
       });
     });
-  }, [state.authorization]);
+  }, []);
 
   useEffect(() => {
     socket.on('new message', (data) => {

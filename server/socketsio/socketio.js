@@ -4,6 +4,7 @@ const youtubeio = require('./youtube');
 
 module.exports = (io) => {
   io.on('connection', (socket) => {
+    info('client connected');
     // server
     socket.emit('server message', {
       serverMsg: 'connected to server',

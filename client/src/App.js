@@ -6,8 +6,6 @@ import {
   Redirect,
   // useParams,
 } from 'react-router-dom';
-
-
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 import NavBar from './components/Navbar/NavBar';
@@ -20,8 +18,6 @@ const App = () => {
     currentChannel: '',
     authorization: '',
     username: '',
-    location: { lat: 5.6219868, lng: -0.23223 },
-    locations: {},
     channelStates: {},
   });
 
@@ -38,9 +34,8 @@ const App = () => {
     });
   };
 
-  const title = 'JEK';
-  // load the data if the user was already logged in
   useEffect(() => {
+    // load the data if the user was already logged in
     setState((prev) => ({
       ...prev,
       authorization: window.localStorage.getItem('authorization'),
@@ -52,7 +47,6 @@ const App = () => {
   // TODO: Reloading channel should bring back to channel
   return (
     <div>
-      {title}
       <Router>
         <NavBar
           logOut={logOut}

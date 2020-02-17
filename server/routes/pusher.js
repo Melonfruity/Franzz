@@ -1,9 +1,10 @@
 const pusherRouter = require('express').Router();
 
 module.exports = (pusher) => {
-  pusherRouter.post('/pusher/auth', (req, res) => {
+  pusherRouter.post('/auth', (req, res) => {
     const socketId = req.body.socket_id;
     const channel = req.body.channel_name;
+    console.log('here')
     const randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     const presenceData = {
       user_id: randomString,
