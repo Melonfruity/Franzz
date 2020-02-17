@@ -1,11 +1,15 @@
+const axios = require('axios');
+
 module.exports = (state, setState, socket) => {
-  const emitSendMessage = (message) => {
+  const emitSendMessage = (message, video, image) => {
     const channelID = state.currentChannel;
     const messageObj = {
       message,
       channelID,
       authorization: state.authorization,
       username: state.username,
+      video,
+      image,
     };
     socket.emit('message', messageObj, (newMessageObj) => {
       setState((prev) => (
@@ -48,7 +52,6 @@ module.exports = (state, setState, socket) => {
       }
     });
   };
-
   const emitCreateChannel = (channelName) => {
     const createChannelObj = {
       channelName,
@@ -60,13 +63,7 @@ module.exports = (state, setState, socket) => {
 
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
-      fetch('http://localhost:8001/api/photos/createEmptyFolder', {
-        method: 'POST',
-        body: JSON.stringify(request),
-        headers: { 'content-type': 'application/json' },
-      })
-        .then((res) => { console.log(res); })
-        .catch((err) => { console.log(err); });
+      axios.post('http://localhost:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
 
       setState((prev) => (
         {

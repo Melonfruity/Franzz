@@ -6,6 +6,9 @@ const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = require('../utils/config');
 
 photosRouter.use(bodyParser.json());
 
+// create a socket here where we send the data to the server and send it back to
+// the client (photos and video display)
+
 // Setup for cloud-based api for photos
 cloudinary.config({
   cloud_name: CLOUD_NAME,
@@ -13,33 +16,36 @@ cloudinary.config({
   api_secret: CLOUD_SECRET,
 });
 
-// uploads photos to the cloud (cloudinary)
-photosRouter.post('/uploadPhotoToChat', async (req, res) => {
+// uploads files to the cloud (cloudinary)
+photosRouter.post('/uploadPhotos', async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
     // If it is a video upload do this
-    const filePath = `${fields.album}/chat`;
+    const filePath = `${fields.channel}/${fields.album}`;
     if (files.file.type.includes('video')) {
       cloudinary.v2.uploader.upload(files.file.path,
         {
           resource_type: 'video',
           folder: filePath,
-        });
-    } else { // if it is a photo
+        }).then((result) => res.send({ result, video: true, image: false }));
+    } else { // if it is a photoa
       cloudinary.v2.uploader.upload(files.file.path,
         {
           folder: filePath,
-        });
+        }).then((result) => res.send({ result, video: false, image: true }));
     }
   });
-  res.send('file has been uploaded :)');
 });
 
 // returns all the images/videos from the chat
-photosRouter.get('/getChannelPhotos/:path', async (req, res) => {
+photosRouter.get('/getChannelPhotos/:channelId/:path/:album', async (req, res) => {
+  const firstPath = `${req.params.channelId}/${req.params.path}`;
+  console.log(req.params.album === 'false');
+  const album = req.params.album === 'false'; // if this is false, we are only grabbing chat
+  const finalPath = album
+    ? `${firstPath}` : `${firstPath}/${req.params.album}`;
   cloudinary.v2.search
-    .expression(`folder:${req.params.path}/chat`)
-    .max_results(30)
+    .expression(`folder:${finalPath}`)
     .execute()
     .then((result) => res.send(result));
 });
@@ -48,7 +54,6 @@ photosRouter.get('/getChannelPhotos/:path', async (req, res) => {
 // creates an empty folder (used for new channels and creating albums)
 // input => {channelId: 'example', albunName: 'exampleAlbum'}
 photosRouter.post('/createEmptyFolder', (req, res) => {
-
   // gather path names for folder/album
   const channelFolder = req.body.channelId;
   const albumFolder = req.body.albumName;
@@ -62,10 +67,29 @@ photosRouter.post('/createEmptyFolder', (req, res) => {
     },
     (error, result) => {
       // deletes the placeholder photo to empty album
-      cloudinary.v2.uploader.destroy(result.public_id)
+      cloudinary.v2.uploader.destroy(result.public_id);
     });
 
   res.send('file has been uploaded :)');
+});
+
+// Gets the album for a channel
+photosRouter.get('/getAlbums/:channelId', (req, res) => {
+  const { channelId } = req.params;
+  const path = `${channelId}/albums`;
+  cloudinary.v2.api.sub_folders(path, (error, result) => {
+    res.send(result);
+  });
+});
+
+photosRouter.get('/coverPhoto/:channelId/:album/:albumName', (req, res) => {
+  const albumPath = `${req.params.channelId}/${req.params.album}/${req.params.albumName}`;
+  cloudinary.v2.search
+    .expression(`folder=${albumPath}`)
+    .sort_by('uploaded_at', 'desc')
+    .execute().then((result) => {
+      res.send(result.resources[0].url);
+    });
 });
 
 module.exports = photosRouter;

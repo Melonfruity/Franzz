@@ -9,7 +9,6 @@ import channelService from '../../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-
 import useChat from '../../hooks/useChat';
 
 let socket;

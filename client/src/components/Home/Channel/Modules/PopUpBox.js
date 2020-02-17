@@ -1,6 +1,5 @@
 import React from 'react';
 import { mouseDownFunction } from './Scripts/PopUpBoxScript';
-//import './Styling/PopUpBoxStyling.scss';
 
 export default function PopUpBox(props) {
   return (

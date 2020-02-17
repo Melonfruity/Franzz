@@ -3,12 +3,13 @@ import {
   Image, CloudinaryContext,
 } from 'cloudinary-react';
 
-
-export default function PhotoItem({ publicKey, url, fileType }) {
+export default function PhotoItem({
+  url, fileType, showSlide, slide,
+}) {
   return (
     <CloudinaryContext cloudName="jekmessaging">
-      <div>
-        {fileType === 'image' && <Image publicId={url} width="100%" />}
+      <div onClick={() => showSlide(slide)}>
+        {fileType === 'image' && <Image publicId={url} width="100%"  />}
         {fileType === 'video'
         && (
         <video width="100%" controls>

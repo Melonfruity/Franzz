@@ -7,10 +7,11 @@ import './TextContainer.css';
 
 // Scripting work for adding photos to the cloud through the text container
 import useChangeHighlightClass from '../../../../../hooks/useHighlightClass';
-import { preventDefaults, handleDrop, handleFiles } from './Scripts/DragAndDropPhotos';
+import { preventDefaults, handleDrop } from '../../Modules/Photos/Scripts/DragAndDropPhotos';
 
-const TextContainer = ({ messages, deleteMessage, channelId }) => {
-
+const TextContainer = ({
+  messages, deleteMessage, channelId, emitSendMessage,
+}) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
 
@@ -22,6 +23,8 @@ const TextContainer = ({ messages, deleteMessage, channelId }) => {
       created={msg.created}
       username={msg.user.username}
       deleteMessage={deleteMessage}
+      video={msg.video}
+      image={msg.image}
     />
   ));
 
@@ -34,8 +37,9 @@ const TextContainer = ({ messages, deleteMessage, channelId }) => {
 
   function dropFile(e) {
     changeHighlightClass(e.type);
-    handleDrop(e, channelId);
+    handleDrop(e, channelId, 'chat', emitSendMessage);
   }
+
 
   return (
     <div
