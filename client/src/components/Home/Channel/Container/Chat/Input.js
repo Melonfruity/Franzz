@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { useField } from '../../../../hooks/useField';
+import { useField } from '../../../../../hooks/useField';
 
 const Input = ({ emitSendMessage }) => {
   const message = useField('text');

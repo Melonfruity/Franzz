@@ -6,7 +6,7 @@ import Message from './Message';
 import './TextContainer.css';
 
 // Scripting work for adding photos to the cloud through the text container
-import useChangeHighlightClass from '../../../../hooks/useHighlightClass';
+import useChangeHighlightClass from '../../../../../hooks/useHighlightClass';
 import { preventDefaults, handleDrop, handleFiles } from './Scripts/DragAndDropPhotos';
 
 const TextContainer = ({ messages, deleteMessage, channelId }) => {

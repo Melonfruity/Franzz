@@ -5,11 +5,10 @@ import {
   Route,
 } from 'react-router-dom';
 import io from 'socket.io-client';
-import channelService from '../service/channelService';
+import channelService from '../../service/channelService';
 
 import Channel from './Channel/Channel';
-import ChannelList from './Channel/LeftBar/ChannelList/ChannelList';
-import DragAndDrop from './Channel/Container/Photos/DragAndDrop';
+import ChannelList from './ChannelList/ChannelList';
 
 let socket;
 
