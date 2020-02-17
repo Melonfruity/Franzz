@@ -3,7 +3,7 @@ import TextContainer from './TextContainer';
 import Input from './Input';
 import ImageBox from '../Photos/photoDisplay';
 import PopUpButton from '../PopUpButtons/PopUpButton';
-import useToggleButton from '../../../../hooks/useToggleButton';
+import useToggleButton from '../../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 import './Chat.css';

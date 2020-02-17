@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import channelService from '../../service/channelService';
+import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
 
 const Channel = ({

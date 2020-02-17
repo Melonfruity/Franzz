@@ -9,7 +9,7 @@ import {
 
 
 import Landing from './components/Landing/Landing';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import NavBar from './components/Navbar/NavBar';
 
 const App = () => {
