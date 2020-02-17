@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { handleFiles } from '../Chat/Scripts/DragAndDropPhotos';
 
 
-export default function NewAlbumForm({ channelId, emitSendMessage }) {
+export default function AlbumForm({
+  channelId, emitSendMessage, albumName, newAlbum, newView
+}) {
   const [fields, changeFields] = useState(
     {
-      album: '',
+      album: albumName,
       files: [],
     },
   );
@@ -33,18 +35,23 @@ export default function NewAlbumForm({ channelId, emitSendMessage }) {
       handleFiles(file, channelId, fields.album, emitSendMessage);
     });
     document.getElementById('album-upload-form').reset();
-    const message = `🚨A new album '${fields.album}' has been uploaded🚨`;
+    let message = `🚨A new album '${fields.album}' has been uploaded🚨`;
+    if (!newAlbum) {
+      message = `👀 New photos were added to ${fields.album}`;
+    }
     emitSendMessage(message, false, false);
-    // Change view (later)
+    newView('albums');
   }
 
   return (
     <div>
       <form id="album-upload-form" onSubmit={handleSubmit}>
+        { newAlbum && (
         <label>
           Album Name:
           <input type="text" name="album" onChange={handleOnChange} />
         </label>
+        )}
         <input
           id="drop-area"
           name="files"

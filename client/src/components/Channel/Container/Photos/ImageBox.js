@@ -4,7 +4,7 @@ import { mouseDownFunction } from '../Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
 import './Styling/DragAndDropBox.scss';
 import './Styling/PopUpBoxStyling.scss';
-import NewAlbumForm from './newAlbumForm';
+import AlbumForm from './AlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
 
@@ -12,6 +12,8 @@ const CHAT = 'chat';
 const ALBUMS = 'albums';
 const ALBUMFORM = 'albumForm';
 const ALBUMPHOTOS = 'albumPhotos';
+const ADDALBUMPHOTOS = 'addAlbumPhotos';
+
 export default function ImageBox({ channelId, emitSendMessage }) {
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
@@ -21,7 +23,6 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   const [view, changeView] = useState('chat');
   const [folderPath, changePath] = useState(`${channelId}/chat/false`);
   const [title, changeTitle] = useState('Chat');
-
   // Changes view of gallery
   function newView(v) {
     changeView(v);
@@ -35,16 +36,20 @@ export default function ImageBox({ channelId, emitSendMessage }) {
     });
   }
 
-  async function viewAlbum(albumPath, name) {
+  function viewAlbum(albumPath, name) {
     changePath(albumPath);
     changeTitle(name);
     newView('albumPhotos');
   }
 
-  async function viewChatPhotos() {
+  function viewChatPhotos() {
     changePath(`${channelId}/chat/false`);
     changeTitle('Chat');
     changeView('chat');
+  }
+
+  function addAlbumPhotos() {
+    newView('addAlbumPhotos');
   }
 
   useEffect(() => {
@@ -86,9 +91,12 @@ export default function ImageBox({ channelId, emitSendMessage }) {
           <button onClick={() => newView('albums')}>Albums</button>
           { view === ALBUMFORM
           && (
-          <NewAlbumForm
+          <AlbumForm
             channelId={channelId}
             emitSendMessage={emitSendMessage}
+            albumName=""
+            newAlbum
+            newView={newView}
           />
           )}
           { view === CHAT
@@ -114,7 +122,17 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             change={newView}
             content={allImages}
             title={title}
+            addPhotos={addAlbumPhotos}
             isAlbum
+          />
+          )}
+          {view === ADDALBUMPHOTOS && (
+          <AlbumForm
+            channelId={channelId}
+            emitSendMessage={emitSendMessage}
+            albumName={title}
+            newAlbum={false}
+            newView={newView}
           />
           )}
         </div>

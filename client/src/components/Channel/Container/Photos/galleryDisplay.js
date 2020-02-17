@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GalleryDisplay({ change, content, title, isAlbum }) {
+export default function GalleryDisplay({ change, content, title, isAlbum, addPhotos }) {
   // formats the images for the grid
   const images = [[], [], [], []];
   let column = 0;
@@ -16,7 +16,7 @@ export default function GalleryDisplay({ change, content, title, isAlbum }) {
   return (
     <div>
       <h4>{title}</h4>
-      {isAlbum && <button>Add Photos</button>}
+      {isAlbum && <button onClick={addPhotos}>Add Photos</button>}
       <div className="row">
         <div className="column">
           {images[0]}
