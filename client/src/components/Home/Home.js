@@ -139,7 +139,6 @@ const Home = ({ state, setState }) => {
   useEffect(() => {
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
-      console.log(data)
       if (channelID && newMessageObj) {
         setState((prev) => (
           {
@@ -153,9 +152,6 @@ const Home = ({ state, setState }) => {
             },
           }));
       }
-    });
-    socket.on('new user', (data) => {
-
     });
     return () => {
       socket.emit('disconnect');

@@ -71,9 +71,9 @@ app.use('/api/channel', channelRouter);
 app.use('/api/photos', photoRouter);
 app.use('/', rootRouter);
 
-// sockets channel namespace
+// sockets channel
 require('./socketsio/channel')(io);
-
+require('./socketsio/youtube')(io);
 
 // error handling
 app.use(unknownEndpoint);
