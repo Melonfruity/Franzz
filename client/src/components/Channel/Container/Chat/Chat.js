@@ -7,7 +7,7 @@ import useToggleButton from '../../../../hooks/useToggleButton';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 import './Chat.css';
-import '../../RightBar/Styling/galleryStyling.scss';
+import '../Photos/Styling/galleryStyling.scss';
 
 const ON = 'on';
 

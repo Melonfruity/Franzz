@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GalleryDisplay({ change, content }) {
+export default function GalleryDisplay({ change, content, title }) {
   // formats the images for the grid
   const images = [[], [], [], []];
   let column = 0;
@@ -15,7 +15,7 @@ export default function GalleryDisplay({ change, content }) {
 
   return (
     <div>
-      <h4>Chat Images</h4>
+      <h4>{title}</h4>
       <div className="row">
         <div className="column">
           {images[0]}

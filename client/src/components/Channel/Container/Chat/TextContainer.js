@@ -4,7 +4,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import Message from './Message';
 
 import './TextContainer.css';
-import '../../RightBar/Styling/DragAndDropBox.scss';
+import '../Photos/Styling/DragAndDropBox.scss';
 
 // Scripting work for adding photos to the cloud through the text container
 import useChangeHighlightClass from '../../../../hooks/useHighlightClass';

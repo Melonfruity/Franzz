@@ -3,7 +3,7 @@ import axios from 'axios';
 import Album from './Album';
 import './Styling/albumStyling.scss';
 
-export default function AlbumDisplay({ change, channelId }) {
+export default function AlbumDisplay({ change, channelId, viewAlbum }) {
   const [albums, setAlbums] = useState([]);
 
   // gets all the albums in the channel
@@ -22,9 +22,9 @@ export default function AlbumDisplay({ change, channelId }) {
       key={a.name}
       name={a.name}
       path={a.path}
+      viewAlbum={viewAlbum}
     />
   ));
-
 
   return (
     <div>

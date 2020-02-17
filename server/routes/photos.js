@@ -38,10 +38,14 @@ photosRouter.post('/uploadPhotos', async (req, res) => {
 });
 
 // returns all the images/videos from the chat
-photosRouter.get('/getChannelPhotos/:path', async (req, res) => {
+photosRouter.get('/getChannelPhotos/:channelId/:path/:album', async (req, res) => {
+  const firstPath = `${req.params.channelId}/${req.params.path}`;
+  console.log(req.params.album === 'false');
+  const album = req.params.album === 'false'; // if this is false, we are only grabbing chat
+  const finalPath = album
+    ? `${firstPath}` : `${firstPath}/${req.params.album}`;
   cloudinary.v2.search
-    .expression(`folder:${req.params.path}/chat`)
-    .max_results(30)
+    .expression(`folder:${finalPath}`)
     .execute()
     .then((result) => res.send(result));
 });

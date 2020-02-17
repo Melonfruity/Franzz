@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import FsLightbox from 'fslightbox-react';
 import { mouseDownFunction } from '../Chat/Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
-import '../../RightBar/Styling/DragAndDropBox.scss';
-import '../../RightBar/Styling/PopUpBoxStyling.scss';
+import './Styling/DragAndDropBox.scss';
+import './Styling/PopUpBoxStyling.scss';
 import NewAlbumForm from './newAlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
@@ -11,6 +11,7 @@ import AlbumDisplay from './AlbumDisplay';
 const CHAT = 'chat';
 const ALBUMS = 'albums';
 const ALBUMFORM = 'albumForm';
+const ALBUMPHOTOS = 'albumPhotos';
 export default function ImageBox({ channelId, emitSendMessage }) {
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
@@ -18,6 +19,8 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   });
   const [photos, setPhotos] = useState([]);
   const [view, changeView] = useState('chat');
+  const [folderPath, changePath] = useState(`${channelId}/chat/false`);
+  const [title, changeTitle] = useState('Chat');
 
   // Changes view of gallery
   function newView(v) {
@@ -32,12 +35,22 @@ export default function ImageBox({ channelId, emitSendMessage }) {
     });
   }
 
-  // Gets photos from chat
-  const folderPath = `${channelId}`;
+  async function viewAlbum(albumPath, name) {
+    changePath(albumPath);
+    changeTitle(name);
+    newView('albumPhotos');
+  }
+
+  async function viewChatPhotos() {
+    changePath(`${channelId}/chat/false`);
+    changeTitle('Chat')
+    changeView('chat');
+  }
+
   useEffect(() => {
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
       .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => setPhotos(allPhotos));
+      .then((allPhotos) => { console.log(allPhotos); setPhotos(allPhotos); });
   }, [folderPath]);
 
   const allImages = [];
@@ -69,8 +82,8 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-        <button onClick={() => newView('chat')}>Chat</button>
-        <button onClick={() => newView('albums')}>Albums</button>
+          <button onClick={() => viewChatPhotos()}>Chat</button>
+          <button onClick={() => newView('albums')}>Albums</button>
           { view === ALBUMFORM
           && (
           <NewAlbumForm
@@ -78,8 +91,16 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
           />
           )}
-          { view === CHAT && <GalleryDisplay change={newView} content={allImages} />}
-          { view === ALBUMS && <AlbumDisplay change={newView} channelId={channelId} />}
+          { view === CHAT && <GalleryDisplay change={newView} content={allImages} title={title} />}
+          { view === ALBUMS
+          && (
+          <AlbumDisplay
+            change={newView}
+            channelId={channelId}
+            viewAlbum={viewAlbum}
+          />
+          )}
+          {view === ALBUMPHOTOS && <GalleryDisplay change={newView} content={allImages} title={title} />}
         </div>
       </div>
     </div>
