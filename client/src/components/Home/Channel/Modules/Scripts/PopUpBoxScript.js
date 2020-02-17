@@ -10,7 +10,7 @@ function resize(e) {
 }
 const mouseDownFunction = function (e) {
   box = e.target;
-  boxHeight = parseInt(getComputedStyle(box, '').height) - 10;
+  boxHeight = parseInt(getComputedStyle(box, '').height) - 15;
   if (e.nativeEvent.offsetY >= boxHeight) {
     mousePosition = e.y;
     document.addEventListener('mousemove', resize, false);

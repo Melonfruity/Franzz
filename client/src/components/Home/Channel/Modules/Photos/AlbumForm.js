@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { handleFiles } from '../Scripts/DragAndDropPhotos';
+import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 
 export default function AlbumForm({

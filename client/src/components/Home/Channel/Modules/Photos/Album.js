@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Image, CloudinaryContext,
 } from 'cloudinary-react';
+import './Styling/Album.css';
 
 export default function Album({ name, path, viewAlbum }) {
   const [cover, setCover] = useState('');

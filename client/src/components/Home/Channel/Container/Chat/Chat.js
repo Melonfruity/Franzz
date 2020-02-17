@@ -1,11 +1,12 @@
 import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
-import ImageBox from '../../Modules/Photos/Components/ImageBox';
+import ImageBox from '../../Modules/Photos/ImageBox';
 import PopUpButton from '../PopUpButtons/PopUpButton';
 import useToggleButton from '../../../../../hooks/useToggleButton';
 import { handleFiles } from '../../Modules/Photos/Scripts/DragAndDropPhotos';
 
+import './Styling/DragAndDropBox.css';
 import './Chat.css';
 
 const ON = 'on';
@@ -13,7 +14,6 @@ const ON = 'on';
 const Chat = ({
   messages, emitDeleteMessage, emitSendMessage, channel,
 }) => {
-
   const { boxDisplay, clickedButton } = useToggleButton('off');
   return (
     <div className="container">

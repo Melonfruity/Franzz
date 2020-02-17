@@ -1,4 +1,5 @@
 import React from 'react';
+import './Styling/galleryStyling.css';
 
 export default function GalleryDisplay({ change, content, title, isAlbum, addPhotos }) {
   // formats the images for the grid

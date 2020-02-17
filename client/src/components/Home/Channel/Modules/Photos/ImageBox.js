@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import FsLightbox from 'fslightbox-react';
-import { mouseDownFunction } from '../../Scripts/PopUpBoxScript';
+import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 import PhotoItem from './PhotoItem';
 import AlbumForm from './AlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
+import './Styling/PopUpBoxStyling.css';
 
 const CHAT = 'chat';
 const ALBUMS = 'albums';

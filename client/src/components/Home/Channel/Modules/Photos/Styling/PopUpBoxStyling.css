@@ -2,9 +2,9 @@
 #resize-box {
   z-index: 1000;
   position: absolute;
-  width: 80%;
+  width: 78%;
   padding-left: 4px;
-  min-height: 200px;
+  min-height: 50px;
   height: 200px;
   background-color: white;
   border: 1px solid black;
