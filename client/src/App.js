@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  useParams,
+  // useParams,
 } from 'react-router-dom';
 
 
