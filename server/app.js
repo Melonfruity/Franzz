@@ -1,5 +1,6 @@
 const cors = require('cors');
 const http = require('http');
+const Pusher = require('pusher');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -23,11 +24,14 @@ const server = http.Server(app);
 // socketio connect with server
 const io = socketio(server);
 
-// routes
-const authRouter = require('./routes/auth');
-const channelRouter = require('./routes/channel');
-const photoRouter = require('./routes/photos');
-const rootRouter = require('./routes/root');
+// initialize pusher
+const pusher = new Pusher({
+  appId: '947060',
+  key: '0609165026115fbd973a',
+  secret: '2d327a2992c70879e7cf',
+  cluster: 'mt1',
+  encrypted: true,
+});
 
 // connecting to mongodb
 info('Connecting to MongoDB');
@@ -44,6 +48,13 @@ mongoose
   )
   .then(() => info('Connected to MongoDB'))
   .catch((err) => errm(err));
+
+// routes
+const authRouter = require('./routes/auth');
+const channelRouter = require('./routes/channel');
+const photoRouter = require('./routes/photos');
+const rootRouter = require('./routes/root');
+const pusherRouter = require('./routes/pusher')(pusher);
 
 app.use(cors({
   origin: true,
@@ -69,11 +80,11 @@ require('./utils/passportSetup');
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
 app.use('/api/photos', photoRouter);
+app.use('/api/pusher', pusherRouter);
 app.use('/', rootRouter);
 
-// sockets channel namespace
-require('./socketsio/channel')(io);
-
+// sockets channel
+require('./socketsio/socketio')(io);
 
 // error handling
 app.use(unknownEndpoint);
