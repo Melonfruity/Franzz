@@ -8,11 +8,11 @@ export default function PhotoItem({
 }) {
   return (
     <CloudinaryContext cloudName="jekmessaging">
-      <div>
-        {fileType === 'image' && <Image publicId={url} width="100%" onClick={() => showSlide(slide)} />}
+      <div onClick={() => showSlide(slide)}>
+        {fileType === 'image' && <Image publicId={url} width="100%"  />}
         {fileType === 'video'
         && (
-        <video width="100%" onClick={() => showSlide(slide)} controls>
+        <video width="100%" controls>
           <source src={url} type="video/webm" />
           <source src={url} type="video/mp4" />
           <source src={url} type="video/ogg" />

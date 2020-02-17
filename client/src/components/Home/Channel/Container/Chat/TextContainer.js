@@ -37,7 +37,7 @@ const TextContainer = ({
 
   function dropFile(e) {
     changeHighlightClass(e.type);
-    handleDrop(e, channelId, '', emitSendMessage);
+    handleDrop(e, channelId, 'chat', emitSendMessage);
   }
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Styling/galleryStyling.css';
 
-export default function GalleryDisplay({ change, content, title, isAlbum, addPhotos }) {
+export default function GalleryDisplay({ content, title, isAlbum, addPhotos }) {
   // formats the images for the grid
   const images = [[], [], [], []];
   let column = 0;
@@ -17,7 +17,7 @@ export default function GalleryDisplay({ change, content, title, isAlbum, addPho
   return (
     <div>
       <h4>{title}</h4>
-      {isAlbum && <button onClick={addPhotos}>Add Photos</button>}
+      {isAlbum && <button onClick={() => addPhotos('addAlbumPhotos')}>Add Photos</button>}
       <div className="row">
         <div className="column">
           {images[0]}

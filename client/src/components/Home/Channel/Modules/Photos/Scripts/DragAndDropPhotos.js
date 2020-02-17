@@ -8,7 +8,12 @@ function uploadFile(file, channelId, albumName, emitSendMessage) {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('channel', `${channelId}`);
-  formData.append('album', `albums/${albumName}`);
+  let path = `albums/${albumName}`;
+  if (albumName === 'chat') {
+    path = 'chat';
+  }
+  formData.append('album', path);
+
 
   fetch(url, {
     method: 'POST',
@@ -17,7 +22,7 @@ function uploadFile(file, channelId, albumName, emitSendMessage) {
     // send the url of image/video to socket to be used for messaging
     .then((res) => res.json())
     .then((data) => {
-      if (!albumName) {
+      if (albumName === 'chat') {
         emitSendMessage(data.result.url, data.video, data.image);
       }
     })

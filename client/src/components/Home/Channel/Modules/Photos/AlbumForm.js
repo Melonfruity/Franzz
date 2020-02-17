@@ -3,7 +3,7 @@ import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 
 export default function AlbumForm({
-  channelId, emitSendMessage, albumName, newAlbum, newView
+  channelId, emitSendMessage, albumName, newAlbum, newView,
 }) {
   const [fields, changeFields] = useState(
     {
@@ -51,6 +51,9 @@ export default function AlbumForm({
           Album Name:
           <input type="text" name="album" onChange={handleOnChange} />
         </label>
+        )}
+        { !newAlbum && (
+          <h4>{`Adding photos to: ${albumName}`}</h4>
         )}
         <input
           id="drop-area"

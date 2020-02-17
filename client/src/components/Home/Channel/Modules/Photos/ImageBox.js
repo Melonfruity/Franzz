@@ -22,9 +22,24 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   const [view, changeView] = useState('chat');
   const [folderPath, changePath] = useState(`${channelId}/chat/false`);
   const [title, changeTitle] = useState('Chat');
+
   // Changes view of gallery
   function newView(v) {
     changeView(v);
+  }
+
+  // Changes to view media in an album
+  function viewAlbum(albumPath, name) {
+    changePath(albumPath);
+    changeTitle(name);
+    newView('albumPhotos');
+  }
+
+  // Go back to viewing chat photos
+  function viewChatPhotos() {
+    changePath(`${channelId}/chat/false`);
+    changeTitle('Chat');
+    changeView('chat');
   }
 
   // shows slide depending what photo it is
@@ -33,22 +48,6 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       toggler: !lightboxController.toggler,
       slide: number,
     });
-  }
-
-  function viewAlbum(albumPath, name) {
-    changePath(albumPath);
-    changeTitle(name);
-    newView('albumPhotos');
-  }
-
-  function viewChatPhotos() {
-    changePath(`${channelId}/chat/false`);
-    changeTitle('Chat');
-    changeView('chat');
-  }
-
-  function addAlbumPhotos() {
-    newView('addAlbumPhotos');
   }
 
   useEffect(() => {
@@ -121,7 +120,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             change={newView}
             content={allImages}
             title={title}
-            addPhotos={addAlbumPhotos}
+            addPhotos={newView}
             isAlbum
           />
           )}
