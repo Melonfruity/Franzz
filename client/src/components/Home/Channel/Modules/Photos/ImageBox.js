@@ -94,7 +94,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName=""
             newAlbum
-            newView={newView}
+            viewAlbum={viewAlbum}
           />
           )}
           { view === CHAT
@@ -130,7 +130,8 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName={title}
             newAlbum={false}
-            newView={newView}
+            addPhoto={(photo) => { setPhotos((photos) => [photo, ...photos]); }}
+            viewAlbum={viewAlbum}
           />
           )}
         </div>
