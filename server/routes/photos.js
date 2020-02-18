@@ -46,7 +46,7 @@ photosRouter.get('/getChannelPhotos/:channelId/:path/:album', async (req, res) =
   cloudinary.v2.search
     .expression(`folder:${finalPath}`)
     .execute()
-    .then((result) => res.send(result));
+    .then((result) => {res.send(result)});
 });
 
 
