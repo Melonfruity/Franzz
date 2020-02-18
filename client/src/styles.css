@@ -1,59 +1,86 @@
 
-
+html {
+  height: 100vh;
+}
 
 body {
   background-color: white;
+  height: 100%
+}
+
+#root {
+  height: 100%;
+}
+
+.appContainer {
+  height: 100%;
+}
+
+.landingContainer {
+  height: 80%;
 }
 
 .landingPage {
-  margin: auto;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  position: relative;
+  top: 150px;
+  height: 60%;
+  /* height: 300px; */
+}
+
+.landingPage input {
+  width: 500px;
+}
+
+.landingPage button {
+  width: 500px;
 }
 
 .normalLogin {
-  margin: auto;
+  /* margin: auto;
   display:flex;
   /* flex-direction: column; */
-  text-align: center;
+  /* text-align: center; */
 }
 
 .normalLogin form{
-  display:flex;
+  /* display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .normalLogin button {
-  width: 200%;
+  /* width: 200%; */
 }
 
 .usernameLogin {
-  margin: auto;
+  /* margin: auto;
   display:flex;
-  /* flex-direction: column; */
-  text-align: center;
+  text-align: center; */
 }
 
 .usernameLogin form {
-  display:flex;
+  /* display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 
 .usernameLogin button {
-  width: 200%;
+  /* width: 200%; */
 }
 
 .googleLogin {
-  margin: auto;
+  /* margin: auto;
   display:flex;
   /* flex-direction: column; */
-  text-align: center;
+  /* text-align: center; */ 
 }
 
 .channelItems {

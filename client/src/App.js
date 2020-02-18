@@ -49,8 +49,7 @@ const App = () => {
 
   // TODO: Reloading channel should bring back to channel
   return (
-    <div>
-      {title}
+    <div className="appContainer">
       <Router>
         <NavBar
           logOut={logOut}
