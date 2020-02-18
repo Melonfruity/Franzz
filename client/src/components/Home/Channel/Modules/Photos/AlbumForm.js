@@ -29,10 +29,13 @@ export default function AlbumForm({
     }
   }
 
+  function viewUpdatedAlbum() {
+    viewAlbum(`${channelId}/albums/${albumName}`, albumName);
+  }
   function handleSubmit(event) {
     event.preventDefault();
     [...fields.files].forEach((file) => {
-      handleFiles(file, channelId, fields.album, emitSendMessage);
+      handleFiles(file, channelId, fields.album, emitSendMessage, viewUpdatedAlbum);
     });
     document.getElementById('album-upload-form').reset();
     let message = `🚨A new album '${fields.album}' has been uploaded🚨`;
@@ -40,7 +43,6 @@ export default function AlbumForm({
       message = `👀 New photos were added to ${fields.album}`;
     }
     emitSendMessage(message, false, false);
-    viewAlbum(`${channelId}/albums/${albumName}`, albumName);
   }
 
   return (

@@ -78,6 +78,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             title={title}
             isAlbum={false}
             openLightboxOnSlide={openLightboxOnSlide}
+            addPhotos={newView}
             changeLinks={changeLinks}
           />
           )}
@@ -96,6 +97,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             title={title}
             isAlbum
             openLightboxOnSlide={openLightboxOnSlide}
+            addPhotos={newView}
             changeLinks={changeLinks}
           />
           )}

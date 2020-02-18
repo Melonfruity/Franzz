@@ -46,7 +46,7 @@ photosRouter.get('/getChannelPhotos/:channelId/:path/:album', async (req, res) =
   cloudinary.v2.search
     .expression(`folder:${finalPath}`)
     .execute()
-    .then((result) => {res.send(result)});
+    .then((result) => { res.send(result); });
 });
 
 
@@ -87,6 +87,7 @@ photosRouter.get('/coverPhoto/:channelId/:album/:albumName', (req, res) => {
     .expression(`folder=${albumPath}`)
     .sort_by('uploaded_at', 'desc')
     .execute().then((result) => {
+      console.log(result); 
       res.send(result.resources[0].url);
     });
 });

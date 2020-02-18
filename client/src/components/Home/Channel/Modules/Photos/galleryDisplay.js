@@ -9,11 +9,12 @@ export default function GalleryDisplay({
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    console.log(path);
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${path}`)
-      .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => { console.log('hello'); setPhotos(allPhotos); });
+      .then((res) => res.json())
+      .then((data) => data.resources)
+      .then((allPhotos) => { console.log('allPhotos:', allPhotos); setPhotos(allPhotos); });
   }, [path]);
+
 
   const allImages = [];
   let slide = 0;
@@ -30,6 +31,7 @@ export default function GalleryDisplay({
       />,
     );
   });
+
 
   // formats the images for the grid
   const images = [[], [], [], []];
