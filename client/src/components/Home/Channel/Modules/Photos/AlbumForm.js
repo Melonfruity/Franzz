@@ -3,7 +3,7 @@ import { handleFiles } from './Scripts/DragAndDropPhotos';
 
 
 export default function AlbumForm({
-  channelId, emitSendMessage, albumName, newAlbum, viewAlbum, addPhoto
+  channelId, emitSendMessage, albumName, newAlbum, viewAlbum,
 }) {
   const [fields, changeFields] = useState(
     {
@@ -32,7 +32,7 @@ export default function AlbumForm({
   function handleSubmit(event) {
     event.preventDefault();
     [...fields.files].forEach((file) => {
-      handleFiles(file, channelId, fields.album, emitSendMessage, addPhoto );
+      handleFiles(file, channelId, fields.album, emitSendMessage);
     });
     document.getElementById('album-upload-form').reset();
     let message = `🚨A new album '${fields.album}' has been uploaded🚨`;
