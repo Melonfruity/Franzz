@@ -24,7 +24,8 @@ const Username = ({ setState }) => {
   };
 
   return (
-    <form>
+    <div className="usernameLogin">
+    <form >
       <input
         placeholder="username"
         {...username}
@@ -33,6 +34,7 @@ const Username = ({ setState }) => {
       />
       <button type="button" onClick={handleSelectUser}>-&gt;</button>
     </form>
+    </div>
   );
 };
 

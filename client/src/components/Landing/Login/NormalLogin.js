@@ -26,7 +26,7 @@ const NormalLogin = ({ setState }) => {
   };
 
   return (
-    <div>
+    <div className="normalLogin">
       <form>
         <input
           placeholder="email"
