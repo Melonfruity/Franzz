@@ -11,6 +11,7 @@ import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
 
 import useChat from '../../hooks/useChat';
+import { useMap } from '../../hooks/useMap';
 
 let socket;
 
@@ -21,6 +22,11 @@ const Home = ({ state, setState }) => {
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
+
+  const {
+    grabLocations,
+    intializeMapsData,
+  } = useMap(state, setState, socket);
 
   // handle initial state
   useEffect(() => {
@@ -55,6 +61,8 @@ const Home = ({ state, setState }) => {
       socket.emit('join channels', { authorization: state.authorization }, (data) => {
         console.log(data);
       });
+
+      intializeMapsData();
     });
   }, []);
 
@@ -101,6 +109,8 @@ const Home = ({ state, setState }) => {
           messages={messages}
           users={users}
           emitSendMessage={emitSendMessage}
+          locations={grabLocations(id)}
+          center={state.center}
         />
       </Route>
     );

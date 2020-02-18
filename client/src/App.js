@@ -14,11 +14,11 @@ const App = () => {
   // state of the client app
   const [state, setState] = useState({
     guest: true,
-    currentUser: '',
     currentChannel: '',
     authorization: '',
     username: '',
     channelStates: {},
+    locations: {},
   });
 
   // logout resets app
@@ -26,11 +26,11 @@ const App = () => {
     window.localStorage.clear();
     setState({
       guest: true,
-      currentUser: '',
       currentChannel: '',
       authorization: '',
       username: '',
       channelStates: {},
+      locations: {},
     });
   };
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
-import Pusher from 'pusher-js';
-import axios from 'axios';
+import { useMap } from '../../../../../hooks/useMap';
 
 const mapStyles = {
-  width: '25%',
-  height: '25%',
+  width: '100%',
+  height: '100%',
+  position: 'relative',
 };
 
 const markerStyle = {
@@ -18,6 +18,10 @@ const imgStyle = {
   height: '100%',
 };
 
+const containerStyle = {
+  width: '1000px',
+  height: '600px',
+};
 
 const Marker = ({ title }) => (
   <div style={markerStyle}>
@@ -26,68 +30,26 @@ const Marker = ({ title }) => (
   </div>
 );
 
-const StalkerMap = () => {
-  const [state, setState] = useState({
-    currentUser: window.localStorage.getItem('username'),
-    location: {},
-    locations: {},
-  });
-
-  useEffect(() => {
-    const getLocation = () => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.watchPosition((position) => {
-          const location = { lat: position.coords.latitude, lng: position.coords.longitude };
-          setState((prevState) => {
-            const newState = { ...prevState };
-            newState.location = location;
-            newState.locations[`${prevState.currentUser}`] = location;
-            return newState;
-          });
-          axios.post('http://localhost:8001/api/pusher/update-location', {
-            username: state.currentUser,
-            location,
-          }).then((res) => {
-            if (res.status === 200) {
-              console.log('new location updated successfully');
-            }
-          });
-        });
-      } else {
-        console.log('Sorry, geolocation is not available on your device. You need that to use this app');
-      }
-    };
-
-    const pusher = new Pusher('0609165026115fbd973a', {
-      authEndpoint: 'http://localhost:8001/api/pusher/auth',
-      cluster: 'mt1',
-      forceTLS: true,
-    });
-    const presenceChannel = pusher.subscribe('presence-channel');
-    presenceChannel.bind('pusher:subscription_succeeded', (members) => {
-      console.log(members);
-      getLocation();
-    });
-    const presenceChannel2 = pusher.subscribe('presence-channel2');
-    presenceChannel2.bind('pusher:subscription_succeeded', (members) => {
-      console.log(members);
-      getLocation();
-    });
-  }, []);
+const StalkerMap = ({ locations, center, channel }) => {
+  const locationMarkers = locations ? locations.map((user) => (
+    <Marker
+      key={`${channel}${Math.random() * 10}`}
+      title={`${user.username}'s location`}
+      lat={user.location.lat}
+      lng={user.location.lng}
+    />
+  ))
+    : <Marker title="default location" {...center} />;
 
   return (
-    <div>
+    <div style={containerStyle}>
       <GoogleMap
         style={mapStyles}
         bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
-        location={{ lat: 5.6219868, lng: -0.1733074 }}
-        zoom={14}
+        center={center}
+        zoom={10}
       >
-        <Marker
-          title="Current Location"
-          lat={5.6219868}
-          lng={-0.1733074}
-        />
+        {locationMarkers}
       </GoogleMap>
     </div>
   );
