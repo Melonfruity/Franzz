@@ -50,7 +50,7 @@ const TextContainer = ({
       onDragOver={boxEvent}
       onDrop={dropFile}
     >
-      <ScrollToBottom class="messages">
+      <ScrollToBottom id="messages">
         {formattedMessages}
       </ScrollToBottom>
     </div>

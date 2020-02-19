@@ -120,10 +120,6 @@ body {
   align-self: center;
 }
 
-#resize-box {
-  left: 40%;
-}
-
 .registration {
   display: flex;
   flex-direction: row;
