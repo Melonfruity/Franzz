@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
-
+import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 // modules
 import StalkerMap from './Modules/StalkerMap/StalkerMap';
 
@@ -27,6 +27,7 @@ const Channel = ({
   return (
     <div>
       {/* <StalkerMap /> */}
+      <YoutubeSync />
       {name}
       {
         // modal this!
