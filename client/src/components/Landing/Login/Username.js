@@ -2,10 +2,11 @@ import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 import NewAccountRegistration  from '../../../Modal'
+import SignInInput from '../SignInInput'
 
 const Username = ({ setState }) => {
   const username = useField('text');
-  const handleSelectUser = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const guestObj = {
       username: username.value,
@@ -27,13 +28,14 @@ const Username = ({ setState }) => {
   return (
     <div className="usernameLogin">
     <form >
-      <input
+      {/* <input
         placeholder="username"
         {...username}
         reset={undefined}
-        onKeyPress={(e) => (e.key === 'Enter' ? handleSelectUser(e) : null)}
-      />
-      <NewAccountRegistration  handleSelectUser={handleSelectUser}></NewAccountRegistration>
+        onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
+      /> */}
+      <SignInInput name="Username" handleLogin={handleLogin}></SignInInput>
+      <NewAccountRegistration handleLogin={handleLogin}></NewAccountRegistration>
     </form>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
+import SignInInput from '../SignInInput'
+import Button from 'react-bootstrap/Button'
 
 const NormalLogin = ({ setState }) => {
   const email = useField('text');
@@ -28,24 +30,28 @@ const NormalLogin = ({ setState }) => {
   return (
     <div className="normalLogin">
       <form>
-        <input
+        {/* <input
           placeholder="email"
           {...email}
           reset={undefined}
           onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
-        />
-        <input
+        /> */}
+        <SignInInput name="E-mail"  handleLogin={handleLogin} ></SignInInput>
+        {/* <input
           placeholder="password"
           {...password}
           reset={undefined}
           onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
-        />
-        <button
+        /> */}
+        <SignInInput name="Password" handleLogin={handleLogin} ></SignInInput>
+        {/* <button
           type="button"
           onClick={handleLogin}
         >
         Log In
-        </button>
+        </button> */}
+        <Button onClick={handleLogin}
+        >Log In</Button>
       </form>
     </div>
   );
