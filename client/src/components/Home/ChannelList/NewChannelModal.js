@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import { useField } from '../../../hooks/useField';
 
-import './Modal.css';
+import './NewChannelModal.css';
 
 const PopupToast = ({ children }) => {
   const [show, toggleShow] = useState(false);
