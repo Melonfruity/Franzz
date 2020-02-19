@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Image, CloudinaryContext,
+  Image, Video, CloudinaryContext,
 } from 'cloudinary-react';
 import './Styling/Album.css';
 
 export default function Album({ name, path, viewAlbum }) {
-  const [cover, setCover] = useState('');
+  const [cover, setCover] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:8001/api/photos/coverPhoto/${path}`)
-      .then((res) => setCover(res.data));
+      .then((res) => setCover([res.data[0], res.data[1]]));
   }, [path]);
   return (
     <div className="albumCover" onClick={() => viewAlbum(path, name)}>
       <CloudinaryContext className="coverPhoto" cloudName="jekmessaging">
-        <Image publicId={cover} width="80%" />
+        {cover[0] === 'image' && <Image publicId={cover[1]} />}
+        {cover[0] === 'video' && <Video publicId={cover[1]} resourceType="video" />}
       </CloudinaryContext>
       {name}
     </div>

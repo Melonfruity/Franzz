@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FsLightbox from 'fslightbox-react';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
-import PhotoItem from './PhotoItem';
 import AlbumForm from './AlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
@@ -18,7 +17,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
     toggler: false,
     slide: 0,
   });
-  const [photos, setPhotos] = useState([]);
+  const [imageLinks, changeLinks] = useState([]);
   const [view, changeView] = useState('chat');
   const [folderPath, changePath] = useState(`${channelId}/chat/false`);
   const [title, changeTitle] = useState('Chat');
@@ -50,31 +49,6 @@ export default function ImageBox({ channelId, emitSendMessage }) {
     });
   }
 
-  useEffect(() => {
-    fetch(`http://localhost:8001/api/photos/getChannelPhotos/${folderPath}`)
-      .then((res) => res.json()).then((data) => data.resources)
-      .then((allPhotos) => { console.log(allPhotos); setPhotos(allPhotos); });
-  }, [folderPath]);
-
-  const allImages = [];
-  let slide = 0;
-  photos.forEach((img) => {
-    slide += 1;
-    allImages.push(
-      <PhotoItem
-        key={img.public_id}
-        publicKey={img.public_id}
-        url={img.url}
-        fileType={img.resource_type}
-        showSlide={openLightboxOnSlide}
-        slide={slide}
-      />,
-    );
-  });
-
-  // used for lightbox view
-  const imageLinks = photos.map((image) => image.url);
-
   return (
     <div>
       <FsLightbox
@@ -94,16 +68,18 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName=""
             newAlbum
-            newView={newView}
+            viewAlbum={viewAlbum}
           />
           )}
           { view === CHAT
           && (
           <GalleryDisplay
-            change={newView}
-            content={allImages}
+            path={folderPath}
             title={title}
             isAlbum={false}
+            openLightboxOnSlide={openLightboxOnSlide}
+            addPhotos={newView}
+            changeLinks={changeLinks}
           />
           )}
           { view === ALBUMS
@@ -117,11 +93,12 @@ export default function ImageBox({ channelId, emitSendMessage }) {
           {view === ALBUMPHOTOS
           && (
           <GalleryDisplay
-            change={newView}
-            content={allImages}
+            path={folderPath}
             title={title}
-            addPhotos={newView}
             isAlbum
+            openLightboxOnSlide={openLightboxOnSlide}
+            addPhotos={newView}
+            changeLinks={changeLinks}
           />
           )}
           {view === ADDALBUMPHOTOS && (
@@ -130,7 +107,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName={title}
             newAlbum={false}
-            newView={newView}
+            viewAlbum={viewAlbum}
           />
           )}
         </div>

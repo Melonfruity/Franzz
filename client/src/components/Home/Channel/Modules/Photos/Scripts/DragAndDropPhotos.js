@@ -3,7 +3,7 @@ function preventDefaults(e) {
   e.stopPropagation();
 }
 
-function uploadFile(file, channelId, albumName, emitSendMessage) {
+async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   const url = 'http://localhost:8001/api/photos/uploadPhotos';
   const formData = new FormData();
   formData.append('file', file);
@@ -24,14 +24,18 @@ function uploadFile(file, channelId, albumName, emitSendMessage) {
     .then((data) => {
       if (albumName === 'chat') {
         emitSendMessage(data.result.url, data.video, data.image);
+      } else {
+        setTimeout(() => {
+          viewUpdatedAlbum();
+        }, 1000);
       }
     })
     .catch((err) => { console.log(err); });
 }
 
-function handleFiles(files, channelId, albumName, emitSendMessage) {
+function handleFiles(files, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   [...files].forEach((file) => {
-    uploadFile(file, channelId, albumName, emitSendMessage);
+    uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum);
   });
 }
 
