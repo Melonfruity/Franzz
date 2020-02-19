@@ -27,7 +27,7 @@ async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdat
       } else {
         setTimeout(() => {
           viewUpdatedAlbum();
-        }, 1000);
+        }, 3000);
       }
     })
     .catch((err) => { console.log(err); });

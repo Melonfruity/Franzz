@@ -42,7 +42,7 @@ export default function AlbumForm({
     if (!newAlbum) {
       message = `👀 New photos were added to ${fields.album}`;
     }
-    emitSendMessage(message, false, false);
+    setTimeout(() => emitSendMessage(message, false, false), 3000);
   }
 
   return (
