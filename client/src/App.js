@@ -6,8 +6,6 @@ import {
   Redirect,
   // useParams,
 } from 'react-router-dom';
-
-
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 import NavBar from './components/Navbar/NavBar';
@@ -16,11 +14,12 @@ const App = () => {
   // state of the client app
   const [state, setState] = useState({
     guest: true,
-    currentUser: '',
     currentChannel: '',
     authorization: '',
     username: '',
     channelStates: {},
+    locations: {},
+    center: {},
   });
 
   // logout resets app
@@ -28,17 +27,17 @@ const App = () => {
     window.localStorage.clear();
     setState({
       guest: true,
-      currentUser: '',
       currentChannel: '',
       authorization: '',
       username: '',
       channelStates: {},
+      locations: {},
+      center: {},
     });
   };
 
-  const title = 'JEK';
-  // load the data if the user was already logged in
   useEffect(() => {
+    // load the data if the user was already logged in
     setState((prev) => ({
       ...prev,
       authorization: window.localStorage.getItem('authorization'),
@@ -49,7 +48,7 @@ const App = () => {
 
   // TODO: Reloading channel should bring back to channel
   return (
-    <div className="appContainer">
+    <div>
       <Router>
         <NavBar
           logOut={logOut}

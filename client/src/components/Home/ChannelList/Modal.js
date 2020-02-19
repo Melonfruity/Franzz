@@ -29,7 +29,7 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
   const channelName = useField('text');
   const channelLink = useField('text');
 
-  const createChannel = (e) => {
+  const createChannel = async (e) => {
     e.preventDefault();
     emitCreateChannel(channelName.value);
     channelName.reset();
@@ -37,7 +37,7 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
 
   const joinChannel = (e) => {
     e.preventDefault();
-    emitJoinChannel((channelLink.value));
+    emitJoinChannel(channelLink.value);
     channelLink.reset();
   };
 

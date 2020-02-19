@@ -1,6 +1,16 @@
-const axios = require('axios');
+import axios from 'axios';
 
-module.exports = (state, setState, socket) => {
+// eslint-disable-next-line import/prefer-default-export
+export const useChat = (state, setState, socket) => {
+  const updateMaps = (channel) => {
+    const locationObj = {
+      channel,
+      location: state.center,
+      authorization: state.authorization,
+    };
+    socket.emit('update maps', locationObj);
+  };
+
   const emitSendMessage = (message, video, image) => {
     const channelID = state.currentChannel;
     const messageObj = {
@@ -26,32 +36,6 @@ module.exports = (state, setState, socket) => {
     });
   };
 
-  const emitJoinChannel = (channelLink) => {
-    const joinChannelObj = {
-      channelLink,
-      authorization: state.authorization,
-    };
-    socket.emit('join channel', joinChannelObj, (channelData) => {
-      const { error, data, messages } = channelData;
-      if (!error) {
-        const { channel } = data;
-        setState((prev) => (
-          {
-            ...prev,
-            channelStates: {
-              ...prev.channelStates,
-              [channel]: {
-                ...data,
-                messages,
-              },
-            },
-          }
-        ));
-      } else {
-        console.log(error);
-      }
-    });
-  };
   const emitCreateChannel = (channelName) => {
     const createChannelObj = {
       channelName,
@@ -65,6 +49,8 @@ module.exports = (state, setState, socket) => {
       const request = { channelId: `${channel}/chat`, albumName: false };
       axios.post('http://localhost:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
 
+      updateMaps(channel);
+
       setState((prev) => (
         {
           ...prev,
@@ -77,6 +63,34 @@ module.exports = (state, setState, socket) => {
           },
         }
       ));
+    });
+  };
+
+  const emitJoinChannel = (channelLink) => {
+    const joinChannelObj = {
+      channelLink,
+      authorization: state.authorization,
+    };
+    socket.emit('join channel', joinChannelObj, (channelData) => {
+      const { error, data, messages } = channelData;
+      if (!error) {
+        const { channel } = data;
+
+        updateMaps(channel);
+
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channel]: {
+                ...data,
+                messages,
+              },
+            },
+          }
+        ));
+      }
     });
   };
 
