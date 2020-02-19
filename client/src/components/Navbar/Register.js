@@ -45,7 +45,7 @@ const Register = ({ setState }) => {
         <button type="button" onClick={handleRegister}> Register </button>
       </form>
       <div className="googleLoginButton">
-      <GoogleLogin setState={setState} />
+        <GoogleLogin setState={setState} />
       </div>
     </section>
   );
