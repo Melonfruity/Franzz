@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
-
 // eslint-disable-next-line import/prefer-default-export
 export const useMap = (state, setState, socket) => {
   // initialization
   const intializeMapsData = () => {
-    console.log('updated on state channelstate');
+    console.log('updated on state change');
     if (socket) {
       const getLocation = () => {
         if (navigator.geolocation) {
@@ -31,23 +29,9 @@ export const useMap = (state, setState, socket) => {
     }
   };
 
-  // updating
-  useEffect(() => {
-    if (socket) {
-      socket.on('update location', ({ channel, newLocations }) => {
-        console.log(channel, newLocations);
-        if (newLocations) {
-          setState((prev) => ({
-            ...prev,
-            locations: {
-              ...prev.locations,
-              [channel]: newLocations,
-            },
-          }));
-        }
-      });
-    }
-  }, [setState, socket]);
+  const updateMaps = (channel) => {
+    socket.emit('update maps', { channel });
+  };
 
   const grabLocations = (channel) => {
     return state.locations[channel];
@@ -56,5 +40,6 @@ export const useMap = (state, setState, socket) => {
   return {
     grabLocations,
     intializeMapsData,
+    updateMaps,
   };
 };

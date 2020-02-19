@@ -29,4 +29,5 @@ const updateLocations = (id, username, location, channels, callback, io) => {
 
 module.exports = {
   updateLocations,
+  updateChannel,
 };

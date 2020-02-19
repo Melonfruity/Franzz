@@ -1,6 +1,6 @@
 const { errm } = require('../utils/logger');
 const { extractJWT } = require('../utils/helpers/authHelper');
-const { updateLocations } = require('../utils/helpers/mapHelper');
+const { updateLocations, updateChannel } = require('../utils/helpers/mapHelper');
 
 // socket (client)
 module.exports = (io, socket) => {
@@ -8,14 +8,6 @@ module.exports = (io, socket) => {
     try {
       const user = await extractJWT(authorization);
       updateLocations(user.id, user.username, location, user.channels, callback, io);
-    } catch (err) {
-      errm(err);
-    }
-  });
-
-  socket.on('new channel', async ({ authorization, location }, callback) => {
-    try {
-      
     } catch (err) {
       errm(err);
     }

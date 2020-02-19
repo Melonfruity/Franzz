@@ -19,6 +19,7 @@ const App = () => {
     username: '',
     channelStates: {},
     locations: {},
+    center: { lat: 40, lng: -80 },
   });
 
   // logout resets app
@@ -31,6 +32,7 @@ const App = () => {
       username: '',
       channelStates: {},
       locations: {},
+      center: { lat: 40, lng: -80 },
     });
   };
 

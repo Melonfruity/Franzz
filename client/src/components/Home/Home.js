@@ -16,7 +16,6 @@ import { useMap } from '../../hooks/useMap';
 let socket;
 
 const Home = ({ state, setState }) => {
-
   const {
     emitSendMessage,
     emitJoinChannel,
@@ -26,6 +25,7 @@ const Home = ({ state, setState }) => {
   const {
     grabLocations,
     intializeMapsData,
+    updateMaps,
   } = useMap(state, setState, socket);
 
   // handle initial state
@@ -61,12 +61,12 @@ const Home = ({ state, setState }) => {
       socket.emit('join channels', { authorization: state.authorization }, (data) => {
         console.log(data);
       });
-
-      intializeMapsData();
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    intializeMapsData();
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
       if (channelID && newMessageObj) {
@@ -83,11 +83,25 @@ const Home = ({ state, setState }) => {
           }));
       }
     });
+    socket.on('update location', ({ channel, newLocations }) => {
+      console.log(channel, newLocations);
+      if (newLocations) {
+        setState((prev) => ({
+          ...prev,
+          locations: {
+            ...prev.locations,
+            [channel]: newLocations,
+          },
+        }));
+      }
+    });
+
     return () => {
       socket.emit('disconnect');
       socket.off();
     };
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket]);
 
   const channels = Object.keys(state.channelStates);
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
