@@ -4,11 +4,11 @@ import Register from './Register';
 
 const NavBar = ({ state, logOut, setState }) => {
   return ((
-    <nav>
-      {state.authorization ? <Link to="/" onClick={logOut}> Logout </Link> : null}
+    <nav className="navLogout">
       {state.username}
-      {state.guest === 'true' ? <div> click here to register </div> : null}
+      {state.guest === 'true' ? <div> </div> : null}
       {state.guest === 'true' ? <Register setState={setState} /> : null}
+      {state.authorization ? <Link className="logoutButton" to="/" onClick={logOut}> Logout </Link> : null}
     </nav>
   ));
 };
