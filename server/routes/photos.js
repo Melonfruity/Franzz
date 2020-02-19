@@ -77,7 +77,11 @@ photosRouter.get('/getAlbums/:channelId', (req, res) => {
   const { channelId } = req.params;
   const path = `${channelId}/albums`;
   cloudinary.v2.api.sub_folders(path, (error, result) => {
-    res.send(result);
+    if (result) {
+      res.send(result);
+    } else {
+      res.send({ folders: [] });
+    }
   });
 });
 
