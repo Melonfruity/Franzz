@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { useField } from '../../../hooks/useField'
-import Modal from '../../ComponentHelpers/Modal'
+import Modal from './Modal'
 
 const NewChannelItem = ({ emitCreateChannel, emitJoinChannel }) => {
   const ChannelItemStyle = {

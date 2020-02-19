@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
 import NewChannelItem from './NewChannelItem';
-import Modal from '../../ComponentHelpers/Modal'
+import Modal from './Modal'
 
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
