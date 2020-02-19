@@ -100,6 +100,7 @@ const Home = ({ state, setState }) => {
     });
 
     return () => {
+      socket.emit('offline');
       socket.emit('disconnect');
       socket.off();
     };

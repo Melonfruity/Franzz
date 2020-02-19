@@ -17,7 +17,7 @@ module.exports = (io, socket) => {
     try {
       const user = await extractJWT(authorization);
       console.log(user.username, channel);
-      updateChannel(user.id, user.username, channel, location, io);
+      updateChannel(socket.id, user.username, channel, location, io);
     } catch (err) {
       errm(err);
     }
