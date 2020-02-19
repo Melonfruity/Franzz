@@ -11,35 +11,45 @@ export const useMap = (state, setState, socket) => {
         console.log('getting location data');
         navigator.geolocation.watchPosition((position) => {
           const location = { lat: position.coords.latitude, lng: position.coords.longitude };
+          console.log(location);
           const locationObj = {
             location,
             authorization: state.authorization,
           };
-          console.log(location);
           socket.emit('update maps', locationObj);
+          // socket.emit('update location', locationObj, (locations) => {
+          //   setState((prev) => ({
+          //     ...prev,
+          //     locations,
+          //     center: location,
+          //   }));
+          // });
         });
       }
     }
   };
+  const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
 
   const intializeMapsData = () => {
     console.log('updated on state change');
     if (socket) {
       axios
-        .get(`http://ipinfo.io?token=${token}`)
+        // .get(`http://ipinfo.io?token=${token}`)
+        .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`)
         .then((res) => {
-          const loc = res.data.loc.split(',');
-          const location = {
-            lat: Number(loc[0]),
-            lng: Number(loc[1]),
-          };
+          // const loc = res.data.loc.split(',');
+          // const location = {
+          //   lat: Number(loc[0]),
+          //   lng: Number(loc[1]),
+          // };
+          console.log(res.data);
+          const { location } = res.data;
           const locationObj = {
+            // location: { lat: 43.8288856, lng: -79.2946161 },
             location,
             authorization: state.authorization,
           };
           socket.emit('update location', locationObj, (locations) => {
-            console.log('update location emit');
-            console.log(locations);
             setState((prev) => ({
               ...prev,
               locations,

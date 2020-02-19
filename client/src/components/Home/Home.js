@@ -86,10 +86,6 @@ const Home = ({ state, setState }) => {
       }
     });
 
-    socket.on('online users', (data) => {
-
-    });
-
     socket.on('update location', ({ channel, newLocations }) => {
       console.log(channel, newLocations);
       if (newLocations) {
