@@ -59,8 +59,10 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          <button onClick={() => viewChatPhotos()}>Chat</button>
-          <button onClick={() => newView('albums')}>Albums</button>
+          <div className="switch-buttons">
+            <button className="image-buttons" onClick={() => viewChatPhotos()}>Chat</button>
+            <button className="image-buttons" onClick={() => newView('albums')}>Albums</button>
+          </div>
           { view === ALBUMFORM
           && (
           <AlbumForm

@@ -66,7 +66,7 @@ export default function AlbumForm({
         </label>
         )}
         { !newAlbum && (
-          <h4>{`Adding photos to: ${albumName}`}</h4>
+          <div>{`Adding photos to: ${albumName}`}</div>
         )}
         <input
           id="drop-area"
