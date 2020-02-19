@@ -87,8 +87,7 @@ photosRouter.get('/coverPhoto/:channelId/:album/:albumName', (req, res) => {
     .expression(`folder=${albumPath}`)
     .sort_by('uploaded_at', 'desc')
     .execute().then((result) => {
-      console.log(result); 
-      res.send(result.resources[0].url);
+      res.send([result.resources[0].resource_type, result.resources[0].url]);
     });
 });
 
