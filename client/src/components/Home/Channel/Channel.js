@@ -27,7 +27,7 @@ const Channel = ({
   return (
     <div>
       {/* <StalkerMap /> */}
-      <YoutubeSync />
+      {/* <YoutubeSync /> */}
       {name}
       {
         // modal this!
