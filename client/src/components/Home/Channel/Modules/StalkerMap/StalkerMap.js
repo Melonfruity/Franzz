@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
-import { useMap } from '../../../../../hooks/useMap';
 
 const mapStyles = {
   width: '100%',

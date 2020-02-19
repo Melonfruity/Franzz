@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const token = '0aaae0c0080e60';
+const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useMap = (state, setState, socket) => {
@@ -28,7 +29,6 @@ export const useMap = (state, setState, socket) => {
       }
     }
   };
-  const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
 
   const intializeMapsData = () => {
     console.log('updated on state change');
