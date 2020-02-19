@@ -37,6 +37,7 @@ const GoogleLoginButton = ({ setState }) => {
 
   return (
     <GoogleLogin
+      className="googleLogin"
       clientId={GOOGLE_CLIENT_ID}
       buttonText="Google Login"
       onSuccess={onSuccess}

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { useField } from '../../../hooks/useField';
-import Modal from '../../ComponentHelpers/Modal';
+import { useField } from '../../../hooks/useField'
+import Modal from './Modal'
 
 const NewChannelItem = ({ emitCreateChannel, emitJoinChannel }) => {
   const ChannelItemStyle = {
@@ -29,7 +29,6 @@ const NewChannelItem = ({ emitCreateChannel, emitJoinChannel }) => {
       style={ChannelItemStyle}
     >
       <div> Create / Join Channel Button for Popup </div>
-      <Modal />
       <input
         {...channelName}
         reset={undefined}

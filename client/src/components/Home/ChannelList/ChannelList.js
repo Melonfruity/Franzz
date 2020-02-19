@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
-import NewChannelItem from './NewChannelItem';
+import Modal from './Modal';
 
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
@@ -10,7 +10,7 @@ const ChannelList = ({
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
     return (
-      <li key={id}>
+      <li className="channelItems" key={id}>
         <ChannelItem
           name={name}
           id={id}
@@ -21,12 +21,15 @@ const ChannelList = ({
   });
 
   return (
-    <div>
-      <li>
-        <Link to="/home">Home</Link>
-      </li>
-      {channelList}
-      <NewChannelItem
+    <div className="userHome">
+      <div className="leftBarUI">
+        <div>
+          <Link to="/home">Home</Link>
+        </div>
+        <h3>Channel List</h3>
+        {channelList}
+      </div>
+      <Modal
         emitCreateChannel={emitCreateChannel}
         emitJoinChannel={emitJoinChannel}
       />
