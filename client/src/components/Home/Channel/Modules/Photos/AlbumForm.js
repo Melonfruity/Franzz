@@ -32,15 +32,26 @@ export default function AlbumForm({
   function viewUpdatedAlbum() {
     viewAlbum(`${channelId}/albums/${albumName}`, albumName);
   }
+
+  function viewAlbums() {
+    viewAlbum('albums');
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     [...fields.files].forEach((file) => {
-      handleFiles(file, channelId, fields.album, emitSendMessage, viewUpdatedAlbum);
+      if (!newAlbum) {
+        handleFiles(file, channelId, fields.album, emitSendMessage, viewUpdatedAlbum);
+      } else {
+        handleFiles(file, channelId, fields.album, emitSendMessage, viewAlbums);
+      }
     });
     document.getElementById('album-upload-form').reset();
     let message = `🚨A new album '${fields.album}' has been uploaded🚨`;
     if (!newAlbum) {
       message = `👀 New photos were added to ${fields.album}`;
+    } else {
+      setTimeout(() => viewAlbum('albums'), 3000);
     }
     setTimeout(() => emitSendMessage(message, false, false), 3000);
   }

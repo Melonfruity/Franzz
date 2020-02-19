@@ -68,7 +68,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName=""
             newAlbum
-            viewAlbum={viewAlbum}
+            viewAlbum={newView}
           />
           )}
           { view === CHAT
