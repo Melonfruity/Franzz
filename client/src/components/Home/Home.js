@@ -55,7 +55,8 @@ const Home = ({ state, setState }) => {
         console.log(data);
       });
     });
-  }, [state.authorization]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     socket.on('new message', (data) => {

@@ -28,7 +28,7 @@ const Register = ({ setState }) => {
   };
 
   return (
-    <section>
+    <section className="registration">
       <form>
         <input
           placeholder="email"
@@ -44,8 +44,9 @@ const Register = ({ setState }) => {
         />
         <button type="button" onClick={handleRegister}> Register </button>
       </form>
-      <div> ---------------------------- </div>
-      <GoogleLogin setState={setState} />
+      <div className="googleLoginButton">
+        <GoogleLogin setState={setState} />
+      </div>
     </section>
   );
 };

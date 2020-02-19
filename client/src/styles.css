@@ -1,0 +1,158 @@
+
+html {
+  height: 100vh;
+}
+
+body {
+  background-color: white;
+  height: 100%
+}
+
+#root {
+  height: 100%;
+}
+
+.appContainer {
+  height: 100%;
+}
+
+.landingContainer {
+  height: 80%;
+}
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  position: relative;
+  top: 150px;
+  height: 60%;
+  /* height: 300px; */
+}
+
+.landingPage input {
+  width: 500px;
+}
+
+.landingPage button {
+  width: 500px;
+}
+
+.normalLogin {
+  /* margin: auto;
+  display:flex;
+  /* flex-direction: column; */
+  /* text-align: center; */
+}
+
+.normalLogin form{
+  /* display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+.normalLogin button {
+  /* width: 200%; */
+}
+
+.usernameLogin {
+  /* margin: auto;
+  display:flex;
+  text-align: center; */
+}
+
+.usernameLogin form {
+  /* display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+
+.usernameLogin button {
+  /* width: 200%; */
+}
+
+.googleLogin {
+  /* margin: auto;
+  display:flex;
+  /* flex-direction: column; */
+  /* text-align: center; */ 
+}
+
+.channelItems {
+  list-style: none;
+}
+
+.userHome {
+  margin-top: 50px;
+  display: flex;
+}
+
+.chatContainer {
+  color: 'blue';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.textContainer {
+  margin: auto;
+  height: 500px;
+  border: 1px solid black;
+  width: 80vw;
+  overflow: auto;
+}
+
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}
+
+.chatInput {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+#resize-box {
+  left: 40%;
+}
+
+.registration {
+  display: flex;
+  flex-direction: row;
+}
+
+.registration form {
+  display: flex;
+  flex-direction: row;
+}
+
+.navLogout {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+}
+
+.googleLoginButton {
+  position: relative;
+  margin-left: 10px;
+  left: 150px;
+}
+
+.logoutButton {
+  position: relative;
+  margin-left: 250px;
+  left: 450px;
+}
+
+.leftBarUI {
+  margin-top: 20px;
+}
