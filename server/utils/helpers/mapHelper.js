@@ -1,5 +1,24 @@
 const { locations } = require('../../dynamicDB');
 
+// locations = {
+//   [channelID]: {
+//     [socketID]: {
+//       username,
+//       location,
+//     },
+//     [socketID]: {
+//       username,
+//       location,
+//     },
+//   },
+//   [channelID]: {
+//     [socketID]: {
+//       username,
+//       location,
+//     }
+//   }
+// }
+
 const updateLocations = (id, username, location, channels, callback, io) => {
   channels.forEach((channel) => {
     if (!locations[channel]) {

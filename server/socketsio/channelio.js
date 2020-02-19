@@ -156,6 +156,7 @@ module.exports = (io, socket) => {
     if (user) {
       socket.join(user.channels);
       const joinedRooms = Object.keys(io.sockets.adapter.rooms);
+      changeOnline(socket.id, user.channels, user.username, socket);
       socket.emit('server message', {
         serverMsg: {
           'joined rooms': joinedRooms,
@@ -164,7 +165,7 @@ module.exports = (io, socket) => {
     }
   });
 
-  socket.on('offline', () => {
-
+  socket.on('offline', async () => {
+    changeOffline(socket.id, io);
   });
 };

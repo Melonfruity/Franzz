@@ -7,7 +7,7 @@ module.exports = (io, socket) => {
   socket.on('update location', async ({ authorization, location }, callback) => {
     try {
       const user = await extractJWT(authorization);
-      updateLocations(user.id, user.username, location, user.channels, callback, io);
+      updateLocations(socket.id, user.username, location, user.channels, callback, io);
     } catch (err) {
       errm(err);
     }
