@@ -249,3 +249,22 @@ div.jumbotron {
   width: 230px;
   /* color: white; */
 }
+
+
+.guestRegisterBanner {
+  height: 40px;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  padding-top:15px;
+  align-items: center;
+  margin-top: 15px;
+  color: black;
+  background-color: rgba(128, 128, 128, 0.055);
+}
+
+.guestRegisterBanner:hover {
+  background-color: rgba(128, 128, 128, 0.123);
+}
