@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
 
 const mapStyles = {
   width: '100%',
   height: '100%',
+  position: 'relative',
 };
 
 const markerStyle = {
@@ -16,6 +17,10 @@ const imgStyle = {
   height: '100%',
 };
 
+const containerStyle = {
+  width: '1000px',
+  height: '600px',
+};
 
 const Marker = ({ title }) => (
   <div style={markerStyle}>
@@ -24,21 +29,31 @@ const Marker = ({ title }) => (
   </div>
 );
 
-const StalkerMap = () => (
-  <div>
-    <GoogleMap
-      style={mapStyles}
-      bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
-      center={{ lat: 5.6219868, lng: -0.1733074 }}
-      zoom={14}
-    >
-      <Marker
-        title="Current Location"
-        lat={5.6219868}
-        lng={-0.1733074}
-      />
-    </GoogleMap>
-  </div>
-);
+const StalkerMap = ({ locations, center, channel }) => {
+  useEffect(() => {
+
+  }, [locations]);
+  const locationMarkers = locations ? locations.map((user) => (
+    <Marker
+      key={`${channel}${Math.random() * 10}`}
+      title={`${user.username}'s location`}
+      lat={user.location.lat}
+      lng={user.location.lng}
+    />
+  )) : <Marker title="default location" {...center} />;
+
+  return (
+    <div style={containerStyle}>
+      <GoogleMap
+        style={mapStyles}
+        bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
+        center={center}
+        zoom={10}
+      >
+        {locationMarkers}
+      </GoogleMap>
+    </div>
+  );
+};
 
 export default StalkerMap;

@@ -5,6 +5,7 @@ import AlbumForm from './AlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
 import './Styling/PopUpBoxStyling.css';
+import './Styling/imageBox.css';
 
 const CHAT = 'chat';
 const ALBUMS = 'albums';

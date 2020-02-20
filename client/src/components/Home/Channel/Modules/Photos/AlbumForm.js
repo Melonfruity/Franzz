@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
 
-
 export default function AlbumForm({
   channelId, emitSendMessage, albumName, newAlbum, viewAlbum,
 }) {
@@ -58,12 +57,10 @@ export default function AlbumForm({
 
   return (
     <div>
+      <div className="popup-title">New Album</div>
       <form id="album-upload-form" onSubmit={handleSubmit}>
         { newAlbum && (
-        <label>
-          Album Name:
-          <input type="text" name="album" onChange={handleOnChange} />
-        </label>
+          <input id="input-album" type="text" name="album" placeholder="Choose an album name" onChange={handleOnChange} />
         )}
         { !newAlbum && (
           <div>{`Adding photos to: ${albumName}`}</div>

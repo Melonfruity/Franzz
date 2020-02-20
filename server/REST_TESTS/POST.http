@@ -46,3 +46,6 @@ content-type: application/json
 
 ### access token check
 POST https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.ImC8B8LjZTyPN5ItQPFHoopaBPSBXPAV3C_9AJcrdPPcHlqTdQUr6QquLamArOSwX8GwAfBiEbgyFd1_NJhVGBCdpNYWQi_LLvK52uJVSI6-ssERwp4Vvdg7SaQE58WN9DA
+
+###
+POST http://localhost:8001/api/pusher/auth

@@ -162,8 +162,4 @@ module.exports = (io, socket) => {
       });
     }
   });
-
-  socket.on('disconnect', () => {
-    info('client disconnected');
-  });
 };

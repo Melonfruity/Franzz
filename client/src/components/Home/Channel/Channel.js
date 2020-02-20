@@ -7,7 +7,7 @@ import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 import StalkerMap from './Modules/StalkerMap/StalkerMap';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage,
+  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
 }) => {
   const [userStatus, setUserStatus] = useState(users);
 
@@ -26,12 +26,7 @@ const Channel = ({
 
   return (
     <div>
-      {/* <StalkerMap /> */}
-      {/* <YoutubeSync /> */}
       {name}
-      {
-        // modal this!
-      }
       { invite.ready ? (
         <div>
           <textarea defaultValue={invite.link} />
@@ -49,6 +44,11 @@ const Channel = ({
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
+      />
+      <StalkerMap
+        locations={locations}
+        channel={channel}
+        center={center}
       />
     </div>
   );

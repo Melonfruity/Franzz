@@ -15,7 +15,6 @@ const createInviteLink = (channel) => {
     channel,
     created: Date.now(),
   };
-  console.log(shortLinks)
   return shortUrl;
 };
 
@@ -24,7 +23,6 @@ const getChannel = (shortUrl) => {
     const { channel, created } = shortLinks[shortUrl];
     if (channel) {
       if (Date.now() - created > 3600000) {
-        console.log('link gets deleted');
         delete shortLinks[shortUrl];
         return false;
       }

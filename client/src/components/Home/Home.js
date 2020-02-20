@@ -9,17 +9,22 @@ import channelService from '../../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import useChat from '../../hooks/useChat';
+import { useChat } from '../../hooks/useChat';
+import { useMap } from '../../hooks/useMap';
 
 let socket;
 
 const Home = ({ state, setState }) => {
-
   const {
     emitSendMessage,
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
+
+  const {
+    grabLocations,
+    intializeMapsData,
+  } = useMap(state, setState, socket);
 
   // handle initial state
   useEffect(() => {
@@ -40,7 +45,10 @@ const Home = ({ state, setState }) => {
             }
             return obj;
           }, {});
-          setState((prev) => ({ ...prev, channelStates }));
+          setState((prev) => ({
+            ...prev,
+            channelStates,
+          }));
         });
     }
     // change api end point later
@@ -59,6 +67,8 @@ const Home = ({ state, setState }) => {
   }, []);
 
   useEffect(() => {
+    if (socket) intializeMapsData();
+
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
       if (channelID && newMessageObj) {
@@ -75,11 +85,26 @@ const Home = ({ state, setState }) => {
           }));
       }
     });
+
+    socket.on('update location', ({ channel, newLocations }) => {
+      console.log(channel, newLocations);
+      if (newLocations) {
+        setState((prev) => ({
+          ...prev,
+          locations: {
+            ...prev.locations,
+            [channel]: newLocations,
+          },
+        }));
+      }
+    });
+
     return () => {
       socket.emit('disconnect');
       socket.off();
     };
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket]);
 
   const channels = Object.keys(state.channelStates);
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
@@ -101,6 +126,8 @@ const Home = ({ state, setState }) => {
           messages={messages}
           users={users}
           emitSendMessage={emitSendMessage}
+          locations={grabLocations(id)}
+          center={state.center}
         />
       </Route>
     );
