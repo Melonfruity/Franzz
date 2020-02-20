@@ -3,7 +3,6 @@ import NormalLogin from './Login/NormalLogin';
 import Username from './Login/Username';
 import GoogleLogin from './Login/GoogleLogin';
 
-
 const Landing = ({ setState }) => {
   return (
     <section className="landingContainer">

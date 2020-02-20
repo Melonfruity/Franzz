@@ -5,7 +5,7 @@ html {
 
 body {
   background-color: white;
-  height: 100%
+  height: 100%;
 }
 
 #root {
@@ -41,46 +41,31 @@ body {
 }
 
 .normalLogin {
-  /* margin: auto;
-  display:flex;
-  /* flex-direction: column; */
-  /* text-align: center; */
 }
 
 .normalLogin form{
-  /* display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+
 }
 
 .normalLogin button {
-  /* width: 200%; */
+
 }
 
 .usernameLogin {
-  /* margin: auto;
-  display:flex;
-  text-align: center; */
+
 }
 
 .usernameLogin form {
-  /* display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+
 }
 
 
 .usernameLogin button {
-  /* width: 200%; */
+
 }
 
 .googleLogin {
-  /* margin: auto;
-  display:flex;
-  /* flex-direction: column; */
-  /* text-align: center; */ 
+
 }
 
 .channelItems {
@@ -149,10 +134,69 @@ body {
 
 .logoutButton {
   position: relative;
-  margin-left: 250px;
+  margin-left: 100px;
   left: 450px;
 }
 
 .leftBarUI {
   margin-top: 20px;
+}
+
+.rightBarUI {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 12%;
+}
+
+.username {
+  margin-top: 10px;
+  width: 150px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.NewAccountRegistrationModalForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewAccountRegistrationModalForm p {
+  text-align: center;
+}
+
+.NewAccountModal {
+  top: 160px;
+  height: 500px;
+}
+
+.NewAccountRegistrationModalForm div {
+  margin-bottom: 10px;
+}
+
+.NewAccountRegistrationModalForm input {
+  width: 300px;
+  margin-left: 5px;
+}
+
+
+.NewAccountModal form {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.channelList {
+  max-height: 310px;
+  overflow:auto;
 }
