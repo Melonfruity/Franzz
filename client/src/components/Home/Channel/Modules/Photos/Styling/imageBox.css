@@ -91,12 +91,69 @@ button.image-buttons:focus {
 #album-submission {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 22px;
-  width: 80%;
+  margin-bottom: 20px;
+  width: 86%;
   margin-top: -42px;
   left: 33px;
 }
 
 #album-upload-form {
+  width: 100%;
+}
+
+input.submit-button {
+  background: none;
+  color: white;
+  border: none;
+  font-family: 'Raleway';
+  font-size: 21px;
+  font-weight: 200;
+  padding: 0;
+  transition: 0.4s;
+}
+
+.submit-button:hover {
+  color: rgb(91, 224, 248);
+}
+
+/* input#album-upload {
+  z-index: 900;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 100%;
+  font-size: 24px;
+  width: 100%;
+}
+
+div#input-display {
+  border-radius: 20px;
+  height: 431px;
+  background: rgb(70, 70, 70);
+  color: white;
+} */
+
+#album-upload {
+  color: transparent;
+  width: 100%;
+}
+#album-upload::-webkit-file-upload-button {
+  visibility: hidden;
+}
+#album-upload::before {
+  content: 'Drag and drop photos/videos here or click';
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: #363636;
+  border: none;
+  border-radius: 20px;
+  padding: 200px 8px;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  height: 439px;
   width: 100%;
 }

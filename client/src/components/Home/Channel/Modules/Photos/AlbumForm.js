@@ -65,16 +65,17 @@ export default function AlbumForm({
         { !newAlbum && (
           <div>{`Adding photos to: ${albumName}`}</div>
         )}
-        <div className="submit-button" id="album-submission"><input type="submit" value="Submit" /></div>
+        <div id="album-submission"><input className="submit-button" type="submit" value="Create >> " /></div>
+        <div id="input-display" value="drag">
         <input
           id="album-upload"
           name="files"
           type="file"
           multiple
           accept="image/*"
-          className="textContainer"
           onChange={handleOnChange}
         />
+        </div>
       </form>
     </div>
   );
