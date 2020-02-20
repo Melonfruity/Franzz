@@ -27,8 +27,8 @@ export default function AlbumDisplay({ change, channelId, viewAlbum }) {
 
   return (
     <div>
-      <button onClick={() => change('albumForm')}>New Album</button>
       <div className="popup-title">Albums</div>
+        <button className="adding-button" onClick={() => change('albumForm')}>+<span></span></button>
       <div id="album-box">
         {allAlbums}
       </div>

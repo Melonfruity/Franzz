@@ -77,3 +77,49 @@ button.image-buttons {
   font-family: 'Raleway';
   font-size: 20px;
 }
+
+button.image-buttons:focus {
+  outline: none;
+}
+
+.adding-button {
+  background-color: transparent;
+  border: none;
+  color: rgb(91, 224, 248);
+  text-align: left;
+  padding: 1px;
+  font-size: 40px;
+  width: 140px;
+  margin-top: -14px;
+  transition: all 0.6s;
+}
+
+.adding-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.6s;
+}
+
+.adding-button span:after {
+  content: 'New album';
+  position: absolute;
+  font-family: 'Raleway';
+  font-size: 16px;
+  bottom: 0;
+  opacity: 0;
+  right: -100px;
+  transition: 0.6s;
+}
+
+.adding-button:hover span {
+  padding-right: 91px;
+}
+
+.adding-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+
