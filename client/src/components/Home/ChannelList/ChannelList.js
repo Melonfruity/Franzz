@@ -28,7 +28,7 @@ const ChannelList = ({
         </div>
         <h3>Channel List</h3>
         <div className="channelList">
-        {channelList}
+          {channelList}
         </div>
       </div>
       <Modal
