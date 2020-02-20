@@ -19,7 +19,7 @@ export default function AlbumDisplay({ change, channelId, viewAlbum }) {
   const allAlbums = albums.map((a) => (
     <Album
       key={a.name}
-      name={a.name}
+      name={a.name.replace(/-/g, ' ')}
       path={a.path}
       viewAlbum={viewAlbum}
     />

@@ -21,7 +21,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   const [imageLinks, changeLinks] = useState([]);
   const [view, changeView] = useState('chat');
   const [folderPath, changePath] = useState(`${channelId}/chat/false`);
-  const [title, changeTitle] = useState('Chat');
+  const [title, changeTitle] = useState('Chat Photos');
 
   // Changes view of gallery
   function newView(v) {
@@ -38,7 +38,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   // Go back to viewing chat photos
   function viewChatPhotos() {
     changePath(`${channelId}/chat/false`);
-    changeTitle('Chat');
+    changeTitle('Chat Photos');
     changeView('chat');
   }
 
@@ -61,8 +61,8 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
           <div className="switch-buttons">
-            <button className="image-buttons" onClick={() => viewChatPhotos()}>Chat</button>
-            <button className="image-buttons" onClick={() => newView('albums')}>Albums</button>
+            <button className="image-buttons" onClick={() => viewChatPhotos()}>CHAT</button>
+            <button className="image-buttons" onClick={() => newView('albums')}>ALBUMS</button>
           </div>
           { view === ALBUMFORM
           && (

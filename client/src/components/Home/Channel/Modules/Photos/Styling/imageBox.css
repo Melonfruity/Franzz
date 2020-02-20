@@ -1,7 +1,8 @@
 #imageBox {
   overflow-x: hidden;
   padding: 30px;
-  color: white;
+  color: #313131;
+  font-family: 'Muli';
   width: 100%;
 }
 
@@ -12,17 +13,17 @@
 }
 
 .popup-title {
-  color: white;
-  font-size: 30px;
-  font-family: 'Raleway';
-  font-weight: 700;
+  color: #313131;
+  font-size: 33px;
+  font-family: 'Muli';
+  font-weight: 600;
 }
 
 button.image-buttons {
   background: transparent;
   border: none;
-  color: rgb(91, 224, 248);
-  font-family: 'Raleway';
+  color: #313131;
+  font-family: 'Muli';
   font-size: 20px;
 }
 
@@ -33,7 +34,8 @@ button.image-buttons:focus {
 .adding-button {
   background-color: transparent;
   border: none;
-  color: rgb(91, 224, 248);
+  color: #363636;
+  font-family: 'Muli';
   text-align: left;
   padding: 1px;
   font-size: 40px;
@@ -52,8 +54,9 @@ button.image-buttons:focus {
 .adding-button span:after {
   content: 'New album';
   position: absolute;
-  font-family: 'Raleway';
+  font-family: 'Muli';
   font-size: 16px;
+  color: rgb(251, 193, 0);
   bottom: 0;
   opacity: 0;
   right: -100px;
@@ -62,6 +65,7 @@ button.image-buttons:focus {
 
 .adding-button:hover span {
   padding-right: 91px;
+  color: rgb(251, 193, 0);
 }
 
 .adding-button:hover span:after {
@@ -69,17 +73,22 @@ button.image-buttons:focus {
   right: 0;
 }
 
+.adding-button:hover {
+  color: rgb(251, 193, 0);
+}
+
 #input-album {
   background: transparent;
   z-index: 1;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #313131;
   margin-top: 10px;
   margin-bottom: 10px;
   height: 46px;
   width: 70%;
-  color: whitesmoke;
-  font-size: 30px;
+  color: #313131;
+  font-family: 'Muli';
+  font-size: 25px;
   font-weight: 200;
   padding-left: 5px;
 }
@@ -143,17 +152,20 @@ div#input-display {
 }
 #album-upload::before {
   content: 'Drag and drop photos/videos here or click';
-  color: white;
+  color: #313131;
   display: flex;
   justify-content: center;
   align-content: center;
-  background: #363636;
+  background: #f5f5f5;
   border: none;
   border-radius: 20px;
   padding: 200px 8px;
   outline: none;
-  cursor: pointer;
+  font-family: 'Muli';
   font-size: 20px;
-  height: 439px;
-  width: 100%;
+  font-weight: 300;
+}
+
+#album-upload::before:hover {
+  background: rgb(200, 200, 200);
 }

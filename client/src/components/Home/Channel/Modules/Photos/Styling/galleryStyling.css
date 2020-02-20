@@ -16,4 +16,9 @@
   width: 100%;
 }
 
+.column img:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
 

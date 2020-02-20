@@ -6,48 +6,29 @@
   position: absolute;
   width: 80%;
   min-height: 50px;
-  max-height: 800px;
-  height: 200px;
-  border-radius: 23px;
-  background-color: rgb(42, 42, 46);
-  border: 1px solid black;
+  max-height: 750px;
+  height: 100px;
+  background-color: rgb(253, 253, 253);
   padding-bottom: 8px;
-  overflow-x: hidden;
-  height: 100%;
+  overflow-x: initial;
 }
 
 #resize-box:after {
-  content: " ";
-  background-color: rgb(91, 224, 248);
+  content: "";
+  background-color:#313131;
+  font-size: 7px;
   position: absolute;
+  height: 6px;
   bottom: 0;
   width: 80%;
-  height: 6px;
   left: 10%;
-  border-radius: 30px;
   cursor: ns-resize;
   align-self: center;
 }
 /* width */
 #resize-box ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
 }
 
-/* Track */
-#resize-box ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(42, 42, 46); 
-  border-radius: 10px;
-}
- 
-/* Handle */
-#resize-box ::-webkit-scrollbar-thumb {
-  background: rgb(139, 139, 139); 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-/* #resize-box ::-webkit-scrollbar-thumb:hover {
-  background:l; 
-} */
 
 

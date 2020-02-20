@@ -8,6 +8,7 @@ export default function AlbumForm({
     {
       album: albumName,
       files: [],
+      originalName: albumName,
     },
   );
 
@@ -16,9 +17,11 @@ export default function AlbumForm({
   function handleOnChange(event) {
     event.preventDefault();
     if (event.target.name === 'album') {
+      const value = event.target.value.replace(/ /g, '-');
       changeFields({
         ...fields,
-        [event.target.name]: event.target.value,
+        [event.target.name]: value,
+        originalName: event.target.value,
       });
     } else {
       changeFields({
