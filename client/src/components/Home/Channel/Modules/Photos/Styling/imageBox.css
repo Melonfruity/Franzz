@@ -71,11 +71,13 @@ button.image-buttons:focus {
 
 #input-album {
   background: transparent;
+  z-index: 1;
   border: none;
   border-bottom: 1px solid white;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 46px;
-  width: 500px;
+  width: 70%;
   color: whitesmoke;
   font-size: 30px;
   font-weight: 200;
@@ -84,4 +86,17 @@ button.image-buttons:focus {
 
 #input-album {
   outline: none;
+}
+
+#album-submission {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 22px;
+  width: 80%;
+  margin-top: -42px;
+  left: 33px;
+}
+
+#album-upload-form {
+  width: 100%;
 }
