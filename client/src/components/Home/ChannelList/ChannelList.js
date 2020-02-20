@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
 import Modal from './NewChannelModal';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
@@ -10,6 +13,7 @@ const ChannelList = ({
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
     return (
+      <div>
       <li className="channelItems" key={id}>
         <ChannelItem
           name={name}
@@ -17,6 +21,8 @@ const ChannelList = ({
           selectCurrentChannel={selectCurrentChannel}
         />
       </li>
+      <Divider />
+      </div>
     );
   });
 
@@ -28,7 +34,9 @@ const ChannelList = ({
         </div>
         <h3>Channel List</h3>
         <div className="channelList">
+        <List>
         {channelList}
+        </List>
         </div>
       </div>
       <Modal

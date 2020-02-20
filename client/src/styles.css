@@ -6,8 +6,8 @@ html {
 body {
   background-color: rgb(255, 255, 255);
   height: 100%;
-  background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg);
-  background-size: cover;
+  /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
+  /* background-size: cover; */
 }
 
 #root {
@@ -147,7 +147,9 @@ body {
 
 .leftBarUI {
   margin-top: 20px;
+  width: 20%;
 }
+
 
 .rightBarUI {
   margin-top: 20px;
@@ -205,7 +207,7 @@ body {
 
 .channelList {
   max-height: 310px;
-  max-width: 160px;
+  max-width: 230px;
   overflow:auto;
 }
 
