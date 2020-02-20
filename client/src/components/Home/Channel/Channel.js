@@ -25,7 +25,7 @@ const Channel = ({
   };
 
   return (
-    <div>
+    <div className="chatBox">
       {name}
       { invite.ready ? (
         <div>
@@ -45,11 +45,11 @@ const Channel = ({
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
       />
-      <StalkerMap
+      {/* <StalkerMap
         locations={locations}
         channel={channel}
         center={center}
-      />
+      /> */}
     </div>
   );
 };

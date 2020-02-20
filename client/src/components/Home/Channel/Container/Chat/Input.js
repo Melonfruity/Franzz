@@ -13,11 +13,12 @@ const Input = ({ emitSendMessage }) => {
 
   return (
     <form>
-      Input
       <textarea
+        className="chatInputBox"
         {...message}
         reset={undefined}
         onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
+        placeholder= "Type something to send..."
       />
       <button
         type="submit"

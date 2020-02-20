@@ -13,7 +13,7 @@ const PopupToast = ({ children }) => {
   return (
     <>
       <div className="flexContainer">
-        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>Create New Channel</Button>}
+        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>New Channel</Button>}
         <Toast show={show} onClose={() => toggleShow(false)}>
           <Toast.Header>
             <strong className="mr-auto">New Channel</strong>
