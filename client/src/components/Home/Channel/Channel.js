@@ -25,7 +25,7 @@ const Channel = ({
   };
 
   return (
-    <div>
+    <div className="chatBox">
       {name}
       { invite.ready ? (
         <div>
@@ -39,17 +39,17 @@ const Channel = ({
           </CopyToClipboard>
         </div>
       ) : <button type="button" onClick={createInvite}>Create Invite Link</button>}
-      {/* <Chat
+      <Chat
         messages={messages}
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
-      /> */}
-      <StalkerMap
+      />
+      {/* <StalkerMap
         locations={locations}
         channel={channel}
         center={center}
-      />
+      /> */}
     </div>
   );
 };

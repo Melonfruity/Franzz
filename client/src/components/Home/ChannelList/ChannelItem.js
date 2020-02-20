@@ -12,7 +12,7 @@ const ChannelItem = ({ name, id, selectCurrentChannel }) => {
 
 
   return (
-    <Link
+    <Link className ="channelLink"
       to={`/channel/${id}`}
       onClick={() => selectCurrentChannel(id)}
     >

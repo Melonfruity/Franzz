@@ -35,14 +35,15 @@ body {
 
 .landingPage input {
   width: 500px;
-  color: black;
-  background-color:rgba(255, 255, 255, 0.205)
+
+  /* background-color:rgba(255, 255, 255, 0.205) */
 }
+
+
 
 .landingPage button {
   width: 500px;
-  color: black;
-  background-color:rgba(255,255,255,.2)
+  /* background-color:rgba(255,255,255,.2) */
 }
 
 .normalLogin {
@@ -148,6 +149,7 @@ body {
 .leftBarUI {
   margin-top: 20px;
   width: 20%;
+  /* color: white; */
 }
 
 
@@ -155,6 +157,7 @@ body {
   margin-top: 20px;
   margin-left: 10px;
   width: 250px;
+  /* color: white; */
 }
 
 .username {
@@ -214,4 +217,29 @@ body {
 .signInInput {
   width: 500px;
   height: 60px;
+}
+
+.channelLink {
+  text-decoration: none;
+  color: black;
+}
+
+.channelLink:hover {
+  color: black;
+  text-decoration: none;
+}
+
+div.jumbotron {
+  /* background-color: #36405D;  */
+  /* /* background: linear-gradient(188deg, #36405D 10%, rgb(48, 57, 83) 100%); */
+}
+
+.modalButton {
+  position: absolute;
+  left: 45px;
+  top: 12px;
+}
+
+.chatInputBox {
+  width: 1100px;
 }

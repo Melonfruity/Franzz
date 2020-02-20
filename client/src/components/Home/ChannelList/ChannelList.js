@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 
+
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
 }) => {
