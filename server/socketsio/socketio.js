@@ -1,4 +1,4 @@
-const { info, errm } = require('../utils/logger');
+const { info } = require('../utils/logger');
 const channelio = require('./channelio');
 const youtubeio = require('./youtube');
 const mapio = require('./mapio');

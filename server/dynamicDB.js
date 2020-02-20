@@ -62,14 +62,16 @@ const changeOffline = (socketID, io) => {
       console.log('offline', channel, userStatus);
       io.in(channel).emit('user status', { userStatus });
 
-      // update maps when user goes offline
-      delete locations[channel][socketID];
-      const locationObj = {
-        channel,
-        newLocations: [...Object.values(locations[channel])],
-      };
-      // console.log('offline update maps', channel, locationObj);
-      io.in(channel).emit('update location', locationObj);
+      // update maps when user goes offline and only if they use maps
+      if (locations[channel][socketID]) {
+        delete locations[channel][socketID];
+        const locationObj = {
+          channel,
+          newLocations: [...Object.values(locations[channel])],
+        };
+        // console.log('offline update maps', channel, locationObj);
+        io.in(channel).emit('update location', locationObj);
+      }
     }
   });
 };
