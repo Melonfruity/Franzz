@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button'
 
 const NewAccountRegistration = (props) => {
   const [show, setShow] = useState(false);
@@ -10,7 +10,11 @@ const NewAccountRegistration = (props) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
+        ->
+      </Button> */}
+
+      <Button variant="outlined" onClick={handleShow}>
         ->
       </Button>
 

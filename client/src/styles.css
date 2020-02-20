@@ -4,10 +4,10 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   height: 100%;
-  /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
-  /* background-size: cover; */
+  background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg);
+  background-size: cover;
 }
 
 #root {
@@ -36,12 +36,13 @@ body {
 .landingPage input {
   width: 500px;
   color: black;
-  background-color:rgba(255,255,255,.1)
+  background-color:rgba(255, 255, 255, 0.205)
 }
 
 .landingPage button {
   width: 500px;
-  opacity: 80%;
+  color: black;
+  background-color:rgba(255,255,255,.2)
 }
 
 .normalLogin {
@@ -204,6 +205,7 @@ body {
 
 .channelList {
   max-height: 310px;
+  max-width: 160px;
   overflow:auto;
 }
 

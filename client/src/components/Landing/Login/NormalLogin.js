@@ -2,7 +2,7 @@ import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 import SignInInput from '../SignInInput'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button'
 
 const NormalLogin = ({ setState }) => {
   const email = useField('text');
@@ -50,8 +50,11 @@ const NormalLogin = ({ setState }) => {
         >
         Log In
         </button> */}
-        <Button onClick={handleLogin}
-        >Log In</Button>
+        {/* <Button onClick={handleLogin}
+        >Log In</Button> */}
+        <Button variant="outlined" onClick={handleLogin}>
+        Login
+      </Button>
       </form>
     </div>
   );
