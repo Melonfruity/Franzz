@@ -16,9 +16,9 @@ const Chat = ({
 }) => {
   const { boxDisplay, clickedButton } = useToggleButton('off');
   return (
-    <div className="container">
-      <PopUpButton toggleButton={clickedButton} />
-      { boxDisplay === ON && <ImageBox channelId={channel} emitSendMessage={emitSendMessage} />}
+    <div id="chat-container">
+      {/* <PopUpButton toggleButton={clickedButton} />
+      { boxDisplay === ON && <ImageBox channelId={channel} emitSendMessage={emitSendMessage} />} */}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}

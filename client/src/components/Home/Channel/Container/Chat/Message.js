@@ -19,30 +19,31 @@ const Message = ({
         toggler={toggler}
         sources={[message]}
       />
-      <article>
-        {username}
-        {': '}
-        {image && (
-        <CloudinaryContext cloudName="jekmessaging">
-          <Image publicId={message} width="50%" onClick={() => changeToggle(!toggler)} />
-        </CloudinaryContext>
-        )}
-        { video && (
-        <CloudinaryContext cloudName="jekmessaging">
-          <video width="20%" onClick={() => changeToggle(!toggler)} controls>
-            <source src={message} type="video/webm" />
-            <source src={message} type="video/mp4" />
-            <source src={message} type="video/ogg" />
-          </video>
-        </CloudinaryContext>
-        )}
-        {!image && !video && ReactEmoji.emojify(message)}
-        {'<created at '}
-        {created}
-        {'>'}
-        {/* <button type="button"> delete </button>
+      <article className="full-message">
+        <div className="chat-name">
+          <span>{username}</span>
+          {created}
+        </div>
+        <div className="message-content">
+          {image && (
+          <CloudinaryContext cloudName="jekmessaging">
+            <Image className="message-media" publicId={message} width="100%" onClick={() => changeToggle(!toggler)} />
+          </CloudinaryContext>
+          )}
+          { video && (
+          <CloudinaryContext cloudName="jekmessaging">
+            <video className="message-media" width="100%" onClick={() => changeToggle(!toggler)} controls>
+              <source src={message} type="video/webm" />
+              <source src={message} type="video/mp4" />
+              <source src={message} type="video/ogg" />
+            </video>
+          </CloudinaryContext>
+          )}
+          {!image && !video && ReactEmoji.emojify(message)}
+          {/* <button type="button"> delete </button>
         <button type="button"> edit </button>
         <button type="button"> emoji </button> */}
+        </div>
       </article>
     </div>
 
