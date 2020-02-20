@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Styling/galleryStyling.css';
 import './Styling/PopUpBoxStyling.css';
 import PhotoItem from './PhotoItem';
+import './Styling/imageBox.css';
 
 
 export default function GalleryDisplay({
@@ -55,7 +56,7 @@ export default function GalleryDisplay({
   return (
     <div>
       <div className="popup-title">{title}</div>
-      {isAlbum && <button onClick={() => addPhotos('addAlbumPhotos')}>Add Photos</button>}
+      {isAlbum && <button className="adding-button-mod" onClick={() => addPhotos('addAlbumPhotos')}><span>+</span></button>}
       <div className="row">
         <div className="column">
           {images[0]}

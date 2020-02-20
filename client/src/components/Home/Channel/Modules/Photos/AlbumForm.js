@@ -12,6 +12,16 @@ export default function AlbumForm({
     },
   );
 
+  function previewFile(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+      const img = document.createElement('img');
+      img.src = reader.result;
+      document.getElementById('input-display').appendChild(img);
+    };
+  }
+
   // Handles form events when adding files and
   // creating a name
   function handleOnChange(event) {
@@ -24,6 +34,7 @@ export default function AlbumForm({
         originalName: event.target.value,
       });
     } else {
+      [...event.target.files].forEach(previewFile);
       changeFields({
         album: fields.album,
         files: [...fields.files, event.target.files],
@@ -60,15 +71,13 @@ export default function AlbumForm({
 
   return (
     <div>
-      <div className="popup-title">New Album</div>
+      { newAlbum && <div className="popup-title">New Album</div> }
+      { !newAlbum && <div className="popup-title-mod">Adding photos to {albumName}</div>}
       <form id="album-upload-form" onSubmit={handleSubmit}>
         { newAlbum && (
           <input id="input-album" type="text" name="album" placeholder="Choose an album name" onChange={handleOnChange} />
         )}
-        { !newAlbum && (
-          <div>{`Adding photos to: ${albumName}`}</div>
-        )}
-        <div id="album-submission"><input className="submit-button" type="submit" value="Create >> " /></div>
+        <div id="album-submission"><input className="submit-button" type="submit" value="SUBMIT" /></div>
         <div id="input-display" value="drag">
         <input
           id="album-upload"
@@ -78,6 +87,7 @@ export default function AlbumForm({
           accept="image/*"
           onChange={handleOnChange}
         />
+        <div className="subtitle">ADDED MEDIA:</div>
         </div>
       </form>
     </div>
