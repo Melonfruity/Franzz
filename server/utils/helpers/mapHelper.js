@@ -1,24 +1,5 @@
 const { locations } = require('../../dynamicDB');
 
-// locations = {
-//   [channelID]: {
-//     [socketID]: {
-//       username,
-//       location,
-//     },
-//     [socketID]: {
-//       username,
-//       location,
-//     },
-//   },
-//   [channelID]: {
-//     [socketID]: {
-//       username,
-//       location,
-//     }
-//   }
-// }
-
 const updateLocations = (id, username, location, channels, callback, io) => {
   channels.forEach((channel) => {
     if (!locations[channel]) {
@@ -59,7 +40,7 @@ const updateChannel = (id, username, channel, location, io) => {
     channel,
     newLocations: [...Object.values(locations[channel])],
   };
-  console.log(locationObj);
+  // console.log('update Channel (update maps)', locationObj);
   io.in(channel).emit('update location', locationObj);
 };
 

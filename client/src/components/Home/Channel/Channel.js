@@ -9,7 +9,7 @@ import StalkerMap from './Modules/StalkerMap/StalkerMap';
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
 }) => {
-  const [userStatus, setUserStatus] = useState(users);
+  console.log(users);
 
   const [invite, setInvite] = useState({
     ready: false,
@@ -39,12 +39,12 @@ const Channel = ({
           </CopyToClipboard>
         </div>
       ) : <button type="button" onClick={createInvite}>Create Invite Link</button>}
-      {/* <Chat
+      <Chat
         messages={messages}
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
-      /> */}
+      />
       <StalkerMap
         locations={locations}
         channel={channel}

@@ -20,6 +20,7 @@ const App = () => {
     channelStates: {},
     locations: {},
     center: {},
+    users: {},
   });
 
   // logout resets app
@@ -33,6 +34,7 @@ const App = () => {
       channelStates: {},
       locations: {},
       center: {},
+      users: {},
     });
   };
 

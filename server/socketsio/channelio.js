@@ -70,6 +70,7 @@ module.exports = (io, socket) => {
           },
           messages: [],
         };
+        changeOnline(socket.id, user.channels, user.username, io);
         socket.join(savedChannel.id);
         callback(channelData);
       }
@@ -134,6 +135,7 @@ module.exports = (io, socket) => {
             },
           });
           // for other clients
+          changeOnline(socket.id, user.channels, user.username, io);
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
           // for new client
           callback(channelData);
@@ -156,16 +158,12 @@ module.exports = (io, socket) => {
     if (user) {
       socket.join(user.channels);
       const joinedRooms = Object.keys(io.sockets.adapter.rooms);
-      changeOnline(socket.id, user.channels, user.username, socket);
+      changeOnline(socket.id, user.channels, user.username, io);
       socket.emit('server message', {
         serverMsg: {
           'joined rooms': joinedRooms,
         },
       });
     }
-  });
-
-  socket.on('offline', async () => {
-    changeOffline(socket.id, io);
   });
 };

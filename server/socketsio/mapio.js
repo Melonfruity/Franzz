@@ -16,7 +16,6 @@ module.exports = (io, socket) => {
   socket.on('update maps', async ({ channel, authorization, location }) => {
     try {
       const user = await extractJWT(authorization);
-      console.log(user.username, channel);
       updateChannel(socket.id, user.username, channel, location, io);
     } catch (err) {
       errm(err);
