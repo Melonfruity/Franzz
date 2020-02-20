@@ -44,3 +44,7 @@
   opacity: 70%;
   cursor: pointer;
 }
+
+.chat-name span {
+  padding-left: 6px;
+}

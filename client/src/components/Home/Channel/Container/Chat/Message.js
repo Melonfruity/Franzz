@@ -5,14 +5,15 @@ import {
   Image, CloudinaryContext,
 } from 'cloudinary-react';
 import FsLightbox from 'fslightbox-react';
-
+import moment from 'moment';
 
 const Message = ({
   id, username, message, created, emitDeleteMessage, video, image,
 }) => {
+
+  console.log("date", created)
   // implement delete, edit, emoji
   const [toggler, changeToggle] = useState(false);
-
   return (
     <div>
       <FsLightbox
@@ -22,7 +23,7 @@ const Message = ({
       <article className="full-message">
         <div className="chat-name">
           <span>{username}</span>
-          {created}
+          {/* {created} */}
         </div>
         <div className="message-content">
           {image && (
