@@ -6,6 +6,7 @@ import Modal from './NewChannelModal';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import RightUI from '../Channel/RightUI'
 
 
 const ChannelList = ({
@@ -38,18 +39,6 @@ const ChannelList = ({
         <List>
         {channelList}
         </List>
-        </div>
-      </div>
-      <Modal
-        emitCreateChannel={emitCreateChannel}
-        emitJoinChannel={emitJoinChannel}
-      />
-      <div className="rightBarUI">
-        <h3>Social</h3>
-        <div className="widgetList">
-          <p>Friend Tracker</p>
-          <p>Spotify</p>
-          <p>Photo Gallery</p>
         </div>
       </div>
     </div>

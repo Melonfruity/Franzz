@@ -9,6 +9,8 @@ import channelService from '../../service/channelService';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
+import RightUI from './Channel/RightUI'
+import Modal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 
@@ -63,7 +65,7 @@ const Home = ({ state, setState }) => {
         console.log(data);
       });
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -103,7 +105,7 @@ const Home = ({ state, setState }) => {
       socket.emit('disconnect');
       socket.off();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   const channels = Object.keys(state.channelStates);
@@ -137,13 +139,18 @@ const Home = ({ state, setState }) => {
     <div>
       <Router>
         <nav>
-          <ul>
+          <ul className="homeNav">
             <ChannelList
               selectCurrentChannel={selectCurrentChannel}
               channelIdNamePair={channelIdNamePair}
               emitJoinChannel={emitJoinChannel}
               emitCreateChannel={emitCreateChannel}
             />
+            <Modal
+              emitCreateChannel={emitCreateChannel}
+              emitJoinChannel={emitJoinChannel}
+            />
+            <RightUI></RightUI>
           </ul>
         </nav>
         <Switch>

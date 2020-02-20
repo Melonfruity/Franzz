@@ -25,7 +25,6 @@ const Chat = ({
         emitSendMessage={emitSendMessage}
         channelId={channel}
       />
-      
       <Input
         emitSendMessage={emitSendMessage}
       />
