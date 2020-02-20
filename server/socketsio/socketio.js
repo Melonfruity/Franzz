@@ -1,7 +1,8 @@
-const { info, errm } = require('../utils/logger');
+const { info } = require('../utils/logger');
 const channelio = require('./channelio');
 const youtubeio = require('./youtube');
 const mapio = require('./mapio');
+const { changeOffline } = require('../dynamicDB');
 
 module.exports = (io) => {
   io.on('connection', (socket) => {
@@ -15,8 +16,13 @@ module.exports = (io) => {
     youtubeio(io, socket);
     mapio(io, socket);
 
+    socket.on('test', (data) => {
+      console.log(data);
+    });
+
     socket.on('disconnect', () => {
       info('client disconnected');
+      changeOffline(socket.id, io);
     });
   });
 };

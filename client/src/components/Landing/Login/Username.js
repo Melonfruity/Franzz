@@ -1,8 +1,8 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
-import NewAccountRegistration  from '../../../Modal'
-import SignInInput from '../SignInInput'
 
 const Username = ({ setState }) => {
   const username = useField('text');
@@ -27,16 +27,20 @@ const Username = ({ setState }) => {
 
   return (
     <div className="usernameLogin">
-    <form >
-      {/* <input
-        placeholder="username"
-        {...username}
-        reset={undefined}
-        onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
-      /> */}
-      <SignInInput name="Username" handleLogin={handleLogin}></SignInInput>
-      <NewAccountRegistration handleLogin={handleLogin}></NewAccountRegistration>
-    </form>
+      <form>
+        <TextField
+          placeholder="username"
+          id="outlined-basic"
+          variant="outlined"
+          label="Username"
+          {...username}
+          reset={undefined}
+          onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
+        />
+        <Button variant="outlined" onClick={(e) => handleLogin(e)}>
+          &gt
+        </Button>
+      </form>
     </div>
   );
 };

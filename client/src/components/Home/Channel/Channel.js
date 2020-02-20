@@ -9,7 +9,7 @@ import StalkerMap from './Modules/StalkerMap/StalkerMap';
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
 }) => {
-  const [userStatus, setUserStatus] = useState(users);
+  console.log(users);
 
   const [invite, setInvite] = useState({
     ready: false,
