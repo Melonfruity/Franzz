@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 import SignInInput from '../SignInInput'
-import Button from '@material-ui/core/Button'
 
 const NormalLogin = ({ setState }) => {
   const email = useField('text');

@@ -53,7 +53,7 @@ body {
 }
 
 .normalLogin form{
-  /* opacity: 50%; */
+  width: 500px;
 }
 
 .normalLogin button {
@@ -61,11 +61,10 @@ body {
 }
 
 .usernameLogin {
-
 }
 
 .usernameLogin form {
-  /* opacity: 50%; */
+  width: 500px;
 }
 
 
