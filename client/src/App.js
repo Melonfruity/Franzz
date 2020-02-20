@@ -59,7 +59,6 @@ const App = () => {
           setState={setState}
         />
         {state.guest != true ? <GuestRegisterBanner></GuestRegisterBanner> : null}
-        {/* <GuestRegisterBanner></GuestRegisterBanner> */}
         <Route
           exact
           path="/"
