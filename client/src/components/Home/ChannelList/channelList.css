@@ -1,7 +1,7 @@
 .temporary {
   display: flex;
   flex-direction: column;
-  width: 218px;
+  flex-grow: 2;
   padding: 16px;
   background: #f9f9f9;
 }

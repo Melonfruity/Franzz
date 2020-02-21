@@ -3,10 +3,13 @@
 }
 
 #drop-area {
-  width: 93%;
   font-family: 'Muli';
   padding: 8px;
   border: 1px solid rgb(82, 82, 82);
+}
+
+#drop-area.highlight {
+  border-color: blue;
 }
 
 .messages {
@@ -24,7 +27,6 @@
 
 .textContainer {
   height: 500px;
-  width: 80vw;
   overflow: auto;
 } 
 
