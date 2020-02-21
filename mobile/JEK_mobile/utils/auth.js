@@ -7,18 +7,15 @@ const username = async (usernameObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, usernameObj);
   const { error, token, username, guest, userID } = res.data;
   if (!error) {
-    console.log(token)
-    console.log(username)
-    console.log(guest)
-    console.log(userID)
     Global.updateCredentials(res.data);
   }
+  console.log(await Global.getLocal('guest'))
+  // Global.getLocal('userID')
+  // Global.getLocal('username')
+  // Global.getLocal('authorization')
   // const config = {
   //   headers: {authorization: `${token}` },
   // };
-
-
-
   // await axios.get(`${serverURL}/channel/initialize`, config).then(res => console.log(res.data))
 };
 
