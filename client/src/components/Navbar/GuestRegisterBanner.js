@@ -3,7 +3,6 @@ import { useField } from '../../hooks/useField';
 import Modal from 'react-bootstrap/Modal'
 import auth from '../../service/authService';
 import GoogleLogin from '../Landing/Login/GoogleLogin';
-
 import Button from '@material-ui/core/Button'
 
 const GuestRegisterBanner = ({ setState }) => {
@@ -37,7 +36,13 @@ const GuestRegisterBanner = ({ setState }) => {
 
   return (
     <div>
-      <div className="guestRegisterBanner" onClick={handleShow} button>
+      <div
+        className="guestRegisterBanner"
+        role="button"
+        tabIndex={0}
+        onKeyPress={(e) => e.preventDefault()}
+        onClick={(e) => handleShow(e)}
+      button>
         <p>If you wish to save your username and chats the next time you visit, please create an account!</p>
       </div>
 
