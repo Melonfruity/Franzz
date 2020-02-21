@@ -28,17 +28,15 @@ const ChannelList = ({
   });
 
   return (
-    <div className="userHome">
+    <div className="leftBarUI">
       <button id="create-channel" onClick={() => toggleForm(true)}>+</button>
-      <div className="leftBarUI">
-        <h3>Channel List</h3>
+        <h3>Channels</h3>
         <div className="channelList">
           <List>
             {channelList}
           </List>
         </div>
       </div>
-    </div>
   );
 };
 

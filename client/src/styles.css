@@ -145,9 +145,11 @@ body {
 }
 
 .leftBarUI {
-  margin-top: 20px;
-  width: 20%;
-  /* color: white; */
+  padding: 6px;
+  border-right: 1px solid #8e8e8e;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -193,9 +195,6 @@ body {
 }
 
 .channelList {
-  width: 230px;
-  max-height: 310px;
-  max-width: 230px;
   overflow:auto;
 }
 
@@ -234,9 +233,10 @@ div.jumbotron {
 }
 
 .rightBarUI {
-  margin-top: 20px;
-  margin-left: 10px;
-  width: 250px;
+  margin-left: 0;
+  width: 65px;
+  display: flex;
+  background: #191919;
 }
 
 
@@ -273,4 +273,12 @@ h3 {
 
 .guestRegisterModalCloseButton {
   margin-left: 20px;
+}
+
+.fade.toast.show {
+  position: absolute;
+}
+
+.fade.toast {
+  position: absolute;
 }
