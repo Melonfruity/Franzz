@@ -11,6 +11,7 @@ import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
+import './homeStyling.css';
 
 let socket;
 
@@ -20,7 +21,6 @@ const Home = ({ state, setState }) => {
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
-
   const {
     grabLocations,
     intializeMapsData,
@@ -138,24 +138,21 @@ const Home = ({ state, setState }) => {
           emitSendMessage={emitSendMessage}
           locations={grabLocations(id)}
           center={state.center}
+          currentUser={state.currentUser}
         />
       </Route>
     );
   });
 
   return (
-    <div>
+    <div id="main-container">
       <Router>
-        <nav>
-          <ul>
-            <ChannelList
-              selectCurrentChannel={selectCurrentChannel}
-              channelIdNamePair={channelIdNamePair}
-              emitJoinChannel={emitJoinChannel}
-              emitCreateChannel={emitCreateChannel}
-            />
-          </ul>
-        </nav>
+        <ChannelList
+          selectCurrentChannel={selectCurrentChannel}
+          channelIdNamePair={channelIdNamePair}
+          emitJoinChannel={emitJoinChannel}
+          emitCreateChannel={emitCreateChannel}
+        />
         <Switch>
           {channelItems}
         </Switch>

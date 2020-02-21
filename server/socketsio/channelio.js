@@ -35,6 +35,7 @@ module.exports = (io, socket) => {
           video: savedMessage.video,
           image: savedMessage.image,
           id: savedMessage.id,
+          
         };
         socket.to(channelID).emit('new message', { channelID, newMessageObj });
         callback(newMessageObj);
@@ -100,7 +101,7 @@ module.exports = (io, socket) => {
 
           // welcome message
           const welcomeMessage = new Message({
-            message: 'has joined the channel!',
+            message: `${user.username} has joined the channel!`,
             user: user.id,
             channel: channelID,
           });

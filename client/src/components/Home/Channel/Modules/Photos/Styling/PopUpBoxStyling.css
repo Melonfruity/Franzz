@@ -1,28 +1,34 @@
 
 #resize-box {
   z-index: 1000;
+  display: flex;
+  align-content: center;
   position: absolute;
-  width: 78%;
-  padding-left: 4px;
+  width: 80%;
   min-height: 50px;
-  height: 200px;
-  background-color: white;
-  border: 1px solid black;
+  max-height: 750px;
+  height: 100px;
+  background-color: rgb(253, 253, 253);
+  padding-bottom: 8px;
+  overflow-x: initial;
 }
 
 #resize-box:after {
-content: " ";
-  background-color: grey;
+  content: "";
+  background-color:#313131;
+  font-size: 7px;
   position: absolute;
+  height: 6px;
   bottom: 0;
-  width: 100%;
-  height: 10px;
-  left: 0;
+  width: 80%;
+  left: 10%;
   cursor: ns-resize;
+  align-self: center;
+}
+/* width */
+#resize-box ::-webkit-scrollbar {
+  width: 4px;
 }
 
-#imageBox {
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 100%;
-}
+
+

@@ -6,7 +6,7 @@ const serverURL = 'http://localhost:8001/api';
 
 const setLocalStorage = (data) => {
   const {
-    error, token, username, guest,
+    error, token, username, guest, userID,
   } = data;
   if (error) {
     console.log(error);
@@ -15,6 +15,7 @@ const setLocalStorage = (data) => {
   window.localStorage.setItem('authorization', token);
   window.localStorage.setItem('username', username);
   window.localStorage.setItem('guest', guest);
+  window.localStorage.setItem('userID', userID);
   return true;
 };
 

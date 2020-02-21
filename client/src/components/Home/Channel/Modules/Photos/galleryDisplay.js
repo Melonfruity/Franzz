@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Styling/galleryStyling.css';
+import './Styling/PopUpBoxStyling.css';
 import PhotoItem from './PhotoItem';
+import './Styling/imageBox.css';
 
 
 export default function GalleryDisplay({
@@ -9,6 +11,7 @@ export default function GalleryDisplay({
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
+    console.log(path);
     fetch(`http://localhost:8001/api/photos/getChannelPhotos/${path}`)
       .then((res) => res.json())
       .then((data) => data.resources)
@@ -52,8 +55,8 @@ export default function GalleryDisplay({
 
   return (
     <div>
-      <h4>{title}</h4>
-      {isAlbum && <button onClick={() => addPhotos('addAlbumPhotos')}>Add Photos</button>}
+      <div className="popup-title">{title}</div>
+      {isAlbum && <button className="adding-button-mod" onClick={() => addPhotos('addAlbumPhotos')}><span>+</span></button>}
       <div className="row">
         <div className="column">
           {images[0]}

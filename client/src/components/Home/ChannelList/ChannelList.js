@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
 import Modal from './NewChannelModal';
+import './channelList.css';
 
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
@@ -21,28 +22,15 @@ const ChannelList = ({
   });
 
   return (
-    <div className="userHome">
-      <div className="leftBarUI">
-        <div>
-          <Link to="/home">Home</Link>
-        </div>
-        <h3>Channel List</h3>
-        <div className="channelList">
-          {channelList}
-        </div>
+    <div className="temporary">
+      <h3>Channel List</h3>
+      <div className="channelList">
+        {channelList}
       </div>
-      <Modal
+      {/* <Modal
         emitCreateChannel={emitCreateChannel}
         emitJoinChannel={emitJoinChannel}
-      />
-      <div className="rightBarUI">
-        <h3>Social</h3>
-        <div className="widgetList">
-          <p>Friend Tracker</p>
-          <p>Spotify</p>
-          <p>Photo Gallery</p>
-        </div>
-      </div>
+      /> */}
     </div>
   );
 };

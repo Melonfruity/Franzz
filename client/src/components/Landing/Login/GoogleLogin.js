@@ -15,15 +15,18 @@ const GoogleLoginButton = ({ setState }) => {
       .post('http://localhost:8001/api/auth/google', { accessToken }, config)
       .then((res) => {
         const {
-          success, error, token, username, guest,
+          success, error, token, username, guest, userID,
         } = res.data;
         if (success) {
-          auth.setLocalStorage({ token, username, guest });
+          auth.setLocalStorage({
+            token, username, guest, userID,
+          });
           setState((prev) => ({
             ...prev,
             authorization: window.localStorage.getItem('authorization'),
             username: window.localStorage.getItem('username'),
             guest: localStorage.getItem('guest'),
+            currentUser: localStorage.getItem('userID'),
           }));
         } else {
           console.log(error);
