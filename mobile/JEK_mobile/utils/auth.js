@@ -5,33 +5,37 @@ const serverURL = 'http://10.0.2.2:8001/api';
 
 const username = async (usernameObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, usernameObj);
-  const { error, token, username, guest, userID } = res.data;
-  if (!error) {
+  if (!res.error) {
     Global.updateCredentials(res.data);
+  } else {
+    console.log(res.error);
   }
-  await Global.getLocal('guest')
-  await Global.getLocal('userID')
-  await Global.getLocal('username')
-  await Global.getLocal('authorization')
-  // const config = {
-  //   headers: {authorization: `${token}` },
-  // };
-  // await axios.get(`${serverURL}/channel/initialize`, config).then(res => console.log(res.data))
 };
 
 const login = async (loginObj) => {
   const res = await axios.post(`${serverURL}/auth/login`, loginObj);
-  return setLocalStorage(res.data);
+  console.log(res.data)
+  if (!res.error) {
+    Global.updateCredentials(res.data);
+  } else {
+    console.log(res.error);
+  }
 };
 
 const register = async (registerObj) => {
   const config = {
-    headers: { authorization: window.localStorage.authorization },
+    headers: { authorization: Global.getLocal('authorization') },
   };
   const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
-  return setLocalStorage(res.data);
+  if (!res.error) {
+    Global.updateCredentials(res.data);
+  } else {
+    console.log(res.error);
+  }
 };
 
 export default {
   username,
+  login,
+  register,
 }

@@ -11,9 +11,22 @@ let state = {
   users: {},
 };
 
+const loadCredentials = async () => {
+  console.log('loading Credentials');
+  state = {
+    ...state,
+    guest: await getLocal('guest'),
+    currentUser: await getLocal('userID'),
+    username: await getLocal('username'),
+    authorization: await getLocal('authorization'),
+  }
+  // console.log('state', state);
+  return state;
+};
+
 const updateCredentials = async (credentials) => {
+  console.log('updating Credentials');
   const { token, username, guest, userID } = credentials;
-  console.log(state)
   state = {
     ...state,
     guest,
@@ -21,7 +34,7 @@ const updateCredentials = async (credentials) => {
     currentUser: userID,
     authorization: token,
   };
-  console.log(state);
+  console.log('storing to Local');
   storeLocal('guest', `${guest}`);
   storeLocal('userID', userID);
   storeLocal('username', username);
@@ -37,6 +50,7 @@ const storeLocal = async (key, value) => {
 };
 
 const getLocal = async (key) => {
+  console.log('getting Local');
   try {
     const value = await AsyncStorage.getItem(`${key}`)
     if (value !== null) {
@@ -50,5 +64,6 @@ const getLocal = async (key) => {
 module.exports = {
   state,
   updateCredentials,
+  loadCredentials,
   getLocal,
 };

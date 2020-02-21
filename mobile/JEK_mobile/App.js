@@ -1,15 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StatusBar, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  KeyboardAvoidingView
+} from 'react-native';
 // import { SplashScreen } from 'expo';
 // import * as Font from 'expo-font';
 // import { Ionicons } from '@expo/vector-icons';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
 import io from 'socket.io-client';
-
-import { AsyncStorage } from 'react-native';
-
 import Login from './screens/Login';
+import Channel from './screens/Channel';
+
+import Global from './Global';
 
 let socket;
 
@@ -32,15 +40,21 @@ const App = () => {
         console.log(data)
       })
     });
+    Global.loadCredentials().then(data => {
+      setState((prev) => ({
+        ...prev,
+        ...data
+      }));
+      console.log('state', state);
+    })
   }, []);
 
-  console.log('socket', socket)
-  console.log('state', state.guest)
   return (
-    <View style={styles.container}>
-      <Login />
-      <Text> {state.guest} </Text>
-    </View>
+    <SafeAreaView style={{ ...styles.container, ...styles.mainContainer }}>
+      <KeyboardAvoidingView behavior="padding" enabled>
+        {state.authorization ? <Channel /> : <Login /> }
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
@@ -50,6 +64,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mainContainer: {
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   }
 })
 

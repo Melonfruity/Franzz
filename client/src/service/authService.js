@@ -12,6 +12,7 @@ const setLocalStorage = (data) => {
     console.log(error);
     return false;
   }
+  console.log(data);
   window.localStorage.setItem('authorization', token);
   window.localStorage.setItem('username', username);
   window.localStorage.setItem('guest', guest);

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="" />
+    <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Global.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/auth.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

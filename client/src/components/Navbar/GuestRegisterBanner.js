@@ -19,7 +19,6 @@ const GuestRegisterBanner = ({ setState }) => {
     const registerObj = {
       email: email.value,
       password: password.value,
-      username: window.localStorage.getItem('username'),
     };
     auth
       .register(registerObj)
@@ -44,7 +43,6 @@ const GuestRegisterBanner = ({ setState }) => {
         tabIndex={0}
         onKeyPress={(e) => e.preventDefault()}
         onClick={(e) => handleShow(e)}
-        button
       >
         <p>If you wish to save your username and chats the next time you visit, please create an account!</p>
       </div>

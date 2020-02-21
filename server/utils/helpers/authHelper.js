@@ -38,15 +38,12 @@ const signJWT = (res, user) => {
   );
 };
 
-const extractJWT = async (authorization, updateGuestObj) => {
-  console.log(updateGuestObj);
+const extractJWT = async (authorization) => {
   if (authorization.toLowerCase().startsWith('bearer ')) {
     const token = authorization.substring(7);
     const { userID } = jwt.verify(token, secretOrKey);
-    const user = updateGuestObj
-      ? await User.findByIdAndUpdate(userID, updateGuestObj)
-      : await User.findById(userID);
-    console.log(user);
+    const user = await User.findById(userID);
+    console.log('Updated in extracJWT', user);
     return user;
   }
   return false;

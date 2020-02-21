@@ -57,7 +57,7 @@ authRouter.post('/google', async (req, res, next) => {
 // register route for users not using a google account
 authRouter.post('/register', async (req, res, next) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, password } = req.body;
     const { isValid, errors } = formValidator({ email, password });
     const { authorization } = req.headers;
     // check if valid email, password
@@ -65,24 +65,16 @@ authRouter.post('/register', async (req, res, next) => {
       // find the user through their email
       const user = await User.findOne({ email });
       if (!user) {
-        // if there is a token and the user has a username token
-        if (authorization && typeof username === 'string') {
-          const updateGuestObj = {
-            email,
-            username,
-            password: register(password),
-          };
-          const updatedUser = await extractJWT(authorization, updateGuestObj);
-          console.log('updatedUser', updatedUser)
+        // if there is a token
+        if (authorization !== 'undefined') {
+          console.log(req.body)
+          const updatedUser = await extractJWT(authorization);
+          if (!updatedUser.email && !updatedUser.password) {
+            updatedUser.email = email;
+            updatedUser.password = register(password);
+          }
+          await updatedUser.save();
           signJWT(res, updatedUser);
-        } else {
-          const newUser = new User({
-            email,
-            username,
-            password: register(password),
-          });
-          await newUser.save();
-          signJWT(res, newUser);
         }
       } else {
         res.json({ error: 'email already taken' });
