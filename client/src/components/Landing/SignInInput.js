@@ -10,6 +10,7 @@ const SignInInput = (props) => (
       className="signInInput"
       id="outlined-basic"
       label={props.name}
+      placeholder={props.name}
       onKeyPress={(e) => (e.key === 'Enter' ? props.handleLogin(e) : null)}
       variant="outlined"
     />

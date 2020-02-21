@@ -74,6 +74,12 @@ body {
 
 .googleLogin {
   opacity: 50%;
+  height: 50px;
+  width: 250px;
+}
+
+.googleLogin span {
+  width: 170px;
 }
 
 .channelItems {
@@ -141,8 +147,8 @@ body {
 
 .googleLoginButton {
   position: relative;
-  margin-left: 10px;
-  left: 150px;
+  margin-right: 10px;
+  right: 110px;
 }
 
 .logoutButton {
@@ -175,8 +181,8 @@ body {
 }
 
 .NewAccountModal {
-  top: 160px;
-  height: 500px;
+  top: 120px;
+  height: 700px;
 }
 
 .NewAccountRegistrationModalForm div {
@@ -277,12 +283,28 @@ h3 {
 
 .guestModalGoogleLoginButton {
   position: absolute;
-  width: 200px;
-  right: 270px;
+  width: 400px;
+  left: 122px;
   bottom:5px;
 }
 
-
 .guestRegisterModalCloseButton {
   margin-left: 20px;
+}
+
+.guestRegisterModalButtons {
+  margin:auto;
+  text-align: center;
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 110px;
+}
+
+.NewAccountRegistrationModalForm .signInInput {
+  width: 400px;
 }

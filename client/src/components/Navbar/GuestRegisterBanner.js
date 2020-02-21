@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import auth from '../../service/authService';
 import GoogleLogin from '../Landing/Login/GoogleLogin';
 import Button from '@material-ui/core/Button'
+import SignInInput from '../Landing/SignInInput'
 
 const GuestRegisterBanner = ({ setState }) => {
   const [show, setShow] = useState(false);
@@ -56,35 +57,56 @@ const GuestRegisterBanner = ({ setState }) => {
               <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
               <div className="email">
                 <p>E-mail:</p>
-                <input
+                <SignInInput 
+                  name="Email"
+                  placeholder="email"
+                  {...email}
+                  reset={undefined}
+                  handleLogin = {handleRegister}
+                  className="NewAccountModalInput"></SignInInput>
+                {/* <input
                   placeholder="email"
                   {...email}
                   reset={undefined}
                   onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-                />
+                /> */}
               </div>
               <div className="password">
                 <p>Password: </p>
-                <input
+                <SignInInput 
+                  name="Password"
+                  placeholder="password"
+                  {...password}
+                  reset={undefined}
+                  handleLogin = {handleRegister}
+                  className="NewAccountModalInput"></SignInInput>
+                {/* <input
                   placeholder="password"
                   {...password}
                   reset={undefined}
                   onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-                />
+                /> */}
               </div>
             </form>
+            <div className="guestRegisterModalButtons">
+            <Button className="guestRegisterModalCloseButton" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleRegister}>
+              Register
+            </Button>
+            </div>
           {/* </section> */}
         </Modal.Body>
-        <Modal.Footer>
-            <div className="guestModalGoogleLoginButton">
-              <GoogleLogin setState={setState} />
+        <Modal.Footer className="modalFooter">
+            {/* <div className="modalFooter"> */}
+            <div className="modalDivider">
+            <p> ------------- Login With Google ------------- </p>
             </div>
-          <Button className="guestRegisterModalCloseButton" variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleRegister}>
-            Register
-          </Button>
+            <div className="guestModalGoogleLoginButton">
+              <GoogleLogin className="googleLogin" setState={setState}/>
+            </div>
+            {/* </div> */}
         </Modal.Footer>
       </Modal>
     </div>
