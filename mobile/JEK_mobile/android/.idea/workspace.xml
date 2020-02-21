@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../server/socketsio/socketio.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../server/socketsio/socketio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/__tests__/StyledText-test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/__tests__/__snapshots__/StyledText-test.js.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../constants/Colors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../constants/Layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../navigation/BottomTabNavigator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../navigation/useLinking.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/ChannelScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/HomeScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/MapsScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="611" />
     <option name="y" value="201" />
     <option name="width" value="679" />
@@ -137,7 +147,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.114754096" />

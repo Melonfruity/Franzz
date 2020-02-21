@@ -24,6 +24,7 @@ const Register = ({ setState }) => {
             authorization: window.localStorage.getItem('authorization'),
             username: window.localStorage.getItem('username'),
             guest: localStorage.getItem('guest'),
+            currentUser: localStorage.getItem('userID'),
           }));
         }
       });

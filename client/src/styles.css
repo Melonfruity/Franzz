@@ -92,14 +92,6 @@ body {
 }
 
 
-.textContainer {
-  margin: auto;
-  height: 500px;
-  border: 1px solid black;
-  width: 80vw;
-  overflow: auto;
-}
-
 .messages {
   padding: 5% 0;
   overflow: auto;
@@ -110,10 +102,6 @@ body {
   display: flex;
   justify-self: center;
   align-self: center;
-}
-
-#resize-box {
-  left: 40%;
 }
 
 .registration {

@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useField } from '../../../../../hooks/useField';
+import { handleFiles } from '../../Modules/Photos/Scripts/DragAndDropPhotos';
 
-const Input = ({ emitSendMessage }) => {
+const Input = ({ emitSendMessage, channel }) => {
   const message = useField('text');
 
   const sendMessage = (e) => {
@@ -12,7 +13,7 @@ const Input = ({ emitSendMessage }) => {
   };
 
   return (
-    <form>
+    <form id="messaging-input">
       <textarea
         className="chatInputBox"
         {...message}
@@ -21,11 +22,13 @@ const Input = ({ emitSendMessage }) => {
         placeholder= "Type something to send..."
       />
       <button
+        id="send-button"
         type="submit"
         onClick={(e) => sendMessage(e)}
       >
-        submit
       </button>
+      <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, 'chat', emitSendMessage)} />
+      <label className="button" htmlFor="fileElem"></label>
     </form>
   );
 };

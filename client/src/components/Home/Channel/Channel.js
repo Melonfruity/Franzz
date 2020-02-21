@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
-
+import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 // modules
 import StalkerMap from './Modules/StalkerMap/StalkerMap';
+import './channelStyling.css';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
+  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
 }) => {
   console.log(users);
 
@@ -25,7 +26,7 @@ const Channel = ({
   };
 
   return (
-    <div className="chatBox">
+    <div id="channel">
       {name}
       { invite.ready ? (
         <div>
@@ -44,6 +45,7 @@ const Channel = ({
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
+        currentUser={currentUser}
       />
       {/* <StalkerMap
         locations={locations}

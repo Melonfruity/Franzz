@@ -1,13 +1,4 @@
-#drop-area {
-  border: 1px solid black;
-  border-radius: 20px;
-  width: 100%;
-  font-family: sans-serif;
-  padding: 10px;
-}
-#drop-area.highlight {
-  border-color: blue;
-}
+
 p {
   margin-top: 0;
 }
@@ -24,16 +15,20 @@ p {
   vertical-align: middle;
 }
 .button {
-  display: inline-block;
-  padding: 10px;
-  background: #ccc;
+  background-image: url('../../../../../../assets/photograph.png');
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  margin-right: 29px;
+  margin-left: 9px;
+  height: 45px;
+  width: 43px;
 }
+
 .button:hover {
-  background: #ddd;
+  opacity: 70%;
 }
+
 #fileElem {
   display: none;
 }

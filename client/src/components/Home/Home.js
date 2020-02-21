@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
+import Modal from './Channel/Container/NewChannelModal';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
@@ -13,6 +14,7 @@ import RightUI from './Channel/RightUI'
 import Modal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
+import './homeStyling.css';
 
 let socket;
 
@@ -22,12 +24,10 @@ const Home = ({ state, setState }) => {
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
-
   const {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
-
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -140,32 +140,29 @@ const Home = ({ state, setState }) => {
           emitSendMessage={emitSendMessage}
           locations={grabLocations(id)}
           center={state.center}
+          currentUser={state.currentUser}
         />
       </Route>
     );
   });
 
   return (
-    <div>
+    <div id="main-container">
       <Router>
-        <nav>
-          <ul className="homeNav">
-            <ChannelList
-              selectCurrentChannel={selectCurrentChannel}
-              channelIdNamePair={channelIdNamePair}
-              emitJoinChannel={emitJoinChannel}
-              emitCreateChannel={emitCreateChannel}
-            />
-            <Modal
-              emitCreateChannel={emitCreateChannel}
-              emitJoinChannel={emitJoinChannel}
-            />
-            <RightUI></RightUI>
-          </ul>
-        </nav>
+        <ChannelList
+          selectCurrentChannel={selectCurrentChannel}
+          channelIdNamePair={channelIdNamePair}
+          emitJoinChannel={emitJoinChannel}
+          emitCreateChannel={emitCreateChannel}
+        />
         <Switch>
           {channelItems}
         </Switch>
+        <Modal
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
+        />
+        <RightUI></RightUI>
       </Router>
     </div>
   );

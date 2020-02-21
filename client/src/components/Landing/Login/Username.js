@@ -27,6 +27,7 @@ const Username = ({ setState }) => {
 
   return (
     <div className="usernameLogin">
+<<<<<<< HEAD
       <form>
         <TextField
           placeholder="username"
@@ -41,6 +42,16 @@ const Username = ({ setState }) => {
           ->
         </Button>
       </form>
+=======
+    <form >
+      <input
+        placeholder="username"
+        {...username}
+        reset={undefined}
+        onKeyPress={(e) => (e.key === 'Enter' ? handleSelectUser(e) : null)}
+      />
+    </form>
+>>>>>>> styling/chatbox
     </div>
   );
 };
