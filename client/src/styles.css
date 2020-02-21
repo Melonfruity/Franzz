@@ -82,6 +82,10 @@ body {
   width: 170px;
 }
 
+.landingPage .googleLogin span {
+  width: 405px;
+}
+
 .channelItems {
   list-style: none;
 }
@@ -138,11 +142,29 @@ body {
   flex-direction: row;
 }
 
+.fas {
+  width: 50px;
+  height: 10px;
+}
+
+.fa-user-circle {
+  font-size: 30px;
+  color:rgba(0, 0, 0, 0.829);
+}
+
+
 .username {
+  margin-left:20px;
+  display:flex;
   margin-top: 15px;
   width: 150px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+}
+
+.username p {
+  position:relative;
+  top: 2px;
 }
 
 .googleLoginButton {
@@ -238,9 +260,9 @@ div.jumbotron {
 }
 
 .modalButton {
-  position: absolute;
-  left: 215px;
-  top: 157px;
+  position: relative;
+  right: 510px;
+  bottom: 95px;
 }
 
 .chatInputBox {
