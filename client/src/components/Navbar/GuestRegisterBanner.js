@@ -28,6 +28,7 @@ const GuestRegisterBanner = ({ setState }) => {
             ...prev,
             authorization: window.localStorage.getItem('authorization'),
             username: window.localStorage.getItem('username'),
+            currentUser: window.localStorage.getItem('userID'),
             guest: localStorage.getItem('guest'),
           }));
         }
