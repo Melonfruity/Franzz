@@ -130,7 +130,13 @@ body {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  margin-left: 50px;
+}
+
+.username {
+  margin-top: 15px;
+  width: 150px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .googleLoginButton {
@@ -140,9 +146,14 @@ body {
 }
 
 .logoutButton {
-  position: relative;
-  margin-left: 100px;
-  left: 450px;
+  /* margin-right: 60px; */
+  padding-right: 85px;
+  margin-top: 10px;
+}
+
+.navLogout {
+  display:flex;
+  justify-content: space-between;
 }
 
 .leftBarUI {
@@ -151,12 +162,6 @@ body {
   /* color: white; */
 }
 
-.username {
-  margin-top: 10px;
-  width: 150px;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
 
 .NewAccountRegistrationModalForm {
   display: flex;
