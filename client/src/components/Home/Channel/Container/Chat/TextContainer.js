@@ -14,7 +14,7 @@ const TextContainer = ({
 }) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
-
+  
   const formattedMessages = messages.map((msg) => (
     <Message
       key={msg.id}
@@ -23,6 +23,8 @@ const TextContainer = ({
       created={msg.created}
       username={msg.user.username}
       currentUser={currentUser}
+      isCurrent={msg.user.id === currentUser}
+      userId={msg.user.id}
       deleteMessage={deleteMessage}
       video={msg.video}
       image={msg.image}

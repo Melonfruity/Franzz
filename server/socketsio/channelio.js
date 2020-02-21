@@ -28,12 +28,14 @@ module.exports = (io, socket) => {
         const newMessageObj = {
           user: {
             username: user.username,
+            id: user.id,
           },
           message: savedMessage.message,
           created: savedMessage.created,
           video: savedMessage.video,
           image: savedMessage.image,
           id: savedMessage.id,
+          
         };
         socket.to(channelID).emit('new message', { channelID, newMessageObj });
         callback(newMessageObj);

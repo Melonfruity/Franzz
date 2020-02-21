@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactEmoji from 'react-emoji';
 import {
   Image, CloudinaryContext,
@@ -8,10 +8,8 @@ import FsLightbox from 'fslightbox-react';
 import moment from 'moment';
 
 const Message = ({
-  id, username, message, created, emitDeleteMessage, video, image, currentUser,
+  id, username, message, created, emitDeleteMessage, video, image, currentUser, userId, isCurrent,
 }) => {
-
-  console.log('current', currentUser)
   // implement delete, edit, emoji
   const [toggler, changeToggle] = useState(false);
   return (
@@ -20,12 +18,12 @@ const Message = ({
         toggler={toggler}
         sources={[message]}
       />
-      <article className="full-message">
+      <article className={isCurrent ? 'full-message-me' : 'full-message'}>
         <div className="chat-name">
           <span>{username}</span>
           {/* {created} */}
         </div>
-        <div className="message-content">
+        <div className={isCurrent ? 'message-content-me' : 'message-content'}>
           {image && (
           <CloudinaryContext cloudName="jekmessaging">
             <Image className="message-media" publicId={message} width="100%" onClick={() => changeToggle(!toggler)} />
