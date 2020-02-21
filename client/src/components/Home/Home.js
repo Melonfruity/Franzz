@@ -6,9 +6,11 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
+import Modal from './Channel/Container/NewChannelModal';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
+import RightUI from './Channel/RightUI';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
@@ -63,7 +65,7 @@ const Home = ({ state, setState }) => {
         console.log(data);
       });
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -113,7 +115,7 @@ const Home = ({ state, setState }) => {
     return () => {
       socket.off();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   const channels = Object.keys(state.channelStates);
@@ -156,6 +158,11 @@ const Home = ({ state, setState }) => {
         <Switch>
           {channelItems}
         </Switch>
+        <Modal
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
+        />
+        <RightUI />
       </Router>
     </div>
   );

@@ -3,9 +3,9 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { useField } from '../../../hooks/useField';
+import { useField } from '../../../../hooks/useField';
 
-// import './NewChannelModal.css';
+import './NewChannelModal.css';
 
 const PopupToast = ({ children }) => {
   const [show, toggleShow] = useState(false);
@@ -13,7 +13,7 @@ const PopupToast = ({ children }) => {
   return (
     <>
       <div className="flexContainer">
-        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>Create New Channel</Button>}
+        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>+</Button>}
         <Toast show={show} onClose={() => toggleShow(false)}>
           <Toast.Header>
             <strong className="mr-auto">New Channel</strong>

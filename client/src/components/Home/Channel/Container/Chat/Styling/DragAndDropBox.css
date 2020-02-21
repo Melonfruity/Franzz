@@ -15,20 +15,20 @@ p {
   vertical-align: middle;
 }
 .button {
-  display: inline-block;
-  padding: 10px;
-  background: #ccc;
+  background-image: url('../../../../../../assets/photograph.png');
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
-  border-radius: 5px;
   margin-right: 29px;
-  margin-left: 19px;
-  border: 1px solid #ccc;
-  margin-top: 1px;
+  margin-left: 9px;
   height: 45px;
+  width: 43px;
 }
+
 .button:hover {
-  background: #ddd;
+  opacity: 70%;
 }
+
 #fileElem {
   display: none;
 }
