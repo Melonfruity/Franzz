@@ -3,11 +3,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
-import Modal from './Channel/Container/NewChannelModal';
-
+import Modal from './ChannelList/NewChannelModal';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
 import RightUI from './Channel/RightUI';
@@ -27,7 +27,6 @@ const Home = ({ state, setState }) => {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
-  console.log(state.channelStates)
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -50,6 +49,7 @@ const Home = ({ state, setState }) => {
           setState((prev) => ({
             ...prev,
             channelStates,
+            currentChannel: Object.keys(channelStates)[0],
           }));
         });
     }
@@ -67,6 +67,17 @@ const Home = ({ state, setState }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  // Sorry to hoever needs to debug this
+  // this is hack - vasily
+  useEffect(() => {
+    if (!state.currentChannelLoaded) {
+      setState((prev) => ({ ...prev, currentChannelLoaded: true }));
+    } else {
+      setState((prev) => ({ ...prev, loaded: true }));
+    }
+  }, [state.currentChannel]);
 
   useEffect(() => {
     if (socket) intializeMapsData();
@@ -158,11 +169,14 @@ const Home = ({ state, setState }) => {
         <Switch>
           {channelItems}
         </Switch>
+        {state.loaded && !state.currentChannel && (
         <Modal
           emitCreateChannel={emitCreateChannel}
           emitJoinChannel={emitJoinChannel}
         />
+        )}
         <RightUI />
+        <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />
       </Router>
     </div>
   );

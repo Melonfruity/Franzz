@@ -7,25 +7,7 @@ import { useField } from '../../../hooks/useField';
 
 // import './NewChannelModal.css';
 
-const PopupToast = ({ children }) => {
-  const [show, toggleShow] = useState(false);
-
-  return (
-    <>
-      <div className="flexContainer">
-        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>Create New Channel</Button>}
-        <Toast show={show} onClose={() => toggleShow(false)}>
-          <Toast.Header>
-            <strong className="mr-auto">New Channel</strong>
-          </Toast.Header>
-          <Toast.Body>{children}</Toast.Body>
-        </Toast>
-      </div>
-    </>
-  );
-};
-
-const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
+const PopupToast = ({ emitCreateChannel, emitJoinChannel, show }) => {
   const channelName = useField('text');
   const channelLink = useField('text');
 
@@ -40,40 +22,51 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
     emitJoinChannel(channelLink.value);
     channelLink.reset();
   };
-
   return (
-    <Container className="p-3">
-      <Jumbotron>
-        <h1 className="header">New Channel</h1>
-        <PopupToast className="toast">
-          <div className="seperate">
-            <form>
-              <input
-                {...channelName}
-                reset={undefined}
-                placeholder="channel name"
-                onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
-              />
-              <button type="button" onClick={(e) => createChannel(e)}>
+    <>
+      <div className="flexContainer">
+        <Toast>
+          <Toast.Header>
+            <strong className="mr-auto">New Channel</strong>
+          </Toast.Header>
+          <Toast.Body>
+            <div className="seperate">
+              <form>
+                <input
+                  {...channelName}
+                  reset={undefined}
+                  placeholder="channel name"
+                  onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
+                />
+                <button type="button" onClick={(e) => createChannel(e)}>
                 Create
-              </button>
-            </form>
-            <form>
-              <input
-                {...channelLink}
-                reset={undefined}
-                placeholder="channel link"
-                onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}
-              />
-              <button type="button" onClick={(e) => joinChannel(e)}>
+                </button>
+              </form>
+              <form>
+                <input
+                  {...channelLink}
+                  reset={undefined}
+                  placeholder="channel link"
+                  onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}
+                />
+                <button type="button" onClick={(e) => joinChannel(e)}>
                 Join
-              </button>
-            </form>
-          </div>
-        </PopupToast>
-      </Jumbotron>
-    </Container>
+                </button>
+              </form>
+            </div>
+          </Toast.Body>
+        </Toast>
+      </div>
+    </>
   );
 };
+
+const Modal = () => (
+  <Container className="p-3">
+    <Jumbotron>
+      <h1 className="header">New Channel</h1>
+    </Jumbotron>
+  </Container>
+);
 
 export default Modal;

@@ -22,6 +22,8 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
+    loaded: false,
+    currentChannelLoaded:false,
   });
 
   // logout resets app
@@ -75,7 +77,7 @@ const App = () => {
         />
         <Route
           exact
-          path="/home"
+          from="/home"
           render={() => (
             state.authorization
               ? (
@@ -97,7 +99,7 @@ const App = () => {
                   setState={setState}
                 />
               )
-              : <Redirect to="/" />
+              : <Redirect from="/" />
           )}
         />
       </Router>
