@@ -268,3 +268,15 @@ h3 {
 .guestRegisterBanner:hover {
   background-color: rgba(128, 128, 128, 0.123);
 }
+
+.guestModalGoogleLoginButton {
+  position: absolute;
+  width: 200px;
+  right: 270px;
+  bottom:5px;
+}
+
+
+.guestRegisterModalCloseButton {
+  margin-left: 20px;
+}

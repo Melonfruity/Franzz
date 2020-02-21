@@ -9,7 +9,7 @@ import {
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 import NavBar from './components/Navbar/NavBar';
-import GuestRegisterBanner from './components/Home/GuestRegisterBanner'
+import GuestRegisterBanner from './components/Navbar/GuestRegisterBanner'
 
 const App = () => {
   // state of the client app

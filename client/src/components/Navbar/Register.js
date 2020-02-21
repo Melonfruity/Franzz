@@ -3,6 +3,8 @@ import { useField } from '../../hooks/useField';
 import auth from '../../service/authService';
 import GoogleLogin from '../Landing/Login/GoogleLogin';
 
+
+
 const Register = ({ setState }) => {
   const email = useField('text');
   const password = useField('password');
