@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import ChannelItem from './ChannelItem';
-import './channelList.css';
+
+// import ChannelItem from './ChannelItem';
+// import './channelList.css';
 
 const ChannelList = ({
   selectCurrentChannel, channelIdNamePair,
@@ -10,21 +14,31 @@ const ChannelList = ({
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
     return (
-      <li className="channelItems" key={id}>
-        <ChannelItem
-          name={name}
-          id={id}
-          selectCurrentChannel={selectCurrentChannel}
-        />
-      </li>
+      <div>
+        <li className="channelItems" key={id}>
+          <ChannelItem
+            name={name}
+            id={id}
+            selectCurrentChannel={selectCurrentChannel}
+          />
+        </li>
+        <Divider />
+      </div>
     );
   });
 
   return (
-    <div className="temporary">
-      <h3>Channel List</h3>
-      <div className="channelList">
-        {channelList}
+    <div className="userHome">
+      <div className="leftBarUI">
+        <div>
+          <Link to="/home">Home</Link>
+        </div>
+        <h3>Channel List</h3>
+        <div className="channelList">
+          <List>
+            {channelList}
+          </List>
+        </div>
       </div>
     </div>
   );

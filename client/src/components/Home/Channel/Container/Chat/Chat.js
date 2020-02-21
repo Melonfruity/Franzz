@@ -26,6 +26,7 @@ const Chat = ({
         channelId={channel}
         currentUser={currentUser}
       />
+      
       <Input
         emitSendMessage={emitSendMessage}
         channel={channel}

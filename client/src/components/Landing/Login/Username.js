@@ -1,11 +1,12 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 
-
 const Username = ({ setState }) => {
   const username = useField('text');
-  const handleSelectUser = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const guestObj = {
       username: username.value,
@@ -26,14 +27,20 @@ const Username = ({ setState }) => {
 
   return (
     <div className="usernameLogin">
-    <form >
-      <input
-        placeholder="username"
-        {...username}
-        reset={undefined}
-        onKeyPress={(e) => (e.key === 'Enter' ? handleSelectUser(e) : null)}
-      />
-    </form>
+      <form>
+        <TextField
+          placeholder="username"
+          id="outlined-basic"
+          variant="outlined"
+          label="Username"
+          {...username}
+          reset={undefined}
+          onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
+        />
+        <Button variant="outlined" onClick={(e) => handleLogin(e)}>
+          ->
+        </Button>
+      </form>
     </div>
   );
 };

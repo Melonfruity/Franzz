@@ -15,9 +15,11 @@ const Input = ({ emitSendMessage, channel }) => {
   return (
     <form id="messaging-input">
       <textarea
+        className="chatInputBox"
         {...message}
         reset={undefined}
         onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
+        placeholder= "Type something to send..."
       />
       <button
         id="send-button"
