@@ -56,7 +56,7 @@ const GuestRegisterBanner = ({ setState }) => {
             <form className="NewAccountRegistrationModalForm">
               <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
               <div className="email">
-                <p>E-mail:</p>
+                {/* <p>E-mail:</p> */}
                 <SignInInput 
                   name="Email"
                   placeholder="email"
@@ -72,7 +72,7 @@ const GuestRegisterBanner = ({ setState }) => {
                 /> */}
               </div>
               <div className="password">
-                <p>Password: </p>
+                {/* <p>Password: </p> */}
                 <SignInInput 
                   name="Password"
                   placeholder="password"
