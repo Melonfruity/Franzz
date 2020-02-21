@@ -267,6 +267,7 @@ h3 {
 
 .guestRegisterBanner:hover {
   background-color: rgba(128, 128, 128, 0.123);
+  cursor: pointer;
 }
 
 .guestModalGoogleLoginButton {
