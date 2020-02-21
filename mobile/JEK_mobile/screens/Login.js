@@ -1,5 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StatusBar, StyleSheet, View, Text, TextInput, SafeAreaView } from 'react-native';
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  SafeAreaView
+} from 'react-native';
+
+import auth from '../utils/auth';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +24,7 @@ const Login = () => {
         onChangeText={(val) => setUsername(val)}
         value={username}
       />
+      <Button title="GO" onPress={() => auth.username(username)} />
     </View>
   )
 };

@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../client/src/components/Navbar/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/components/Navbar/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/__tests__/StyledText-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/__tests__/__snapshots__/StyledText-test.js.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../constants/Colors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../constants/Layout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../navigation/BottomTabNavigator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../navigation/useLinking.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../screens/ChannelScreen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../screens/HomeScreen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../screens/MapsScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

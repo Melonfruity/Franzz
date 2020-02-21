@@ -7,28 +7,39 @@ import { Platform, StatusBar, StyleSheet, View, Text, SafeAreaView } from 'react
 // import { createStackNavigator } from '@react-navigation/stack';
 import io from 'socket.io-client';
 
+import { AsyncStorage } from 'react-native';
+
 import Login from './screens/Login';
 
+let socket;
+
 const App = () => {
-  const [text, setText] = useState('');
-  
-  let socket;
+  const [state, setState] = useState({
+    guest: true,
+    currentChannel: '',
+    authorization: '',
+    username: '',
+    channelStates: {},
+    locations: {},
+    center: {},
+    users: {},
+  });
 
   useEffect(() => {
     socket = io('http://10.0.2.2:8001')
     socket.on('connect', () => {
       socket.on('server message', (data) => {
-        setText(data.serverMsg);
+        console.log(data)
       })
     });
   }, []);
 
-  console.log(socket)
-  console.log('hi')
+  console.log('socket', socket)
+  console.log('state', state.guest)
   return (
     <View style={styles.container}>
       <Login />
-      <Text> {text} </Text>
+      <Text> {state.guest} </Text>
       <Text> Hi </Text>
     </View>
   );
@@ -39,6 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    justifyContent: 'center',
   }
 })
 
