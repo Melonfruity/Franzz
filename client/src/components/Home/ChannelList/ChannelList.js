@@ -27,10 +27,10 @@ const ChannelList = ({
       <div className="channelList">
         {channelList}
       </div>
-      <Modal
+      {/* <Modal
         emitCreateChannel={emitCreateChannel}
         emitJoinChannel={emitJoinChannel}
-      />
+      /> */}
     </div>
   );
 };
