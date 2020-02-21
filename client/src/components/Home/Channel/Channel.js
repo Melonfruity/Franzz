@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
-
+import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 // modules
 import StalkerMap from './Modules/StalkerMap/StalkerMap';
+import './channelStyling.css';
 
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
@@ -25,7 +26,7 @@ const Channel = ({
   };
 
   return (
-    <div>
+    <div id="channel">
       {name}
       { invite.ready ? (
         <div>

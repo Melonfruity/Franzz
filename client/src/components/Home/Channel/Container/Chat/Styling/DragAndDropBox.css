@@ -1,13 +1,4 @@
-#drop-area {
-  border: 1px solid black;
-  border-radius: 20px;
-  width: 100%;
-  font-family: sans-serif;
-  padding: 10px;
-}
-#drop-area.highlight {
-  border-color: blue;
-}
+
 p {
   margin-top: 0;
 }

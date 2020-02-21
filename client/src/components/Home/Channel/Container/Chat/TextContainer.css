@@ -1,13 +1,52 @@
-.textContainer {
-  display: flex;
-  height: 500px;
-  border: 1px solid black;
-  width: 700px;
-  overflow: auto;
+.full-message {
+  margin-bottom: 14px;
+}
+
+#drop-area {
+  font-family: 'Muli';
+  padding: 8px;
+  border: 1px solid rgb(82, 82, 82);
+}
+
+#drop-area.highlight {
+  border-color: blue;
 }
 
 .messages {
   padding: 5% 0;
   overflow: auto;
   flex: auto;
+}
+
+.chat-name {
+  color: #7b7b7b;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContainer {
+  height: 500px;
+  overflow: auto;
+} 
+
+.message-content {
+  max-width: 377px;
+  display: inline-block;
+  background: #03aad0;
+  color: #fbfbfb;
+  border-radius: 0px 26px 26px 26px;
+  padding: 9px 16px 9px 16px;
+  font-size: 14px;
+  margin: 5px;
+  font-weight: 400;
+}
+
+.message-media:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.chat-name span {
+  padding-left: 6px;
 }
