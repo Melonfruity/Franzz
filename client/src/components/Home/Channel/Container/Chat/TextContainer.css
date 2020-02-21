@@ -27,7 +27,7 @@
 }
 
 .textContainer {
-  height: 645px;
+  height: 611px;
   overflow: auto;
 } 
 
@@ -38,8 +38,8 @@
 .message-content {
   max-width: 377px;
   display: inline-block;
-  background: #2a2a2a;
-  color: #fbfbfb;
+  background: #E6E5EB;
+  color: #202020;
   border-radius: 0px 26px 26px 26px;
   padding: 9px 16px 9px 16px;
   font-size: 14px;

@@ -59,6 +59,7 @@ const App = () => {
           state={state}
           setState={setState}
         />
+
         <Route
           exact
           path="/"

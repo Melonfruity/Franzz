@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
 
@@ -29,24 +31,31 @@ const NormalLogin = ({ setState }) => {
   return (
     <div className="normalLogin">
       <form>
-        <input
+        <TextField
           placeholder="email"
+          label="E-mail"
+          id="outlined-basic"
+          variant="outlined"
           {...email}
           reset={undefined}
           onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
         />
-        <input
+        <TextField
           placeholder="password"
+          labal="Password"
+          id="outlined-basic"
+          variant="outlined"
           {...password}
           reset={undefined}
           onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
         />
-        <button
+        <Button
+          variant="outlined"
           type="button"
           onClick={handleLogin}
         >
-        Log In
-        </button>
+          Login
+        </Button>
       </form>
     </div>
   );

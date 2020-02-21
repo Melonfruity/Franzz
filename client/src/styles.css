@@ -1,11 +1,14 @@
 
 html {
   height: 100vh;
+  width: 100vw;
 }
 
 body {
-  background-color: white;
-  height: 100%;
+  background-color: rgb(255, 255, 255);
+  height: calc(100% - 10px);
+  /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
+  /* background-size: cover; */
 }
 
 #root {
@@ -27,24 +30,30 @@ body {
   justify-content: space-around;
   margin: auto;
   position: relative;
-  top: 150px;
+  top: 90px;
   height: 60%;
-  /* height: 300px; */
 }
 
 .landingPage input {
   width: 500px;
+
+  /* background-color:rgba(255, 255, 255, 0.205) */
 }
+
+
 
 .landingPage button {
   width: 500px;
+  /* background-color:rgba(255,255,255,.2) */
 }
 
 .normalLogin {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .normalLogin form{
-
+  width: 500px;
 }
 
 .normalLogin button {
@@ -52,11 +61,10 @@ body {
 }
 
 .usernameLogin {
-
 }
 
 .usernameLogin form {
-
+  width: 500px;
 }
 
 
@@ -65,7 +73,7 @@ body {
 }
 
 .googleLogin {
-
+  opacity: 50%;
 }
 
 .channelItems {
@@ -73,7 +81,6 @@ body {
 }
 
 .userHome {
-  margin-top: 50px;
   display: flex;
 }
 
@@ -111,7 +118,13 @@ body {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  margin-left: 50px;
+}
+
+.username {
+  margin-top: 15px;
+  width: 150px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .googleLoginButton {
@@ -121,27 +134,22 @@ body {
 }
 
 .logoutButton {
-  position: relative;
-  margin-left: 100px;
-  left: 450px;
+  /* margin-right: 60px; */
+  padding-right: 85px;
+  margin-top: 10px;
+}
+
+.navLogout {
+  display:flex;
+  justify-content: space-between;
 }
 
 .leftBarUI {
   margin-top: 20px;
+  width: 20%;
+  /* color: white; */
 }
 
-.rightBarUI {
-  margin-top: 20px;
-  margin-left: 10px;
-  width: 12%;
-}
-
-.username {
-  margin-top: 10px;
-  width: 150px;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
 
 .NewAccountRegistrationModalForm {
   display: flex;
@@ -185,6 +193,84 @@ body {
 }
 
 .channelList {
+  width: 230px;
   max-height: 310px;
+  max-width: 230px;
   overflow:auto;
+}
+
+.signInInput {
+  width: 500px;
+  height: 60px;
+}
+
+.channelLink {
+  text-decoration: none;
+  color: black;
+}
+
+.channelLink:hover {
+  color: black;
+  text-decoration: none;
+}
+
+div.jumbotron {
+  /* background-color: #36405D;  */
+  /* /* background: linear-gradient(188deg, #36405D 10%, rgb(48, 57, 83) 100%); */
+}
+
+.modalButton {
+  position: absolute;
+  left: 215px;
+  top: 157px;
+}
+
+.chatInputBox {
+  width: 1100px;
+}
+
+.homeNav {
+  display: flex;
+}
+
+.rightBarUI {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 250px;
+}
+
+
+h3 {
+  width: 200px;
+}
+
+.guestRegisterBanner {
+  height: 40px;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  padding-top:15px;
+  align-items: center;
+  margin-top: 15px;
+  color: black;
+  background-color: rgba(128, 128, 128, 0.055);
+}
+
+.guestRegisterBanner:hover {
+  background-color: rgba(128, 128, 128, 0.123);
+  cursor: pointer;
+}
+
+.guestModalGoogleLoginButton {
+  position: absolute;
+  width: 200px;
+  right: 270px;
+  bottom:5px;
+}
+
+
+.guestRegisterModalCloseButton {
+  margin-left: 20px;
 }

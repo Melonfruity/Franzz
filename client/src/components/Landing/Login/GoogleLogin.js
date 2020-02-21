@@ -4,7 +4,6 @@ import { GoogleLogin } from 'react-google-login';
 import { GOOGLE_CLIENT_ID } from '../../../utils/config';
 import auth from '../../../service/authService';
 
-
 const GoogleLoginButton = ({ setState }) => {
   const onSuccess = (googleData) => {
     const { accessToken } = googleData;
