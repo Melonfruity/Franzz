@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
+import Modal from './Channel/Container/NewChannelModal';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
@@ -155,6 +156,10 @@ const Home = ({ state, setState }) => {
         <Switch>
           {channelItems}
         </Switch>
+        <Modal
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
+        />
       </Router>
     </div>
   );

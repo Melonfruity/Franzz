@@ -2,11 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelItem from './ChannelItem';
-import Modal from './NewChannelModal';
 import './channelList.css';
 
 const ChannelList = ({
-  selectCurrentChannel, channelIdNamePair, emitJoinChannel, emitCreateChannel,
+  selectCurrentChannel, channelIdNamePair,
 }) => {
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
@@ -27,10 +26,6 @@ const ChannelList = ({
       <div className="channelList">
         {channelList}
       </div>
-      {/* <Modal
-        emitCreateChannel={emitCreateChannel}
-        emitJoinChannel={emitJoinChannel}
-      /> */}
     </div>
   );
 };
