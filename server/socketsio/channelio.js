@@ -35,7 +35,6 @@ module.exports = (io, socket) => {
           video: savedMessage.video,
           image: savedMessage.image,
           id: savedMessage.id,
-          
         };
         socket.to(channelID).emit('new message', { channelID, newMessageObj });
         callback(newMessageObj);

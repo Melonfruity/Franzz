@@ -23,9 +23,9 @@ const updateCredentials = async (credentials) => {
   };
   console.log(state);
   storeLocal('guest', `${guest}`);
-  // storeLocal('userID', userID);
-  // storeLocal('username', username);
-  // storeLocal('authorization', token);
+  storeLocal('userID', userID);
+  storeLocal('username', username);
+  storeLocal('authorization', token);
 };
 
 const storeLocal = async (key, value) => {

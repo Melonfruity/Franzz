@@ -9,10 +9,10 @@ const username = async (usernameObj) => {
   if (!error) {
     Global.updateCredentials(res.data);
   }
-  console.log(await Global.getLocal('guest'))
-  // Global.getLocal('userID')
-  // Global.getLocal('username')
-  // Global.getLocal('authorization')
+  await Global.getLocal('guest')
+  await Global.getLocal('userID')
+  await Global.getLocal('username')
+  await Global.getLocal('authorization')
   // const config = {
   //   headers: {authorization: `${token}` },
   // };

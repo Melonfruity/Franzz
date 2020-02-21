@@ -57,7 +57,7 @@ authRouter.post('/google', async (req, res, next) => {
 // register route for users not using a google account
 authRouter.post('/register', async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
     const { isValid, errors } = formValidator({ email, password });
     const { authorization } = req.headers;
     // check if valid email, password
@@ -69,13 +69,16 @@ authRouter.post('/register', async (req, res, next) => {
         if (authorization && typeof username === 'string') {
           const updateGuestObj = {
             email,
+            username,
             password: register(password),
           };
-          const updatedUser = extractJWT(authorization, updateGuestObj);
+          const updatedUser = await extractJWT(authorization, updateGuestObj);
+          console.log('updatedUser', updatedUser)
           signJWT(res, updatedUser);
         } else {
           const newUser = new User({
             email,
+            username,
             password: register(password),
           });
           await newUser.save();

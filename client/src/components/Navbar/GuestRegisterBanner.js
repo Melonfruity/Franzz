@@ -19,6 +19,7 @@ const GuestRegisterBanner = ({ setState }) => {
     const registerObj = {
       email: email.value,
       password: password.value,
+      username: window.localStorage.getItem('username'),
     };
     auth
       .register(registerObj)
