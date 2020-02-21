@@ -14,7 +14,7 @@ const TextContainer = ({
 }) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
-  
+
   const formattedMessages = messages.map((msg) => (
     <Message
       key={msg.id}
@@ -46,14 +46,15 @@ const TextContainer = ({
 
   return (
     <div
-      id="drop-area"
-      className={`textContainer ${highlightClass}`}
       onDragEnter={boxEvent}
       onDragLeave={boxEvent}
       onDragOver={boxEvent}
       onDrop={dropFile}
     >
-      <ScrollToBottom id="messages">
+      <ScrollToBottom
+        id="drop-area"
+        className={`textContainer ${highlightClass}`}
+      >
         {formattedMessages}
       </ScrollToBottom>
     </div>

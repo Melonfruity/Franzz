@@ -13,10 +13,6 @@
   padding: 8px;
 }
 
-#drop-area.highlight {
-  border-color: blue;
-}
-
 .messages {
   padding: 5% 0;
   overflow: auto;
@@ -34,6 +30,10 @@
   height: 620px;
   overflow: auto;
 } 
+
+.textContainer.highlight {
+  box-shadow: 0px 0 16px -9px #03aad0;
+}
 
 .message-content {
   max-width: 377px;
