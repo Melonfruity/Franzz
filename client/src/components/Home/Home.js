@@ -10,8 +10,7 @@ import Modal from './Channel/Container/NewChannelModal';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import RightUI from './Channel/RightUI'
-import Modal from './ChannelList/NewChannelModal'
+import RightUI from './Channel/RightUI';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
@@ -162,7 +161,7 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           emitJoinChannel={emitJoinChannel}
         />
-        <RightUI></RightUI>
+        <RightUI />
       </Router>
     </div>
   );
