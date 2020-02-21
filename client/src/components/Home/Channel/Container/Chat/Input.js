@@ -20,13 +20,13 @@ const Input = ({ emitSendMessage, channel }) => {
         onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
       />
       <button
+        id="send-button"
         type="submit"
         onClick={(e) => sendMessage(e)}
       >
-        submit
       </button>
       <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, 'chat', emitSendMessage)} />
-      <label className="button" htmlFor="fileElem">H</label>
+      <label className="button" htmlFor="fileElem"></label>
     </form>
   );
 };

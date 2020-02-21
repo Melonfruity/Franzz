@@ -26,10 +26,15 @@
   outline: none;
 }
 
-#chat-container button {
-  margin-left: -73px;
+#send-button {
+  display: none;
+  /* margin-left: -73px;
   height: 25px;
   margin-top: 10px;
+  background-image: url('../../../../../assets/send.png');
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+  padding:1px; */
 }
 
 #messaging-input {
