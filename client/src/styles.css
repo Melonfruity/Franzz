@@ -260,9 +260,9 @@ div.jumbotron {
 }
 
 .modalButton {
-  position: relative;
-  right: 510px;
-  bottom: 95px;
+  position: absolute;
+  left: 215px;
+  top: 157px;
 }
 
 .chatInputBox {
@@ -329,4 +329,51 @@ h3 {
 
 .NewAccountRegistrationModalForm .signInInput {
   width: 400px;
+}
+
+
+.createChannelImage {
+  margin-left: 40px;
+  margin-bottom: 10px;
+  background-image: url(./assets/845d431ebfc24e13a0b31f7e64fc612b.png);
+  width: 97px;
+  height: 65px;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+.joinChannelImage {
+margin-left: 12px;
+margin-bottom: 10px;
+background-image: url(./assets/8fb52ec5260dfe6c5b93d211d3b6ecde.png);
+width: 135px;
+height: 65px;
+background-size:contain;
+background-repeat: no-repeat;
+}
+
+
+.toast {
+  height: 320px;
+  width: 1000px;
+}
+
+.createChannelButton {
+  margin-top:10px;
+  background-color:rgb(60, 163, 116);
+  border-radius: 5px;
+  color: white;
+}
+
+.joinChannelButton {
+  margin-top:10px;
+  background-color:rgb(114, 137, 218);
+  border-radius: 5px;
+  color: white;
+}
+
+
+.JoinCreateInput {
+  width: 160px;
+  height: 50px;
 }
