@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -39,6 +40,7 @@
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.1.1",

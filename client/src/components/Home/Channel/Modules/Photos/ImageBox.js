@@ -5,6 +5,7 @@ import AlbumForm from './AlbumForm';
 import GalleryDisplay from './galleryDisplay';
 import AlbumDisplay from './AlbumDisplay';
 import './Styling/PopUpBoxStyling.css';
+import './Styling/imageBox.css';
 
 const CHAT = 'chat';
 const ALBUMS = 'albums';
@@ -20,7 +21,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   const [imageLinks, changeLinks] = useState([]);
   const [view, changeView] = useState('chat');
   const [folderPath, changePath] = useState(`${channelId}/chat/false`);
-  const [title, changeTitle] = useState('Chat');
+  const [title, changeTitle] = useState('Chat Photos');
 
   // Changes view of gallery
   function newView(v) {
@@ -37,7 +38,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
   // Go back to viewing chat photos
   function viewChatPhotos() {
     changePath(`${channelId}/chat/false`);
-    changeTitle('Chat');
+    changeTitle('Chat Photos');
     changeView('chat');
   }
 
@@ -59,8 +60,10 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       />
       <div id="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
-          <button onClick={() => viewChatPhotos()}>Chat</button>
-          <button onClick={() => newView('albums')}>Albums</button>
+          <div className="switch-buttons">
+            <button className="image-buttons" onClick={() => viewChatPhotos()}>CHAT</button>
+            <button className="image-buttons" onClick={() => newView('albums')}>ALBUMS</button>
+          </div>
           { view === ALBUMFORM
           && (
           <AlbumForm
@@ -68,7 +71,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
             emitSendMessage={emitSendMessage}
             albumName=""
             newAlbum
-            viewAlbum={viewAlbum}
+            viewAlbum={newView}
           />
           )}
           { view === CHAT

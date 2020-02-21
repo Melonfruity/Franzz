@@ -1,4 +1,4 @@
-const locations = {};
+const { locations } = require('../../dynamicDB');
 
 const updateLocations = (id, username, location, channels, callback, io) => {
   channels.forEach((channel) => {
@@ -27,6 +27,7 @@ const updateLocations = (id, username, location, channels, callback, io) => {
   callback(appLocations);
 };
 
+// change id to socket ID
 const updateChannel = (id, username, channel, location, io) => {
   if (!locations[channel]) {
     locations[channel] = {};
@@ -39,7 +40,7 @@ const updateChannel = (id, username, channel, location, io) => {
     channel,
     newLocations: [...Object.values(locations[channel])],
   };
-  console.log(locationObj);
+  // console.log('update Channel (update maps)', locationObj);
   io.in(channel).emit('update location', locationObj);
 };
 

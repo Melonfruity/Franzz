@@ -1,13 +1,76 @@
-.textContainer {
+.full-message {
+  margin-bottom: 14px;
+}
+
+.full-message-me {
   display: flex;
-  height: 500px;
-  border: 1px solid black;
-  width: 700px;
-  overflow: auto;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+#drop-area {
+  font-family: 'Muli';
+  padding: 8px;
 }
 
 .messages {
   padding: 5% 0;
   overflow: auto;
   flex: auto;
+}
+
+.chat-name {
+  color: #7b7b7b;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContainer {
+  height: 645px;
+  overflow: auto;
+} 
+
+.textContainer.highlight {
+  box-shadow: 0px 0 16px -9px #03aad0;
+}
+
+.message-content {
+  max-width: 377px;
+  display: inline-block;
+  background: #2a2a2a;
+  color: #fbfbfb;
+  border-radius: 0px 26px 26px 26px;
+  padding: 9px 16px 9px 16px;
+  font-size: 14px;
+  margin: 5px;
+  font-weight: 400;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.message-content-me {
+  max-width: 377px;
+  display: inline-block;
+  background: #03aad0;
+  color: #fbfbfb;
+  border-radius: 26px 0px 26px 26px;
+  padding: 9px 16px 9px 16px;
+  font-size: 14px;
+  margin: 5px;
+  font-weight: 400;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.message-media:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.chat-name span {
+  padding-left: 6px;
+  padding-right: 6px;
 }

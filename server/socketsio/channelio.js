@@ -1,6 +1,7 @@
 const { info, errm } = require('../utils/logger');
 const { extractJWT } = require('../utils/helpers/authHelper');
 const { partOfChannel, getChannel } = require('../utils/helpers/channelHelper');
+const { changeOnline } = require('../dynamicDB');
 const Message = require('../models/Message');
 const Channel = require('../models/Channel');
 
@@ -27,12 +28,14 @@ module.exports = (io, socket) => {
         const newMessageObj = {
           user: {
             username: user.username,
+            id: user.id,
           },
           message: savedMessage.message,
           created: savedMessage.created,
           video: savedMessage.video,
           image: savedMessage.image,
           id: savedMessage.id,
+          
         };
         socket.to(channelID).emit('new message', { channelID, newMessageObj });
         callback(newMessageObj);
@@ -69,6 +72,7 @@ module.exports = (io, socket) => {
           },
           messages: [],
         };
+        changeOnline(socket.id, user.channels, user.username, io);
         socket.join(savedChannel.id);
         callback(channelData);
       }
@@ -97,7 +101,7 @@ module.exports = (io, socket) => {
 
           // welcome message
           const welcomeMessage = new Message({
-            message: 'has joined the channel!',
+            message: `${user.username} has joined the channel!`,
             user: user.id,
             channel: channelID,
           });
@@ -133,6 +137,7 @@ module.exports = (io, socket) => {
             },
           });
           // for other clients
+          changeOnline(socket.id, user.channels, user.username, io);
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
           // for new client
           callback(channelData);
@@ -155,6 +160,7 @@ module.exports = (io, socket) => {
     if (user) {
       socket.join(user.channels);
       const joinedRooms = Object.keys(io.sockets.adapter.rooms);
+      changeOnline(socket.id, user.channels, user.username, io);
       socket.emit('server message', {
         serverMsg: {
           'joined rooms': joinedRooms,
