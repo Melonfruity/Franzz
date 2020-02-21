@@ -46,11 +46,11 @@ const Channel = ({
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
       />
-      <StalkerMap
+      {/* <StalkerMap
         locations={locations}
         channel={channel}
         center={center}
-      />
+      /> */}
     </div>
   );
 };
