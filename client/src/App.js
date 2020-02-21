@@ -16,7 +16,6 @@ const App = () => {
     guest: true,
     currentChannel: '',
     authorization: '',
-    currentUser: '',
     username: '',
     channelStates: {},
     locations: {},
@@ -31,7 +30,6 @@ const App = () => {
       guest: true,
       currentChannel: '',
       authorization: '',
-      currentUser: '',
       username: '',
       channelStates: {},
       locations: {},
@@ -47,7 +45,6 @@ const App = () => {
       authorization: window.localStorage.getItem('authorization'),
       username: window.localStorage.getItem('username'),
       guest: window.localStorage.getItem('guest'),
-      currentUser: window.localStorage.getItem('userID'),
     }));
   }, []);
 

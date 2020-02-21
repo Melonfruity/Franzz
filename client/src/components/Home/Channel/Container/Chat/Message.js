@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect } from 'react';
 import ReactEmoji from 'react-emoji';
 import {

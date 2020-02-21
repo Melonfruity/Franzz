@@ -21,7 +21,6 @@ const setLocalStorage = (data) => {
 
 const login = async (loginObj) => {
   const res = await axios.post(`${serverURL}/auth/login`, loginObj);
-  console.log(res)
   return setLocalStorage(res.data);
 };
 

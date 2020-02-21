@@ -10,7 +10,6 @@ import './channelStyling.css';
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
 }) => {
-  console.log(users);
 
   const [invite, setInvite] = useState({
     ready: false,
