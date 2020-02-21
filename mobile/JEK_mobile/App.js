@@ -40,7 +40,6 @@ const App = () => {
     <View style={styles.container}>
       <Login />
       <Text> {state.guest} </Text>
-      <Text> Hi </Text>
     </View>
   );
 }

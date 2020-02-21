@@ -18,6 +18,7 @@ const Username = ({ setState }) => {
             ...prev,
             authorization: window.localStorage.getItem('authorization'),
             username: window.localStorage.getItem('username'),
+            currentUser: window.localStorage.getItem('userID'),
             guest: window.localStorage.getItem('guest'),
           }));
         }

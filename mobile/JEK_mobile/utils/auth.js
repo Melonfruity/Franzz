@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AsyncStorage } from 'react-native';
+import Global from '../Global';
 
 const serverURL = 'http://10.0.2.2:8001/api';
 
@@ -11,12 +11,15 @@ const username = async (usernameObj) => {
     console.log(username)
     console.log(guest)
     console.log(userID)
+    Global.updateCredentials(res.data);
   }
-  const config = {
-    headers: {authorization: `${token}` },
-  };
-  const initialize = await axios.get(`${serverURL}/channel/initialize`, config).then(data => console.log(data))
-  // AsyncStorage.setItem('authorization', token);
+  // const config = {
+  //   headers: {authorization: `${token}` },
+  // };
+
+
+
+  // await axios.get(`${serverURL}/channel/initialize`, config).then(res => console.log(res.data))
 };
 
 const login = async (loginObj) => {

@@ -19,7 +19,7 @@ const Login = () => {
     <View>
       <Text style={styles.text}>Select a Username</Text>
       <TextInput
-        style={styles.text}
+        style={{ ...styles.text, ...styles.border }}
         placeholder='username'
         onChangeText={(val) => setUsername(val)}
         value={username}
@@ -34,14 +34,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    borderColor: '#777',
-    borderWidth: 1,
     padding: 8,
     margin: 10,
     width: 200,
     maxHeight: 40,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  border: {
+    borderColor: '#777',
+    borderWidth: 1,
   }
 })
 
