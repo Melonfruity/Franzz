@@ -14,6 +14,13 @@ const signJWT = (res, user) => {
   const payload = {
     userID: user.id,
   };
+  const data = {
+    channels: user.channels,
+    username: user.username,
+    guest: !user.email,
+    userID: user.id,
+  };
+
   jwt.sign(
     payload,
     secretOrKey,
@@ -24,9 +31,7 @@ const signJWT = (res, user) => {
       res.status(200).json({
         success: true,
         token: 'Bearer '.concat(token),
-        channels: user.channels,
-        username: user.username,
-        guest: !user.email,
+        ...data,
       });
     },
   );
