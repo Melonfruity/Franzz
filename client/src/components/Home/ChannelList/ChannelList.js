@@ -23,10 +23,10 @@ const ChannelList = ({
 
   return (
     <div className="temporary">
-        <h3>Channel List</h3>
-        <div className="channelList">
-          {channelList}
-        </div>
+      <h3>Channel List</h3>
+      <div className="channelList">
+        {channelList}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import StalkerMap from './Modules/StalkerMap/StalkerMap';
 import './channelStyling.css';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center,
+  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
 }) => {
   console.log(users);
 
@@ -45,6 +45,7 @@ const Channel = ({
         emitSendMessage={emitSendMessage}
         emitDeleteMessage={emitDeleteMessage}
         channel={channel}
+        currentUser={currentUser}
       />
       {/* <StalkerMap
         locations={locations}

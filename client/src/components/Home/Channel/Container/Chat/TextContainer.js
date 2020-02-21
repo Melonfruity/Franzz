@@ -10,7 +10,7 @@ import useChangeHighlightClass from '../../../../../hooks/useHighlightClass';
 import { preventDefaults, handleDrop } from '../../Modules/Photos/Scripts/DragAndDropPhotos';
 
 const TextContainer = ({
-  messages, deleteMessage, channelId, emitSendMessage,
+  messages, deleteMessage, channelId, emitSendMessage, currentUser,
 }) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
@@ -22,6 +22,7 @@ const TextContainer = ({
       message={msg.message}
       created={msg.created}
       username={msg.user.username}
+      currentUser={currentUser}
       deleteMessage={deleteMessage}
       video={msg.video}
       image={msg.image}

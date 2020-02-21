@@ -12,7 +12,7 @@ import './Chat.css';
 const ON = 'on';
 
 const Chat = ({
-  messages, emitDeleteMessage, emitSendMessage, channel,
+  messages, emitDeleteMessage, emitSendMessage, channel, currentUser,
 }) => {
   const { boxDisplay, clickedButton } = useToggleButton('off');
   return (
@@ -24,6 +24,7 @@ const Chat = ({
         emitDeleteMessage={emitDeleteMessage}
         emitSendMessage={emitSendMessage}
         channelId={channel}
+        currentUser={currentUser}
       />
       <Input
         emitSendMessage={emitSendMessage}

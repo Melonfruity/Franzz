@@ -8,10 +8,10 @@ import FsLightbox from 'fslightbox-react';
 import moment from 'moment';
 
 const Message = ({
-  id, username, message, created, emitDeleteMessage, video, image,
+  id, username, message, created, emitDeleteMessage, video, image, currentUser,
 }) => {
 
-  console.log("date", created)
+  console.log('current', currentUser)
   // implement delete, edit, emoji
   const [toggler, changeToggle] = useState(false);
   return (

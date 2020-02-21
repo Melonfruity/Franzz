@@ -21,7 +21,6 @@ const Home = ({ state, setState }) => {
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
-
   const {
     grabLocations,
     intializeMapsData,
@@ -138,6 +137,7 @@ const Home = ({ state, setState }) => {
           emitSendMessage={emitSendMessage}
           locations={grabLocations(id)}
           center={state.center}
+          currentUser={state.currentUser}
         />
       </Route>
     );
