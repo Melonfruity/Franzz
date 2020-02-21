@@ -12,6 +12,10 @@ const username = async (usernameObj) => {
     console.log(guest)
     console.log(userID)
   }
+  const config = {
+    headers: {authorization: `${token}` },
+  };
+  const initialize = await axios.get(`${serverURL}/channel/initialize`, config).then(data => console.log(data))
   // AsyncStorage.setItem('authorization', token);
 };
 
