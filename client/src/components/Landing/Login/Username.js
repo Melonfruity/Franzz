@@ -1,7 +1,6 @@
 import React from 'react';
 import { useField } from '../../../hooks/useField';
 import auth from '../../../service/authService';
-import NewAccountRegistration from '../../../Modal';
 
 const Username = ({ setState }) => {
   const username = useField('text');
@@ -34,7 +33,6 @@ const Username = ({ setState }) => {
           reset={undefined}
           onKeyPress={(e) => (e.key === 'Enter' ? handleSelectUser(e) : null)}
         />
-        <NewAccountRegistration handleSelectUser={handleSelectUser} />
       </form>
     </div>
   );
