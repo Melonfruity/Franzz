@@ -26,7 +26,6 @@ const Home = ({ state, setState }) => {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
-
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -87,8 +86,19 @@ const Home = ({ state, setState }) => {
       }
     });
 
+    socket.on('user status', ({ userStatus }) => {
+      const { channel, users } = userStatus;
+      console.log(channel, users);
+      setState((prev) => ({
+        ...prev,
+        users: {
+          ...prev.users,
+          [channel]: users,
+        },
+      }));
+    });
+
     socket.on('update location', ({ channel, newLocations }) => {
-      console.log(channel, newLocations);
       if (newLocations) {
         setState((prev) => ({
           ...prev,
@@ -101,7 +111,6 @@ const Home = ({ state, setState }) => {
     });
 
     return () => {
-      socket.emit('disconnect');
       socket.off();
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,7 +124,7 @@ const Home = ({ state, setState }) => {
   };
 
   const channelItems = channels.map((id) => {
-    const { users, name, messages } = state.channelStates[id];
+    const { name, messages } = state.channelStates[id];
     return (
       <Route
         path={`/channel/${id}`}
@@ -125,7 +134,7 @@ const Home = ({ state, setState }) => {
           channel={id}
           name={name}
           messages={messages}
-          users={users}
+          users={state.users[id]}
           emitSendMessage={emitSendMessage}
           locations={grabLocations(id)}
           center={state.center}

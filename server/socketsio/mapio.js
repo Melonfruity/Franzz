@@ -7,7 +7,7 @@ module.exports = (io, socket) => {
   socket.on('update location', async ({ authorization, location }, callback) => {
     try {
       const user = await extractJWT(authorization);
-      updateLocations(user.id, user.username, location, user.channels, callback, io);
+      updateLocations(socket.id, user.username, location, user.channels, callback, io);
     } catch (err) {
       errm(err);
     }
@@ -16,8 +16,7 @@ module.exports = (io, socket) => {
   socket.on('update maps', async ({ channel, authorization, location }) => {
     try {
       const user = await extractJWT(authorization);
-      console.log(user.username, channel);
-      updateChannel(user.id, user.username, channel, location, io);
+      updateChannel(socket.id, user.username, channel, location, io);
     } catch (err) {
       errm(err);
     }

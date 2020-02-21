@@ -16,10 +16,12 @@ const App = () => {
     guest: true,
     currentChannel: '',
     authorization: '',
+    currentUser: '',
     username: '',
     channelStates: {},
     locations: {},
     center: {},
+    users: {},
   });
 
   // logout resets app
@@ -29,10 +31,12 @@ const App = () => {
       guest: true,
       currentChannel: '',
       authorization: '',
+      currentUser: '',
       username: '',
       channelStates: {},
       locations: {},
       center: {},
+      users: {},
     });
   };
 
@@ -43,6 +47,7 @@ const App = () => {
       authorization: window.localStorage.getItem('authorization'),
       username: window.localStorage.getItem('username'),
       guest: window.localStorage.getItem('guest'),
+      currentUser: window.localStorage.getItem('userID'),
     }));
   }, []);
 

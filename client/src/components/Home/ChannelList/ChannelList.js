@@ -25,7 +25,7 @@ const ChannelList = ({
     <div className="temporary">
         <h3>Channel List</h3>
         <div className="channelList">
-        {channelList}
+          {channelList}
         </div>
     </div>
   );

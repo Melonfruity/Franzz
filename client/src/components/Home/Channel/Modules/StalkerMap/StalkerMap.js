@@ -48,7 +48,7 @@ const StalkerMap = ({ locations, center, channel }) => {
         style={mapStyles}
         bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
         center={center}
-        zoom={10}
+        zoom={14}
       >
         {locationMarkers}
       </GoogleMap>

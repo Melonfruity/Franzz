@@ -1,4 +1,4 @@
-const shortLinks = {};
+const { shortLinks } = require('../../dynamicDB');
 
 const generateShortUrl = () => {
   // make sure short url is not used

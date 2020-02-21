@@ -17,7 +17,13 @@ export const useMap = (state, setState, socket) => {
             location,
             authorization: state.authorization,
           };
-          socket.emit('update maps', locationObj);
+          socket.emit('update location', locationObj, (locations) => {
+            setState((prev) => ({
+              ...prev,
+              locations,
+              center: location,
+            }));
+          });
           // socket.emit('update location', locationObj, (locations) => {
           //   setState((prev) => ({
           //     ...prev,
@@ -45,7 +51,6 @@ export const useMap = (state, setState, socket) => {
           console.log(res.data);
           const { location } = res.data;
           const locationObj = {
-            // location: { lat: 43.8288856, lng: -79.2946161 },
             location,
             authorization: state.authorization,
           };
