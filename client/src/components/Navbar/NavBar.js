@@ -10,10 +10,9 @@ const NavBar = ({ state, logOut, setState }) => {
       <div className="username">
       <p>{state.username}</p>
       </div>
-      <h1>JEK</h1>
       {state.authorization ? <Link className="logoutButton" to="/" onClick={logOut}> Logout </Link> : null}
     </nav>
-    <GuestRegisterBanner></GuestRegisterBanner>
+    {state.guest === 'true' ? <GuestRegisterBanner setState={setState}/> : null}
     </div>
   ));
 };
