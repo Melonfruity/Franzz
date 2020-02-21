@@ -14,6 +14,7 @@ import RightUI from './Channel/RightUI';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
+import PopupToast from './PopUpToast';
 
 let socket;
 
@@ -136,6 +137,10 @@ const Home = ({ state, setState }) => {
     setState((prev) => ({ ...prev, currentChannel: channel }));
   };
 
+  const toggleForm = (s) => {
+    setState((prev) => ({ ...prev, newChannelForm: s }));
+  };
+
   const channelItems = channels.map((id) => {
     const { name, messages } = state.channelStates[id];
     return (
@@ -165,6 +170,7 @@ const Home = ({ state, setState }) => {
           channelIdNamePair={channelIdNamePair}
           emitJoinChannel={emitJoinChannel}
           emitCreateChannel={emitCreateChannel}
+          toggleForm={toggleForm}
         />
         <Switch>
           {channelItems}
@@ -175,6 +181,10 @@ const Home = ({ state, setState }) => {
           emitJoinChannel={emitJoinChannel}
         />
         )}
+        <PopupToast
+          show={state.newChannelForm}
+          toggleForm={toggleForm}
+        />
         <RightUI />
         <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />
       </Router>

@@ -23,7 +23,8 @@ const App = () => {
     center: {},
     users: {},
     loaded: false,
-    currentChannelLoaded:false,
+    currentChannelLoaded: false,
+    newChannelForm: false,
   });
 
   // logout resets app

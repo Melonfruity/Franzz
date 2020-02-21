@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -9,7 +9,7 @@ import ChannelItem from './ChannelItem';
 // import './channelList.css';
 
 const ChannelList = ({
-  selectCurrentChannel, channelIdNamePair,
+  selectCurrentChannel, channelIdNamePair, toggleForm,
 }) => {
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
@@ -29,10 +29,8 @@ const ChannelList = ({
 
   return (
     <div className="userHome">
+      <button id="create-channel" onClick={() => toggleForm(true)}>+</button>
       <div className="leftBarUI">
-        <div>
-          <Link to="/home">Home</Link>
-        </div>
         <h3>Channel List</h3>
         <div className="channelList">
           <List>
