@@ -1,3 +1,26 @@
 #chat-container {
   width: 100%;
+  background: #e9f3f2;
+}
+
+#chat-container form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#chat-container textarea {
+  flex-grow: 30;
+  resize: none;
+  overflow: auto;
+  border: none;
+}
+
+#chat-container button {
+  flex-grow: 1;
+}
+
+#messaging-input {
+  background: grey;
+    margin: 11px;
 }

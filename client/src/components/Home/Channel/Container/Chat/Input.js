@@ -12,8 +12,7 @@ const Input = ({ emitSendMessage }) => {
   };
 
   return (
-    <form>
-      Input
+    <form id="messaging-input">
       <textarea
         {...message}
         reset={undefined}

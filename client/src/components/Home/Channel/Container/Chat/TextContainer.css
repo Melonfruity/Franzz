@@ -5,7 +5,6 @@
 #drop-area {
   font-family: 'Muli';
   padding: 8px;
-  border: 1px solid rgb(82, 82, 82);
 }
 
 #drop-area.highlight {
