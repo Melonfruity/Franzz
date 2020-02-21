@@ -101,7 +101,7 @@ module.exports = (io, socket) => {
 
           // welcome message
           const welcomeMessage = new Message({
-            message: 'has joined the channel!',
+            message: `${user.username} has joined the channel!`,
             user: user.id,
             channel: channelID,
           });

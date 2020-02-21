@@ -26,7 +26,7 @@ const Input = ({ emitSendMessage, channel }) => {
         submit
       </button>
       <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files, channel, 'chat', emitSendMessage)} />
-      <label className="button" htmlFor="fileElem">Select some files</label>
+      <label className="button" htmlFor="fileElem">H</label>
     </form>
   );
 };
