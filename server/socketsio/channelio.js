@@ -28,6 +28,7 @@ module.exports = (io, socket) => {
         const newMessageObj = {
           user: {
             username: user.username,
+            id: user.id,
           },
           message: savedMessage.message,
           created: savedMessage.created,

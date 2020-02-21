@@ -25,7 +25,7 @@ const Home = ({ state, setState }) => {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
-
+  console.log(state.channelStates)
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages

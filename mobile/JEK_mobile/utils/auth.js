@@ -1,13 +1,18 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 
 const serverURL = 'http://10.0.2.2:8001/api';
 
-const username = async (username) => {
-  const usernameObj = {
-    username,
-  };
+const username = async (usernameObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, usernameObj);
-  console.log(res.data);   
+  const { error, token, username, guest, userID } = res.data;
+  if (!error) {
+    console.log(token)
+    console.log(username)
+    console.log(guest)
+    console.log(userID)
+  }
+  // AsyncStorage.setItem('authorization', token);
 };
 
 const login = async (loginObj) => {

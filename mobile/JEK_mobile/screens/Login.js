@@ -24,7 +24,7 @@ const Login = () => {
         onChangeText={(val) => setUsername(val)}
         value={username}
       />
-      <Button title="GO" onPress={() => auth.username(username)} />
+      <Button title="GO" onPress={() => auth.username({ username })} />
     </View>
   )
 };
