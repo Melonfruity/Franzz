@@ -156,6 +156,9 @@ const Home = ({ state, setState }) => {
               emitJoinChannel={emitJoinChannel}
               emitCreateChannel={emitCreateChannel}
             />
+        <Switch>
+          {channelItems}
+        </Switch>
             <NewChannelModal
               emitCreateChannel={emitCreateChannel}
               emitJoinChannel={emitJoinChannel}
@@ -163,9 +166,6 @@ const Home = ({ state, setState }) => {
             <RightUI></RightUI>
           </ul>
         </nav>
-        <Switch>
-          {channelItems}
-        </Switch>
       </Router>
     </div>
   );
