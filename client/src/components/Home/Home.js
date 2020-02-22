@@ -68,6 +68,8 @@ const Home = ({ state, setState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(state)
+
   useEffect(() => {
     if (socket) intializeMapsData();
 

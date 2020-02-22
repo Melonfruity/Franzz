@@ -6,18 +6,16 @@ import {
   View,
   Text,
   TextInput,
+  FlatList,
   Button,
   SafeAreaView
 } from 'react-native';
 
-import { ScrollView } from 'react-native-gesture-handler';
 import service from '../utils/service';
-import Channel from './Channel';
 
-const Home = ({ state, setState }) => {
+const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
 
   useEffect(() => {
-    console.log(state);
     service
       .initialize()
       .then(({ channelData }) => {
@@ -40,21 +38,48 @@ const Home = ({ state, setState }) => {
     })
   }, []);
 
-  const channels = Object.keys(state.channelStates);
-  const channelItems = channels.map((id) => {
-    const { name, messages } = state.channelStates[id];
+  const cb = () => navigation.navigate('Channel');
+
+  const channels = Object.values(state.channelStates);
+  const ChannelItem = ({ item }) => {
+    const { channel, name} = item;
     return (
-      <View key={`${id}`}>
-        <Text>{name}</Text>
+      <View style={styles.item} onPress={() => setCurrentChannel(channel, cb)}>
+        <Text style={styles.name} onPress={() => setCurrentChannel(channel, cb)}>{`${name}`}</Text>       
       </View>
     )
-  })
+  }
 
   return (
-    <ScrollView>
-      {channelItems}
-    </ScrollView>
+    <SafeAreaView style={styles.list}>
+      <Button title="LOG OUT" onPress={() => logout()}/>
+      <FlatList
+        data={channels}
+        renderItem={({ item }) => <ChannelItem item={item} />}
+        keyExtractor={item => item.channel}
+      />
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    padding: 1,
+    borderEndWidth: 1,
+  },
+  item: {
+    backgroundColor: '#777',
+    padding: 20,
+    marginTop: 15,
+    marginBottom: 10,
+    marginHorizontal: 16
+  },
+  name: {
+    fontSize: 20,
+  }
+})
 
 export default Home;

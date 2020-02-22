@@ -46,11 +46,11 @@ const Channel = ({
         channel={channel}
         currentUser={currentUser}
       />
-      {/* <StalkerMap
+      <StalkerMap
         locations={locations}
         channel={channel}
         center={center}
-      /> */}
+      />
     </div>
   );
 };
