@@ -15,10 +15,12 @@ import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
 import PopupToast from './PopUpToast';
+import '../../styles.css';
+
 
 let socket;
 
-const Home = ({ state, setState }) => {
+const Home = ({ state, setState }) => {  
   const {
     emitSendMessage,
     emitJoinChannel,
@@ -188,7 +190,6 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           emitJoinChannel={emitJoinChannel}
         />
-        <RightUI />
         <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />
       </Router>
     </div>

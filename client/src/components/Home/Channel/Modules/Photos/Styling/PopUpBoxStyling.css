@@ -4,10 +4,11 @@
   display: flex;
   align-content: center;
   position: absolute;
-  width: 80%;
-  min-height: 50px;
-  max-height: 750px;
-  height: 100px;
+  width: 81%;
+  left: 210px;
+  min-height: 88px;
+  height: 400px;
+  max-height: 647px;
   background-color: rgb(253, 253, 253);
   padding-bottom: 8px;
   overflow-x: initial;

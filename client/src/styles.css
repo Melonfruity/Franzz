@@ -237,6 +237,7 @@ div.jumbotron {
   width: 65px;
   display: flex;
   background: #191919;
+  margin-top: -30px;
 }
 
 
@@ -290,16 +291,16 @@ h3 {
 button#create-channel {
   background: transparent;
   border: none;
-  font-size: 45px;
-  width: 53px;
-  margin-top: -19px;
-  padding-left: 22px;
+  font-size: 15px;
+  width: 185px;
+  margin-top: 3px;
+  font-family: 'Muli';
+  color: black;
 }
 
 #leftBarTitle {
   background: transparent;
   border: none;
-  font-size: 39px;
-  margin-top: -10px;
-  padding-left: 12px;
+  font-size: 2px;
+  margin-top: -1px;
 }

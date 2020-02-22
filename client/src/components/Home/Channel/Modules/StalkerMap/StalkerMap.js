@@ -18,8 +18,9 @@ const imgStyle = {
 };
 
 const containerStyle = {
-  width: '1000px',
-  height: '600px',
+  width: '77.5%',
+  height: '663px',
+  position: 'absolute',
 };
 
 const Marker = ({ title }) => (

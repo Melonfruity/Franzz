@@ -2,3 +2,7 @@
   flex-grow: 76;
   background: #fdfdfd;
 }
+
+div#chat-righUi {
+  display: flex;
+}

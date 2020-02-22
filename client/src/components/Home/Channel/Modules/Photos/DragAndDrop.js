@@ -35,7 +35,7 @@
 //           Hola guys u can upload fotos thru drag/drop and the button!!1!
 //         </p>
 //         <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => handleFiles(e.target.files)} />
-//         <label className="button" htmlFor="fileElem">Select some files</label>
+//         <label className="button" htmlFor="fileElem"> some files</label>
 //       </form>
 //     </div>
 //   );

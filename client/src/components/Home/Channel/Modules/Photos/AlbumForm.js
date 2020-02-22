@@ -60,7 +60,7 @@ export default function AlbumForm({
       }
     });
     document.getElementById('album-upload-form').reset();
-    let message = `🚨A new album '${fields.album}' has been uploaded🚨`;
+    let message = `🚨A new album '${fields.album.replace(/-/g, ' ')}' has been uploaded🚨`;
     if (!newAlbum) {
       message = `👀 New photos were added to ${fields.album}`;
     } else {
