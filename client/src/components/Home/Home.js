@@ -7,13 +7,13 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
-import Modal from './ChannelList/NewChannelModal';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import RightUI from './Channel/RightUI'
 import NewChannelModal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
+import { useYoutube } from '../../hooks/useYoutube';
+
 import './homeStyling.css';
 import PopupToast from './PopUpToast';
 import '../../styles.css';
@@ -31,6 +31,10 @@ const Home = ({ state, setState }) => {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
+  const {
+    changeVideoState,
+  } = useYoutube(state, setState, socket);
+
   console.log(state.channelStates);
   // handle initial state
   useEffect(() => {
@@ -128,11 +132,15 @@ const Home = ({ state, setState }) => {
       }
     });
 
+    socket.on('changed video', ({url}) => {
+      console.log(url);
+    });
+
     return () => {
       socket.off();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socket]);
+  }, []);
 
   const channels = Object.keys(state.channelStates);
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
@@ -161,6 +169,8 @@ const Home = ({ state, setState }) => {
           locations={grabLocations(id)}
           center={state.center}
           currentUser={state.currentUser}
+          videoState={state.currentVideoState}
+          changeVideoState={changeVideoState}
         />
       </Route>
     );

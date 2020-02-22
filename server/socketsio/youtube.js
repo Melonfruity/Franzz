@@ -5,6 +5,7 @@ const Channel = require('../models/Channel');
 
 module.exports = (io, socket) => {
   socket.on('connect to vid sync', () => {
-    info('connecting to vid sync');
+    console.log('connected to videosocket');
+    socket.emit('changed video', { url: 'hi' });
   });
 };

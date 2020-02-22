@@ -22,6 +22,7 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
+    currentVideoState: { url: 'BoSiuuEQV7w' },
     loaded: false,
     currentChannelLoaded: false,
     newChannelForm: false,
