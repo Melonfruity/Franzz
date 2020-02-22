@@ -34,3 +34,22 @@ div#chat-righUi {
 #photoGalleryButton:hover {
   opacity: 80%;
 }
+
+#stalkerMapButton {
+  background-image: url('../../../assets/mapicon.png');
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-color: white;
+  border: none;
+  margin-top: 20px;
+}
+
+#stalkerMapButton:focus {
+  outline: none;
+}
+
+#stalkerMapButton:hover {
+  opacity: 80%;
+}
