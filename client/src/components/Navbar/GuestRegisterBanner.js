@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { useField } from '../../hooks/useField';
 import auth from '../../service/authService';
 import GoogleLogin from '../Landing/Login/GoogleLogin';
+import SignInInput from '../Landing/SignInInput'
 
 const GuestRegisterBanner = ({ setState }) => {
   const [show, setShow] = useState(false);
@@ -54,39 +55,60 @@ const GuestRegisterBanner = ({ setState }) => {
         </Modal.Header>
         <Modal.Body className="NewAccountModalBody">
           {/* <section className="registration"> */}
-          <form className="NewAccountRegistrationModalForm">
-            <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
-            <div className="email">
-              <p>E-mail:</p>
-              <input
-                placeholder="email"
-                {...email}
-                reset={undefined}
-                onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-              />
+            <form className="NewAccountRegistrationModalForm">
+              <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
+              <div className="email">
+                {/* <p>E-mail:</p> */}
+                <SignInInput 
+                  name="Email"
+                  placeholder="email"
+                  {...email}
+                  reset={undefined}
+                  handleLogin = {handleRegister}
+                  className="NewAccountModalInput"></SignInInput>
+                {/* <input
+                  placeholder="email"
+                  {...email}
+                  reset={undefined}
+                  onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
+                /> */}
+              </div>
+              <div className="password">
+                {/* <p>Password: </p> */}
+                <SignInInput 
+                  name="Password"
+                  placeholder="password"
+                  {...password}
+                  reset={undefined}
+                  handleLogin = {handleRegister}
+                  className="NewAccountModalInput"></SignInInput>
+                {/* <input
+                  placeholder="password"
+                  {...password}
+                  reset={undefined}
+                  onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
+                /> */}
+              </div>
+            </form>
+            <div className="guestRegisterModalButtons">
+            <Button className="guestRegisterModalCloseButton" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleRegister}>
+              Register
+            </Button>
             </div>
-            <div className="password">
-              <p>Password: </p>
-              <input
-                placeholder="password"
-                {...password}
-                reset={undefined}
-                onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-              />
-            </div>
-          </form>
           {/* </section> */}
         </Modal.Body>
-        <Modal.Footer>
-          <div className="guestModalGoogleLoginButton">
-            <GoogleLogin setState={setState} />
-          </div>
-          <Button className="guestRegisterModalCloseButton" variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleRegister}>
-            Register
-          </Button>
+        <Modal.Footer className="modalFooter">
+            {/* <div className="modalFooter"> */}
+            <div className="modalDivider">
+            <p> ------------- Login With Google ------------- </p>
+            </div>
+            <div className="guestModalGoogleLoginButton">
+              <GoogleLogin className="googleLogin" setState={setState}/>
+            </div>
+            {/* </div> */}
         </Modal.Footer>
       </Modal>
     </div>

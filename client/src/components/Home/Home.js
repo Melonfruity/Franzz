@@ -10,7 +10,8 @@ import Modal from './Channel/Container/NewChannelModal';
 
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import RightUI from './Channel/RightUI';
+import RightUI from './Channel/RightUI'
+import NewChannelModal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
@@ -149,20 +150,24 @@ const Home = ({ state, setState }) => {
   return (
     <div id="main-container">
       <Router>
-        <ChannelList
-          selectCurrentChannel={selectCurrentChannel}
-          channelIdNamePair={channelIdNamePair}
-          emitJoinChannel={emitJoinChannel}
-          emitCreateChannel={emitCreateChannel}
-        />
+        <nav>
+          <ul className="homeNav">
+            <ChannelList
+              selectCurrentChannel={selectCurrentChannel}
+              channelIdNamePair={channelIdNamePair}
+              emitJoinChannel={emitJoinChannel}
+              emitCreateChannel={emitCreateChannel}
+            />
         <Switch>
           {channelItems}
         </Switch>
-        <Modal
-          emitCreateChannel={emitCreateChannel}
-          emitJoinChannel={emitJoinChannel}
-        />
-        <RightUI />
+            <NewChannelModal
+              emitCreateChannel={emitCreateChannel}
+              emitJoinChannel={emitJoinChannel}
+            />
+            <RightUI></RightUI>
+          </ul>
+        </nav>
       </Router>
     </div>
   );

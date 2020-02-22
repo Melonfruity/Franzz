@@ -9,6 +9,7 @@ const RightUI = () => {
         <p>Friend Tracker</p>
         <p>Spotify</p>
         <p>Photo Gallery</p>
+        <p>Notes</p>
       </div>
     </div>
   )

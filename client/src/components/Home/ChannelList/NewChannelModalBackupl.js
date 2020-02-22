@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Toast from 'react-bootstrap/Toast';
-import Modal from 'react-bootstrap/Modal'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import JoinCreateChannelInput from './JoinCreateChannelInput';
 import { useField } from '../../../hooks/useField';
 
-// import './NewChannelModal.css';
+import './NewChannelModal.css';
 
-const NewChannelModal = ({ emitCreateChannel, emitJoinChannel }) => {
-  const [show, setShow] = useState(false);
+const PopupToast = ({ children }) => {
+  const [show, toggleShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  return (
+    <>
+      <div className="flexContainer">
+        {!show && <Button className="modalButton" onClick={() => toggleShow(true)}>+</Button>}
+        <Toast show={show} onClose={() => toggleShow(false)}>
+          <Toast.Header>
+            <strong className="mr-auto">New Channel</strong>
+          </Toast.Header>
+          <Toast.Body>{children}</Toast.Body>
+        </Toast>
+      </div>
+    </>
+  );
+};
 
+const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
   const channelName = useField('text');
   const channelLink = useField('text');
 
@@ -30,19 +42,12 @@ const NewChannelModal = ({ emitCreateChannel, emitJoinChannel }) => {
     channelLink.reset();
   };
 
-
   return (
-    <>
-      <Button className="modalButton" variant="primary" onClick={handleShow}>
-        +
-      </Button>
-
-      <Modal className="newChannelModal" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>New Channel</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <div className="seperate">
+    <Container className="p-3">
+      <Jumbotron className="jumbotron">
+        <h1 className="header">New Channel</h1>
+        <PopupToast className="toast">
+          <div className="seperate">
             <form className="createChannelForm">
             <p style={{textAlign:'center', fontSize: '20px',color:'rgb(60, 163, 116)',margin:'0'}}>CREATE</p>
             <p style={{textAlign:'center', fontSize:'12px'}}>Create a new server and invite your friends!</p>
@@ -98,12 +103,10 @@ const NewChannelModal = ({ emitCreateChannel, emitJoinChannel }) => {
               </button>
             </form>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
-      </Modal>
-    </>
+        </PopupToast>
+      </Jumbotron>
+    </Container>
   );
-}
+};
 
-export default NewChannelModal
+export default Modal;
