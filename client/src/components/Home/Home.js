@@ -35,6 +35,7 @@ const Home = ({ state, setState }) => {
     changeVideoState,
   } = useYoutube(state, setState, socket);
 
+  console.log(state.locations);
   console.log(state.channelStates);
   // handle initial state
   useEffect(() => {
@@ -132,8 +133,15 @@ const Home = ({ state, setState }) => {
       }
     });
 
-    socket.on('changed video', ({url}) => {
-      console.log(url);
+    socket.on('new video state', ({ url, channel }) => {
+      if (url) {
+        setState((prev) => (
+          {
+            ...prev,
+            currentVideoState: { url }
+          }
+        ));
+      }
     });
 
     return () => {

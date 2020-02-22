@@ -64,7 +64,6 @@ const changeOffline = (socketID, io) => {
 
       // update maps when user goes offline and only if they use maps
       if (locations[channel][socketID]) {
-        delete locations[channel][socketID];
         const locationObj = {
           channel,
           newLocations: [...Object.values(locations[channel])],
