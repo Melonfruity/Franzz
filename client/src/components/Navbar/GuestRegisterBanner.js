@@ -44,7 +44,6 @@ const GuestRegisterBanner = ({ setState }) => {
         tabIndex={0}
         onKeyPress={(e) => e.preventDefault()}
         onClick={(e) => handleShow(e)}
-        button
       >
         <p>If you wish to save your username and chats the next time you visit, please create an account!</p>
       </div>

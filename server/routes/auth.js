@@ -65,21 +65,16 @@ authRouter.post('/register', async (req, res, next) => {
       // find the user through their email
       const user = await User.findOne({ email });
       if (!user) {
-        // if there is a token and the user has a username token
-        if (authorization && typeof username === 'string') {
-          const updateGuestObj = {
-            email,
-            password: register(password),
-          };
-          const updatedUser = extractJWT(authorization, updateGuestObj);
+        // if there is a token
+        if (authorization !== 'undefined') {
+          console.log(req.body)
+          const updatedUser = await extractJWT(authorization);
+          if (!updatedUser.email && !updatedUser.password) {
+            updatedUser.email = email;
+            updatedUser.password = register(password);
+          }
+          await updatedUser.save();
           signJWT(res, updatedUser);
-        } else {
-          const newUser = new User({
-            email,
-            password: register(password),
-          });
-          await newUser.save();
-          signJWT(res, newUser);
         }
       } else {
         res.json({ error: 'email already taken' });

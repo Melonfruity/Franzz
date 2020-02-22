@@ -12,7 +12,7 @@ channelRouter.get('/initialize',
   async (req, res, next) => {
     try {
       const { channels } = req.user;
-
+      console.log(req.user)
       const channelData = await Promise.all(
         channels.map(async (channel) => ({
           data: await Channel

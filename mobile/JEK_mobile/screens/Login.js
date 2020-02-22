@@ -7,16 +7,17 @@ import {
   Text,
   TextInput,
   Button,
-  SafeAreaView
 } from 'react-native';
 
-import auth from '../utils/auth';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const Login = () => {
+const Login = ({ guest, login }) => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('mobileJEK@gmail.com');
+  const [password, setPassword] = useState('password');
 
   return (
-    <View>
+    <ScrollView style={{...styles.border, ...styles.mt}}>
       <Text style={styles.text}>Select a Username</Text>
       <TextInput
         style={{ ...styles.text, ...styles.border }}
@@ -24,8 +25,24 @@ const Login = () => {
         onChangeText={(val) => setUsername(val)}
         value={username}
       />
-      <Button title="GO" onPress={() => auth.username({ username })} />
-    </View>
+      <Button title="GO" onPress={() => guest({ username })} />
+      <Text style={styles.text}> OR </Text>
+      <Text style={styles.text}> LOG IN </Text>
+      <TextInput
+        style={{ ...styles.text, ...styles.border }}
+        placeholder='email'
+        onChangeText={(val) => setEmail(val)}
+        value={email}
+      />
+      <TextInput
+        style={{ ...styles.text, ...styles.border }}
+        placeholder='password'
+        onChangeText={(val) => setPassword(val)}
+        value={password}
+        secureTextEntry={true}
+      />
+      <Button title="LOG IN" onPress={() => login({ email, password })} />
+    </ScrollView>
   )
 };
 
@@ -44,6 +61,9 @@ const styles = StyleSheet.create({
   border: {
     borderColor: '#777',
     borderWidth: 1,
+  },
+  mt: {
+    marginTop: 10,
   }
 })
 
