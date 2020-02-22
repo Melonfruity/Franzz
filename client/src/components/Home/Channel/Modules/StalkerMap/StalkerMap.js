@@ -10,8 +10,8 @@ const mapStyles = {
 };
 
 const markerStyle = {
-  height: '50px',
-  width: '50px',
+  height: '40px',
+  width: '40px',
   marginTop: '-50px',
 };
 
@@ -28,7 +28,7 @@ const containerStyle = {
 const Marker = ({ title }) => (
   <div style={markerStyle}>
     <img style={imgStyle} src="https://res.cloudinary.com/og-tech/image/upload/s--OpSJXuvZ--/v1545236805/map-marker_hfipes.png" alt={title} />
-    <h3>{title}</h3>
+    <p className="googleMapsMarkerLabel">{title}</p>
   </div>
 );
 
@@ -38,8 +38,9 @@ const StalkerMap = ({ locations, center, channel }) => {
   }, [locations]);
   const locationMarkers = locations ? locations.map((user) => (
     <Marker
+      className="googleMapsMarker"
       key={`${channel}${Math.random() * 10}`}
-      title={`${user.username}'s location`}
+      title={`${user.username}`}
       lat={user.location.lat}
       lng={user.location.lng}
     />
@@ -48,7 +49,7 @@ const StalkerMap = ({ locations, center, channel }) => {
   return (
     <div className="resize-box" onMouseDown={mouseDownFunction}>
       <GoogleMap
-        style={mapStyles}
+        style={{mapStyles}}
         bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
         center={center}
         zoom={14}
