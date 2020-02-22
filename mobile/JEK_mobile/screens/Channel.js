@@ -7,48 +7,68 @@ import {
   Text,
   TextInput,
   Button,
-  SafeAreaView
+  SafeAreaView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
-import Message from '../components/Message';
+// import Message from '../components/Message';
 
-const Channel = ({ state, channel, socket }) => {
-  const [message, setMessage] = useState('');
+import { GiftedChat } from 'react-native-gifted-chat';
 
-  console.log('channel', channel);
+const Channel = ({ state, setState, channel, socket }) => {
 
   const { messages, users } = state.channelStates[channel];
-  console.log(messages, users); 
 
-  const sendMessage = () => {
+  const sendMessage = (text) => {
     const messageObj = {
-      message,
+      message: text[0] ? text[0].text : '',
       channelID: channel,
       authorization: state.authorization,
       username: state.username,
     }
+    console.log(messageObj)
     socket.emit('message', messageObj, (newMessageObj) => {
-      console.log(newMessageObj);
+      setState((prev) => (
+        {
+          ...prev,
+          channelStates: {
+            ...prev.channelStates,
+            [channel]: {
+              ...prev.channelStates[channel],
+              messages: prev.channelStates[channel].messages.concat(newMessageObj),
+            },
+          },
+        }));
     });
-    setMessage('');
   }
 
+  const formattedMessages = messages.map((msg) => {
+    return ({
+      _id: msg.id,
+      text: msg.message,
+      createdAt: msg.created,
+      user: {
+        _id: msg.user.id,
+        name: msg.user.username,
+      }
+    })
+  }).reverse();
+
   return (
-    <SafeAreaView>
-      <FlatList
-        data={messages}
-        renderItem={({ item }) => <Message item={item} isCurrent={item.user.id === state.currentUser} />}
-        keyExtractor={item => item.id}
-      />
-      <TextInput
-        placeholder='input'
-        onChangeText={(val) => setMessage(val)}
-        value={message}
-      />
-      <Button title='Send' onPress={() => sendMessage()} />
-    </SafeAreaView> 
+  <View style={{ flex: 1 }}>
+    <GiftedChat
+      messages={formattedMessages}
+      onSend={(message) => sendMessage(message)}
+      user={{
+        _id: state.currentUser,
+      }}
+    />
+    {
+      Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding"/>
+    } 
+  </View>
   )
 }
 

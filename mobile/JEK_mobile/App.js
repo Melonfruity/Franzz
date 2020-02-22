@@ -46,23 +46,6 @@ const App = () => {
       socket.emit('join channels', { authorization: state.authorization }, (data) => {
         console.log(data);
       });
-      // socket.on('new message', (data) => {
-      //   console.log('new message')
-      //   const { channelID, newMessageObj } = data;
-      //   if (channelID && newMessageObj) {
-      //     setState((prev) => (
-      //       {
-      //         ...prev,
-      //         channelStates: {
-      //           ...prev.channelStates,
-      //           [channelID]: {
-      //             ...prev.channelStates[channelID],
-      //             messages: prev.channelStates[channelID].messages.concat(newMessageObj),
-      //           },
-      //         },
-      //       }));
-      //   }
-      // });
     });
 
     if (!state.authorization) {
@@ -82,6 +65,25 @@ const App = () => {
     }
   }, []);
   
+  useEffect(() => {
+    socket.on('new message', (data) => {
+      const { channelID, newMessageObj } = data;
+      if (channelID && newMessageObj) {
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channelID]: {
+                ...prev.channelStates[channelID],
+                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+              },
+            },
+          }));
+      }
+    });
+  }, []);
+
   const guest = (usernameObj) => {
     service
       .guest(usernameObj)
@@ -179,7 +181,7 @@ const App = () => {
               title: state.channelStates[state.currentChannel] ? `${state.channelStates[state.currentChannel].name}` : 'Channel'
             }}
           >
-            {props => <Channel {...props} socket={socket} state={state} channel={state.currentChannel} />}
+            {props => <Channel {...props} socket={socket} state={state} setState={setState} channel={state.currentChannel} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
