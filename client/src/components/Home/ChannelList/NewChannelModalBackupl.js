@@ -67,6 +67,7 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
                 </JoinCreateChannelInput> */}
               <input
                 {...channelName}
+                className="JoinCreateInput"
                 reset={undefined}
                 placeholder="Channel Name"
                 onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
@@ -94,6 +95,7 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
                 </JoinCreateChannelInput> */}
               <input
                 {...channelLink}
+                className="JoinCreateInput"
                 reset={undefined}
                 placeholder="Channel Link"
                 onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}
