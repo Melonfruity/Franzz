@@ -38,6 +38,7 @@ const changeOnline = (socketID, channels, username, io) => {
     if (!status[channel]) {
       status[channel] = { [socketID]: { username } };
     } else {
+      delete locations[channel][socketID];
       status[channel][socketID] = { username };
     }
     const userStatus = {

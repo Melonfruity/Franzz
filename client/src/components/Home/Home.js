@@ -21,7 +21,7 @@ import '../../styles.css';
 
 let socket;
 
-const Home = ({ state, setState }) => {  
+const Home = ({ state, setState }) => {
   const {
     emitSendMessage,
     emitJoinChannel,
@@ -31,7 +31,7 @@ const Home = ({ state, setState }) => {
     grabLocations,
     intializeMapsData,
   } = useMap(state, setState, socket);
-  console.log(state.channelStates);
+
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -132,7 +132,7 @@ const Home = ({ state, setState }) => {
       socket.off();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socket]);
+  }, []);
 
   const channels = Object.keys(state.channelStates);
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));

@@ -72,22 +72,27 @@ export default function AlbumForm({
   return (
     <div>
       { newAlbum && <div className="popup-title">New Album</div> }
-      { !newAlbum && <div className="popup-title-mod">Adding photos to {albumName}</div>}
+      { !newAlbum && (
+      <div className="popup-title-mod">
+Adding photos to
+        {albumName}
+      </div>
+      )}
       <form id="album-upload-form" onSubmit={handleSubmit}>
         { newAlbum && (
           <input id="input-album" type="text" name="album" placeholder="Choose an album name" onChange={handleOnChange} />
         )}
         <div id="album-submission"><input className="submit-button" type="submit" value="SUBMIT" /></div>
         <div id="input-display" value="drag">
-        <input
-          id="album-upload"
-          name="files"
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleOnChange}
-        />
-        <div className="subtitle">ADDED MEDIA:</div>
+          <input
+            id="album-upload"
+            name="files"
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={handleOnChange}
+          />
+          <div className="subtitle">ADDED MEDIA:</div>
         </div>
       </form>
     </div>

@@ -91,19 +91,6 @@ const App = () => {
               : <Redirect to="/" />
           )}
         />
-        <Route
-          path="/channel"
-          render={() => (
-            state.authorization
-              ? (
-                <Home
-                  state={state}
-                  setState={setState}
-                />
-              )
-              : <Redirect from="/" />
-          )}
-        />
       </Router>
     </div>
   );
