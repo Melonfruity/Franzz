@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ChannelItem from './ChannelItem';
 
-// import ChannelItem from './ChannelItem';
 // import './channelList.css';
 
 const ChannelList = ({
@@ -14,9 +13,10 @@ const ChannelList = ({
   const channelList = channelIdNamePair.map((pair) => {
     const { name, id } = pair;
     return (
-      <div>
-        <li className="channelItems" key={id}>
+      <div key={id}>
+        <li className="channelItems">
           <ChannelItem
+            key={id}
             name={name}
             id={id}
             selectCurrentChannel={selectCurrentChannel}

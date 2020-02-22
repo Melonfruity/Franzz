@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactEmoji from 'react-emoji';
 import {
   Image, CloudinaryContext,
@@ -8,7 +8,7 @@ import {
 import FsLightbox from 'fslightbox-react';
 
 const Message = ({
-  id, username, message, created, emitDeleteMessage, video, image, currentUser, userId, isCurrent,
+  username, message, video, image, isCurrent,
 }) => {
   // implement delete, edit, emoji
   console.log(currentUser)

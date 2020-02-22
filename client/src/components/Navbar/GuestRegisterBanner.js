@@ -81,10 +81,10 @@ const GuestRegisterBanner = ({ setState }) => {
           <div className="guestModalGoogleLoginButton">
             <GoogleLogin setState={setState} />
           </div>
-          <Button className="guestRegisterModalCloseButton" variant="secondary" onClick={handleClose}>
+          <Button className="guestRegisterModalCloseButton" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleRegister}>
+          <Button onClick={handleRegister}>
             Register
           </Button>
         </Modal.Footer>
