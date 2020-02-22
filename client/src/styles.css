@@ -236,7 +236,9 @@ div.jumbotron {
   margin-left: 0;
   width: 65px;
   display: flex;
-  background: #191919;
+  justify-content: center;
+  background: white;
+  border-left: 1px solid black;
   margin-top: -30px;
 }
 

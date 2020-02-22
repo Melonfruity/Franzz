@@ -22,8 +22,8 @@ const RightUI = ({ moduleView, changeView }) => {
   return (
     <div className="rightBarUI">
       <div className="widgetList">
-        <button onClick={toggleStalkerMap} />
-        <button onClick={toggleImageBox} />
+        <button id="stalkerMapButton" onClick={toggleStalkerMap} />
+        <button id="photoGalleryButton" onClick={toggleImageBox} />
       </div>
     </div>
   );

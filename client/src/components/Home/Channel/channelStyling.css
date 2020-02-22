@@ -6,3 +6,31 @@
 div#chat-righUi {
   display: flex;
 }
+
+.widgetList {
+  display: flex;
+  flex-direction: column;
+}
+
+#stalkerMapButton {
+
+}
+
+#photoGalleryButton {
+  background-image: url('../../../assets/imageBox.png');
+  background-repeat: no-repeat;
+  width: 39px;
+  height: 36px;
+  background-size: contain;
+  background-color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+#photoGalleryButton:focus {
+  outline: none;
+}
+
+#photoGalleryButton:hover {
+  opacity: 80%;
+}
