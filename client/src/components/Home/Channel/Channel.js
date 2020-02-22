@@ -4,10 +4,8 @@ import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
 import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 // modules
-import StalkerMap from './Modules/StalkerMap/StalkerMap';
 import './channelStyling.css';
 import RightUI from './RightUI';
-import ImageBox from './Modules/Photos/ImageBox';
 
 const Channel = ({
   channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
@@ -52,20 +50,10 @@ const Channel = ({
           emitDeleteMessage={emitDeleteMessage}
           channel={channel}
           currentUser={currentUser}
-        />
-        { moduleView.stalkerMap && (
-        <StalkerMap
+          moduleView={moduleView}
           locations={locations}
-          channel={channel}
           center={center}
         />
-        )}
-        { moduleView.imageBox && (
-        <ImageBox
-          channelId={channel}
-          emitSendMessage={emitSendMessage}
-        />
-        )}
         <RightUI moduleView={moduleView} changeView={changeView} />
       </div>
     </div>

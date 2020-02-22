@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 // import './NewChannelModal.css';
 
-const Modal = () => (
+const NewChannelModal = () => (
   <Container className="p-3">
     <Jumbotron>
       <h1 className="header">New Channel</h1>
@@ -12,4 +12,5 @@ const Modal = () => (
   </Container>
 );
 
-export default Modal;
+
+export default NewChannelModal;

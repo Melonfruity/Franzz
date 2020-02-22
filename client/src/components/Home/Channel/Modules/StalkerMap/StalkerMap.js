@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
+import '../Photos/Styling/PopUpBoxStyling.css';
+import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 
 const mapStyles = {
   width: '100%',
@@ -44,7 +46,7 @@ const StalkerMap = ({ locations, center, channel }) => {
   )) : <Marker title="default location" {...center} />;
 
   return (
-    <div style={containerStyle}>
+    <div className="resize-box" onMouseDown={mouseDownFunction}>
       <GoogleMap
         style={mapStyles}
         bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}

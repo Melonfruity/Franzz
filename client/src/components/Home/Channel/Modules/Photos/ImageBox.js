@@ -58,7 +58,7 @@ export default function ImageBox({ channelId, emitSendMessage }) {
         slide={lightboxController.slide}
         key={lightboxController.slide}
       />
-      <div id="resize-box" onMouseDown={mouseDownFunction}>
+      <div className="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
           <div className="switch-buttons">
             <button className="image-buttons" onClick={() => viewChatPhotos()}>CHAT</button>

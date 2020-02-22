@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const RightUI = ({ moduleView, changeView }) => {
+const RightUI = ({ changeView }) => {
   
   function toggleStalkerMap() {
     changeView((prev) => (

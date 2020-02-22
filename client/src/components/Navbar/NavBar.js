@@ -6,6 +6,7 @@ const NavBar = ({ state, logOut, setState }) => ((
   <div>
     <nav className="navLogout">
       <div className="username">
+        {state.username && <i class="fas fa-user-circle"></i>}
         <p>{state.username}</p>
       </div>
       {state.authorization ? <Link className="logoutButton" to="/" onClick={logOut}> Logout </Link> : null}

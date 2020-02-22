@@ -1,20 +1,20 @@
 
-#resize-box {
+.resize-box {
   z-index: 1000;
   display: flex;
   align-content: center;
-  position: absolute;
-  width: 81%;
-  left: 210px;
+  position: relative;
+  width: 100%;
   min-height: 88px;
   height: 400px;
   max-height: 647px;
   background-color: rgb(253, 253, 253);
   padding-bottom: 8px;
   overflow-x: initial;
+  margin-top: -726px;
 }
 
-#resize-box:after {
+.resize-box:after {
   content: "";
   background-color:#313131;
   font-size: 7px;
@@ -27,7 +27,7 @@
   align-self: center;
 }
 /* width */
-#resize-box ::-webkit-scrollbar {
+.resize-box ::-webkit-scrollbar {
   width: 4px;
 }
 
