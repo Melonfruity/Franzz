@@ -10,7 +10,7 @@ import channelService from '../../service/channelService';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
 import RightUI from './Channel/RightUI'
-import Modal from './ChannelList/NewChannelModal'
+import NewChannelModal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 
@@ -156,7 +156,7 @@ const Home = ({ state, setState }) => {
               emitJoinChannel={emitJoinChannel}
               emitCreateChannel={emitCreateChannel}
             />
-            <Modal
+            <NewChannelModal
               emitCreateChannel={emitCreateChannel}
               emitJoinChannel={emitJoinChannel}
             />

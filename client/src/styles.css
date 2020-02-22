@@ -271,10 +271,11 @@ div.jumbotron {
 
 .homeNav {
   display: flex;
+  justify-content: space-between;
 }
 
 .rightBarUI {
-  margin-top: 20px;
+  margin-top: 45px;
   margin-left: 10px;
   width: 250px;
 }
@@ -333,7 +334,7 @@ h3 {
 
 
 .createChannelImage {
-  margin-left: 40px;
+  margin-left: 80px;
   margin-bottom: 10px;
   background-image: url(./assets/845d431ebfc24e13a0b31f7e64fc612b.png);
   width: 97px;
@@ -343,7 +344,7 @@ h3 {
 }
 
 .joinChannelImage {
-margin-left: 12px;
+margin-left: 52px;
 margin-bottom: 10px;
 background-image: url(./assets/8fb52ec5260dfe6c5b93d211d3b6ecde.png);
 width: 135px;
@@ -376,4 +377,8 @@ background-repeat: no-repeat;
 .JoinCreateInput {
   width: 160px;
   height: 50px;
+}
+
+.newChannelModal {
+  top: 200px;
 }
