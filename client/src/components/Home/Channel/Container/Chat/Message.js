@@ -11,6 +11,7 @@ const Message = ({
   id, username, message, created, emitDeleteMessage, video, image, currentUser, userId, isCurrent,
 }) => {
   // implement delete, edit, emoji
+  console.log(currentUser)
   const [toggler, changeToggle] = useState(false);
   return (
     <div>

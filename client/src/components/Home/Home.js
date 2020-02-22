@@ -184,6 +184,8 @@ const Home = ({ state, setState }) => {
         <PopupToast
           show={state.newChannelForm}
           toggleForm={toggleForm}
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
         />
         <RightUI />
         <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />

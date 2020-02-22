@@ -5,6 +5,7 @@ const RightUI = () => {
   return (
       <div className="rightBarUI">
       <div className="widgetList">
+        <button></button>
       </div>
     </div>
   )

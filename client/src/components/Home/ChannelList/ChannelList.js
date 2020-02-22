@@ -29,8 +29,10 @@ const ChannelList = ({
 
   return (
     <div className="leftBarUI">
-      <button id="create-channel" onClick={() => toggleForm(true)}>+</button>
-        <h3>Channels</h3>
+      <div id="leftBarTitle">
+        <span>Channels</span>
+        <button id="create-channel" onClick={() => toggleForm(true)}>+</button>
+      </div>
         <div className="channelList">
           <List>
             {channelList}

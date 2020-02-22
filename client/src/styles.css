@@ -146,7 +146,7 @@ body {
 
 .leftBarUI {
   padding: 6px;
-  border-right: 1px solid #8e8e8e;
+  border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -277,8 +277,29 @@ h3 {
 
 .fade.toast.show {
   position: absolute;
+  top: 500px;
+  left: 249px;
 }
 
 .fade.toast {
   position: absolute;
+  top: 500px;
+  left: 249px;
+}
+
+button#create-channel {
+  background: transparent;
+  border: none;
+  font-size: 45px;
+  width: 53px;
+  margin-top: -19px;
+  padding-left: 22px;
+}
+
+#leftBarTitle {
+  background: transparent;
+  border: none;
+  font-size: 39px;
+  margin-top: -10px;
+  padding-left: 12px;
 }
