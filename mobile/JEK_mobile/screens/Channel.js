@@ -10,10 +10,28 @@ import {
   SafeAreaView
 } from 'react-native';
 
-import auth from '../utils/auth';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Channel = () => {
+import Message from '../components/Message';
+
+const Channel = ({ messages, currentUser }) => {
+
+  const formattedMessages = messages.map((msg) => (
+    <Message
+      key={msg.id}
+      id={msg.id}
+      message={msg.message}
+      created={msg.created}
+      username={msg.user.username}
+      currentUser={currentUser}
+      isCurrent={msg.user.id === currentUser}
+      userId={msg.user.id}
+      deleteMessage={deleteMessage}
+      video={msg.video}
+      image={msg.image}
+    />
+  ));
+
   return (
     <Text>
       Already Signed In

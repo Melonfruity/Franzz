@@ -4,8 +4,11 @@
     <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Global.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Channel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/channel.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="611" />
     <option name="y" value="201" />
     <option name="width" value="679" />
@@ -139,7 +142,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.114754096" />

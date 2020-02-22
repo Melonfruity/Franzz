@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Button,
   SafeAreaView,
   KeyboardAvoidingView
 } from 'react-native';
@@ -15,9 +16,10 @@ import {
 // import { createStackNavigator } from '@react-navigation/stack';
 import io from 'socket.io-client';
 import Login from './screens/Login';
-import Channel from './screens/Channel';
+import Home from './screens/Home';
 
 import Global from './Global';
+import service from './utils/service';
 
 let socket;
 
@@ -37,22 +39,85 @@ const App = () => {
     socket = io('http://10.0.2.2:8001')
     socket.on('connect', () => {
       socket.on('server message', (data) => {
-        console.log(data)
+        // console.log(data)
       })
     });
-    Global.loadCredentials().then(data => {
-      setState((prev) => ({
-        ...prev,
-        ...data
-      }));
-      console.log('state', state);
-    })
+
+    if (!state.authorization) {
+      Global
+        .loadCredentials()
+        .then(({
+          guest, userID, username, authorization,
+        }) => {
+          setState((prev) => ({
+            ...prev,
+            guest,
+            currentUser: userID,
+            username,
+            authorization,
+          }));
+        })
+    }
   }, []);
+
+  const guest = (usernameObj) => {
+    service
+      .guest(usernameObj)
+      .then(({
+        error, guest, userID, username, authorization,
+      }) => {
+        if (!error) {
+          console.log(guest, userID, username, authorization)
+          console.log('updating state')
+          setState((prev) => ({
+            ...prev,
+            guest,
+            currentUser: userID,
+            username,
+            authorization,
+          }));
+        }
+      })
+  }
+
+  const login = (loginObj) => {
+    service
+      .login(loginObj)
+      .then(({
+        error, guest, userID, username, authorization,
+      }) => {
+        if (!error) {
+          console.log(guest, userID, username, authorization)
+          setState((prev) => ({
+            ...prev,
+            guest,
+            currentUser: userID,
+            username,
+            authorization,
+          }));
+        }
+      })
+  }
+  
+  const logout = () => {
+    setState({
+      guest: true,
+      currentChannel: '',
+      authorization: '',
+      username: '',
+      channelStates: {},
+      locations: {},
+      center: {},
+      users: {},
+    })
+    Global.reset();
+  }
 
   return (
     <SafeAreaView style={{ ...styles.container, ...styles.mainContainer }}>
       <KeyboardAvoidingView behavior="padding" enabled>
-        {state.authorization ? <Channel /> : <Login /> }
+        <Button title="LOG OUT" onPress={() => logout()} />
+        {state.authorization ? <Home state={state} setState={setState} /> : <Login logout={logout} login={login} guest={guest} /> }
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

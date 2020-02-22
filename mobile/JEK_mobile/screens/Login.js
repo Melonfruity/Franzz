@@ -7,16 +7,14 @@ import {
   Text,
   TextInput,
   Button,
-  SafeAreaView
 } from 'react-native';
 
-import auth from '../utils/auth';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Login = () => {
+const Login = ({ guest, login }) => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('mobileJEK@gmail.com');
+  const [password, setPassword] = useState('password');
 
   return (
     <ScrollView style={{...styles.border, ...styles.mt}}>
@@ -27,7 +25,7 @@ const Login = () => {
         onChangeText={(val) => setUsername(val)}
         value={username}
       />
-      <Button title="GO" onPress={() => auth.username({ username })} />
+      <Button title="GO" onPress={() => guest({ username })} />
       <Text style={styles.text}> OR </Text>
       <Text style={styles.text}> LOG IN </Text>
       <TextInput
@@ -43,7 +41,7 @@ const Login = () => {
         value={password}
         secureTextEntry={true}
       />
-      <Button title="LOG IN" onPress={() => auth.login({ email, password })} />
+      <Button title="LOG IN" onPress={() => login({ email, password })} />
     </ScrollView>
   )
 };
