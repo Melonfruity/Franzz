@@ -10,32 +10,45 @@ import {
   SafeAreaView
 } from 'react-native';
 
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 import Message from '../components/Message';
 
-const Channel = ({ messages, currentUser }) => {
+const Channel = ({ state, channel, socket }) => {
+  const [message, setMessage] = useState('');
 
-  const formattedMessages = messages.map((msg) => (
-    <Message
-      key={msg.id}
-      id={msg.id}
-      message={msg.message}
-      created={msg.created}
-      username={msg.user.username}
-      currentUser={currentUser}
-      isCurrent={msg.user.id === currentUser}
-      userId={msg.user.id}
-      deleteMessage={deleteMessage}
-      video={msg.video}
-      image={msg.image}
-    />
-  ));
+  console.log('channel', channel);
+
+  const { messages, users } = state.channelStates[channel];
+  console.log(messages, users); 
+
+  const sendMessage = () => {
+    const messageObj = {
+      message,
+      channelID: channel,
+      authorization: state.authorization,
+      username: state.username,
+    }
+    socket.emit('message', messageObj, (newMessageObj) => {
+      console.log(newMessageObj);
+    });
+    setMessage('');
+  }
 
   return (
-    <Text>
-      Already Signed In
-    </Text> 
+    <SafeAreaView>
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => <Message item={item} isCurrent={item.user.id === state.currentUser} />}
+        keyExtractor={item => item.id}
+      />
+      <TextInput
+        placeholder='input'
+        onChangeText={(val) => setMessage(val)}
+        value={message}
+      />
+      <Button title='Send' onPress={() => sendMessage()} />
+    </SafeAreaView> 
   )
 }
 

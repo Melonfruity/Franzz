@@ -12,11 +12,11 @@ import {
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Message = ({
-  username, message, video, image, isCurrent,
-}) => {
+const Message = ({ item, isCurrent }) => {
+  const { user, message } = item;
+  const { username } = user;
   return (
-  <Text>{username} {message} {isCurrent}</Text>
+    <Text>{username} {message} {isCurrent}</Text>
   );
 };
 

@@ -12,16 +12,18 @@ import {
 // import { SplashScreen } from 'expo';
 // import * as Font from 'expo-font';
 // import { Ionicons } from '@expo/vector-icons';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import io from 'socket.io-client';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Channel from './screens/Channel';
 
 import Global from './Global';
 import service from './utils/service';
 
 let socket;
+const Stack = createStackNavigator();
 
 const App = () => {
   const [state, setState] = useState({
@@ -40,7 +42,27 @@ const App = () => {
     socket.on('connect', () => {
       socket.on('server message', (data) => {
         // console.log(data)
-      })
+      });
+      socket.emit('join channels', { authorization: state.authorization }, (data) => {
+        console.log(data);
+      });
+      // socket.on('new message', (data) => {
+      //   console.log('new message')
+      //   const { channelID, newMessageObj } = data;
+      //   if (channelID && newMessageObj) {
+      //     setState((prev) => (
+      //       {
+      //         ...prev,
+      //         channelStates: {
+      //           ...prev.channelStates,
+      //           [channelID]: {
+      //             ...prev.channelStates[channelID],
+      //             messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+      //           },
+      //         },
+      //       }));
+      //   }
+      // });
     });
 
     if (!state.authorization) {
@@ -59,7 +81,7 @@ const App = () => {
         })
     }
   }, []);
-
+  
   const guest = (usernameObj) => {
     service
       .guest(usernameObj)
@@ -113,26 +135,56 @@ const App = () => {
     Global.reset();
   }
 
+  const setCurrentChannel = (channel, cb) => {
+    setState((prev) => ({
+      ...prev,
+      currentChannel: channel
+    }));
+    cb();
+  }
+
   return (
-    <SafeAreaView style={{ ...styles.container, ...styles.mainContainer }}>
-      <KeyboardAvoidingView behavior="padding" enabled>
-        <Button title="LOG OUT" onPress={() => logout()} />
-        {state.authorization ? <Home state={state} setState={setState} /> : <Login logout={logout} login={login} guest={guest} /> }
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={state.authorization ? "Home" : "Login"}>
+          {!state.authorization ? (
+            <Stack.Screen
+              name='Login'
+              options={{
+                title: 'Login Screen',
+                animationTypeForReplace: state.authorization ? 'pop' : 'push',
+              }}
+            >
+              {props => <Login { ...props } state={state} login={login} guest={guest} />}
+            </Stack.Screen>
+          ) : (
+            <Stack.Screen
+              name='Home'
+              options={{
+                title: 'Home Screen'
+              }}
+            >
+              {props => 
+                <Home
+                  { ...props }
+                  state={state}
+                  setState={setState}
+                  logout={logout}
+                  setCurrentChannel={setCurrentChannel}
+                />}
+            </Stack.Screen>
+          )}
+          <Stack.Screen
+            name='Channel'
+            options={{
+              title: state.channelStates[state.currentChannel] ? `${state.channelStates[state.currentChannel].name}` : 'Channel'
+            }}
+          >
+            {props => <Channel {...props} socket={socket} state={state} channel={state.currentChannel} />}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mainContainer: {
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-  }
-})
 
 export default App;
