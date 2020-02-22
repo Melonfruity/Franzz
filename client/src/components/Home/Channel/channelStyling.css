@@ -24,7 +24,7 @@ div#chat-righUi {
   background-size: contain;
   background-color: white;
   border: none;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #photoGalleryButton:focus {
@@ -36,14 +36,14 @@ div#chat-righUi {
 }
 
 #stalkerMapButton {
-  background-image: url('../../../assets/mapicon.png');
+  background-image: url('../../../assets/map.png');
   background-repeat: no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 37px;
+  height: 37px;
   background-size: contain;
   background-color: white;
   border: none;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 #stalkerMapButton:focus {
