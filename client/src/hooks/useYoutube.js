@@ -10,7 +10,7 @@ export const useYoutube = (state, setState, socket) => {
       setState((prev) => (
         {
           ...prev,
-          currentVideoState: { url }
+          videoStates: { ...prev.videoStates, [channel]: { url } },
         }
       ));
       socket.emit('change video state', videoObj);

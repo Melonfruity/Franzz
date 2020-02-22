@@ -2,10 +2,19 @@ import React from 'react';
 import YouTube from 'react-youtube';
 
 const YoutubeVideoPlayer = ({ currentVideo }) => {
+  console.log(currentVideo);
 
   function onReady(event) {
     // access to player in all event handlers via event.target
     event.target.playVideo();
+  }
+
+  function onPause(event) {
+    console.log('paused!');
+  }
+
+  function onPlay(event) {
+    console.log('played!');
   }
 
   const opts = {
@@ -21,6 +30,8 @@ const YoutubeVideoPlayer = ({ currentVideo }) => {
       videoId={currentVideo}
       opts={opts}
       onReady={onReady}
+      onPause={onPause}
+      onPlay={onPlay}
     />
   );
 };

@@ -3,10 +3,10 @@ import io from 'socket.io-client';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 
-const YoutubeSync = ({ channel, videoState, changeVideoState }) => {
+const YoutubeSync = ({ channel, videoStates, changeVideoState }) => {
   const [url, changeUrl] = useState({
-    currentUrl: videoState.url,
-    finalUrl: videoState.url,
+    currentUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
+    finalUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
   });
 
   function handleOnChange(e) {
@@ -16,7 +16,6 @@ const YoutubeSync = ({ channel, videoState, changeVideoState }) => {
   function handleSubmit(e) {
     e.preventDefault();
     changeVideoState(url.currentUrl, channel);
-    changeUrl({ ...url, finalUrl: url.currentUrl });
   }
 
   const temporaryStyle = {
@@ -24,12 +23,14 @@ const YoutubeSync = ({ channel, videoState, changeVideoState }) => {
     'flex-direction': 'column',
     height: '100%',
   };
-
+  console.log(videoStates[channel]);
   return (
     <div className="resize-box" onMouseDown={mouseDownFunction}>
       <div style={temporaryStyle}>
         <YoutubeVideoPlayer
-          currentVideo={videoState.url}
+          currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
+          changeVideoState={changeVideoState}
+          channel={channel}
         />
         <form id="changeVideoForm" onSubmit={handleSubmit}>
           <label>

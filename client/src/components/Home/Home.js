@@ -138,7 +138,7 @@ const Home = ({ state, setState }) => {
         setState((prev) => (
           {
             ...prev,
-            currentVideoState: { url }
+            videoStates: { ...prev.videoStates, [channel]: { url } },
           }
         ));
       }
@@ -177,7 +177,7 @@ const Home = ({ state, setState }) => {
           locations={grabLocations(id)}
           center={state.center}
           currentUser={state.currentUser}
-          videoState={state.currentVideoState}
+          videoStates={state.videoStates}
           changeVideoState={changeVideoState}
         />
       </Route>
