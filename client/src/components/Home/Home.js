@@ -147,6 +147,21 @@ const Home = ({ state, setState }) => {
       }
     });
 
+    socket.on('new time stamp', ({
+      time, channel,
+    }) => {
+      console.log('thime', time)
+      setState((prev) => (
+        {
+          ...prev,
+          videoStates: {
+            ...prev.videoStates,
+            [channel]: { ...prev.videoStates[channel], timeStamp: time },
+          },
+        }
+      ));
+    });
+
     return () => {
       socket.off();
     };

@@ -9,19 +9,18 @@ export const useYoutube = (state, setState, socket) => {
         channel,
         authorization: state.authorization,
       };
-      setState((prev) => (
-        {
-          ...prev,
-          videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
-        }
-      ));
       socket.emit('change video state', videoObj);
     }
   };
 
-  const syncVideo = (data) => {
+  const syncVideo = (data, channel) => {
     if (socket) {
-      console.log(data.getCurrentTime());
+      const timeObj = {
+        time: data,
+        channel,
+        authorization: state.authorization,
+      };
+      socket.emit('change video time', timeObj);
     }
   };
 

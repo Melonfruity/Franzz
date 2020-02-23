@@ -6,13 +6,13 @@ let player = '';
 const YoutubeVideoPlayer = ({
   currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
+  console.log(timeStamp);
   function onReady(event) {
     player = event.target;
     if (timeStamp) {
-      player.seekTo(300, true);
+      player.seekTo(timeStamp, true);
     }
-    syncVideo(player);
-    // access to player in all event handlers via event.target
+    // syncVideo(player.getCurrentTime(), channel);
     if (paused) {
       event.target.pauseVideo();
     }
@@ -27,13 +27,21 @@ const YoutubeVideoPlayer = ({
     }
   }, [paused, played]);
 
+  useEffect(() => {
+    if (timeStamp && player) {
+      if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
+        player.seekTo(timeStamp, true);
+      }
+    }
+  }, [timeStamp]);
+
 
   function onPlayerStateChange(event) {
     const state = event.data;
+    syncVideo(player.getCurrentTime(), channel);
 
     if (state == 1) { // if the video is playing
       changeVideoState(currentVideo, channel, false, true);
-
     } else if (state == 2) { // if the video is paused
       changeVideoState(currentVideo, channel, true, false);
     }

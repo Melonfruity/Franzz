@@ -21,4 +21,20 @@ module.exports = (io, socket) => {
       errm(err);
     }
   });
+
+  socket.on('change video time', async ({
+    time, channel, authorization,
+  }) => {
+    try {
+      console.log('we made it')
+      const user = await extractJWT(authorization);
+      if (user) {
+        socket.to(channel).emit('new time stamp', {
+          time, channel,
+        });
+      }
+    } catch (err) {
+      errm(err);
+    }
+  });
 };
