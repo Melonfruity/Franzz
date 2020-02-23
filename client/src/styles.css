@@ -222,7 +222,7 @@ body {
 
 .channelList {
   max-height: 650px;
-  max-width:220px;
+  /* max-width:220px; */
   overflow-y:auto;
   overflow-x: hidden;
   font-size:15px;
