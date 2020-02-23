@@ -222,7 +222,10 @@ body {
 
 .channelList {
   max-height: 650px;
-  overflow:auto;
+  max-width:220px;
+  overflow-y:auto;
+  overflow-x: hidden;
+  font-size:15px;
 }
 
 .signInInput {
@@ -367,7 +370,6 @@ background-size:contain;
 background-repeat: no-repeat;
 }
 
-
 .toast {
   height: 320px;
   width: 1000px;
@@ -439,3 +441,10 @@ background-repeat: no-repeat;
 .normalLogin .MuiInputBase-root {
   width: 500px;
 }
+
+.inviteButton {
+  position: absolute;
+  right: 200px;
+  top:15px;
+}
+

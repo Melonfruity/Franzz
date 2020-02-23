@@ -51,7 +51,7 @@ const Channel = ({
             </button>
           </CopyToClipboard>
         </div>
-      ) : <button type="button" onClick={createInvite}>Create Invite Link</button>}
+      ) : <button className="inviteButton" type="button" onClick={createInvite}>Invite Link</button>}
       <div id="chat-righUi">
         <Chat
           messages={messages}
