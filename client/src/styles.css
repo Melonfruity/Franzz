@@ -428,10 +428,14 @@ background-repeat: no-repeat;
   text-align: center;
 }
 
-#outlined-basic {
+/* #outlined-basic {
+  width: 500px;
+} */
+
+.usernameLogin .MuiInputBase-root {
   width: 500px;
 }
 
-.MuiInputBase-root {
+.normalLogin .MuiInputBase-root {
   width: 500px;
 }
