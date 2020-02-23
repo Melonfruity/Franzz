@@ -33,6 +33,7 @@ const Home = ({ state, setState }) => {
   } = useMap(state, setState, socket);
   const {
     changeVideoState,
+    syncVideo,
   } = useYoutube(state, setState, socket);
 
   console.log(state.locations);
@@ -181,6 +182,7 @@ const Home = ({ state, setState }) => {
           currentUser={state.currentUser}
           videoStates={state.videoStates}
           changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
         />
       </Route>
     );

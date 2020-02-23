@@ -10,7 +10,7 @@ import './Styling/DragAndDropBox.css';
 import './Chat.css';
 
 const Chat = ({
-  messages, emitDeleteMessage, emitSendMessage, channel, currentUser, moduleView, locations, center, videoStates, changeVideoState,
+  messages, emitDeleteMessage, emitSendMessage, channel, currentUser, moduleView, locations, center, videoStates, changeVideoState, syncVideo,
 }) => (
   <div id="chat-container">
     <TextContainer
@@ -43,6 +43,7 @@ const Chat = ({
       videoStates={videoStates}
       changeVideoState={changeVideoState}
       viewState={moduleView.video}
+      syncVideo={syncVideo}
     />
     )}
   </div>

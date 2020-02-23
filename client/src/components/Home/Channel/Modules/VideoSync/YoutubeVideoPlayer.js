@@ -4,11 +4,14 @@ import YouTube from 'react-youtube';
 let player = '';
 
 const YoutubeVideoPlayer = ({
-  currentVideo, changeVideoState, paused, played, channel,
+  currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
-  debugger
   function onReady(event) {
     player = event.target;
+    if (timeStamp) {
+      player.seekTo(300, true);
+    }
+    syncVideo(player);
     // access to player in all event handlers via event.target
     if (paused) {
       event.target.pauseVideo();

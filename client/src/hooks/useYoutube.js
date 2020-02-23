@@ -19,7 +19,14 @@ export const useYoutube = (state, setState, socket) => {
     }
   };
 
+  const syncVideo = (data) => {
+    if (socket) {
+      console.log(data.getCurrentTime());
+    }
+  };
+
   return {
     changeVideoState,
+    syncVideo,
   };
 };

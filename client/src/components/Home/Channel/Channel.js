@@ -7,7 +7,7 @@ import './channelStyling.css';
 import RightUI from './RightUI';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser, changeVideoState, videoStates,
+  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser, changeVideoState, videoStates, syncVideo,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
@@ -54,6 +54,7 @@ const Channel = ({
           center={center}
           videoStates={videoStates}
           changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
         />
         <RightUI moduleView={moduleView} changeView={changeView} changeVideoState={changeVideoState} />
       </div>

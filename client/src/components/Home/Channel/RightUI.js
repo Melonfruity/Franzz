@@ -19,9 +19,6 @@ const RightUI = ({ moduleView, changeView, changeVideoState }) => {
   }
 
   function toggleVideoSync() {
-    if (moduleView.video === true) {
-      changeVideoState(null, null, null, null);
-    }
     changeView((prev) => (
       {
         stalkerMap: false,
