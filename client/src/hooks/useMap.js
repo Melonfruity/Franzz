@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const token = '0aaae0c0080e60';
+// const token = '0aaae0c0080e60';
 const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
 
 // eslint-disable-next-line import/prefer-default-export

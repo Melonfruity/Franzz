@@ -7,17 +7,14 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import channelService from '../../service/channelService';
-import Modal from './ChannelList/NewChannelModal';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import RightUI from './Channel/RightUI'
-import NewChannelModal from './ChannelList/NewChannelModal'
+import NewChannelModal from './ChannelList/NewChannelModal';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import './homeStyling.css';
 import PopupToast from './PopUpToast';
 import '../../styles.css';
-
 
 let socket;
 
@@ -106,7 +103,6 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log(channel, users);
       setState((prev) => ({
         ...prev,
         users: {
@@ -117,6 +113,7 @@ const Home = ({ state, setState }) => {
     });
 
     socket.on('update location', ({ channel, newLocations }) => {
+      console.log(channel, newLocations);
       if (newLocations) {
         setState((prev) => ({
           ...prev,
@@ -146,7 +143,7 @@ const Home = ({ state, setState }) => {
   };
 
   const channelItems = channels.map((id) => {
-    const { name, messages } = state.channelStates[id];
+    const { name, messages, users } = state.channelStates[id];
     return (
       <Route
         path={`/channel/${id}`}
@@ -156,7 +153,8 @@ const Home = ({ state, setState }) => {
           channel={id}
           name={name}
           messages={messages}
-          users={state.users[id]}
+          userStatus={state.users[id]}
+          userList={users}
           emitSendMessage={emitSendMessage}
           locations={grabLocations(id)}
           center={state.center}
