@@ -1,6 +1,5 @@
 
 html {
-  height: 100vh;
   width: 100vw;
 }
 
@@ -12,7 +11,7 @@ body {
 }
 
 #root {
-  height: 100%;
+  height: 90%;
 }
 
 .appContainer {
@@ -125,7 +124,6 @@ body {
 }
 
 .navLogout {
-  margin-top: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -173,7 +171,7 @@ body {
 }
 
 .leftBarUI {
-  padding: 6px;
+  padding: 0px 0px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -223,7 +221,11 @@ body {
 }
 
 .channelList {
-  overflow:auto;
+  max-height: 650px;
+  /* max-width:220px; */
+  overflow-y:auto;
+  overflow-x: hidden;
+  font-size:15px;
 }
 
 .signInInput {
@@ -263,12 +265,20 @@ div.jumbotron {
 
 .rightBarUI {
   margin-left: 0;
-  width: 65px;
+  width: 185px;
   display: flex;
-  justify-content: center;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-between;
   background: white;
-  border-left: 1px solid black;
+  border-left: 1px solid rgba(128, 128, 128, 0.459);
   margin-top: -30px;
+}
+
+.userList {
+  height: 400px;
+  /* overflow: auto; */
+  width: 100%;
 }
 
 
@@ -285,7 +295,6 @@ h3 {
   justify-content: center;
   padding-top:15px;
   align-items: center;
-  margin-top: 15px;
   color: black;
   background-color: rgba(128, 128, 128, 0.055);
 }
@@ -306,16 +315,20 @@ h3 {
   margin-left: 20px;
 }
 
-
-
 button#create-channel {
-  background: transparent;
+  /* background: transparent; */
+  background-color: white;
   border: none;
   font-size: 15px;
-  width: 185px;
-  margin-top: 3px;
+  width: 100%;
+  height:100%;
+  padding:0px;
   font-family: 'Muli';
   color: black;
+}
+
+button#create-channel:hover {
+  background-color: rgba(0, 0, 0, 0.075);
 }
 
 #leftBarTitle {
@@ -323,6 +336,7 @@ button#create-channel {
   border: none;
   font-size: 2px;
   margin-top: -1px;
+  height:40px;
 }
 
 .guestRegisterModalButtons {
@@ -363,10 +377,19 @@ background-size:contain;
 background-repeat: no-repeat;
 }
 
-
 .toast {
   height: 320px;
   width: 1000px;
+}
+
+.joinChannelForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.createChannelForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .createChannelButton {
@@ -374,6 +397,7 @@ background-repeat: no-repeat;
   background-color:rgb(60, 163, 116);
   border-radius: 5px;
   color: white;
+  /* width:220px; */
 }
 
 .joinChannelButton {
@@ -383,12 +407,88 @@ background-repeat: no-repeat;
   color: white;
 }
 
-
 .JoinCreateInput {
-  width: 160px;
+  margin: 5px;
   height: 50px;
 }
 
 .newChannelModal {
   top: 200px;
+}
+
+.seperate {
+  display:flex;
+}
+
+.googleMapsMarkerLabel {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px black solid;
+  text-align:center;
+  font-size: 14px;
+  overflow:hidden;
+}
+
+
+.css-y1c0xs {
+  border-right: 1px solid rgba(128, 128, 128, 0.452);
+}
+
+.onlineUsers {
+  text-align: center;
+}
+
+/* #outlined-basic {
+  width: 500px;
+} */
+
+.usernameLogin .MuiInputBase-root {
+  width: 500px;
+}
+
+.normalLogin .MuiInputBase-root {
+  width: 500px;
+}
+
+.inviteButton {
+  position: absolute;
+  right: 200px;
+  top:15px;
+}
+
+
+.newChannelHeader {
+  text-align:center;
+}
+
+.invitePopup {
+  display:flex;
+  flex-direction: column;
+
+}
+
+.inviteLinkButton {
+  text-align:center;
+  display:flex;
+  margin:auto;
+  justify-self:center;
+}
+
+.inviteLinkModalContainer {
+  top: 30vh;
+}
+
+.inviteLinkModalButton {
+  position:relative;
+  bottom: 87px;
+  left: 900px;
+}
+
+.userNameItem {
+  margin-top:17px;
+  font-size: 14px;
+}
+
+.userItems .MuiListItem-root {
+  padding: 1px;
 }

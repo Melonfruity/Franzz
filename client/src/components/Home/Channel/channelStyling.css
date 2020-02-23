@@ -12,10 +12,6 @@ div#chat-righUi {
   flex-direction: column;
 }
 
-#stalkerMapButton {
-
-}
-
 #photoGalleryButton {
   background-image: url('../../../assets/imageBox.png');
   background-repeat: no-repeat;

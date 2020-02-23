@@ -11,7 +11,6 @@ const login = (password, passHash) => bcrypt.compareSync(password, passHash);
 const register = (password) => bcrypt.hashSync(password, saltRounds);
 
 const signJWT = (res, user) => {
-  console.log('sign', user)
   const payload = {
     userID: user.id,
   };
@@ -43,7 +42,6 @@ const extractJWT = async (authorization) => {
     const token = authorization.substring(7);
     const { userID } = jwt.verify(token, secretOrKey);
     const user = await User.findById(userID);
-    console.log('Updated in extracJWT', user);
     return user;
   }
   return false;

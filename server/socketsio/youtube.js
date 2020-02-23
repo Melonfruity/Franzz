@@ -26,7 +26,6 @@ module.exports = (io, socket) => {
     time, channel, authorization,
   }) => {
     try {
-      console.log('we made it')
       const user = await extractJWT(authorization);
       if (user) {
         socket.to(channel).emit('new time stamp', {

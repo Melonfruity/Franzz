@@ -6,18 +6,20 @@ import {
   Redirect,
 } from 'react-router-dom';
 import io from 'socket.io-client';
+
 import channelService from '../../service/channelService';
-import Channel from './Channel/Channel';
-import ChannelList from './ChannelList/ChannelList';
+import mapService from '../../service/mapService';
+
 import NewChannelModal from './ChannelList/NewChannelModal';
-import { useChat } from '../../hooks/useChat';
-import { useMap } from '../../hooks/useMap';
+import ChannelList from './ChannelList/ChannelList';
+import Channel from './Channel/Channel';
+import PopupToast from './PopUpToast';
 import { useYoutube } from '../../hooks/useYoutube';
 
-import './homeStyling.css';
-import PopupToast from './PopUpToast';
-import '../../styles.css';
+import { useChat } from '../../hooks/useChat';
 
+import './homeStyling.css';
+import '../../styles.css';
 
 let socket;
 
@@ -28,16 +30,76 @@ const Home = ({ state, setState }) => {
     emitCreateChannel,
   } = useChat(state, setState, socket);
   const {
-    grabLocations,
-    intializeMapsData,
-  } = useMap(state, setState, socket);
-  const {
     changeVideoState,
     syncVideo,
   } = useYoutube(state, setState, socket);
 
   console.log(state.locations);
   console.log(state.channelStates);
+
+  const updateLocation = (location) => {
+    const locationObj = {
+      location,
+      authorization: state.authorization,
+    };
+    socket.emit('update location', locationObj, (locations) => {
+      console.log(locations);
+      setState((prev) => ({
+        ...prev,
+        locations,
+        center: location,
+      }));
+    });
+  };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      console.log('getting location data');
+      navigator.geolocation.watchPosition((position) => {
+        const location = { lat: position.coords.latitude, lng: position.coords.longitude };
+        console.log('navigator watch', location);
+        mapService.getLocation(updateLocation);
+      });
+    }
+  };
+
+  const channels = Object.keys(state.channelStates);
+  const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
+
+  const selectCurrentChannel = (channel) => {
+    setState((prev) => ({ ...prev, currentChannel: channel }));
+  };
+
+  const toggleForm = (s) => {
+    setState((prev) => ({ ...prev, newChannelForm: s }));
+  };
+
+  const channelItems = channels.map((id) => {
+    const { name, messages, users } = state.channelStates[id];
+    return (
+      <Route
+        path={`/channel/${id}`}
+        key={`${id}`}
+      >
+        <Channel
+          channel={id}
+          name={name}
+          messages={messages}
+          userStatus={state.users[id]}
+          userList={users}
+          emitSendMessage={emitSendMessage}
+          locations={state.locations[id]}
+          center={state.center}
+          currentUser={state.currentUser}
+          videoStates={state.videoStates}
+          changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
+        />
+      </Route>
+    );
+  });
+
+
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -79,7 +141,6 @@ const Home = ({ state, setState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   // Sorry to hoever needs to debug this
   // this is hack - vasily
   useEffect(() => {
@@ -88,10 +149,12 @@ const Home = ({ state, setState }) => {
     } else {
       setState((prev) => ({ ...prev, loaded: true }));
     }
-  }, [setState, state.currentChannel, state.currentChannelLoaded]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.currentChannel]);
 
   useEffect(() => {
-    if (socket) intializeMapsData();
+    mapService.getLocation(updateLocation);
+    getLocation();
 
     socket.on('new message', (data) => {
       const { channelID, newMessageObj } = data;
@@ -112,7 +175,7 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log(channel, users);
+      console.log('status', channel, users)
       setState((prev) => ({
         ...prev,
         users: {
@@ -122,13 +185,14 @@ const Home = ({ state, setState }) => {
       }));
     });
 
-    socket.on('update location', ({ channel, newLocations }) => {
-      if (newLocations) {
+    socket.on('update location', (updatedLocations) => {
+      console.log('updatedLocations', updatedLocations);
+      if (updatedLocations) {
         setState((prev) => ({
           ...prev,
           locations: {
             ...prev.locations,
-            [channel]: newLocations,
+            ...updatedLocations,
           },
         }));
       }
@@ -167,41 +231,6 @@ const Home = ({ state, setState }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const channels = Object.keys(state.channelStates);
-  const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
-
-  const selectCurrentChannel = (channel) => {
-    setState((prev) => ({ ...prev, currentChannel: channel }));
-  };
-
-  const toggleForm = (s) => {
-    setState((prev) => ({ ...prev, newChannelForm: s }));
-  };
-
-  const channelItems = channels.map((id) => {
-    const { name, messages } = state.channelStates[id];
-    return (
-      <Route
-        path={`/channel/${id}`}
-        key={`${id}`}
-      >
-        <Channel
-          channel={id}
-          name={name}
-          messages={messages}
-          users={state.users[id]}
-          emitSendMessage={emitSendMessage}
-          locations={grabLocations(id)}
-          center={state.center}
-          currentUser={state.currentUser}
-          videoStates={state.videoStates}
-          changeVideoState={changeVideoState}
-          syncVideo={syncVideo}
-        />
-      </Route>
-    );
-  });
 
   return (
     <div id="main-container">

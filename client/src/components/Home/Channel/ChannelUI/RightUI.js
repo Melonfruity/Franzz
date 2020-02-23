@@ -2,9 +2,9 @@
 import React from 'react';
 import UserList from '../../UserList/UserList';
 
-const RightUI = ({
-  changeView, moduleView, userList, userStatus,
-}) => {
+
+const RightUI = ({ moduleView, userList, userStatus, changeView, changeVideoState }) => {
+
   function toggleStalkerMap() {
     changeView((prev) => (
       {

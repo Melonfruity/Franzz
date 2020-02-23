@@ -64,6 +64,7 @@ const App = () => {
           state={state}
           setState={setState}
         />
+        {console.log(state)}
 
         <Route
           exact

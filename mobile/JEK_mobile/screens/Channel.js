@@ -7,35 +7,67 @@ import {
   Text,
   TextInput,
   Button,
-  SafeAreaView
+  SafeAreaView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
-import Message from '../components/Message';
+import { GiftedChat } from 'react-native-gifted-chat';
 
-const Channel = ({ messages, currentUser }) => {
+const Channel = ({ state, setState, channel, socket }) => {
 
-  const formattedMessages = messages.map((msg) => (
-    <Message
-      key={msg.id}
-      id={msg.id}
-      message={msg.message}
-      created={msg.created}
-      username={msg.user.username}
-      currentUser={currentUser}
-      isCurrent={msg.user.id === currentUser}
-      userId={msg.user.id}
-      deleteMessage={deleteMessage}
-      video={msg.video}
-      image={msg.image}
-    />
-  ));
+  const { messages, users } = state.channelStates[channel];
+
+  const sendMessage = (text) => {
+    const messageObj = {
+      message: text[0] ? text[0].text : '',
+      channelID: channel,
+      authorization: state.authorization,
+      username: state.username,
+    }
+    console.log(messageObj)
+    socket.emit('message', messageObj, (newMessageObj) => {
+      setState((prev) => (
+        {
+          ...prev,
+          channelStates: {
+            ...prev.channelStates,
+            [channel]: {
+              ...prev.channelStates[channel],
+              messages: prev.channelStates[channel].messages.concat(newMessageObj),
+            },
+          },
+        }));
+    });
+  }
+
+  const formattedMessages = messages.map((msg) => {
+    return ({
+      _id: msg.id,
+      text: msg.message,
+      createdAt: msg.created,
+      user: {
+        _id: msg.user.id,
+        name: msg.user.username,
+      }
+    })
+  }).reverse();
 
   return (
-    <Text>
-      Already Signed In
-    </Text> 
+    <View style={{ flex: 1 }}>
+      <GiftedChat
+        messages={formattedMessages}
+        onSend={(message) => sendMessage(message)}
+        user={{
+          _id: state.currentUser,
+        }}
+      />
+      {
+        Platform.OS === 'android' ? <KeyboardSpacer /> : null
+      } 
+    </View>
   )
 }
 
