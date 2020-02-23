@@ -10,6 +10,9 @@ import channelService from '../../service/channelService';
 import Modal from './ChannelList/NewChannelModal';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
+
+import UserList from './UserList/UserList';
+
 import RightUI from './Channel/RightUI'
 import NewChannelModal from './ChannelList/NewChannelModal'
 import { useChat } from '../../hooks/useChat';
@@ -135,7 +138,16 @@ const Home = ({ state, setState }) => {
   }, []);
 
   const channels = Object.keys(state.channelStates);
+  console.log("channels ", channels)
   const channelIdNamePair = channels.map((id) => ({ id, name: state.channelStates[id].name }));
+  console.log("channelIDNAMEPAIR ", channelIdNamePair)
+  const channelID = state.currentChannel
+  console.log("channelID ",channelID)
+  console.log(state.users[channelID])
+  // state.users[channelID].map(({ username, online }) => console.log( username, online ));
+  // const users = state.users[state.currentChannel].map(({username}) => username)
+  // console.log("users ", users)
+  
 
   const selectCurrentChannel = (channel) => {
     setState((prev) => ({ ...prev, currentChannel: channel }));
@@ -144,6 +156,7 @@ const Home = ({ state, setState }) => {
   const toggleForm = (s) => {
     setState((prev) => ({ ...prev, newChannelForm: s }));
   };
+
 
   const channelItems = channels.map((id) => {
     const { name, messages } = state.channelStates[id];
@@ -176,6 +189,9 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           toggleForm={toggleForm}
         />
+        {/* <UserList
+          users={users}
+        /> */}
         <Switch>
           {channelItems}
         </Switch>

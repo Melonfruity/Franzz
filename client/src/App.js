@@ -63,7 +63,8 @@ const App = () => {
           state={state}
           setState={setState}
         />
-
+        {console.log("STATE ", state)}
+        {console.log("STATE.users ", state.users)}
         <Route
           exact
           path="/"
@@ -89,6 +90,19 @@ const App = () => {
                 />
               )
               : <Redirect to="/" />
+          )}
+        />
+        <Route
+          path="/channel"
+          render={() => (
+            state.authorization
+              ? (
+                <Home
+                  state={state}
+                  setState={setState}
+                />
+              )
+              : <Redirect from="/" />
           )}
         />
       </Router>
