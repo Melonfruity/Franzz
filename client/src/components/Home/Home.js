@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 import channelService from '../../service/channelService';
 import Channel from './Channel/Channel';
 import ChannelList from './ChannelList/ChannelList';
-import NewChannelModal from './ChannelList/NewChannelModal'
+import NewChannelModal from './ChannelList/NewChannelModal';
 import { useChat } from '../../hooks/useChat';
 import { useMap } from '../../hooks/useMap';
 import { useYoutube } from '../../hooks/useYoutube';
@@ -21,7 +21,7 @@ import '../../styles.css';
 
 let socket;
 
-const Home = ({ state, setState }) => {  
+const Home = ({ state, setState }) => {
   const {
     emitSendMessage,
     emitJoinChannel,
@@ -87,7 +87,7 @@ const Home = ({ state, setState }) => {
     } else {
       setState((prev) => ({ ...prev, loaded: true }));
     }
-  }, [state.currentChannel]);
+  }, [setState, state.currentChannel, state.currentChannelLoaded]);
 
   useEffect(() => {
     if (socket) intializeMapsData();
@@ -133,12 +133,14 @@ const Home = ({ state, setState }) => {
       }
     });
 
-    socket.on('new video state', ({ url, channel }) => {
+    socket.on('new video state', ({
+      url, paused, played, channel,
+    }) => {
       if (url) {
         setState((prev) => (
           {
             ...prev,
-            videoStates: { ...prev.videoStates, [channel]: { url } },
+            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
           }
         ));
       }

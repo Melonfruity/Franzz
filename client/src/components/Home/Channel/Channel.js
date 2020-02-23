@@ -55,7 +55,7 @@ const Channel = ({
           videoStates={videoStates}
           changeVideoState={changeVideoState}
         />
-        <RightUI moduleView={moduleView} changeView={changeView} />
+        <RightUI moduleView={moduleView} changeView={changeView} changeVideoState={changeVideoState} />
       </div>
     </div>
   );

@@ -42,6 +42,7 @@ const Chat = ({
       channel={channel}
       videoStates={videoStates}
       changeVideoState={changeVideoState}
+      viewState={moduleView.video}
     />
     )}
   </div>

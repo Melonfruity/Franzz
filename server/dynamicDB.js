@@ -48,6 +48,8 @@ const changeOnline = (socketID, channels, username, io) => {
     io.in(channel).emit('user status', { userStatus });
   });
 };
+
+
 const changeOffline = (socketID, io) => {
   const channels = Object.keys(status);
   channels.forEach((channel) => {
@@ -61,9 +63,9 @@ const changeOffline = (socketID, io) => {
       // should emit a new array of new status for each of the users channels
       console.log('offline', channel, userStatus);
       io.in(channel).emit('user status', { userStatus });
-
       // update maps when user goes offline and only if they use maps
-      if (locations[channel][socketID]) {
+      if (locations[channel] && locations[channel][socketID]) {
+        delete locations[channel][socketID];
         const locationObj = {
           channel,
           newLocations: [...Object.values(locations[channel])],

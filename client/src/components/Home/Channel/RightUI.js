@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const RightUI = ({ changeView }) => {
+const RightUI = ({ moduleView, changeView, changeVideoState }) => {
   function toggleStalkerMap() {
     changeView((prev) => (
       {
@@ -19,6 +19,9 @@ const RightUI = ({ changeView }) => {
   }
 
   function toggleVideoSync() {
+    if (moduleView.video === true) {
+      changeVideoState(null, null, null, null);
+    }
     changeView((prev) => (
       {
         stalkerMap: false,
