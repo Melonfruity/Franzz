@@ -19,12 +19,6 @@ const imgStyle = {
   height: '100%',
 };
 
-const containerStyle = {
-  width: '77.5%',
-  height: '663px',
-  position: 'absolute',
-};
-
 const Marker = ({ title }) => (
   <div style={markerStyle}>
     <img style={imgStyle} src="https://res.cloudinary.com/og-tech/image/upload/s--OpSJXuvZ--/v1545236805/map-marker_hfipes.png" alt={title} />

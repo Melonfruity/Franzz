@@ -4,6 +4,7 @@ const shortLinks = {};
 const locations = {};
 const status = {};
 const socketReference = {};
+const channelReference = {};
 
 // status = {
 //   [channel]: { [socketID]: username },
@@ -43,6 +44,7 @@ const socketReference = {};
 // }
 
 const changeOnline = (socketID, user, channels, username, io) => {
+  channelReference[user] = channels;
   channels.forEach((channel) => {
     // to check when offline
     socketReference[socketID] = {
@@ -71,6 +73,8 @@ const changeOnline = (socketID, user, channels, username, io) => {
         },
       };
     }
+
+    // if their socket array is not empty then they are online
     const userStatus = {
       channel,
       users:
@@ -89,25 +93,30 @@ const changeOffline = (socketID, io) => {
       ...status[channel][user],
       sockets: status[channel][user].sockets.filter((id) => id !== socketID),
     };
-    const userStatus = {
-      channel,
-      users:
-        Object.values(status[channel])
-          // eslint-disable-next-line no-shadow
-          .map(({ username, sockets }) => ({ username, online: !_.isEmpty(sockets) })),
-    };
-    // should emit a new array of new status for each of the users channels
-    io.in(channel).emit('user status', { userStatus });
-
-    // update maps when user goes offline and only if they use maps
-    if (locations[channel] && locations[channel][socketID]) {
-      delete locations[channel][socketID];
-      const locationObj = {
+    const socketsAvailable = _.isEmpty(status[channel][user].sockets);
+    // if it is empty then that means they are not online
+    if (socketsAvailable) {
+      const userStatus = {
         channel,
-        newLocations: [...Object.values(locations[channel])],
+        users:
+          Object.values(status[channel])
+            // eslint-disable-next-line no-shadow
+            .map(({ username, sockets }) => ({ username, online: !_.isEmpty(sockets) })),
       };
-      // console.log('offline update maps', channel, locationObj);
-      io.in(channel).emit('update location', locationObj);
+      // should emit a new array of new status for each of the users channels
+      io.in(channel).emit('user status', { userStatus });
+
+      // also update the locations for each of the channels the user is a part of
+      channelReference[user].forEach((channelID) => {
+        if (locations[channelID]) {
+          delete locations[channelID][user];
+          const locationObj = {
+            [channelID]: [...Object.values(locations[channelID])],
+          };
+          io.in(channelID).emit('update location', locationObj);
+        }
+      });
+      delete socketReference[socketID];
     }
   }
 };
