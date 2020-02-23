@@ -41,6 +41,7 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
   const cb = () => navigation.navigate('Channel');
 
   const channels = Object.values(state.channelStates);
+
   const ChannelItem = ({ item }) => {
     const { channel, name} = item;
     return (
@@ -52,7 +53,8 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
 
   return (
     <SafeAreaView style={styles.list}>
-      <Button title="LOG OUT" onPress={() => logout()}/>
+      <Button title="LOG OUT" onPress={() => logout()} />
+      <Button title="New Channel" onPress={() => navigation.navigate('New Channel')} />
       <FlatList
         data={channels}
         renderItem={({ item }) => <ChannelItem item={item} />}
