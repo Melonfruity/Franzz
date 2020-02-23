@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useEffect } from 'react';
 import GoogleMap from 'google-map-react';
 import '../Photos/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
@@ -17,12 +18,6 @@ const markerStyle = {
 
 const imgStyle = {
   height: '100%',
-};
-
-const containerStyle = {
-  width: '77.5%',
-  height: '663px',
-  position: 'absolute',
 };
 
 const Marker = ({ title }) => (

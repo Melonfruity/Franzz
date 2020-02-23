@@ -71,8 +71,8 @@ module.exports = (io, socket) => {
           },
           messages: [],
         };
-        changeOnline(socket.id, user.channels, user.username, io);
         socket.join(savedChannel.id);
+        changeOnline(socket.id, user.id, user.channels, user.username, io);
         callback(channelData);
       }
     } catch (err) {

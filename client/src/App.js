@@ -63,8 +63,6 @@ const App = () => {
           state={state}
           setState={setState}
         />
-        {console.log("STATE ", state)}
-        {console.log("STATE.users ", state.users)}
         <Route
           exact
           path="/"

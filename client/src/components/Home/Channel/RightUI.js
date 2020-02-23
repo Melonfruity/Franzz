@@ -1,12 +1,10 @@
 
 import React from 'react';
-import UserList from '../UserList/UserList'
+import UserList from '../UserList/UserList';
 
-const RightUI = ({ changeView, moduleView, userList, userStatus }) => {
-
-  console.log("userlist1 ", userList)
-  console.log("userstatus1 ", userStatus)
-  
+const RightUI = ({
+  changeView, moduleView, userList, userStatus,
+}) => {
   function toggleStalkerMap() {
     changeView((prev) => (
       {
@@ -26,10 +24,11 @@ const RightUI = ({ changeView, moduleView, userList, userStatus }) => {
   return (
     <div className="rightBarUI">
       <div className="widgetList">
-        <button id="stalkerMapButton" onClick={toggleStalkerMap} />
-        <button id="photoGalleryButton" onClick={toggleImageBox} />
+
+        <button type="button" aria-label="stalker" id="stalkerMapButton" onClick={toggleStalkerMap} />
+        <button type="button" aria-label="gallery" id="photoGalleryButton" onClick={toggleImageBox} />
       </div>
-      <UserList userList={userList} userStatus={userStatus}/>
+      <UserList userList={userList} userStatus={userStatus} />
     </div>
   );
 };
