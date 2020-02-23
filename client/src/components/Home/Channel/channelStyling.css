@@ -53,3 +53,22 @@ div#chat-righUi {
 #stalkerMapButton:hover {
   opacity: 80%;
 }
+
+#videoSyncButton {
+  background-image: url('../../../assets/youtube.png');
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 37px;
+  background-size: contain;
+  background-color: white;
+  border: none;
+  margin-top: 15px;
+}
+
+#videoSyncButton:focus {
+  outline: none;
+}
+
+#videoSyncButton:hover {
+  opacity: 80%;
+}

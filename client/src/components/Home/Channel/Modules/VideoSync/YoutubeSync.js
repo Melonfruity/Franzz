@@ -7,8 +7,8 @@ const YoutubeSync = ({
   channel, videoStates, changeVideoState, viewState, syncVideo,
 }) => {
   const [url, changeUrl] = useState({
-    currentUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
-    finalUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
+    currentUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
+    finalUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
   });
 
   console.log(videoStates[channel]);
@@ -26,14 +26,10 @@ const YoutubeSync = ({
     changeVideoState(videoId, channel);
   }
 
-  const temporaryStyle = {
-    display: 'flex',
-    'flex-direction': 'column',
-    height: '100%',
-  };
+
   return (
     <div className="resize-box" onMouseDown={mouseDownFunction}>
-      <div style={temporaryStyle}>
+      <div id="video">
         <YoutubeVideoPlayer
           currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
           changeVideoState={changeVideoState}
