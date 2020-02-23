@@ -3,18 +3,27 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
 import YoutubeSync from './Modules/VideoSync/YoutubeSync';
+
 // modules
 import './channelStyling.css';
 import RightUI from './RightUI';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
+  channel,
+  userList,
+  userStatus,
+  name,
+  messages,
+  emitSendMessage,
+  emitDeleteMessage,
+  locations,
+  center,
+  currentUser,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
   });
-  console.log(moduleView);
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
@@ -54,7 +63,12 @@ const Channel = ({
           locations={locations}
           center={center}
         />
-        <RightUI moduleView={moduleView} changeView={changeView} />
+        <RightUI
+          moduleView={moduleView}
+          changeView={changeView}
+          userList={userList}
+          userStatus={userStatus}
+        />
       </div>
     </div>
   );

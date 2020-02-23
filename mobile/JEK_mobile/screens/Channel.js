@@ -12,8 +12,7 @@ import {
 } from 'react-native';
 
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-
-// import Message from '../components/Message';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { GiftedChat } from 'react-native-gifted-chat';
 
@@ -57,18 +56,18 @@ const Channel = ({ state, setState, channel, socket }) => {
   }).reverse();
 
   return (
-  <View style={{ flex: 1 }}>
-    <GiftedChat
-      messages={formattedMessages}
-      onSend={(message) => sendMessage(message)}
-      user={{
-        _id: state.currentUser,
-      }}
-    />
-    {
-      Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding"/>
-    } 
-  </View>
+    <View style={{ flex: 1 }}>
+      <GiftedChat
+        messages={formattedMessages}
+        onSend={(message) => sendMessage(message)}
+        user={{
+          _id: state.currentUser,
+        }}
+      />
+      {
+        Platform.OS === 'android' ? <KeyboardSpacer /> : null
+      } 
+    </View>
   )
 }
 
