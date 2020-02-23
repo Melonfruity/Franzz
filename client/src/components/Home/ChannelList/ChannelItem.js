@@ -22,7 +22,7 @@ const ChannelItem = ({ name, id, selectCurrentChannel }) => {
             <ImageIcon />
           </Avatar>
         </ListItemAvatar>
-        {name}
+        {name.length < 11 ? name : name.slice(0,11) + "..."}
       </ListItem>
     </Link>
   );
