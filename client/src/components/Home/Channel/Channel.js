@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
-import YoutubeSync from './Modules/VideoSync/YoutubeSync';
-import InviteLink from './InviteLink'
+import InviteLink from './ChannelUI/InviteLink';
 
 // modules
 import './channelStyling.css';
-import RightUI from './RightUI';
+import RightUI from './ChannelUI/RightUI';
+import YoutubeSync from './Modules/VideoSync/YoutubeSync';
 
 const Channel = ({
   channel,
@@ -41,7 +40,12 @@ const Channel = ({
   return (
     <div id="channel">
       {name}
-      <InviteLink channel={channel}/>
+      <InviteLink
+        channel={channel}
+        createInvite={createInvite}
+        invite={invite}
+        setInvite={setInvite}
+      />
       <div id="chat-righUi">
         <Chat
           messages={messages}
