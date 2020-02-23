@@ -14,6 +14,7 @@ import NewChannelModal from './ChannelList/NewChannelModal';
 import ChannelList from './ChannelList/ChannelList';
 import Channel from './Channel/Channel';
 import PopupToast from './PopUpToast';
+import { useYoutube } from '../../hooks/useYoutube';
 
 import { useChat } from '../../hooks/useChat';
 
@@ -28,6 +29,13 @@ const Home = ({ state, setState }) => {
     emitJoinChannel,
     emitCreateChannel,
   } = useChat(state, setState, socket);
+  const {
+    changeVideoState,
+    syncVideo,
+  } = useYoutube(state, setState, socket);
+
+  console.log(state.locations);
+  console.log(state.channelStates);
 
   const updateLocation = (location) => {
     const locationObj = {
@@ -83,6 +91,9 @@ const Home = ({ state, setState }) => {
           locations={state.locations[id]}
           center={state.center}
           currentUser={state.currentUser}
+          videoStates={state.videoStates}
+          changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
         />
       </Route>
     );
@@ -185,6 +196,34 @@ const Home = ({ state, setState }) => {
           },
         }));
       }
+    });
+
+    socket.on('new video state', ({
+      url, paused, played, channel,
+    }) => {
+      if (url) {
+        setState((prev) => (
+          {
+            ...prev,
+            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
+          }
+        ));
+      }
+    });
+
+    socket.on('new time stamp', ({
+      time, channel,
+    }) => {
+      console.log('thime', time)
+      setState((prev) => (
+        {
+          ...prev,
+          videoStates: {
+            ...prev.videoStates,
+            [channel]: { ...prev.videoStates[channel], timeStamp: time },
+          },
+        }
+      ));
     });
 
     return () => {

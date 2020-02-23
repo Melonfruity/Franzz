@@ -19,10 +19,14 @@ const Channel = ({
   locations,
   center,
   currentUser,
+  changeVideoState,
+  videoStates,
+  syncVideo,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
+    video: false,
   });
   const [invite, setInvite] = useState({
     ready: false,
@@ -56,12 +60,16 @@ const Channel = ({
           moduleView={moduleView}
           locations={locations}
           center={center}
+          videoStates={videoStates}
+          changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
         />
         <RightUI
           moduleView={moduleView}
           changeView={changeView}
           userList={userList}
           userStatus={userStatus}
+          changeVideoState={changeVideoState} 
         />
       </div>
     </div>

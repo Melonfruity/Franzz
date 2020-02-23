@@ -22,6 +22,7 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
+    videoStates: {}, //{url, paused, played, timestamp}
     loaded: false,
     currentChannelLoaded: false,
     newChannelForm: false,
