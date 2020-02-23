@@ -427,3 +427,15 @@ background-repeat: no-repeat;
 .onlineUsers {
   text-align: center;
 }
+
+/* #outlined-basic {
+  width: 500px;
+} */
+
+.usernameLogin .MuiInputBase-root {
+  width: 500px;
+}
+
+.normalLogin .MuiInputBase-root {
+  width: 500px;
+}
