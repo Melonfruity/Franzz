@@ -19,12 +19,14 @@ const PopupToast = ({
     e.preventDefault();
     emitCreateChannel(channelName.value);
     channelName.reset();
+    handleClose()
   };
 
   const joinChannel = (e) => {
     e.preventDefault();
     emitJoinChannel(channelLink.value);
     channelLink.reset();
+    handleClose()
   };
   return (
     <>
