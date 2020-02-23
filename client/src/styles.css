@@ -427,3 +427,11 @@ background-repeat: no-repeat;
 .onlineUsers {
   text-align: center;
 }
+
+#outlined-basic {
+  width: 500px;
+}
+
+.MuiInputBase-root {
+  width: 500px;
+}
