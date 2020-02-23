@@ -460,3 +460,26 @@ background-repeat: no-repeat;
 .newChannelHeader {
   text-align:center;
 }
+
+.invitePopup {
+  display:flex;
+  flex-direction: column;
+
+}
+
+.inviteLinkButton {
+  text-align:center;
+  display:flex;
+  margin:auto;
+  justify-self:center;
+}
+
+.inviteLinkModalContainer {
+  top: 30vh;
+}
+
+.inviteLinkModalButton {
+  position:relative;
+  bottom: 87px;
+  left: 900px;
+}

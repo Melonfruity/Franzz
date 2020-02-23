@@ -41,7 +41,7 @@ const PopupToast = ({
                 textAlign: 'center', fontSize: '20px', color: 'rgb(60, 163, 116)', margin: '0',
               }}
               >
-CREATE
+              CREATE
               </p>
               <p style={{ textAlign: 'center', fontSize: '12px' }}>Create a new server and invite your friends!</p>
               <div className="createChannelImageContainer">
@@ -72,7 +72,7 @@ CREATE
                 textAlign: 'center', fontSize: '20px', color: 'rgb(114, 137, 218)', margin: '0',
               }}
               >
-JOIN
+                JOIN
               </p>
               <p style={{ textAlign: 'center', fontSize: '12px' }}>Enter an invite and join your friends server!</p>
               <div className="createChannelImageContainer">
