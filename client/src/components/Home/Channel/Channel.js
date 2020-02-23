@@ -8,13 +8,14 @@ import './channelStyling.css';
 import RightUI from './RightUI';
 
 const Channel = ({
-  channel, users, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
+  channel, userList, userStatus, name, messages, emitSendMessage, emitDeleteMessage, locations, center, currentUser,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
   });
-  console.log(moduleView);
+  console.log(userList)
+  console.log(userStatus)
   const [invite, setInvite] = useState({
     ready: false,
     link: '',

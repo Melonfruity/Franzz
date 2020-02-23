@@ -136,7 +136,7 @@ module.exports = (io, socket) => {
             },
           });
           // for other clients
-          changeOnline(socket.id, user.channels, user.username, io);
+          changeOnline(socket.id, user.id, user.channels, user.username, io);
           socket.to(channelID).emit('new message', { channelID, newMessageObj });
           // for new client
           callback(channelData);
@@ -159,7 +159,7 @@ module.exports = (io, socket) => {
     if (user) {
       socket.join(user.channels);
       const joinedRooms = Object.keys(io.sockets.adapter.rooms);
-      changeOnline(socket.id, user.channels, user.username, io);
+      changeOnline(socket.id, user.id, user.channels, user.username, io);
       socket.emit('server message', {
         serverMsg: {
           'joined rooms': joinedRooms,
