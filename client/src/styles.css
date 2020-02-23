@@ -223,6 +223,7 @@ body {
 }
 
 .channelList {
+  max-height: 650px;
   overflow:auto;
 }
 
@@ -306,8 +307,6 @@ h3 {
   margin-left: 20px;
 }
 
-
-
 button#create-channel {
   background: transparent;
   border: none;
@@ -369,11 +368,22 @@ background-repeat: no-repeat;
   width: 1000px;
 }
 
+.joinChannelForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.createChannelForm {
+  display: flex;
+  flex-direction: column;
+}
+
 .createChannelButton {
   margin-top:10px;
   background-color:rgb(60, 163, 116);
   border-radius: 5px;
   color: white;
+  /* width:220px; */
 }
 
 .joinChannelButton {
@@ -383,12 +393,17 @@ background-repeat: no-repeat;
   color: white;
 }
 
-
 .JoinCreateInput {
-  width: 160px;
+  margin: 5px;
   height: 50px;
 }
 
 .newChannelModal {
   top: 200px;
 }
+
+.seperate {
+  display:flex;
+}
+
+
