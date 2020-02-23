@@ -6,7 +6,7 @@ let player = '';
 const YoutubeVideoPlayer = ({
   currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
-  console.log(timeStamp);
+
   function onReady(event) {
     player = event.target;
     if (timeStamp) {
@@ -37,6 +37,7 @@ const YoutubeVideoPlayer = ({
 
 
   function onPlayerStateChange(event) {
+    player = event.target;
     const state = event.data;
     syncVideo(player.getCurrentTime(), channel);
 

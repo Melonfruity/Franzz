@@ -3,20 +3,27 @@ import io from 'socket.io-client';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 
-const YoutubeSync = ({ channel, videoStates, changeVideoState, viewState, syncVideo }) => {
+const YoutubeSync = ({
+  channel, videoStates, changeVideoState, viewState, syncVideo,
+}) => {
   const [url, changeUrl] = useState({
     currentUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
     finalUrl: videoStates[channel] ? videoStates[channel].url : '8xYDo0hQ5RI',
   });
 
-  console.log(videoStates[channel])
+  console.log(videoStates[channel]);
   function handleOnChange(e) {
     e.preventDefault();
     changeUrl({ ...url, currentUrl: e.target.value });
   }
   function handleSubmit(e) {
     e.preventDefault();
-    changeVideoState(url.currentUrl, channel, false, true);
+    let videoId = url.currentUrl.split('v=')[1];
+    const ampersandPosition = videoId.indexOf('&');
+    if (ampersandPosition !== -1) {
+      videoId = videoId.substring(0, ampersandPosition);
+    }
+    changeVideoState(videoId, channel);
   }
 
   const temporaryStyle = {
