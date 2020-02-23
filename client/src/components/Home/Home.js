@@ -188,9 +188,6 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           toggleForm={toggleForm}
         />
-        {/* <UserList
-          users={users}
-        /> */}
         <Switch>
           {channelItems}
         </Switch>

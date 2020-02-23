@@ -173,7 +173,7 @@ body {
 }
 
 .leftBarUI {
-  padding: 6px;
+  padding: 6px 0px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -264,12 +264,20 @@ div.jumbotron {
 
 .rightBarUI {
   margin-left: 0;
-  width: 65px;
+  width: 165px;
   display: flex;
-  justify-content: center;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-between;
   background: white;
   border-left: 1px solid black;
   margin-top: -30px;
+}
+
+.userList {
+  height: 400px;
+  /* overflow: auto; */
+  width: 100%;
 }
 
 
@@ -407,3 +415,6 @@ background-repeat: no-repeat;
 }
 
 
+.onlineUsers {
+  text-align: center;
+}

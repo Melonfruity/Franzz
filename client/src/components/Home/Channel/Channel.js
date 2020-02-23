@@ -14,8 +14,8 @@ const Channel = ({
     stalkerMap: false,
     imageBox: false,
   });
-  console.log(userList)
-  console.log(userStatus)
+  // console.log("userlist ", userList)
+  // console.log("userstatus ", userStatus)
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
@@ -55,7 +55,7 @@ const Channel = ({
           locations={locations}
           center={center}
         />
-        <RightUI moduleView={moduleView} changeView={changeView} />
+        <RightUI moduleView={moduleView} changeView={changeView} userList={userList} userStatus={userStatus} />
       </div>
     </div>
   );
