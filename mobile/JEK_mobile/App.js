@@ -18,6 +18,9 @@ import io from 'socket.io-client';
 import Login from './screens/Login';
 import Home from './screens/Home';
 import Channel from './screens/Channel';
+import NewChannel from './screens/NewChannel';
+
+import axios from 'axios';
 
 import Global from './Global';
 import service from './utils/service';
@@ -145,6 +148,65 @@ const App = () => {
     cb();
   }
 
+  const joinChannel = (channelLink, cb) => {
+    const joinChannelObj = {
+      channelLink,
+      authorization: state.authorization,
+    };
+    socket.emit('join channel', joinChannelObj, (channelData) => {
+      const { error, data, messages } = channelData;
+      if (!error) {
+        const { channel } = data;
+
+        setState((prev) => (
+          {
+            ...prev,
+            currentChannel: channel,
+            channelStates: {
+              ...prev.channelStates,
+              [channel]: {
+                ...data,
+                messages,
+              },
+            },
+          }
+        ));
+        console.log('joined channel', state)
+        cb();
+      }
+    });
+  };
+
+  const createChannel = (channelName, cb) => {
+    const createChannelObj = {
+      channelName,
+      authorization: state.authorization,
+    };
+    socket.emit('create channel', createChannelObj, (channelData) => {
+      const { data, messages } = channelData;
+      const { channel } = data;
+
+      // initializes a folder in the photo cloud for this channel
+      const request = { channelId: `${channel}/chat`, albumName: false };
+      axios.post('http://10.0.2.2:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
+
+      setState((prev) => (
+        {
+          ...prev,
+          currentChannel: channel,
+          channelStates: {
+            ...prev.channelStates,
+            [channel]: {
+              ...data,
+              messages,
+            },
+          },
+        }
+      ));
+      cb();
+    });
+  };
+
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName={state.authorization ? "Home" : "Login"}>
@@ -182,6 +244,19 @@ const App = () => {
             }}
           >
             {props => <Channel {...props} socket={socket} state={state} setState={setState} channel={state.currentChannel} />}
+          </Stack.Screen>
+          <Stack.Screen
+            name='New Channel'
+            options={{
+              title: 'Join or Create a new channel!'
+            }}
+          >
+            {props =>
+              <NewChannel
+                {...props}
+                joinChannel={joinChannel}
+                createChannel={createChannel}
+              />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
