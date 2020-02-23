@@ -29,7 +29,7 @@ const ChannelList = ({
   return (
     <div className="leftBarUI">
       <div id="leftBarTitle">
-        <button type="button" id="create-channel" onClick={() => toggleForm(true)}>+ Create/join a channel</button>
+        <button type="button" id="create-channel" onClick={() => toggleForm(true)}>+ Create/Join a channel</button>
       </div>
       <div className="channelList">
         <List>

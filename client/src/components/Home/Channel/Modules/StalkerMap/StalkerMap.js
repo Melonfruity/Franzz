@@ -11,8 +11,8 @@ const mapStyles = {
 };
 
 const markerStyle = {
-  height: '40px',
-  width: '40px',
+  height: '45px',
+  width: '55px',
   marginTop: '-50px',
 };
 
@@ -37,7 +37,7 @@ const StalkerMap = ({ locations, center, channel }) => {
       key={`${channel}${Math.random() * 10}`}
       title={`${user.username}`}
       lat={user.location.lat}
-      lng={user.location.lng}
+      lng={user.location.lng} 
     />
   )) : <Marker title="default location" {...center} />;
 
