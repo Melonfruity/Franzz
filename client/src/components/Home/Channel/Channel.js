@@ -3,6 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import channelService from '../../../service/channelService';
 import Chat from './Container/Chat/Chat';
 import YoutubeSync from './Modules/VideoSync/YoutubeSync';
+import InviteLink from './InviteLink'
 
 // modules
 import './channelStyling.css';
@@ -40,18 +41,7 @@ const Channel = ({
   return (
     <div id="channel">
       {name}
-      { invite.ready ? (
-        <div>
-          <textarea defaultValue={invite.link} />
-          <CopyToClipboard
-            text={invite.link}
-          >
-            <button type="button">
-              Copy to clipboard!
-            </button>
-          </CopyToClipboard>
-        </div>
-      ) : <button className="inviteButton" type="button" onClick={createInvite}>Invite Link</button>}
+      <InviteLink channel={channel}/>
       <div id="chat-righUi">
         <Chat
           messages={messages}
