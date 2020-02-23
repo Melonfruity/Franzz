@@ -12,8 +12,8 @@ const UserList = ({userList, userStatus}) => {
   console.log("userStatus1 ", userStatus)
 
 
-  const userListContainer = userStatus.map((element) => {
-    let name = element.username
+  const userListContainer = userStatus ? userStatus.map((element) => {
+    const name = element.username;
     return (
       <div>
         <li className="channelItems">
@@ -24,7 +24,7 @@ const UserList = ({userList, userStatus}) => {
         <Divider />
       </div>
     );
-  });
+  }) : <div />;
 
   return (
     <div className="userList">
