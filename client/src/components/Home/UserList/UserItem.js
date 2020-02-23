@@ -75,7 +75,7 @@ const UserItem = ({ name }) => {
       </StyledBadge>
     </div>
         </ListItemAvatar>
-        {name}
+        <p className="userNameItem">{name.length < 10 ? name : name.slice(0,10) + "..."}</p>
       </ListItem>
   );
 };

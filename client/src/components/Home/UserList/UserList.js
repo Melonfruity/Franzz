@@ -16,7 +16,7 @@ const UserList = ({userList, userStatus}) => {
     const name = element.username;
     return (
       <div>
-        <li className="channelItems">
+        <li className="userItems">
           <UserItem
             name={name}
           />
@@ -24,7 +24,7 @@ const UserList = ({userList, userStatus}) => {
         <Divider />
       </div>
     );
-  }) : <div />;
+  }) : <p>Loading...</p>;
 
   return (
     <div className="userList">
