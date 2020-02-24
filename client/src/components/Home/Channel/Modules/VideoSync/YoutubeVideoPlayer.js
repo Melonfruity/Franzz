@@ -7,11 +7,11 @@ const YoutubeVideoPlayer = ({
   currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
   function onReady(event) {
-    console.log(timeStamp)
     player = event.target;
-    if (timeStamp) {
+    if (timeStamp && player.b) {
       player.seekTo(timeStamp, true);
     }
+    syncVideo(player.getCurrentTime(), channel);
     if (paused) {
       event.target.pauseVideo();
     }
@@ -19,27 +19,36 @@ const YoutubeVideoPlayer = ({
   }
 
   useEffect(() => {
-    if (paused && player) {
+    if (paused && player && player.b) {
       player.pauseVideo();
-    } else if (played && player) {
+    } else if (played && player && player.b) {
       player.playVideo();
     }
-    if (timeStamp && player) {
+  }, [paused, played]);
+
+  useEffect(() => {
+    if (timeStamp && player && player.b) {
       if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
-        console.log(timeStamp)
         player.seekTo(timeStamp, true);
       }
     }
+  }, [timeStamp]);
 
-    return () => {
-      player = null;
-    };
-  }, [timeStamp, played, paused]);
+  // useEffect(() => {
+  //   if (timeStamp && player && player.b) {
+  //     if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
+  //       console.log(timeStamp)
+  //       player.seekTo(timeStamp, true);
+  //     }
+  //   }
+
+  //   return () => {
+  //     player = null;
+  //   };
+  // }, [timeStamp, played, paused]);
 
   function onPlayerStateChange(event) {
-    player = event.target;
     const state = event.data;
-    console.log('here')
     syncVideo(player.getCurrentTime(), channel);
 
     if (state === 1) { // if the video is playing
