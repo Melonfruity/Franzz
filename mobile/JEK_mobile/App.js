@@ -55,7 +55,6 @@ const App = () => {
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
-      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -240,7 +239,6 @@ const App = () => {
     });
 
     socket.on('update location', (updatedLocations) => {
-      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,

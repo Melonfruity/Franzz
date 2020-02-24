@@ -20,9 +20,6 @@ const MapScreen = ({ currentChannel, currentUser, locations, center, findLocatio
         clearTimeout(locate);
       }
     }, [])
-
-    console.log(locations)
-
     const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
       arr.forEach(e => {
         if (!obj[e.id]) {
@@ -38,7 +35,6 @@ const MapScreen = ({ currentChannel, currentUser, locations, center, findLocatio
       }); 
       return obj
     }, {}))
-    console.log(usersLocations)
   const locationMarkers = usersLocations.map((user) =>
     <Marker
       key={user.id}
@@ -48,13 +44,16 @@ const MapScreen = ({ currentChannel, currentUser, locations, center, findLocatio
       <Text>{user.username}</Text>
     </Marker>
   )
+
+  console.log(center)
+
   return (
     <View style={styles.container}>
       <MapView
         style={styles.mapStyle}
         initialRegion={{
-          latitude: center.lat ? center.lat : 43.8,
-          longitude: center.lng ? center.lng : -79.5,
+          latitude: center.lat,
+          longitude: center.lng,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
