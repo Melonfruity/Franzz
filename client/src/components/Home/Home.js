@@ -83,6 +83,9 @@ const Home = ({ state, setState }) => {
           locations={state.locations[id]}
           center={state.center}
           currentUser={state.currentUser}
+          line={state.line}
+          state={state}
+          setState={setState}
         />
       </Route>
     );

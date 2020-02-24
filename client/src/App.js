@@ -22,6 +22,7 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
+    line: [],
     loaded: false,
     currentChannelLoaded: false,
     newChannelForm: false,

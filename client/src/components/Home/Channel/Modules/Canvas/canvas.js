@@ -5,6 +5,10 @@ import React, { Component } from 'react';
     class Canvas extends Component {
       constructor(props) {
         super(props);
+
+        this.state = {
+          line : []
+        }
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseMove = this.onMouseMove.bind(this);
         this.endPaintEvent = this.endPaintEvent.bind(this);
@@ -12,13 +16,14 @@ import React, { Component } from 'react';
         this.pusher = new Pusher('37f283dd826953c94cd9', {
           cluster: 'us2',
         });
+
       }
 
       isPainting = false;
       // Different stroke styles to be used for user and guest
       userStrokeStyle = '#EE92C2';
       guestStrokeStyle = '#F0C987';
-      line = [];
+      line = []
       // v4 creates a unique id for each user. We used this since there's no auth to tell users apart
       userId = v4();
       prevPos = { offsetX: 0, offsetY: 0 };
@@ -40,6 +45,7 @@ import React, { Component } from 'react';
           };
           // Add the position to the line array
           this.line = this.line.concat(positionData);
+          this.setState({line:this.line})
           this.paint(this.prevPos, offSetData, this.userStrokeStyle);
         }
       }
@@ -66,7 +72,7 @@ import React, { Component } from 'react';
 
       async sendPaintData() {
         const body = {
-          line: this.line,
+          line: this.state.line,
           userId: this.userId,
         };
         // We use the native fetch API to make requests to the server

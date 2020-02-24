@@ -19,6 +19,9 @@ const Channel = ({
   locations,
   center,
   currentUser,
+  line,
+  state,
+  setState
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
@@ -59,6 +62,9 @@ const Channel = ({
           moduleView={moduleView}
           locations={locations}
           center={center}
+          line={line}
+          state={state}
+          setState={setState}
         />
         <RightUI
           moduleView={moduleView}
