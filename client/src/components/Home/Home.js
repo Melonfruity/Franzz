@@ -90,6 +90,9 @@ const Home = ({ state, setState }) => {
           videoStates={state.videoStates}
           changeVideoState={changeVideoState}
           syncVideo={syncVideo}
+          line={state.line}
+          state={state}
+          setState={setState}
         />
       </Route>
     );

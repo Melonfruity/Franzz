@@ -42,7 +42,7 @@ const StalkerMap = ({ locations, center, channel }) => {
   return (
     <div className="resize-box" onMouseDown={mouseDownFunction}>
       <GoogleMap
-        style={{mapStyles}}
+        style={{ mapStyles }}
         bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
         center={center}
         zoom={14}

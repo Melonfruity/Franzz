@@ -56,7 +56,7 @@ export default function GalleryDisplay({
   return (
     <div>
       <div className="popup-title">{title}</div>
-      {isAlbum && <button className="adding-button-mod" onClick={() => addPhotos('addAlbumPhotos')}><span>+</span></button>}
+      {isAlbum && <button type="button" className="adding-button-mod" onClick={() => addPhotos('addAlbumPhotos')}><span>+</span></button>}
       <div className="row">
         <div className="column">
           {images[0]}

@@ -22,16 +22,22 @@ const Channel = ({
   changeVideoState,
   videoStates,
   syncVideo,
+  line,
+  state,
+  setState,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
     video: false,
+    canvasBox: false,
   });
+
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
   });
+
   const createInvite = () => {
     channelService
       .getInvite(channel)
@@ -63,6 +69,9 @@ const Channel = ({
           videoStates={videoStates}
           changeVideoState={changeVideoState}
           syncVideo={syncVideo}
+          line={line}
+          state={state}
+          setState={setState}
         />
         <RightUI
           changeView={changeView}
