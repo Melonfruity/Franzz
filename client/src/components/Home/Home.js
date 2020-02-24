@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import io from 'socket.io-client';
+import { serverURL } from '../../utils/config';
 
 import channelService from '../../service/channelService';
 import mapService from '../../service/mapService';
@@ -94,7 +95,6 @@ const Home = ({ state, setState }) => {
     );
   });
 
-
   // handle initial state
   useEffect(() => {
     // grab all channel data, messages
@@ -121,9 +121,7 @@ const Home = ({ state, setState }) => {
           }));
         });
     }
-    // change api end point later
-    socket = io('http://localhost:8001/');
-    // socket = io('https://arcane-bastion-72484.herokuapp.com/');
+    socket = io(`${serverURL}/`);
     socket.on('connect', () => {
       // from servers
       socket.on('server message', (data) => {
@@ -136,8 +134,6 @@ const Home = ({ state, setState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sorry to hoever needs to debug this
-  // this is hack - vasily
   useEffect(() => {
     if (!state.currentChannelLoaded) {
       setState((prev) => ({ ...prev, currentChannelLoaded: true }));
@@ -207,7 +203,7 @@ const Home = ({ state, setState }) => {
     socket.on('new time stamp', ({
       time, channel,
     }) => {
-      console.log('thime', time)
+      console.log(time, channel)
       setState((prev) => (
         {
           ...prev,

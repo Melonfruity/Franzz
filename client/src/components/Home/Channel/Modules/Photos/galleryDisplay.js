@@ -3,7 +3,7 @@ import './Styling/galleryStyling.css';
 import './Styling/PopUpBoxStyling.css';
 import PhotoItem from './PhotoItem';
 import './Styling/imageBox.css';
-
+import { serverURL } from '../../../../../utils/config';
 
 export default function GalleryDisplay({
   path, title, isAlbum, addPhotos, openLightboxOnSlide, changeLinks,
@@ -12,7 +12,7 @@ export default function GalleryDisplay({
 
   useEffect(() => {
     console.log(path);
-    fetch(`http://localhost:8001/api/photos/getChannelPhotos/${path}`)
+    fetch(`${serverURL}/api/photos/getChannelPhotos/${path}`)
       .then((res) => res.json())
       .then((data) => data.resources)
       .then((allPhotos) => { console.log('allPhotos:', allPhotos); setPhotos(allPhotos); });

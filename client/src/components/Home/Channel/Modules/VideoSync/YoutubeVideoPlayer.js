@@ -7,11 +7,11 @@ const YoutubeVideoPlayer = ({
   currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
   function onReady(event) {
+    console.log(timeStamp)
     player = event.target;
     if (timeStamp) {
       player.seekTo(timeStamp, true);
     }
-    // syncVideo(player.getCurrentTime(), channel);
     if (paused) {
       event.target.pauseVideo();
     }
@@ -26,18 +26,20 @@ const YoutubeVideoPlayer = ({
     }
     if (timeStamp && player) {
       if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
+        console.log(timeStamp)
         player.seekTo(timeStamp, true);
       }
     }
+
     return () => {
       player = null;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [timeStamp, played, paused]);
 
   function onPlayerStateChange(event) {
     player = event.target;
     const state = event.data;
+    console.log('here')
     syncVideo(player.getCurrentTime(), channel);
 
     if (state === 1) { // if the video is playing

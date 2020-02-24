@@ -4,12 +4,13 @@ import {
   Image, Video, CloudinaryContext,
 } from 'cloudinary-react';
 import './Styling/Album.css';
+import { serverURL } from '../../../../../utils/config';
 
 export default function Album({ name, path, viewAlbum }) {
   const [cover, setCover] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8001/api/photos/coverPhoto/${path}`)
+    axios.get(`${serverURL}/api/photos/coverPhoto/${path}`)
       .then((res) => setCover([res.data[0], res.data[1]]));
   }, [path]);
   return (

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { serverURL } from '../utils/config';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useChat = (state, setState, socket) => {
@@ -47,7 +48,7 @@ export const useChat = (state, setState, socket) => {
 
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
-      axios.post('http://localhost:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
+      axios.post(`${serverURL}/api/photos/createEmptyFolder`, { body: JSON.stringify(request) });
 
       updateMaps(channel);
 
