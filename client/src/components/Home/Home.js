@@ -206,7 +206,6 @@ const Home = ({ state, setState }) => {
     socket.on('new time stamp', ({
       time, channel,
     }) => {
-      console.log(time, channel)
       setState((prev) => (
         {
           ...prev,

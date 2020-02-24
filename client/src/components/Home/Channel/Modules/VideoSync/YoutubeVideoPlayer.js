@@ -34,19 +34,6 @@ const YoutubeVideoPlayer = ({
     }
   }, [timeStamp]);
 
-  // useEffect(() => {
-  //   if (timeStamp && player && player.b) {
-  //     if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
-  //       console.log(timeStamp)
-  //       player.seekTo(timeStamp, true);
-  //     }
-  //   }
-
-  //   return () => {
-  //     player = null;
-  //   };
-  // }, [timeStamp, played, paused]);
-
   function onPlayerStateChange(event) {
     const state = event.data;
     syncVideo(player.getCurrentTime(), channel);

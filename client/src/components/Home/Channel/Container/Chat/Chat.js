@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import TextContainer from './TextContainer';
 import Input from './Input';
 import ImageBox from '../../Modules/Photos/ImageBox';
@@ -9,7 +9,6 @@ import Canvas from '../../Modules/Canvas/Canvas';
 
 import './Styling/DragAndDropBox.css';
 import './Chat.css';
-import { flexbox } from '@material-ui/system';
 
 const Chat = ({
   messages, emitDeleteMessage, emitSendMessage, channel, currentUser, moduleView, locations, center, videoStates, changeVideoState, syncVideo, line, state, setState,
@@ -53,7 +52,7 @@ const Chat = ({
         {/* <h3 style={{ textAlign: 'center' }}></h3> */}
         <div style={{ display: 'flex' }} className="main">
           <div style={{ width: '225px' }} className="left-guide" />
-          <Canvas 
+          <Canvas
             className="canvasBoard"
             line={line}
             setState={setState}
