@@ -89,7 +89,7 @@ import React, { Component } from 'react';
 
       componentDidMount() {
         // Here we set up the properties of the canvas element. 
-        this.canvas.width = 800;
+        this.canvas.width = 650;
         this.canvas.height = 392;
         this.ctx = this.canvas.getContext('2d');
         this.ctx.lineJoin = 'round';

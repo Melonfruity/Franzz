@@ -8,6 +8,7 @@ import Canvas from '../../Modules/Canvas/canvas';
 
 import './Styling/DragAndDropBox.css';
 import './Chat.css';
+import { flexbox } from '@material-ui/system';
 
 const Chat = ({
   messages, emitDeleteMessage, emitSendMessage, channel, currentUser, moduleView, locations, center, line, state, setState
@@ -38,15 +39,14 @@ const Chat = ({
     />
     )}
     { moduleView.canvasBox && (
-      <div className="resize-box">
+      <div className="canvas resize-box">
             {/* <h3 style={{ textAlign: 'center' }}></h3> */}
-            <div className="main">
-              <div className="color-guide">
-                <h5>Color Guide</h5>
-                <div className="user user">User</div>
-                <div className="user guest">Guest</div>
+            <div style={{display:'flex'}} className="main">
+              <div style={{width:'225px'}} className="left-guide">
               </div>
-              <Canvas line={line} setState={setState} state={state}/>
+              <Canvas className="canvasBoard" line={line} setState={setState} state={state}/>
+              <div style={{width:'185px'}} className="right-guide">
+              </div>
             </div>
       </div>
     )}

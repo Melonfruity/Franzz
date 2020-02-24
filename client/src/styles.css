@@ -6,6 +6,7 @@ html {
 body {
   background-color: rgb(255, 255, 255);
   height: calc(100% - 10px);
+  overflow-x: hidden;
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -516,3 +517,17 @@ h5 {
   background: #F0C987;
   color: white;
 }
+
+.main {
+  background: transparent;
+}
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
