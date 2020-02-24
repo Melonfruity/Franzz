@@ -34,8 +34,8 @@ const Home = ({ state, setState }) => {
     syncVideo,
   } = useYoutube(state, setState, socket);
 
-  console.log(state.locations);
-  console.log(state.channelStates);
+  // console.log(state.locations);
+  // console.log(state.channelStates);
 
   const updateLocation = (location) => {
     const locationObj = {
@@ -43,7 +43,7 @@ const Home = ({ state, setState }) => {
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
-      console.log(locations);
+      // console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -54,10 +54,10 @@ const Home = ({ state, setState }) => {
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log('getting location data');
+      // console.log('getting location data');
       navigator.geolocation.watchPosition((position) => {
         const location = { lat: position.coords.latitude, lng: position.coords.longitude };
-        console.log('navigator watch', location);
+        // console.log('navigator watch', location);
         mapService.getLocation(updateLocation);
       });
     }

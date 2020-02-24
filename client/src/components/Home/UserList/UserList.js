@@ -8,8 +8,8 @@ import UserItem from './UserItem';
 // import './channelList.css';
 
 const UserList = ({userList, userStatus}) => {
-  console.log("userlist1 ", userList)
-  console.log("userStatus1 ", userStatus)
+  // console.log("userlist1 ", userList)
+  // console.log("userStatus1 ", userStatus)
 
 
   const userListContainer = userStatus ? userStatus.map((element) => {
