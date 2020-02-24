@@ -1,6 +1,7 @@
 #chat-container {
   width: 100%;
   background: white;
+  height: 100%;
 }
 
 #chat-container form {
@@ -27,17 +28,12 @@
   outline: none;
 }
 
-#send-button {
-  display: none;
-  /* margin-left: -73px;
-  height: 25px;
-  margin-top: 10px;
-  background-image: url('../../../../../assets/send.png');
-  background-repeat: no-repeat;
-  transform: rotate(90deg);
-  padding:1px; */
-}
-
 #messaging-input {
   margin: 11px;
+}
+
+.emojiPicker {
+  position: absolute; 
+  bottom: 215px;
+  right: 170px;
 }
