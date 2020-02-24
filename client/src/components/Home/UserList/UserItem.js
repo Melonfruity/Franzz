@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
 
 const UserItem = ({ name }) => {
   const classes = useStyles();
-  console.log("key ", name)
   return (
       <ListItem>
         <ListItemAvatar>

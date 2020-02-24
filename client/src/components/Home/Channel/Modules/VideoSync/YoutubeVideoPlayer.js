@@ -9,10 +9,10 @@ const YoutubeVideoPlayer = ({
 
   function onReady(event) {
     player = event.target;
-    if (timeStamp) {
+    if (timeStamp && player.b) {
       player.seekTo(timeStamp, true);
     }
-    // syncVideo(player.getCurrentTime(), channel);
+    syncVideo(player.getCurrentTime(), channel);
     if (paused) {
       event.target.pauseVideo();
     }
@@ -20,15 +20,15 @@ const YoutubeVideoPlayer = ({
   }
 
   useEffect(() => {
-    if (paused && player) {
+    if (paused && player && player.b) {
       player.pauseVideo();
-    } else if (played && player) {
+    } else if (played && player && player.b) {
       player.playVideo();
     }
   }, [paused, played]);
 
   useEffect(() => {
-    if (timeStamp && player) {
+    if (timeStamp && player && player.b) {
       if (Math.abs(player.getCurrentTime() - timeStamp) > 1) {
         player.seekTo(timeStamp, true);
       }
@@ -37,7 +37,6 @@ const YoutubeVideoPlayer = ({
 
 
   function onPlayerStateChange(event) {
-    player = event.target;
     const state = event.data;
     syncVideo(player.getCurrentTime(), channel);
 

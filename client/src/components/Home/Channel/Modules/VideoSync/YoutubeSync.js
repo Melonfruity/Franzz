@@ -4,14 +4,13 @@ import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 
 const YoutubeSync = ({
-  channel, videoStates, changeVideoState, viewState, syncVideo,
+  channel, videoStates, changeVideoState, syncVideo,
 }) => {
   const [url, changeUrl] = useState({
     currentUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
     finalUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
   });
 
-  console.log(videoStates[channel]);
   function handleOnChange(e) {
     e.preventDefault();
     changeUrl({ ...url, currentUrl: e.target.value });
@@ -23,6 +22,7 @@ const YoutubeSync = ({
     if (ampersandPosition !== -1) {
       videoId = videoId.substring(0, ampersandPosition);
     }
+    changeUrl((prev) => ({ ...prev, finalUrl: videoId }));
     changeVideoState(videoId, channel);
   }
 
