@@ -23,7 +23,8 @@ const YoutubeSync = ({
       videoId = videoId.substring(0, ampersandPosition);
     }
     changeUrl((prev) => ({ ...prev, finalUrl: videoId }));
-    changeVideoState(videoId, channel);
+    changeVideoState(videoId, channel, false, true);
+
   }
 
 
