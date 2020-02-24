@@ -492,3 +492,14 @@ background-repeat: no-repeat;
 .userItems .MuiListItem-root {
   padding: 1px;
 }
+
+.video-resize-box {
+  background: rgba(255, 255, 255, 0.712)
+  /* background: transparent; */
+}
+
+div.video-resize-box.resize-box::after {
+  display:none;
+}
+
+
