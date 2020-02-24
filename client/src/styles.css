@@ -492,3 +492,27 @@ background-repeat: no-repeat;
 .userItems .MuiListItem-root {
   padding: 1px;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+.user {
+  padding: 7px 15px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  background: #EE92C2;
+  margin: 10px 0;
+}
+.guest {
+  background: #F0C987;
+  color: white;
+}

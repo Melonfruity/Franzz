@@ -7,7 +7,8 @@ const NavBar = ({ state, logOut, setState }) => ((
     <nav className="navLogout">
       <div className="username">
         {state.username && <i className="fas fa-user-circle" />}
-        <p style={{marginLeft: '5px'}}>{state.username.length < 20 ? state.username : state.username.slice(0,20) + "..."}</p>
+        {/* <p style={{marginLeft: '5px'}}>{state.username.length < 20 ? state.username : state.username.slice(0,20) + "..."}</p> */}
+        {state.username}
       </div>
       {state.authorization ? <Link className="logoutButton" to="/" onClick={logOut}> Logout </Link> : null}
     </nav>

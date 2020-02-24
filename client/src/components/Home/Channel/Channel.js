@@ -23,11 +23,14 @@ const Channel = ({
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
+    canvasBox: false
   });
+
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
   });
+
   const createInvite = () => {
     channelService
       .getInvite(channel)

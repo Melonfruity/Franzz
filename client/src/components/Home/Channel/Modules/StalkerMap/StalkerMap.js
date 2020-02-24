@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import GoogleMap from 'google-map-react';
 import '../Photos/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';

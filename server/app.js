@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cors = require('cors');
 const http = require('http');
 const express = require('express');
@@ -6,6 +7,16 @@ const passport = require('passport');
 const socketio = require('socket.io');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const Pusher = require('pusher');
+
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: 'us2',
+});
+
 
 // utils
 const { info, errm } = require('./utils/logger');
@@ -56,7 +67,26 @@ app.use(
     extended: false,
   }),
 );
+
 app.use(bodyParser.json()); // JSON
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+});
+
+app.post('/paint', (req, res) => {
+  pusher.trigger('painting', 'draw', req.body);
+  res.json(req.body);
+});
 
 // the request with relevant data is logged
 app.use(requestLogger);
@@ -77,5 +107,6 @@ require('./socketsio/socketio')(io);
 // error handling
 app.use(unknownEndpoint);
 app.use(errorHandler);
+
 
 module.exports = server;

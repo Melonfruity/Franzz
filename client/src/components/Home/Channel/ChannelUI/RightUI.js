@@ -1,4 +1,3 @@
-
 import React from 'react';
 import UserList from '../../UserList/UserList';
 
@@ -21,12 +20,22 @@ const RightUI = ({
       }));
   }
 
+  function toggleCanvasBox() {
+    changeView((prev) => (
+      {
+        stalkerMap: false,
+        imageBox: false,
+        canvasBox: !prev.canvasBox,
+      }));
+  }
+
+
   return (
     <div className="rightBarUI">
       <div className="widgetList">
-
         <button type="button" aria-label="stalker" id="stalkerMapButton" onClick={toggleStalkerMap} />
         <button type="button" aria-label="gallery" id="photoGalleryButton" onClick={toggleImageBox} />
+        <button type="button" aria-label="gallery" id="photoGalleryButton" onClick={toggleCanvasBox} />
       </div>
       <UserList userList={userList} userStatus={userStatus} />
     </div>
