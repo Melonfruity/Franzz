@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect } from 'react';
+import React from 'react';
 import GoogleMap from 'google-map-react';
 import '../Photos/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
@@ -28,9 +28,6 @@ const Marker = ({ title }) => (
 );
 
 const StalkerMap = ({ locations, center, channel }) => {
-  useEffect(() => {
-
-  }, [locations]);
   const locationMarkers = locations ? locations.map((user) => (
     <Marker
       className="googleMapsMarker"

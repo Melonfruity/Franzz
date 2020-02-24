@@ -265,7 +265,7 @@ div.jumbotron {
 
 .rightBarUI {
   margin-left: 0;
-  width: 165px;
+  width: 185px;
   display: flex;
   flex-direction:column;
   align-items: center;
@@ -459,4 +459,36 @@ background-repeat: no-repeat;
 
 .newChannelHeader {
   text-align:center;
+}
+
+.invitePopup {
+  display:flex;
+  flex-direction: column;
+
+}
+
+.inviteLinkButton {
+  text-align:center;
+  display:flex;
+  margin:auto;
+  justify-self:center;
+}
+
+.inviteLinkModalContainer {
+  top: 30vh;
+}
+
+.inviteLinkModalButton {
+  position:relative;
+  bottom: 87px;
+  left: 900px;
+}
+
+.userNameItem {
+  margin-top:17px;
+  font-size: 14px;
+}
+
+.userItems .MuiListItem-root {
+  padding: 1px;
 }

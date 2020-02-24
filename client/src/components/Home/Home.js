@@ -13,8 +13,10 @@ import mapService from '../../service/mapService';
 import NewChannelModal from './ChannelList/NewChannelModal';
 import ChannelList from './ChannelList/ChannelList';
 import Channel from './Channel/Channel';
+
 import PopupToast from './PopUpToast';
 
+import { useYoutube } from '../../hooks/useYoutube';
 import { useChat } from '../../hooks/useChat';
 
 import './homeStyling.css';
@@ -29,13 +31,17 @@ const Home = ({ state, setState }) => {
     emitCreateChannel,
   } = useChat(state, setState, socket);
 
+  const {
+    changeVideoState,
+    syncVideo,
+  } = useYoutube(state, setState, socket);
+
   const updateLocation = (location) => {
     const locationObj = {
       location,
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
-      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -46,10 +52,7 @@ const Home = ({ state, setState }) => {
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log('getting location data');
-      navigator.geolocation.watchPosition((position) => {
-        const location = { lat: position.coords.latitude, lng: position.coords.longitude };
-        console.log('navigator watch', location);
+      navigator.geolocation.watchPosition(() => {
         mapService.getLocation(updateLocation);
       });
     }
@@ -83,6 +86,9 @@ const Home = ({ state, setState }) => {
           locations={state.locations[id]}
           center={state.center}
           currentUser={state.currentUser}
+          videoStates={state.videoStates}
+          changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
         />
       </Route>
     );
@@ -164,7 +170,6 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log('status', channel, users)
       setState((prev) => ({
         ...prev,
         users: {
@@ -175,7 +180,6 @@ const Home = ({ state, setState }) => {
     });
 
     socket.on('update location', (updatedLocations) => {
-      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,
@@ -185,6 +189,34 @@ const Home = ({ state, setState }) => {
           },
         }));
       }
+    });
+
+    socket.on('new video state', ({
+      url, paused, played, channel,
+    }) => {
+      if (url) {
+        setState((prev) => (
+          {
+            ...prev,
+            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
+          }
+        ));
+      }
+    });
+
+    socket.on('new time stamp', ({
+      time, channel,
+    }) => {
+      console.log('thime', time)
+      setState((prev) => (
+        {
+          ...prev,
+          videoStates: {
+            ...prev.videoStates,
+            [channel]: { ...prev.videoStates[channel], timeStamp: time },
+          },
+        }
+      ));
     });
 
     return () => {
