@@ -6,43 +6,6 @@ const status = {};
 const socketReference = {};
 const channelReference = {};
 
-// status = {
-//   [channel]: { [socketID]: username },
-//   [channel]: {
-//      [userID]: {
-//          username,
-//          sockets: [socketIDs]
-//      },
-//      [userID]: {
-//          username,
-//          sockets: [socketIDs]
-//      }
-//   },
-// };
-
-// locations = {
-//   [channel]: {
-//     [userID]: {
-//       username,
-//       location,
-//     },
-//     [userID]: {
-//       username,
-//       location,
-//     },
-//   },
-//   [channel]: {
-//     [userID]: {
-//       username,
-//       location,
-//     }
-//   }
-// }
-
-// socketReference = {
-//   [socketID]: {userID, channel}
-// }
-
 const changeOnline = (socketID, user, channels, username, io) => {
   channelReference[user] = channels;
   channels.forEach((channel) => {

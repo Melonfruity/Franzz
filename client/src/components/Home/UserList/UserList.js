@@ -7,13 +7,13 @@ import UserItem from './UserItem';
 
 // import './channelList.css';
 
-const UserList = ({userList, userStatus}) => {
-  console.log("userlist1 ", userList)
-  console.log("userStatus1 ", userStatus)
+const UserList = ({ userList, userStatus }) => {
+  console.log('userlist1 ', userList);
+  console.log('userStatus1 ', userStatus);
 
 
-  const userListContainer = userStatus.map((element) => {
-    let name = element.username
+  const userListContainer = userStatus ? userStatus.map((element) => {
+    const name = element.username;
     return (
       <div>
         <li className="channelItems">
@@ -24,14 +24,14 @@ const UserList = ({userList, userStatus}) => {
         <Divider />
       </div>
     );
-  });
+  }) : <div />;
 
   return (
     <div className="userList">
       <p className="onlineUsers">Online:</p>
-        <List>
-          {userListContainer}
-        </List>
+      <List>
+        {userListContainer}
+      </List>
     </div>
   );
 };
