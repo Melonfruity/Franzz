@@ -645,3 +645,7 @@ aside.emoji-picker-react {
 .chatInputBox {
   margin-left: 5px;
 }
+
+.video-resize-box.resize-box:after {
+  display:none;
+}
