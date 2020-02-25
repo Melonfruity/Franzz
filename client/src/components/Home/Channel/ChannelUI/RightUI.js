@@ -9,7 +9,7 @@ const RightUI = ({ userList, userStatus, changeView }) => {
         imageBox: false,
         stalkerMap: !prev.stalkerMap,
         video: false,
-        canvasBox: false
+        canvasBox: false,
       }));
   }
 
@@ -19,7 +19,7 @@ const RightUI = ({ userList, userStatus, changeView }) => {
         stalkerMap: false,
         imageBox: !prev.imageBox,
         video: false,
-        canvasBox: false
+        canvasBox: false,
       }));
   }
 

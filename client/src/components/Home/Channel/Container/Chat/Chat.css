@@ -4,13 +4,6 @@
   height: 100%;
 }
 
-#chat-container form {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 10px;
-}
-
 #chat-container textarea {
   width: 100%;
   resize: none;
@@ -26,6 +19,13 @@
 
 #chat-container textarea:focus {
   outline: none;
+}
+
+#messaging-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 10px;
 }
 
 #messaging-input {
