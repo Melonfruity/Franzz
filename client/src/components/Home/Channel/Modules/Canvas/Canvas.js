@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { v4 } from 'uuid';
-import Pusher from 'pusher-js';
 
 class Canvas extends Component {
       isPainting = false;
@@ -12,49 +10,39 @@ class Canvas extends Component {
 
       line = [];
 
-      // v4 creates a unique id for each user.
-      // We used this since there's no auth to tell users apart
-      userId = v4();
-
       prevPos = { offsetX: 0, offsetY: 0 };
 
       constructor(props) {
         super(props);
-        this.state = {
-          line: [],
-        };
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseMove = this.onMouseMove.bind(this);
         this.endPaintEvent = this.endPaintEvent.bind(this);
-        this.pusher = new Pusher('0609165026115fbd973a', {
-          cluster: 'mt1',
-          forceTLS: true,
-        });
-        console.log(this.pusher);
-        console.log(props)
-        console.log(this.props.channel)
+        this.sendLine = props.sendLine.bind(this);
       }
 
       componentDidMount() {
         // Here we set up the properties of the canvas element.
-        this.canvas.width = 650;
-        this.canvas.height = 392;
+        this.canvas.width = 1000;
+        this.canvas.height = 800;
         this.ctx = this.canvas.getContext('2d');
         this.ctx.lineJoin = 'round';
         this.ctx.lineCap = 'round';
-        this.ctx.lineWidth = 4;
+        this.ctx.lineWidth = 5;
+      }
 
-        const channel = this.pusher.subscribe(`${this.props.channel}`);
-        console.log(channel)
-        channel.bind('draw', (data) => {
-          const { userId, line } = data;
-          console.log(data)
-          if (userId !== this.userId) {
-            line.forEach((position) => {
-              this.paint(position.start, position.stop, this.guestStrokeStyle);
-            });
-          }
-        });
+      componentDidUpdate(prevProps) {
+        const { currentUser, lines } = this.props;
+        if (lines !== undefined) {
+          console.log(lines)
+          Object.values(lines).forEach(({ user, line }) => {
+            if (user !== currentUser) {
+              line.forEach((position) => {
+                console.log(position);
+                this.paint(position.start, position.stop, this.guestStrokeStyle);
+              });
+            }
+          });
+        }
       }
 
       onMouseDown({ nativeEvent }) {
@@ -74,7 +62,6 @@ class Canvas extends Component {
           };
           // Add the position to the line array
           this.line = this.line.concat(positionData);
-          this.setState({ line: this.line });
           this.paint(this.prevPos, offSetData, this.userStrokeStyle);
         }
       }
@@ -102,35 +89,22 @@ class Canvas extends Component {
       }
 
       async sendPaintData() {
-        const body = {
-          line: this.state.line,
-          userId: this.userId,
-          channel: this.props.channel,
-        };
-        // We use the native fetch API to make requests to the server
-        const req = await fetch('http://localhost:8001/api/pusher/paint', {
-          method: 'post',
-          body: JSON.stringify(body),
-          headers: {
-            'content-type': 'application/json',
-          },
-        });
-        const res = await req.json();
-        console.log(res);
-        this.line = [];
+        this.sendLine(this.line);
       }
 
       render() {
         return (
-          <canvas
-          // We use the ref attribute to get direct access to the canvas element.
-            ref={(ref) => (this.canvas = ref)}
-            style={{ background: 'black' }}
-            onMouseDown={this.onMouseDown}
-            onMouseLeave={this.endPaintEvent}
-            onMouseUp={this.endPaintEvent}
-            onMouseMove={this.onMouseMove}
-          />
+          <>
+            <canvas
+            // We use the ref attribute to get direct access to the canvas element.
+              ref={(ref) => (this.canvas = ref)}
+              style={{ background: 'black' }}
+              onMouseDown={this.onMouseDown}
+              onMouseLeave={this.endPaintEvent}
+              onMouseUp={this.endPaintEvent}
+              onMouseMove={this.onMouseMove}
+            />
+          </>
         );
       }
 }

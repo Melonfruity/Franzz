@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -22,11 +22,11 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
-    videoStates: {}, //{url, paused, played, timestamp}
-    line: [],
+    videoStates: {},
     loaded: false,
     currentChannelLoaded: false,
     newChannelForm: false,
+    lines: {},
   });
 
   // logout resets app
@@ -42,6 +42,7 @@ const App = () => {
       locations: {},
       center: {},
       users: {},
+      lines: {},
     });
   };
 

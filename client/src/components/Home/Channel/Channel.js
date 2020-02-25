@@ -22,9 +22,8 @@ const Channel = ({
   changeVideoState,
   videoStates,
   syncVideo,
-  line,
-  state,
-  setState,
+  sendLine,
+  lines,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
@@ -69,9 +68,8 @@ const Channel = ({
           videoStates={videoStates}
           changeVideoState={changeVideoState}
           syncVideo={syncVideo}
-          line={line}
-          state={state}
-          setState={setState}
+          sendLine={sendLine}
+          lines={lines}
         />
         <RightUI
           changeView={changeView}

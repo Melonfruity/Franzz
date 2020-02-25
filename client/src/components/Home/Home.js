@@ -37,6 +37,28 @@ const Home = ({ state, setState }) => {
     syncVideo,
   } = useYoutube(state, setState, socket);
 
+  const sendLine = (line) => {
+    const lineObj = {
+      line,
+      channel: state.currentChannel,
+      user: state.currentUser,
+    };
+    setState((prev) => ({
+      ...prev,
+      lines: {
+        ...prev.lines,
+        [state.currentChannel]: {
+          ...prev.lines[state.currentChannel],
+          [state.currentUser]: {
+            user: state.currentUser,
+            line,
+          },
+        },
+      },
+    }));
+    socket.emit('draw', lineObj);
+  };
+
   const updateLocation = (location) => {
     const locationObj = {
       location,
@@ -90,9 +112,8 @@ const Home = ({ state, setState }) => {
           videoStates={state.videoStates}
           changeVideoState={changeVideoState}
           syncVideo={syncVideo}
-          line={state.line}
-          state={state}
-          setState={setState}
+          sendLine={sendLine}
+          lines={state.lines[id]}
         />
       </Route>
     );
@@ -215,6 +236,22 @@ const Home = ({ state, setState }) => {
           },
         }
       ));
+    });
+
+    socket.on('draw', ({ user, channel, line }) => {
+      setState((prev) => ({
+        ...prev,
+        lines: {
+          ...prev.lines,
+          [channel]: {
+            ...prev.lines[channel],
+            [user]: {
+              user,
+              line,
+            },
+          },
+        },
+      }));
     });
 
     return () => {

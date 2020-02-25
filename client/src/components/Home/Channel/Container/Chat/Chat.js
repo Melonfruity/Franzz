@@ -11,7 +11,19 @@ import './Styling/DragAndDropBox.css';
 import './Chat.css';
 
 const Chat = ({
-  messages, emitDeleteMessage, emitSendMessage, channel, currentUser, moduleView, locations, center, videoStates, changeVideoState, syncVideo, line, state, setState,
+  messages,
+  emitDeleteMessage,
+  emitSendMessage,
+  channel,
+  currentUser,
+  moduleView,
+  locations,
+  center,
+  videoStates,
+  changeVideoState,
+  syncVideo,
+  sendLine,
+  lines,
 }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState('');
@@ -61,15 +73,13 @@ const Chat = ({
       )}
       { moduleView.canvasBox && (
         <div className="canvas resize-box">
-          {/* <h3 style={{ textAlign: 'center' }}></h3> */}
           <div style={{ display: 'flex' }} className="main">
             <div style={{ width: '225px' }} className="left-guide" />
             <Canvas
               className="canvasBoard"
-              line={line}
-              setState={setState}
-              state={state}
-              channel={channel}
+              sendLine={sendLine}
+              lines={lines}
+              currentUser={currentUser}
             />
             <div style={{ width: '185px' }} className="right-guide" />
           </div>
