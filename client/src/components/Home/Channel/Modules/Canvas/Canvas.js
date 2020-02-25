@@ -30,14 +30,12 @@ class Canvas extends Component {
         this.ctx.lineWidth = 5;
       }
 
-      componentDidUpdate(prevProps) {
+      componentDidUpdate() {
         const { currentUser, lines } = this.props;
         if (lines !== undefined) {
-          console.log(lines)
           Object.values(lines).forEach(({ user, line }) => {
             if (user !== currentUser) {
               line.forEach((position) => {
-                console.log(position);
                 this.paint(position.start, position.stop, this.guestStrokeStyle);
               });
             }

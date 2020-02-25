@@ -7,7 +7,6 @@ const passport = require('passport');
 const socketio = require('socket.io');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const Pusher = require('pusher');
 
 // utils
 const { info, errm } = require('./utils/logger');
@@ -41,19 +40,10 @@ mongoose
   .then(() => info('Connected to MongoDB'))
   .catch((err) => errm(err));
 
-const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUSHER_SECRET,
-  cluster: 'mt1',
-  encrypted: true,
-});
-
 // routes
 const authRouter = require('./routes/auth');
 const channelRouter = require('./routes/channel');
 const photoRouter = require('./routes/photos');
-const pusherRouter = require('./routes/pusher');
 const rootRouter = require('./routes/root');
 
 app.use(cors({
@@ -90,7 +80,6 @@ require('./utils/passportSetup');
 app.use('/api/auth', authRouter);
 app.use('/api/channel', channelRouter);
 app.use('/api/photos', photoRouter);
-app.use('/api/pusher', pusherRouter(pusher));
 app.use('/', rootRouter);
 
 // sockets channel
