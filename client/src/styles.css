@@ -1,11 +1,12 @@
 
 html {
   width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   background-color: rgb(255, 255, 255);
-  height: calc(100% - 10px);
+  height: 90%;
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -171,7 +172,7 @@ body {
 }
 
 .leftBarUI {
-  padding: 0px 0px;
+  margin: 40px 0px 0px 0px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -221,7 +222,7 @@ body {
 }
 
 .channelList {
-  max-height: 650px;
+  max-height: 620px;
   /* max-width:220px; */
   overflow-y:auto;
   overflow-x: hidden;
@@ -287,6 +288,7 @@ h3 {
 }
 
 .guestRegisterBanner {
+  position: absolute;
   height: 40px;
   width: 100vw;
   text-align: center;
@@ -317,6 +319,7 @@ h3 {
 
 button#create-channel {
   /* background: transparent; */
+  /* margin-top: 50px; */
   background-color: white;
   border: none;
   font-size: 15px;
@@ -479,9 +482,9 @@ background-repeat: no-repeat;
 }
 
 .inviteLinkModalButton {
-  position:relative;
-  bottom: 87px;
-  left: 900px;
+  position:absolute;
+  bottom: 40px;
+  left: 10px;
 }
 
 .userNameItem {
@@ -503,3 +506,16 @@ div.video-resize-box.resize-box::after {
 }
 
 
+.bannerMessage {
+  margin:0;
+  position: relative;
+  bottom: 10px;
+}
+
+/* .p3-container {
+  margin-top: 50px;
+} */
+
+.jumbotron {
+  margin-top:40px;
+}
