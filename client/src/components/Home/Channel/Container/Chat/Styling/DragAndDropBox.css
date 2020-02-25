@@ -29,6 +29,24 @@ p {
   opacity: 70%;
 }
 
+.emojiPickerButton {
+  background-image: url('../../../../../../assets/emoticon-with-happy-face.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-size: contain;
+  background-color: white;
+  margin-right: 5px;
+  margin-left: 9px;
+  margin-top: 3px;
+  height: 40px;
+  width: 40px;
+}
+
+.emojiPickerButton:hover {
+  opacity: 70%;
+}
+
 #fileElem {
   display: none;
 }

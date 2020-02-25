@@ -1,32 +1,27 @@
-import React, { useEffect, useState, useRef } from 'react';
-import {
-  Platform,
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  KeyboardAvoidingView
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
 // import { SplashScreen } from 'expo';
 // import * as Font from 'expo-font';
-// import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import io from 'socket.io-client';
 import Login from './screens/Login';
-import Home from './screens/Home';
-import Channel from './screens/Channel';
-import NewChannel from './screens/NewChannel';
-
 import axios from 'axios';
+
+import * as Permissions from 'expo-permissions';
 
 import Global from './Global';
 import service from './utils/service';
 
 let socket;
-const Stack = createStackNavigator();
+
+import NewChannelStackScreen from './routes/NewChannelStack';
+import MapStackScreen from './routes/MapStack';
+import HomeStackScreen from './routes/HomeStack';
+
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [state, setState] = useState({
@@ -40,52 +35,28 @@ const App = () => {
     users: {},
   });
 
-  useEffect(() => {
-    socket = io('http://10.0.2.2:8001')
-    socket.on('connect', () => {
-      socket.on('server message', (data) => {
-        // console.log(data)
-      });
-      socket.emit('join channels', { authorization: state.authorization }, (data) => {
-        console.log(data);
-      });
+  const updateLocation = (location) => {
+    const locationObj = {
+      location,
+      authorization: state.authorization,
+    };
+    socket.emit('update location', locationObj, (locations) => {
+      setState((prev) => ({
+        ...prev,
+        locations,
+        center: location,
+      }));
     });
+  };
 
-    if (!state.authorization) {
-      Global
-        .loadCredentials()
-        .then(({
-          guest, userID, username, authorization,
-        }) => {
-          setState((prev) => ({
-            ...prev,
-            guest,
-            currentUser: userID,
-            username,
-            authorization,
-          }));
-        })
+  const findLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+    if (status === 'granted') {
+      // await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, { accuracy: Location.Accuracy.Balanced });
+      service.getLocation(updateLocation);
     }
-  }, []);
-  
-  useEffect(() => {
-    socket.on('new message', (data) => {
-      const { channelID, newMessageObj } = data;
-      if (channelID && newMessageObj) {
-        setState((prev) => (
-          {
-            ...prev,
-            channelStates: {
-              ...prev.channelStates,
-              [channelID]: {
-                ...prev.channelStates[channelID],
-                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
-              },
-            },
-          }));
-      }
-    });
-  }, []);
+  }
 
   const guest = (usernameObj) => {
     service
@@ -207,61 +178,136 @@ const App = () => {
     });
   };
 
+  useEffect(() => {
+    socket = io('http://10.0.2.2:8001')
+    socket.on('connect', () => {
+      socket.on('server message', (data) => {
+        // console.log(data)
+      });
+      socket.emit('join channels', { authorization: state.authorization }, (data) => {
+        console.log(data);
+      });
+    });
+
+    if (!state.authorization) {
+      Global
+        .loadCredentials()
+        .then(({
+          guest, userID, username, authorization,
+        }) => {
+          setState((prev) => ({
+            ...prev,
+            guest,
+            currentUser: userID,
+            username,
+            authorization,
+          }));
+        })
+    }
+  }, []);
+  
+  useEffect(() => {
+    socket.on('new message', (data) => {
+      const { channelID, newMessageObj } = data;
+      if (channelID && newMessageObj) {
+        setState((prev) => (
+          {
+            ...prev,
+            channelStates: {
+              ...prev.channelStates,
+              [channelID]: {
+                ...prev.channelStates[channelID],
+                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+              },
+            },
+          }));
+      }
+    });
+
+    socket.on('update location', (updatedLocations) => {
+      if (updatedLocations) {
+        setState((prev) => ({
+          ...prev,
+          locations: {
+            ...prev.locations,
+            ...updatedLocations,
+          },
+        }));
+      }
+    });
+  }, []);
+
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={state.authorization ? "Home" : "Login"}>
-          {!state.authorization ? (
-            <Stack.Screen
-              name='Login'
-              options={{
-                title: 'Login Screen',
-                animationTypeForReplace: state.authorization ? 'pop' : 'push',
-              }}
+    <NavigationContainer>
+      {!state.authorization
+        ? ( <Login state={state} login={login} guest={guest} /> )
+        : (
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+                if (route.name === 'Home') {
+                  iconName = focused
+                    ? 'md-home'
+                    : 'md-home';
+                } else if (route.name === 'Maps') {
+                  iconName = focused ? 'md-google-maps' : 'md-google-maps';
+                } else if (route.name === 'New Channel'){
+                  iconName = focused ? 'md-add-to-list' : 'md-add-to-list';
+                }
+
+                return <Ionicons name={iconName} size={size} color={color} />;
+              }
+            })}
+            tabBarOptions={{
+              activeTintColor: 'tomato',
+              inactiveTintColor: 'gray',
+            }}
+          >
+            <Tab.Screen
+              name="Home"
+              
             >
-              {props => <Login { ...props } state={state} login={login} guest={guest} />}
-            </Stack.Screen>
-          ) : (
-            <Stack.Screen
-              name='Home'
-              options={{
-                title: 'Home Screen'
-              }}
-            >
-              {props => 
-                <Home
-                  { ...props }
+              {props =>
+                <HomeStackScreen
+                  {...props}
                   state={state}
-                  setState={setState}
                   logout={logout}
+                  socket={socket}
+                  setState={setState}
+                  joinChannel={joinChannel}
+                  createChannel={createChannel}
                   setCurrentChannel={setCurrentChannel}
                 />}
-            </Stack.Screen>
-          )}
-          <Stack.Screen
-            name='Channel'
-            options={{
-              title: state.channelStates[state.currentChannel] ? `${state.channelStates[state.currentChannel].name}` : 'Channel'
-            }}
-          >
-            {props => <Channel {...props} socket={socket} state={state} setState={setState} channel={state.currentChannel} />}
-          </Stack.Screen>
-          <Stack.Screen
-            name='New Channel'
-            options={{
-              title: 'Join or Create a new channel!'
-            }}
-          >
-            {props =>
-              <NewChannel
-                {...props}
-                joinChannel={joinChannel}
-                createChannel={createChannel}
-              />}
-          </Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
+            </Tab.Screen>
+            <Tab.Screen
+              name='Maps'
+            >
+              {props =>
+                <MapStackScreen
+                  {...props}
+                  currentUser={state.currentUser}
+                  currentChannel={state.currentChannel}
+                  locations={state.locations}
+                  center={state.center}
+                  findLocationAsync={findLocationAsync}
+                />}
+            </Tab.Screen>
+            <Tab.Screen
+              name='New Channel'
+            >
+              {props =>
+                <NewChannelStackScreen
+                  {...props}
+                  joinChannel={joinChannel}
+                  createChannel={createChannel}
+                />}
+            </Tab.Screen>
+          </Tab.Navigator>
+        )
+      }
+    </NavigationContainer>
   );
 }
-
 
 export default App;

@@ -1,8 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
-const serverURL = 'http://localhost:8001/api';
-// const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
+import { serverURL } from '../utils/config';
 
 const setLocalStorage = (data) => {
   const {
@@ -21,7 +20,7 @@ const setLocalStorage = (data) => {
 };
 
 const login = async (loginObj) => {
-  const res = await axios.post(`${serverURL}/auth/login`, loginObj);
+  const res = await axios.post(`${serverURL}/api/auth/login`, loginObj);
   return setLocalStorage(res.data);
 };
 
@@ -29,12 +28,12 @@ const register = async (registerObj) => {
   const config = {
     headers: { authorization: window.localStorage.authorization },
   };
-  const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
+  const res = await axios.post(`${serverURL}/api/auth/register`, registerObj, config);
   return setLocalStorage(res.data);
 };
 
 const guestLogin = async (guestObj) => {
-  const res = await axios.post(`${serverURL}/auth/guest`, guestObj);
+  const res = await axios.post(`${serverURL}/api/auth/guest`, guestObj);
   return setLocalStorage(res.data);
 };
 

@@ -1,22 +1,23 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { useField } from '../../../../../hooks/useField';
+import { LinearProgress } from '@material-ui/core';
 import { handleFiles } from '../../Modules/Photos/Scripts/DragAndDropPhotos';
-import { LinearProgress, useScrollTrigger } from '@material-ui/core';
 
-
-const Input = ({ emitSendMessage, channel }) => {
-  const message = useField('text');
+const Input = ({
+  message, setMessage, emitSendMessage, channel, setShowEmojiPicker,
+}) => {
   const [showProgress, toggleProgress] = useState(false);
 
   const sendMessage = (e) => {
     e.preventDefault();
     toggleProgress(true);
-    emitSendMessage(message.value);
+    emitSendMessage(message);
     toggleProgress(false);
-    message.reset();
+    setMessage('');
   };
 
   const sendFileMessage = (e) => {
@@ -33,16 +34,13 @@ const Input = ({ emitSendMessage, channel }) => {
       <form id="messaging-input">
         <textarea
           className="chatInputBox"
-          {...message}
-          reset={undefined}
+          type="text"
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
           onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
           placeholder="Type something to send..."
         />
-        <button
-          id="send-button"
-          type="submit"
-          onClick={(e) => sendMessage(e)}
-        />
+        <div className="emojiPickerButton" onClick={() => setShowEmojiPicker((prev) => !prev)} />
         <input type="file" id="fileElem" multiple accept="image/*" onChange={(e) => sendFileMessage(e)} />
         <label className="button" htmlFor="fileElem" />
       </form>

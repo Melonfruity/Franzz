@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect } from 'react';
+import React from 'react';
 import GoogleMap from 'google-map-react';
 import '../Photos/Styling/PopUpBoxStyling.css';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
+import { GOOGLE_API_KEY } from '../../../../../utils/config';
 
 const mapStyles = {
   width: '100%',
@@ -28,24 +29,21 @@ const Marker = ({ title }) => (
 );
 
 const StalkerMap = ({ locations, center, channel }) => {
-  useEffect(() => {
-
-  }, [locations]);
   const locationMarkers = locations ? locations.map((user) => (
     <Marker
       className="googleMapsMarker"
       key={`${channel}${Math.random() * 10}`}
       title={`${user.username}`}
       lat={user.location.lat}
-      lng={user.location.lng} 
+      lng={user.location.lng}
     />
   )) : <Marker title="default location" {...center} />;
 
   return (
     <div className="resize-box" onMouseDown={mouseDownFunction}>
       <GoogleMap
-        style={{mapStyles}}
-        bootstrapURLKeys={{ key: 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A' }}
+        style={{ mapStyles }}
+        bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
         center={center}
         zoom={14}
       >
