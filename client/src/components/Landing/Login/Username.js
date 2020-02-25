@@ -40,7 +40,7 @@ const Username = ({ setState }) => {
           onKeyPress={(e) => (e.key === 'Enter' ? handleLogin(e) : null)}
         />
         <Button variant="outlined" onClick={(e) => handleLogin(e)}>
-          ->
+          guest login
         </Button>
       </form>
     </div>
