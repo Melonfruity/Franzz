@@ -44,6 +44,7 @@ const Message = ({
         <button type="button"> emoji </button> */}
         </div>
       </article>
+
     </div>
 
   );

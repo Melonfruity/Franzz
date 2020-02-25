@@ -28,7 +28,7 @@ const YoutubeSync = ({
   }
 
   return (
-    <div className="resize-box" onMouseDown={mouseDownFunction}>
+    <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
       <div id="video">
         <YoutubeVideoPlayer
           currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
