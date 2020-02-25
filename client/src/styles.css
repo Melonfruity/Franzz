@@ -141,11 +141,10 @@ body {
   color:rgba(0, 0, 0, 0.829);
 }
 
-
 .username {
   margin-left:20px;
   display:flex;
-  margin-top: 15px;
+  margin-top: 10px;
   width: 150px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -153,7 +152,7 @@ body {
 
 .username p {
   position:relative;
-  top: 2px;
+  top: 10px;
 }
 
 .googleLoginButton {
@@ -169,6 +168,7 @@ body {
 }
 
 .navLogout {
+  height: 50px;
   display:flex;
   justify-content: space-between;
 }
