@@ -26,12 +26,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
-#messaging-input {
-  margin: 11px;
-}
 
 .emojiPicker {
   position: absolute; 
