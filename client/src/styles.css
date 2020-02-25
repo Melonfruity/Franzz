@@ -7,7 +7,7 @@ html {
 body {
   background-color: rgb(255, 255, 255);
   height: 90%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -582,4 +582,11 @@ div.video-resize-box.resize-box::after {
 }
 h5 {
   margin-bottom: 10px;
+}
+
+aside.emoji-picker-react {
+  position: relative;
+  top:130px;
+  right:120px;
+
 }
