@@ -51,6 +51,9 @@
   justify-content: center;
 }
 
+#resize-box #video-resize-box {
+  min-height: 598px;
+}
 
 
 

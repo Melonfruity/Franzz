@@ -282,7 +282,7 @@ div.jumbotron {
 
 .rightBarUI {
   z-index: 1;
-  width: 139px;
+  width: 213px;
   display: flex;
   margin-top: -52px;
   flex-direction:column;
@@ -522,7 +522,7 @@ background-repeat: no-repeat;
 .inviteLinkModalButton {
   position:absolute;
   bottom: 40px;
-  left: 12px;
+  left: 26px;
   font-size: 13px;
   color: #fff;
   background-color: #202020;

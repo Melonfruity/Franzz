@@ -8,10 +8,8 @@ const YoutubeSync = ({
   channel, videoStates, changeVideoState, syncVideo,
 }) => {
   const [url, changeUrl] = useState({
-    // eslint-disable-next-line no-nested-ternary
-    currentUrl: videoStates ? videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM' : '5mGuCdlCcNM',
-    // eslint-disable-next-line no-nested-ternary
-    finalUrl: videoStates ? videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM' : '5mGuCdlCcNM',
+    currentUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
+    finalUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
   });
 
   function handleOnChange(e) {
