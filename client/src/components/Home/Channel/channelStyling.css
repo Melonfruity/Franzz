@@ -68,3 +68,14 @@ div#chat-righUi {
 #videoSyncButton:hover {
   opacity: 80%;
 }
+
+#photoCanvasButton {
+  background-image: url('../../../assets/art.png');
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 37px;
+  background-size: contain;
+  background-color: white;
+  border: none;
+  margin-top: 15px;
+}
