@@ -2,7 +2,6 @@ import React from 'react';
 import UserList from '../../UserList/UserList';
 
 const RightUI = ({ userList, userStatus, changeView }) => {
-
   function toggleStalkerMap() {
     changeView((prev) => (
       {
@@ -53,6 +52,7 @@ const RightUI = ({ userList, userStatus, changeView }) => {
         <button type="button" aria-label="video" id="videoSyncButton" onClick={toggleVideoSync} />
         <button type="button" aria-label="canvas" id="photoCanvasButton" onClick={toggleCanvasBox} />
       </div>
+      <hr />
       <UserList userList={userList} userStatus={userStatus} />
     </div>
   );

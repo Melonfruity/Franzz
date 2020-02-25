@@ -129,7 +129,7 @@ body {
 .navLogout {
   display: flex;
   flex-direction: row;
-  background: rgb(26, 26, 26);
+  background: rgb(32, 32, 32);
   color: white;
 }
 
@@ -144,7 +144,7 @@ body {
 }
 
 .username {
-  margin-left: 20px;
+  margin-left: 24px;
   display: flex;
   margin-top: 10px;
   width: 150px;
@@ -167,19 +167,19 @@ body {
 
 .logoutButton {
   padding-right: 43px;
-  margin-top: 12px;
+  margin-top: 6px;
   font-family: 'Muli';
   color: white;
 }
 
 .navLogout {
-  height: 50px;
-  display:flex;
+  height: 38px;
+  display: flex;
   justify-content: space-between;
 }
 
 .leftBarUI {
-  margin: 2px 0px 0px 0px;
+  margin-top: 1px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -273,21 +273,27 @@ div.jumbotron {
 }
 
 .rightBarUI {
-  margin-left: 0;
+  z-index: 1;
   width: 139px;
   display: flex;
   margin-top: -52px;
   flex-direction:column;
   align-items: center;
   justify-content: space-between;
-  background: white;
+  background: #f7f7f7;
   border-left: 1px solid rgba(128, 128, 128, 0.459);
 }
 
 .userList {
   height: 400px;
-  /* overflow: auto; */
   width: 100%;
+  margin-bottom: 94px;
+}
+
+hr {
+  width: 80%;
+  margin: 36px;
+  border-radius: 63px;
 }
 
 
@@ -298,7 +304,8 @@ h3 {
 .guestRegisterBanner {
   position: absolute;
   height: 40px;
-  width: 100vw;
+  left: 122px;
+  width: 100%;
   text-align: center;
   display: flex;
   vertical-align: middle;
@@ -344,6 +351,7 @@ button#create-channel:hover {
 
 #leftBarTitle {
   background: transparent;
+  z-index: 1;
   border: none;
   font-size: 2px;
   margin-top: -1px;
@@ -448,6 +456,9 @@ background-repeat: no-repeat;
 
 .onlineUsers {
   text-align: center;
+  margin-bottom: -4px;
+  font-weight: 700;
+  font-family: 'Muli';
 }
 
 /* #outlined-basic {
@@ -466,6 +477,15 @@ background-repeat: no-repeat;
   position: absolute;
   right: 200px;
   top:15px;
+}
+
+.MuiDivider-root {
+  border: none;
+  height: 1px;
+  margin: 0;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 
@@ -600,10 +620,12 @@ aside.emoji-picker-react {
   z-index: 2;
 }
 
-.userList {
-  margin-top: 150px;
-}
-
 .MuiInputBase-input {
   text-align: center;
+}
+
+.MuiList-padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: 'Muli';
 }
