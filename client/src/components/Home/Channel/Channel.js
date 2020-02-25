@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+
 import channelService from '../../../service/channelService';
+
 import Chat from './Container/Chat/Chat';
 import InviteLink from './ChannelUI/InviteLink';
-
-// modules
-import './channelStyling.css';
 import RightUI from './ChannelUI/RightUI';
-import YoutubeSync from './Modules/VideoSync/YoutubeSync';
+
+import './channelStyling.css';
 
 const Channel = ({
   channel,
@@ -22,16 +22,21 @@ const Channel = ({
   changeVideoState,
   videoStates,
   syncVideo,
+  sendLine,
+  lines,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
     imageBox: false,
     video: false,
+    canvasBox: false,
   });
+
   const [invite, setInvite] = useState({
     ready: false,
     link: '',
   });
+
   const createInvite = () => {
     channelService
       .getInvite(channel)
@@ -43,7 +48,7 @@ const Channel = ({
 
   return (
     <div id="channel">
-      {name}
+      <div id="channelName">{name}</div>
       <InviteLink
         channel={channel}
         createInvite={createInvite}
@@ -63,13 +68,13 @@ const Channel = ({
           videoStates={videoStates}
           changeVideoState={changeVideoState}
           syncVideo={syncVideo}
+          sendLine={sendLine}
+          lines={lines}
         />
         <RightUI
-          moduleView={moduleView}
           changeView={changeView}
           userList={userList}
           userStatus={userStatus}
-          changeVideoState={changeVideoState} 
         />
       </div>
     </div>

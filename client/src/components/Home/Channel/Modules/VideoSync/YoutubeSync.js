@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
+import './videoSync.css';
 
 const YoutubeSync = ({
   channel, videoStates, changeVideoState, syncVideo,
@@ -26,16 +27,13 @@ const YoutubeSync = ({
     changeVideoState(videoId, channel, false, true);
   }
 
-
   return (
     <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
+      <div id="videoBox">
       <div className="popup-title">Watch Together</div>
       <div id="video">
         <form id="changeVideoForm" onSubmit={handleSubmit}>
-          <label>
-          New video:
-            <input type="text" placeholer="Enter a video link" name="link" onChange={handleOnChange} />
-          </label>
+          <input type="text" placeholder="Enter a video link" name="link" onChange={handleOnChange} />
           <input type="submit" value="Submit" />
         </form>
         <YoutubeVideoPlayer
@@ -47,6 +45,7 @@ const YoutubeSync = ({
           channel={channel}
           syncVideo={syncVideo}
         />
+      </div>
       </div>
     </div>
   );

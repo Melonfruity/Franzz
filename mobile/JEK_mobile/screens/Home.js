@@ -11,7 +11,9 @@ import {
   SafeAreaView
 } from 'react-native';
 
+import Test from '../screens/Test';
 import service from '../utils/service';
+
 
 const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
 

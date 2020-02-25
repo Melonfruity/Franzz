@@ -3,7 +3,6 @@ function preventDefaults(e) {
   e.stopPropagation();
 }
 
-
 async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   const url = 'http://localhost:8001/api/photos/uploadPhotos';
   const formData = new FormData();

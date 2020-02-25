@@ -3,7 +3,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import TextField from '@material-ui/core/TextField';
-import { useField } from '../../../../hooks/useField';
 
 const InviteLink = ({ invite, createInvite }) => {
   const [show, setShow] = useState(false);
@@ -23,17 +22,18 @@ const InviteLink = ({ invite, createInvite }) => {
         </Modal.Header>
         <Modal.Body>
           { invite.ready ? (
-          <div className = "invitePopup">
-            <TextField defaultValue={invite.link} />
-            <CopyToClipboard
-              text={invite.link}
-            >
-              <Button type="button">
+            <div className="invitePopup">
+              <TextField defaultValue={invite.link} />
+              <CopyToClipboard
+                text={invite.link}
+              >
+                <Button type="button">
                 Copy to clipboard!
-              </Button>
-            </CopyToClipboard>
-          </div>)
-          : <Button className="inviteLinkButton" type="button" onClick={createInvite}>Generate Invite Link</Button> }
+                </Button>
+              </CopyToClipboard>
+            </div>
+          )
+            : <Button className="inviteLinkButton" type="button" onClick={createInvite}>Generate Invite Link</Button> }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -42,8 +42,7 @@ const InviteLink = ({ invite, createInvite }) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-
-}
+  );
+};
 
 export default InviteLink;

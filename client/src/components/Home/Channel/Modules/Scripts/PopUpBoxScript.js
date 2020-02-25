@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 let mousePosition;
 let box;
 let boxHeight;
@@ -8,7 +9,7 @@ function resize(e) {
   mousePosition = e.y;
   box.style.height = `${parseInt(getComputedStyle(box, '').height) - dx}px`;
 }
-const mouseDownFunction = function (e) {
+const mouseDownFunction = (e) => {
   box = e.target;
   boxHeight = parseInt(getComputedStyle(box, '').height) - 15;
   if (e.nativeEvent.offsetY >= boxHeight) {

@@ -1,14 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import {
   Platform,
-  StatusBar,
-  StyleSheet,
   View,
-  Text,
-  TextInput,
-  Button,
-  SafeAreaView,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import { ScrollView, FlatList } from 'react-native-gesture-handler';

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import YouTube from 'react-youtube';
 
-let player = '';
+let player;
 
 const YoutubeVideoPlayer = ({
   currentVideo, changeVideoState, paused, played, channel, syncVideo, timeStamp,
 }) => {
-
   function onReady(event) {
     player = event.target;
     if (timeStamp && player.b) {
@@ -35,14 +34,13 @@ const YoutubeVideoPlayer = ({
     }
   }, [timeStamp]);
 
-
   function onPlayerStateChange(event) {
     const state = event.data;
     syncVideo(player.getCurrentTime(), channel);
 
-    if (state == 1) { // if the video is playing
+    if (state === 1) { // if the video is playing
       changeVideoState(currentVideo, channel, false, true);
-    } else if (state == 2) { // if the video is paused
+    } else if (state === 2) { // if the video is paused
       changeVideoState(currentVideo, channel, true, false);
     }
   }

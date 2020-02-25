@@ -39,7 +39,7 @@ div#chat-righUi {
   background-size: contain;
   background-color: white;
   border: none;
-  margin-top: 50px;
+  margin-top: 17px;
 }
 
 #stalkerMapButton:focus {
@@ -67,4 +67,25 @@ div#chat-righUi {
 
 #videoSyncButton:hover {
   opacity: 80%;
+}
+
+#photoCanvasButton {
+  background-image: url('../../../assets/art.png');
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 37px;
+  background-size: contain;
+  background-color: white;
+  border: none;
+  margin-top: 15px;
+}
+
+div#channelName {
+  font-family: 'Muli';
+  font-size: 21px;
+  padding-left: 25px;
+  font-weight: 700;
+  padding-top: 13px;
+  padding-bottom: 10px;
+  background: #f6f5f6;
 }

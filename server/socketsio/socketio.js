@@ -2,6 +2,7 @@ const { info } = require('../utils/logger');
 const channelio = require('./channelio');
 const youtubeio = require('./youtube');
 const mapio = require('./mapio');
+const drawingio = require('./drawingio');
 const { changeOffline } = require('../dynamicDB');
 
 module.exports = (io) => {
@@ -15,6 +16,7 @@ module.exports = (io) => {
     channelio(io, socket);
     youtubeio(io, socket);
     mapio(io, socket);
+    drawingio(io, socket);
 
     socket.on('test', (data) => {
       console.log(data);

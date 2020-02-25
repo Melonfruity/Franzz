@@ -1,11 +1,14 @@
 
 html {
   width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
   background-color: rgb(255, 255, 255);
-  height: calc(100% - 10px);
+  height: 90%;
+  /* overflow-x: hidden; */
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -126,6 +129,8 @@ body {
 .navLogout {
   display: flex;
   flex-direction: row;
+  background: rgb(26, 26, 26);
+  color: white;
 }
 
 .fas {
@@ -138,19 +143,20 @@ body {
   color:rgba(0, 0, 0, 0.829);
 }
 
-
 .username {
-  margin-left:20px;
-  display:flex;
-  margin-top: 15px;
+  margin-left: 20px;
+  display: flex;
+  margin-top: 10px;
   width: 150px;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Muli';
+  font-weight: 500;
+  font-size: 17px;
 }
 
 .username p {
   position:relative;
-  top: 2px;
+  top: 10px;
 }
 
 .googleLoginButton {
@@ -160,18 +166,20 @@ body {
 }
 
 .logoutButton {
-  /* margin-right: 60px; */
-  padding-right: 85px;
-  margin-top: 10px;
+  padding-right: 43px;
+  margin-top: 12px;
+  font-family: 'Muli';
+  color: white;
 }
 
 .navLogout {
+  height: 50px;
   display:flex;
   justify-content: space-between;
 }
 
 .leftBarUI {
-  padding: 0px 0px;
+  margin: 2px 0px 0px 0px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -221,11 +229,12 @@ body {
 }
 
 .channelList {
-  max-height: 650px;
-  /* max-width:220px; */
-  overflow-y:auto;
+  max-height: 620px;
+  overflow-y: auto;
   overflow-x: hidden;
-  font-size:15px;
+  font-family: 'Muli';
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .signInInput {
@@ -265,14 +274,14 @@ div.jumbotron {
 
 .rightBarUI {
   margin-left: 0;
-  width: 185px;
+  width: 139px;
   display: flex;
+  margin-top: -52px;
   flex-direction:column;
   align-items: center;
   justify-content: space-between;
   background: white;
   border-left: 1px solid rgba(128, 128, 128, 0.459);
-  margin-top: -30px;
 }
 
 .userList {
@@ -287,6 +296,7 @@ h3 {
 }
 
 .guestRegisterBanner {
+  position: absolute;
   height: 40px;
   width: 100vw;
   text-align: center;
@@ -317,11 +327,12 @@ h3 {
 
 button#create-channel {
   /* background: transparent; */
+  /* margin-top: 50px; */
   background-color: white;
   border: none;
   font-size: 15px;
   width: 100%;
-  height:100%;
+  height: 124%;
   padding:0px;
   font-family: 'Muli';
   color: black;
@@ -336,7 +347,7 @@ button#create-channel:hover {
   border: none;
   font-size: 2px;
   margin-top: -1px;
-  height:40px;
+  height: 41px;
 }
 
 .guestRegisterModalButtons {
@@ -431,8 +442,9 @@ background-repeat: no-repeat;
 
 
 .css-y1c0xs {
-  border-right: 1px solid rgba(128, 128, 128, 0.452);
+  /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
 }
+
 
 .onlineUsers {
   text-align: center;
@@ -479,9 +491,10 @@ background-repeat: no-repeat;
 }
 
 .inviteLinkModalButton {
-  position:relative;
-  bottom: 87px;
-  left: 900px;
+  position:absolute;
+  bottom: 40px;
+  left: 12px;
+  font-size: 13px;
 }
 
 .userNameItem {
@@ -493,8 +506,54 @@ background-repeat: no-repeat;
   padding: 1px;
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+.user {
+  padding: 7px 15px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  background: #EE92C2;
+  margin: 10px 0;
+}
+.guest {
+  background: #F0C987;
+  color: white;
+}
+
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+
+
 .video-resize-box {
-  background: linear-gradient(#7abbd3, transparent);
+  background: linear-gradient(#f6f5f6, transparent);
 }
 
 div.video-resize-box.resize-box::after {
@@ -502,3 +561,49 @@ div.video-resize-box.resize-box::after {
 }
 
 
+.bannerMessage {
+  margin:0;
+  position: relative;
+  bottom: 10px;
+}
+
+/* .p3-container {
+  margin-top: 50px;
+} */
+
+.jumbotron {
+  margin-top:40px;
+}
+
+.resize-box {
+  position:relative;
+  top:20px;
+  z-index: 1;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+
+aside.emoji-picker-react {
+  position: relative;
+  top:130px;
+  right:120px;
+  z-index: 2;
+}
+
+.userList {
+  margin-top: 150px;
+}
+
+.MuiInputBase-input {
+  text-align: center;
+}

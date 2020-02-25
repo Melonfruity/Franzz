@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Tab Navigation Template",
+    "name": "JEK Mobile",
     "slug": "JEK_mobile",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -26,6 +26,16 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.lhlfinals.jekmobile",
+      "versionCode": 1,
+      "permissions" : ["LOCATION"],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A"
+        }
+      }
     }
   }
 }
