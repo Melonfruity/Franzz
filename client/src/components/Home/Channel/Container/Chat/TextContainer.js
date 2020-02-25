@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { LinearProgress } from '@material-ui/core';
 import Message from './Message';
+
 
 import './TextContainer.css';
 
@@ -14,6 +16,8 @@ const TextContainer = ({
 }) => {
   // Used to highlight the box when dragging photos in
   const { highlightClass, changeHighlightClass } = useChangeHighlightClass('');
+  const [showProgress, toggleProgress] = useState(false);
+
 
   const formattedMessages = messages.map((msg) => (
     <Message
@@ -39,8 +43,13 @@ const TextContainer = ({
   }
 
   function dropFile(e) {
+    preventDefaults(e);
+    toggleProgress(true);
     changeHighlightClass(e.type);
     handleDrop(e, channelId, 'chat', emitSendMessage);
+    setTimeout(() => {
+      toggleProgress(false);
+    }, 2000);
   }
 
 
@@ -57,6 +66,7 @@ const TextContainer = ({
       >
         {formattedMessages}
       </ScrollToBottom>
+      {showProgress && <LinearProgress />}
     </div>
   );
 };

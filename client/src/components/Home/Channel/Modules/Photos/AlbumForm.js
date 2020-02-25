@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { LinearProgress } from '@material-ui/core';
 import { handleFiles } from './Scripts/DragAndDropPhotos';
+
 
 export default function AlbumForm({
   channelId, emitSendMessage, albumName, newAlbum, viewAlbum,
@@ -11,12 +13,16 @@ export default function AlbumForm({
       originalName: albumName,
     },
   );
+  const [showProgress, toggleProgress] = useState(false);
 
   function previewFile(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = function () {
-      const img = document.createElement('img');
+      let img = document.createElement('img');
+      if (file.type === 'video/mp4') {
+        img = document.createElement('video');
+      }
       img.src = reader.result;
       document.getElementById('input-display').appendChild(img);
     };
@@ -50,7 +56,8 @@ export default function AlbumForm({
     viewAlbum('albums');
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
+    toggleProgress(true);
     event.preventDefault();
     [...fields.files].forEach((file) => {
       if (!newAlbum) {
@@ -58,6 +65,9 @@ export default function AlbumForm({
       } else {
         handleFiles(file, channelId, fields.album, emitSendMessage, viewAlbums);
       }
+      setTimeout(() => {
+        toggleProgress(false);
+      }, 3000);
     });
     document.getElementById('album-upload-form').reset();
     let message = `🚨A new album '${fields.album.replace(/-/g, ' ')}' has been uploaded🚨`;
@@ -71,10 +81,12 @@ export default function AlbumForm({
 
   return (
     <div>
+      { showProgress && <LinearProgress /> }
       { newAlbum && <div className="popup-title">New Album</div> }
       { !newAlbum && (
       <div className="popup-title-mod">
-Adding photos to
+        Adding photos to
+        {' '}
         {albumName}
       </div>
       )}
