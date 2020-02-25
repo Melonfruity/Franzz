@@ -264,6 +264,7 @@ const App = () => {
             tabBarOptions={{
               activeTintColor: 'tomato',
               inactiveTintColor: 'gray',
+              keyboardHidesTabBar: true,
             }}
           >
             <Tab.Screen

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Platform,
+  StyleSheet,
   View,
 } from 'react-native';
 
@@ -56,7 +57,7 @@ const Channel = ({ state, setState, channel, socket }) => {
         user={{
           _id: state.currentUser,
         }}
-        bottomOffset={Platform.OS === "android" && 48.5}
+        bottomOffset={100}
       />
       {
         Platform.OS === 'android' ? <KeyboardSpacer /> : null
@@ -64,5 +65,11 @@ const Channel = ({ state, setState, channel, socket }) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  offset: {
+
+  }
+})
 
 export default Channel;

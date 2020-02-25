@@ -21,24 +21,22 @@ const MapScreen = ({ locations, center, findLocationAsync }) => {
       }
     }, [])
 
-    console.log(locations)
-
-    const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
-      arr.forEach(e => {
-        if (!obj[e.id]) {
-          obj[e.id] = {
-            id: e.id,
-            coordinates: {
-              latitude: e.location.lat,
-              longitude: e.location.lng,
-            },
-            username: e.username
-          }
+  const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
+    arr.forEach(e => {
+      if (!obj[e.id]) {
+        obj[e.id] = {
+          id: e.id,
+          coordinates: {
+            latitude: e.location.lat,
+            longitude: e.location.lng,
+          },
+          username: e.username
         }
-      }); 
-      return obj
-    }, {}))
-    console.log(usersLocations)
+      }
+    }); 
+    return obj
+  }, {}))
+
   const locationMarkers = usersLocations.map((user) =>
     <Marker
       key={user.id}
@@ -55,22 +53,12 @@ const MapScreen = ({ locations, center, findLocationAsync }) => {
         initialRegion={{
           latitude: center.lat ? center.lat : 43.8,
           longitude: center.lng ? center.lng : -79.5,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.03,
+          longitudeDelta: 0.03,
         }}
       >
         {locationMarkers}
-        </MapView> 
-      : <MapView
-          style={styles.mapStyle}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-        >
-        </MapView>}
+      </MapView>
     </View>
   )
 }
