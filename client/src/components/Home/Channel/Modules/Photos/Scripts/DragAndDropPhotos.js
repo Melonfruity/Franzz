@@ -37,8 +37,6 @@ async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdat
 function handleFiles(files, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   [...files].forEach((file) => {
     uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum);
-    if (albumName !== 'chat') {
-    }
   });
 }
 
