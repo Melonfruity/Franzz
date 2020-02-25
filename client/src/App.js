@@ -22,9 +22,11 @@ const App = () => {
     locations: {},
     center: {},
     users: {},
+    videoStates: {},
     loaded: false,
     currentChannelLoaded: false,
     newChannelForm: false,
+    lines: {},
   });
 
   // logout resets app
@@ -40,6 +42,7 @@ const App = () => {
       locations: {},
       center: {},
       users: {},
+      lines: {},
     });
   };
 
@@ -54,7 +57,6 @@ const App = () => {
     }));
   }, []);
 
-  // TODO: Reloading channel should bring back to channel
   return (
     <div>
       <Router>
@@ -63,8 +65,6 @@ const App = () => {
           state={state}
           setState={setState}
         />
-        {console.log(state)}
-
         <Route
           exact
           path="/"
@@ -90,19 +90,6 @@ const App = () => {
                 />
               )
               : <Redirect to="/" />
-          )}
-        />
-        <Route
-          path="/channel"
-          render={() => (
-            state.authorization
-              ? (
-                <Home
-                  state={state}
-                  setState={setState}
-                />
-              )
-              : <Redirect from="/" />
           )}
         />
       </Router>

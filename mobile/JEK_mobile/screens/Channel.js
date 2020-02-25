@@ -47,7 +47,7 @@ const Channel = ({ state, setState, channel, socket }) => {
       }
     })
   }).reverse();
-
+  
   return (
     <View style={{ flex: 1 }}>
       <GiftedChat
@@ -56,6 +56,7 @@ const Channel = ({ state, setState, channel, socket }) => {
         user={{
           _id: state.currentUser,
         }}
+        bottomOffset={Platform.OS === "android" && 48.5}
       />
       {
         Platform.OS === 'android' ? <KeyboardSpacer /> : null

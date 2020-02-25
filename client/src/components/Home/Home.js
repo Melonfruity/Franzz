@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import io from 'socket.io-client';
+import { serverURL } from '../../utils/config';
 
 import channelService from '../../service/channelService';
 import mapService from '../../service/mapService';
@@ -13,8 +14,10 @@ import mapService from '../../service/mapService';
 import NewChannelModal from './ChannelList/NewChannelModal';
 import ChannelList from './ChannelList/ChannelList';
 import Channel from './Channel/Channel';
+
 import PopupToast from './PopUpToast';
 
+import { useYoutube } from '../../hooks/useYoutube';
 import { useChat } from '../../hooks/useChat';
 
 import './homeStyling.css';
@@ -29,13 +32,39 @@ const Home = ({ state, setState }) => {
     emitCreateChannel,
   } = useChat(state, setState, socket);
 
+  const {
+    changeVideoState,
+    syncVideo,
+  } = useYoutube(state, setState, socket);
+
+  const sendLine = (line) => {
+    const lineObj = {
+      line,
+      channel: state.currentChannel,
+      user: state.currentUser,
+    };
+    setState((prev) => ({
+      ...prev,
+      lines: {
+        ...prev.lines,
+        [state.currentChannel]: {
+          ...prev.lines[state.currentChannel],
+          [state.currentUser]: {
+            user: state.currentUser,
+            line,
+          },
+        },
+      },
+    }));
+    socket.emit('draw', lineObj);
+  };
+
   const updateLocation = (location) => {
     const locationObj = {
       location,
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
-      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -46,10 +75,7 @@ const Home = ({ state, setState }) => {
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log('getting location data');
-      navigator.geolocation.watchPosition((position) => {
-        const location = { lat: position.coords.latitude, lng: position.coords.longitude };
-        console.log('navigator watch', location);
+      navigator.geolocation.watchPosition(() => {
         mapService.getLocation(updateLocation);
       });
     }
@@ -83,11 +109,15 @@ const Home = ({ state, setState }) => {
           locations={state.locations[id]}
           center={state.center}
           currentUser={state.currentUser}
+          videoStates={state.videoStates}
+          changeVideoState={changeVideoState}
+          syncVideo={syncVideo}
+          sendLine={sendLine}
+          lines={state.lines[id]}
         />
       </Route>
     );
   });
-
 
   // handle initial state
   useEffect(() => {
@@ -115,9 +145,7 @@ const Home = ({ state, setState }) => {
           }));
         });
     }
-    // change api end point later
-    socket = io('http://localhost:8001/');
-    // socket = io('https://arcane-bastion-72484.herokuapp.com/');
+    socket = io(`${serverURL}/`);
     socket.on('connect', () => {
       // from servers
       socket.on('server message', (data) => {
@@ -130,8 +158,6 @@ const Home = ({ state, setState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sorry to hoever needs to debug this
-  // this is hack - vasily
   useEffect(() => {
     if (!state.currentChannelLoaded) {
       setState((prev) => ({ ...prev, currentChannelLoaded: true }));
@@ -164,7 +190,6 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log('status', channel, users)
       setState((prev) => ({
         ...prev,
         users: {
@@ -175,7 +200,6 @@ const Home = ({ state, setState }) => {
     });
 
     socket.on('update location', (updatedLocations) => {
-      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,
@@ -185,6 +209,49 @@ const Home = ({ state, setState }) => {
           },
         }));
       }
+    });
+
+    socket.on('new video state', ({
+      url, paused, played, channel,
+    }) => {
+      if (url) {
+        setState((prev) => (
+          {
+            ...prev,
+            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
+          }
+        ));
+      }
+    });
+
+    socket.on('new time stamp', ({
+      time, channel,
+    }) => {
+      setState((prev) => (
+        {
+          ...prev,
+          videoStates: {
+            ...prev.videoStates,
+            [channel]: { ...prev.videoStates[channel], timeStamp: time },
+          },
+        }
+      ));
+    });
+
+    socket.on('draw', ({ user, channel, line }) => {
+      setState((prev) => ({
+        ...prev,
+        lines: {
+          ...prev.lines,
+          [channel]: {
+            ...prev.lines[channel],
+            [user]: {
+              user,
+              line,
+            },
+          },
+        },
+      }));
     });
 
     return () => {

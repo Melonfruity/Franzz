@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import { GOOGLE_CLIENT_ID } from '../../../utils/config';
+
 import auth from '../../../service/authService';
+import { GOOGLE_CLIENT_ID, serverURL } from '../../../utils/config';
 
 const GoogleLoginButton = ({ setState }) => {
   const onSuccess = (googleData) => {
@@ -11,7 +12,7 @@ const GoogleLoginButton = ({ setState }) => {
       headers: { authorization: window.localStorage.authorization },
     };
     axios
-      .post('http://localhost:8001/api/auth/google', { accessToken }, config)
+      .post(`${serverURL}/api/auth/google`, { accessToken }, config)
       .then((res) => {
         const {
           success, error, token, username, guest, userID,

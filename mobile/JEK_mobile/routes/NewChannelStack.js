@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const NewChannelStack = createStackNavigator();
 
-import NewChannel from './NewChannel';
+import NewChannel from '../screens/NewChannel';
 
 const NewChannelStackScreen = ({ joinChannel, createChannel }) => {
   return (

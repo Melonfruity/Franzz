@@ -1,13 +1,7 @@
 #chat-container {
   width: 100%;
   background: white;
-}
-
-#chat-container form {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 10px;
+  height: 100%;
 }
 
 #chat-container textarea {
@@ -27,17 +21,19 @@
   outline: none;
 }
 
-#send-button {
-  display: none;
-  /* margin-left: -73px;
-  height: 25px;
-  margin-top: 10px;
-  background-image: url('../../../../../assets/send.png');
-  background-repeat: no-repeat;
-  transform: rotate(90deg);
-  padding:1px; */
+#messaging-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 10px;
 }
 
 #messaging-input {
   margin: 11px;
+}
+
+.emojiPicker {
+  position: absolute; 
+  bottom: 215px;
+  right: 170px;
 }

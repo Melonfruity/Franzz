@@ -5,13 +5,13 @@
   align-content: center;
   position: relative;
   width: 100%;
-  min-height: 88px;
+  min-height: 459px;
   height: 400px;
   max-height: 647px;
   background-color: rgb(253, 253, 253);
   padding-bottom: 8px;
   overflow-x: initial;
-  margin-top: -726px;
+  margin-top: -729px;
 }
 
 .resize-box:after {
@@ -30,6 +30,25 @@
 .resize-box ::-webkit-scrollbar {
   width: 4px;
 }
+
+#video {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#video div {
+  display: flex;
+  justify-content: center;
+}
+
+#changeVideoForm {
+  display: flex;
+  justify-content: center;
+}
+
 
 
 

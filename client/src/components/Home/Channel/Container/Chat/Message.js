@@ -20,7 +20,7 @@ const Message = ({
       />
       <article className={isCurrent ? 'full-message-me' : 'full-message'}>
         <div className="chat-name">
-          <span>{username}</span>
+          <span>{username.length < 25 ? username : username.slice(0,25) + "..."}</span>
           {/* {created} */}
         </div>
         <div className={isCurrent ? 'message-content-me' : 'message-content'}>

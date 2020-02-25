@@ -3,7 +3,6 @@ function preventDefaults(e) {
   e.stopPropagation();
 }
 
-
 async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   const url = 'http://localhost:8001/api/photos/uploadPhotos';
   const formData = new FormData();
@@ -37,8 +36,6 @@ async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdat
 function handleFiles(files, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
   [...files].forEach((file) => {
     uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum);
-    if (albumName !== 'chat') {
-    }
   });
 }
 
