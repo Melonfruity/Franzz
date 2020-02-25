@@ -649,3 +649,7 @@ aside.emoji-picker-react {
   min-width: 49px;
   flex-shrink: 0;
 }
+
+.usernameText {
+  padding-top:3px;
+}
