@@ -282,7 +282,7 @@ div.jumbotron {
 
 .rightBarUI {
   z-index: 1;
-  width: 139px;
+  width: 213px;
   display: flex;
   margin-top: -52px;
   flex-direction:column;
@@ -522,7 +522,7 @@ background-repeat: no-repeat;
 .inviteLinkModalButton {
   position:absolute;
   bottom: 40px;
-  left: 12px;
+  left: 26px;
   font-size: 13px;
   color: #fff;
   background-color: #202020;
@@ -589,17 +589,6 @@ h5 {
   display:none;
 }
 
-
-
-.video-resize-box {
-  background: linear-gradient(#fdfdfd, transparent);
-}
-
-div.video-resize-box.resize-box::after {
-  display:none;
-}
-
-
 .bannerMessage {
   margin:0;
   position: relative;
@@ -612,12 +601,6 @@ div.video-resize-box.resize-box::after {
 
 .jumbotron {
   margin-top:40px;
-}
-
-.resize-box {
-  position:relative;
-  top:20px;
-  z-index: 1;
 }
 
 .main {

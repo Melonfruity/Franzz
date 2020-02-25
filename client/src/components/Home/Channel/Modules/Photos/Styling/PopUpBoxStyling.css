@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   min-height: 459px;
-  height: 400px;
+  height: 587px;
   max-height: 725px;
   background: rgb(253, 253, 253);  
   padding-bottom: 8px;
@@ -50,6 +50,9 @@
   justify-content: center;
 }
 
+#resize-box #video-resize-box {
+  min-height: 598px;
+}
 
 
 
