@@ -275,7 +275,7 @@ div.jumbotron {
   justify-content: space-between;
   background: white;
   border-left: 1px solid rgba(128, 128, 128, 0.459);
-  margin-top: -30px;
+  margin-top: 15px;
 }
 
 .userList {
@@ -436,7 +436,7 @@ background-repeat: no-repeat;
 
 
 .css-y1c0xs {
-  border-right: 1px solid rgba(128, 128, 128, 0.452);
+  /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
 }
 
 
