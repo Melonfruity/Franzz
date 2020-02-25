@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const MapStack = createStackNavigator();
 
-import Map from './Map';
+import Map from '../screens/Map';
 
 const MapStackScreen = ({ currentUser, currentChannel, locations, center, findLocationAsync }) => {
   return (
