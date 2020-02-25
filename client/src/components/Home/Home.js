@@ -200,7 +200,6 @@ const Home = ({ state, setState }) => {
     });
 
     socket.on('update location', (updatedLocations) => {
-      console.log(updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,
