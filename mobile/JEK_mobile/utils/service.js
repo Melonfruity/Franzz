@@ -49,9 +49,31 @@ const initialize = async () => {
   return res.data;
 }
 
+const invite = async (channelID) => {
+  const config = {
+    headers: { authorization: await Global.getLocal('authorization') },
+  };
+  const res = await axios.get(`${serverURL}/channel/invite/${channelID}`, config);
+  return res.data;
+}
+
+const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
+
+const getLocation = async (updateLocation) => {
+  axios
+    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`)
+    .then((res) => {
+      const { location } = res.data;
+      console.log('google', location);
+      updateLocation(location);
+    });
+};
+
 export default {
   guest,
   login,
   register,
   initialize,
+  invite,
+  getLocation,
 }

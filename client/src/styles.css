@@ -7,6 +7,7 @@ html {
 body {
   background-color: rgb(255, 255, 255);
   height: 90%;
+  overflow-x: hidden;
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -496,6 +497,52 @@ background-repeat: no-repeat;
   padding: 1px;
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+.user {
+  padding: 7px 15px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  background: #EE92C2;
+  margin: 10px 0;
+}
+.guest {
+  background: #F0C987;
+  color: white;
+}
+
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+
+
 .video-resize-box {
   background: rgba(255, 255, 255, 0.712)
   /* background: transparent; */
@@ -523,4 +570,16 @@ div.video-resize-box.resize-box::after {
 .resize-box {
   position:relative;
   top:20px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
 }

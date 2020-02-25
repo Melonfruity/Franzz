@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
 import FsLightbox from 'fslightbox-react';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
 import AlbumForm from './AlbumForm';
@@ -61,8 +62,8 @@ export default function ImageBox({ channelId, emitSendMessage }) {
       <div className="resize-box" onMouseDown={mouseDownFunction}>
         <div id="imageBox">
           <div className="switch-buttons">
-            <button className="image-buttons" onClick={() => viewChatPhotos()}>CHAT</button>
-            <button className="image-buttons" onClick={() => newView('albums')}>ALBUMS</button>
+            <button type="button" className="image-buttons" onClick={() => viewChatPhotos()}>CHAT</button>
+            <button type="button" className="image-buttons" onClick={() => newView('albums')}>ALBUMS</button>
           </div>
           { view === ALBUMFORM
           && (

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cors = require('cors');
 const http = require('http');
 const express = require('express');
@@ -56,7 +57,17 @@ app.use(
     extended: false,
   }),
 );
+
 app.use(bodyParser.json()); // JSON
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  );
+  next();
+});
 
 // the request with relevant data is logged
 app.use(requestLogger);
@@ -77,5 +88,6 @@ require('./socketsio/socketio')(io);
 // error handling
 app.use(unknownEndpoint);
 app.use(errorHandler);
+
 
 module.exports = server;
