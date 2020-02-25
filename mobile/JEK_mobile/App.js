@@ -160,7 +160,7 @@ const App = () => {
 
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
-      axios.post('http://10.0.2.2:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
+      axios.post('https://arcane-bastion-72484.herokuapp.com/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
 
       setState((prev) => (
         {
@@ -180,7 +180,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    socket = io('http://10.0.2.2:8001')
+    // socket = io('http://10.0.2.2:8001')
+    socket = io('https://arcane-bastion-72484.herokuapp.com')
     socket.on('connect', () => {
       socket.on('server message', (data) => {
         // console.log(data)
@@ -305,6 +306,7 @@ const App = () => {
                   {...props}
                   joinChannel={joinChannel}
                   createChannel={createChannel}
+                  logout={logout}
                 />}
             </Tab.Screen>
           </Tab.Navigator>

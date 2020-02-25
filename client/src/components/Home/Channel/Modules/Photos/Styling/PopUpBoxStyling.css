@@ -8,12 +8,11 @@
   width: 100%;
   min-height: 459px;
   height: 400px;
-  max-height: 647px;
-  max-height: 647px;
+  max-height: 725px;
   background: rgb(253, 253, 253);  
   padding-bottom: 8px;
   overflow-x: initial;
-  margin-top: -750px;
+  margin-top: -805px;
 }
 
 .resize-box:after {

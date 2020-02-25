@@ -11,11 +11,15 @@ import MapView, { Marker } from 'react-native-maps';
 
 
 const MapScreen = ({ locations, center, findLocationAsync }) => {   
+  const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
     const locate = setInterval(() => {
       findLocationAsync();
     }, 10000);
-
+    
+    if (center) {
+      setMapReady(true);
+    }
       return () => {
         clearTimeout(locate);
       }
@@ -48,17 +52,18 @@ const MapScreen = ({ locations, center, findLocationAsync }) => {
   )
   return (
     <View style={styles.container}>
-      <MapView
+      {mapReady ? (<MapView
         style={styles.mapStyle}
         initialRegion={{
-          latitude: center.lat ? center.lat : 37.78825,
-          longitude: center.lng ? center.lng : -122.4324,
+          latitude: center.lat,
+          longitude: center.lng,
           latitudeDelta: 0.03,
           longitudeDelta: 0.03,
         }}
       >
         {locationMarkers}
-      </MapView>
+      </MapView>) :
+      <View />}
     </View>
   )
 }

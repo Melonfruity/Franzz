@@ -5,7 +5,6 @@ import {
   View,
 } from 'react-native';
 
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { GiftedChat } from 'react-native-gifted-chat';

@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-const serverURL = 'http://10.0.2.2:8001/api';
+const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
 
 const loadCredentials = async () => {
   console.log('loading Credentials');
