@@ -12,7 +12,7 @@ const GoogleLoginButton = ({ setState }) => {
       headers: { authorization: window.localStorage.authorization },
     };
     axios
-      .post(`${serverURL}/auth/google`, { accessToken }, config)
+      .post(`${serverURL}/api/auth/google`, { accessToken }, config)
       .then((res) => {
         const {
           success, error, token, username, guest, userID,

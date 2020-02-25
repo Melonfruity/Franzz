@@ -48,7 +48,7 @@ const Channel = ({
 
   return (
     <div id="channel">
-      {name}
+      <div id="channelName">{name}</div>
       <InviteLink
         channel={channel}
         createInvite={createInvite}
