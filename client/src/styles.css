@@ -172,6 +172,12 @@ body {
   color: white;
 }
 
+.logoutButton:hover {
+  color: white;
+  opacity: 70%;
+  text-decoration: none;
+}
+
 .navLogout {
   height: 38px;
   display: flex;
@@ -230,6 +236,7 @@ body {
 
 .channelList {
   max-height: 620px;
+  margin-top: 10px;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Muli';
@@ -457,6 +464,7 @@ background-repeat: no-repeat;
 .onlineUsers {
   text-align: center;
   margin-bottom: -4px;
+  font-size: 15px;
   font-weight: 700;
   font-family: 'Muli';
 }
@@ -515,6 +523,16 @@ background-repeat: no-repeat;
   bottom: 40px;
   left: 12px;
   font-size: 13px;
+  color: #fff;
+  background-color: #202020;
+  border-color: #202020;
+  font-family: 'Muli';
+  font-size: 14px;
+}
+
+.inviteLinkModalButton:hover {
+  background-color: rgb(51, 51, 51);
+  border-color: #202020;
 }
 
 .userNameItem {

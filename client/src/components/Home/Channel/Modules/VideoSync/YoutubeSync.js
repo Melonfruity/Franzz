@@ -8,8 +8,8 @@ const YoutubeSync = ({
   channel, videoStates, changeVideoState, syncVideo,
 }) => {
   const [url, changeUrl] = useState({
-    currentUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
-    finalUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
+    currentUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
+    finalUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
   });
 
   function handleOnChange(e) {
