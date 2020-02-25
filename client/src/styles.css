@@ -588,5 +588,8 @@ aside.emoji-picker-react {
   position: relative;
   top:130px;
   right:120px;
+}
 
+.userList {
+  margin-top: 150px;
 }
