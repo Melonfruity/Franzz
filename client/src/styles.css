@@ -544,7 +544,7 @@ h5 {
 
 
 .video-resize-box {
-  background: rgba(255, 255, 255, 0.712)
+  background: rgba(255, 255, 255, 0.712);
   /* background: transparent; */
 }
 
@@ -570,6 +570,7 @@ div.video-resize-box.resize-box::after {
 .resize-box {
   position:relative;
   top:20px;
+  z-index: 1;
 }
 
 .main {
@@ -588,6 +589,7 @@ aside.emoji-picker-react {
   position: relative;
   top:130px;
   right:120px;
+  z-index: 2;
 }
 
 .userList {
