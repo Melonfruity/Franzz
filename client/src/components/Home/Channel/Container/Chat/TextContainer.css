@@ -36,7 +36,7 @@
 }
 
 .message-content {
-  max-width: 377px;
+  max-width: 220px;
   display: inline-block;
   background: #E6E5EB;
   color: #202020;
@@ -51,7 +51,7 @@
 }
 
 .message-content-me {
-  max-width: 377px;
+  max-width: 220px;
   display: inline-block;
   background: #03aad0;
   color: #fbfbfb;

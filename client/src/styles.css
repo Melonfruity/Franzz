@@ -1,12 +1,14 @@
 
 html {
   width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
   background-color: rgb(255, 255, 255);
-  height: calc(100% - 10px);
-  overflow-x: hidden;
+  height: 90%;
+  /* overflow-x: hidden; */
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
@@ -127,6 +129,8 @@ body {
 .navLogout {
   display: flex;
   flex-direction: row;
+  background: rgb(32, 32, 32);
+  color: white;
 }
 
 .fas {
@@ -139,19 +143,20 @@ body {
   color:rgba(0, 0, 0, 0.829);
 }
 
-
 .username {
-  margin-left:20px;
-  display:flex;
-  margin-top: 15px;
+  margin-left: 24px;
+  display: flex;
+  margin-top: 4px;
   width: 150px;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Muli';
+  font-weight: 500;
+  font-size: 17px;
 }
 
 .username p {
   position:relative;
-  top: 2px;
+  top: 10px;
 }
 
 .googleLoginButton {
@@ -161,18 +166,26 @@ body {
 }
 
 .logoutButton {
-  /* margin-right: 60px; */
-  padding-right: 85px;
-  margin-top: 10px;
+  padding-right: 43px;
+  margin-top: 6px;
+  font-family: 'Muli';
+  color: white;
+}
+
+.logoutButton:hover {
+  color: white;
+  opacity: 70%;
+  text-decoration: none;
 }
 
 .navLogout {
-  display:flex;
+  height: 38px;
+  display: flex;
   justify-content: space-between;
 }
 
 .leftBarUI {
-  padding: 0px 0px;
+  margin-top: 1px;
   border-right:1px solid #f3f3f3;
   flex-grow: 1;
   display: flex;
@@ -222,11 +235,13 @@ body {
 }
 
 .channelList {
-  max-height: 650px;
-  /* max-width:220px; */
-  overflow-y:auto;
+  max-height: 620px;
+  margin-top: 10px;
+  overflow-y: auto;
   overflow-x: hidden;
-  font-size:15px;
+  font-family: 'Muli';
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .signInInput {
@@ -265,21 +280,27 @@ div.jumbotron {
 }
 
 .rightBarUI {
-  margin-left: 0;
-  width: 185px;
+  z-index: 1;
+  width: 139px;
   display: flex;
+  margin-top: -52px;
   flex-direction:column;
   align-items: center;
   justify-content: space-between;
   background: white;
   border-left: 1px solid rgba(128, 128, 128, 0.459);
-  margin-top: -30px;
 }
 
 .userList {
   height: 400px;
-  /* overflow: auto; */
   width: 100%;
+  margin-bottom: 94px;
+}
+
+hr {
+  width: 80%;
+  margin: 36px;
+  border-radius: 63px;
 }
 
 
@@ -288,8 +309,10 @@ h3 {
 }
 
 .guestRegisterBanner {
+  position: absolute;
   height: 40px;
-  width: 100vw;
+  left: 122px;
+  width: 100%;
   text-align: center;
   display: flex;
   vertical-align: middle;
@@ -318,11 +341,12 @@ h3 {
 
 button#create-channel {
   /* background: transparent; */
+  /* margin-top: 50px; */
   background-color: white;
   border: none;
   font-size: 15px;
   width: 100%;
-  height:100%;
+  height: 124%;
   padding:0px;
   font-family: 'Muli';
   color: black;
@@ -334,10 +358,11 @@ button#create-channel:hover {
 
 #leftBarTitle {
   background: transparent;
+  z-index: 1;
   border: none;
   font-size: 2px;
   margin-top: -1px;
-  height:40px;
+  height: 41px;
 }
 
 .guestRegisterModalButtons {
@@ -432,11 +457,16 @@ background-repeat: no-repeat;
 
 
 .css-y1c0xs {
-  border-right: 1px solid rgba(128, 128, 128, 0.452);
+  /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
 }
+
 
 .onlineUsers {
   text-align: center;
+  margin-bottom: -4px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Muli';
 }
 
 /* #outlined-basic {
@@ -455,6 +485,15 @@ background-repeat: no-repeat;
   position: absolute;
   right: 200px;
   top:15px;
+}
+
+.MuiDivider-root {
+  border: none;
+  height: 1px;
+  margin: 0;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 
@@ -480,9 +519,20 @@ background-repeat: no-repeat;
 }
 
 .inviteLinkModalButton {
-  position:relative;
-  bottom: 87px;
-  left: 900px;
+  position:absolute;
+  bottom: 40px;
+  left: 12px;
+  font-size: 13px;
+  color: #fff;
+  background-color: #202020;
+  border-color: #202020;
+  font-family: 'Muli';
+  font-size: 14px;
+}
+
+.inviteLinkModalButton:hover {
+  background-color: rgb(51, 51, 51);
+  border-color: #202020;
 }
 
 .userNameItem {
@@ -498,6 +548,7 @@ background-repeat: no-repeat;
   display: flex;
   justify-content: center;
 }
+
 .color-guide {
   margin: 20px 40px;
 }
@@ -518,8 +569,14 @@ h5 {
   color: white;
 }
 
-.main {
-  background: transparent;
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
 }
 
 .canvas.resize-box {
@@ -531,3 +588,67 @@ h5 {
   display:none;
 }
 
+
+
+.video-resize-box {
+  background: linear-gradient(#fdfdfd, transparent);
+}
+
+div.video-resize-box.resize-box::after {
+  display:none;
+}
+
+
+.bannerMessage {
+  margin:0;
+  position: relative;
+  bottom: 10px;
+}
+
+/* .p3-container {
+  margin-top: 50px;
+} */
+
+.jumbotron {
+  margin-top:40px;
+}
+
+.resize-box {
+  position:relative;
+  top:20px;
+  z-index: 1;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+
+aside.emoji-picker-react {
+  position: relative;
+  top:130px;
+  right:120px;
+  z-index: 2;
+}
+
+.MuiInputBase-input {
+  text-align: center;
+}
+
+.MuiList-padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: 'Muli';
+}
+
+.MuiListItemAvatar-root {
+  min-width: 49px;
+  flex-shrink: 0;
+}

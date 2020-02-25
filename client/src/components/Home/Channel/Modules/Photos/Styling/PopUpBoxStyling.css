@@ -2,16 +2,18 @@
 .resize-box {
   z-index: 1000;
   display: flex;
+  flex-flow: column;
   align-content: center;
   position: relative;
   width: 100%;
   min-height: 459px;
   height: 400px;
   max-height: 647px;
-  background-color: rgb(253, 253, 253);
+  max-height: 647px;
+  background: rgb(253, 253, 253);  
   padding-bottom: 8px;
   overflow-x: initial;
-  margin-top: -729px;
+  margin-top: -750px;
 }
 
 .resize-box:after {

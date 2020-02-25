@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { mouseDownFunction } from '../Scripts/PopUpBoxScript';
+import './videoSync.css';
 
 const YoutubeSync = ({
   channel, videoStates, changeVideoState, syncVideo,
 }) => {
   const [url, changeUrl] = useState({
-    currentUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
-    finalUrl: videoStates[channel] ? videoStates[channel].url : 'ScMzIvxBSi4',
+    currentUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
+    finalUrl: videoStates[channel] ? videoStates[channel].url : '5mGuCdlCcNM',
   });
 
   function handleOnChange(e) {
@@ -24,12 +25,17 @@ const YoutubeSync = ({
     }
     changeUrl((prev) => ({ ...prev, finalUrl: videoId }));
     changeVideoState(videoId, channel, false, true);
-
   }
 
   return (
-    <div className="resize-box" onMouseDown={mouseDownFunction}>
+    <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
+      <div id="videoBox">
+      {/* <div className="popup-title">Watch Together</div> */}
       <div id="video">
+        <form id="changeVideoForm" onSubmit={handleSubmit}>
+          <input type="text" placeholder="Enter a video link and watch with friends..." name="link" onChange={handleOnChange} />
+          <input type="submit" value="Submit" />
+        </form>
         <YoutubeVideoPlayer
           currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
           changeVideoState={changeVideoState}
@@ -39,13 +45,7 @@ const YoutubeSync = ({
           channel={channel}
           syncVideo={syncVideo}
         />
-        <form id="changeVideoForm" onSubmit={handleSubmit}>
-          <label>
-            New video:
-            <input type="text" placeholer="Enter a video link" name="link" onChange={handleOnChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      </div>
       </div>
     </div>
   );

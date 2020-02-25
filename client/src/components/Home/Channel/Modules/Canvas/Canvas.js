@@ -23,8 +23,8 @@ class Canvas extends Component {
 
       componentDidMount() {
         // Here we set up the properties of the canvas element.
-        this.canvas.width = 1000;
-        this.canvas.height = 800;
+        this.canvas.width = 700;
+        this.canvas.height = 459;
         this.ctx = this.canvas.getContext('2d');
         this.ctx.lineJoin = 'round';
         this.ctx.lineCap = 'round';
@@ -34,7 +34,6 @@ class Canvas extends Component {
       componentDidUpdate() {
         const { currentUser, lines } = this.props;
         if (lines !== undefined) {
-          console.log(lines)
           Object.values(lines).forEach(({ user, line }) => {
             if (user !== currentUser) {
               line.forEach((position) => {
@@ -44,6 +43,7 @@ class Canvas extends Component {
           });
         }
       }
+
 
       onMouseDown({ nativeEvent }) {
         const { offsetX, offsetY } = nativeEvent;

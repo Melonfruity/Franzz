@@ -21,7 +21,7 @@ const UserList = ({ userStatus }) => {
 
   return (
     <div className="userList">
-      <p className="onlineUsers">Online:</p>
+      <p className="onlineUsers">Online Users</p>
       <List>
         {userListContainer}
       </List>

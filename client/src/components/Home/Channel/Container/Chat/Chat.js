@@ -74,14 +74,14 @@ const Chat = ({
       { moduleView.canvasBox && (
         <div className="canvas resize-box">
           <div style={{ display: 'flex' }} className="main">
-            <div style={{ width: '225px' }} className="left-guide" />
+            <div className="left-guide" />
             <Canvas
               className="canvasBoard"
               sendLine={sendLine}
               lines={lines}
               currentUser={currentUser}
             />
-            <div style={{ width: '185px' }} className="right-guide" />
+            <div className="right-guide" />
           </div>
         </div>
       )}

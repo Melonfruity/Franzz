@@ -45,7 +45,7 @@ const GuestRegisterBanner = ({ setState }) => {
         onKeyPress={(e) => e.preventDefault()}
         onClick={(e) => handleShow(e)}
       >
-        <p>If you wish to save your username and chats the next time you visit, please create an account!</p>
+        <p className="bannerMessage">If you wish to save your username and chats the next time you visit, please create an account!</p>
       </div>
 
       <Modal show={show} onHide={handleClose} className="NewAccountModal">
