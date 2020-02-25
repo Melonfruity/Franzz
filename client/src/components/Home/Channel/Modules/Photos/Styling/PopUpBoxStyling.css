@@ -9,7 +9,8 @@
   min-height: 459px;
   height: 400px;
   max-height: 647px;
-  background: rgb(246, 245, 246);  
+  max-height: 647px;
+  background: rgb(253, 253, 253);  
   padding-bottom: 8px;
   overflow-x: initial;
   margin-top: -750px;

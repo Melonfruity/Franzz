@@ -30,10 +30,10 @@ const YoutubeSync = ({
   return (
     <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
       <div id="videoBox">
-      <div className="popup-title">Watch Together</div>
+      {/* <div className="popup-title">Watch Together</div> */}
       <div id="video">
         <form id="changeVideoForm" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter a video link" name="link" onChange={handleOnChange} />
+          <input type="text" placeholder="Enter a video link and watch with friends..." name="link" onChange={handleOnChange} />
           <input type="submit" value="Submit" />
         </form>
         <YoutubeVideoPlayer
