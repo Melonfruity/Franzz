@@ -232,7 +232,7 @@ body {
 }
 
 .channelList {
-  max-height: 620px;
+  max-height: 610px;
   margin-top: 10px;
   overflow-y: auto;
   overflow-x: hidden;
