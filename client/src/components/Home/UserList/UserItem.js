@@ -73,7 +73,7 @@ const UserItem = ({ name }) => {
           </StyledBadge>
         </div>
       </ListItemAvatar>
-      <p className="userNameItem">{name.length < 10 ? name : `${name.slice(0, 10)}...`}</p>
+      <p className="userNameItem">{name.length < 8 ? name : `${name.slice(0, 8)}...`}</p>
     </ListItem>
   );
 };
