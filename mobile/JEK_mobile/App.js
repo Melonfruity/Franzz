@@ -41,6 +41,7 @@ const App = () => {
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
+      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -225,6 +226,7 @@ const App = () => {
     });
 
     socket.on('update location', (updatedLocations) => {
+      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,
@@ -251,9 +253,9 @@ const App = () => {
                     ? 'md-home'
                     : 'md-home';
                 } else if (route.name === 'Maps') {
-                  iconName = focused ? 'md-google-maps' : 'md-google-maps';
+                  iconName = focused ? 'md-map' : 'md-map';
                 } else if (route.name === 'New Channel'){
-                  iconName = focused ? 'md-add-to-list' : 'md-add-to-list';
+                  iconName = focused ? 'md-chatboxes' : 'md-chatboxes';
                 }
 
                 return <Ionicons name={iconName} size={size} color={color} />;
@@ -262,6 +264,7 @@ const App = () => {
             tabBarOptions={{
               activeTintColor: 'tomato',
               inactiveTintColor: 'gray',
+              keyboardHidesTabBar: true,
             }}
           >
             <Tab.Screen
@@ -278,6 +281,7 @@ const App = () => {
                   joinChannel={joinChannel}
                   createChannel={createChannel}
                   setCurrentChannel={setCurrentChannel}
+                  findLocationAsync={findLocationAsync}
                 />}
             </Tab.Screen>
             <Tab.Screen

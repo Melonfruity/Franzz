@@ -6,16 +6,17 @@ import {
   View,
   Text,
   TextInput,
+  Dimensions,
   FlatList,
   Button,
+  TouchableHighlight,
   SafeAreaView
 } from 'react-native';
 
-import Test from '../screens/Test';
 import service from '../utils/service';
 
 
-const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
+const Home = ({ state, setState, logout, setCurrentChannel, navigation, findLocationAsync }) => {
 
   useEffect(() => {
     service
@@ -37,6 +38,7 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
           ...prev,
           channelStates,
         }))
+        findLocationAsync();
     })
   }, []);
 
@@ -44,19 +46,23 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
 
   const channels = Object.values(state.channelStates);
 
+  // const Separator = () => <View style={styles.separator} />
+
   const ChannelItem = ({ item }) => {
-    const { channel, name} = item;
+    const { channel, name } = item;
     return (
-      <View style={styles.item} onPress={() => setCurrentChannel(channel, cb)}>
-        <Text style={styles.name} onPress={() => setCurrentChannel(channel, cb)}>{`${name}`}</Text>       
-      </View>
+      <TouchableHighlight
+        onPress={() => setCurrentChannel(channel, cb)}    
+        underlayColor="white"
+        style={styles.item}
+        >
+        <Text style={styles.name}>{`${name.toUpperCase()}`}</Text>
+      </TouchableHighlight>
     )
   }
 
   return (
-    <SafeAreaView style={styles.list}>
-      <Button title="LOG OUT" onPress={() => logout()} />
-      <Button title="New Channel" onPress={() => navigation.navigate('New Channel')} />
+    <SafeAreaView style={styles.mainContainer}>
       <FlatList
         data={channels}
         renderItem={({ item }) => <ChannelItem item={item} />}
@@ -67,22 +73,44 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  list: {
+  mainContainer: {
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'center',
-    padding: 1,
-    borderEndWidth: 1,
+    backgroundColor: '#f1f1f1',
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width - 30,
   },
   item: {
-    backgroundColor: '#777',
-    padding: 20,
-    marginTop: 15,
-    marginBottom: 10,
-    marginHorizontal: 16
+    flex: 1,
+    flexDirection: 'row',
+    height: 90,
+    width: Dimensions.get('window').width - 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 0,
+    padding: 5,
+    margin: 10,
+    elevation: 5,
   },
   name: {
-    fontSize: 20,
+    flex: 1,
+    fontFamily: 'sans-serif-medium',
+    fontSize: 22,
+    color: 'black',
+    fontWeight: '700',
+    letterSpacing: 3,
+    margin: 10,
+  },
+  separator: {
+    marginVertical: 5,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   }
 })
 

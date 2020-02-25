@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../client/src/components/Home/UserList/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/components/Home/UserList/UserList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../screens/Settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/src/components/Landing/Login/GoogleLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/components/Landing/Login/GoogleLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/homeStack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routes/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/HomeStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../screens/Channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Channel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../server/dynamicDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../server/dynamicDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Map.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
