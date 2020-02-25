@@ -519,3 +519,8 @@ div.video-resize-box.resize-box::after {
 .jumbotron {
   margin-top:40px;
 }
+
+.resize-box {
+  position:relative;
+  top:20px;
+}
