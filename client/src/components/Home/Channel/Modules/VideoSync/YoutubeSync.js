@@ -24,13 +24,20 @@ const YoutubeSync = ({
     }
     changeUrl((prev) => ({ ...prev, finalUrl: videoId }));
     changeVideoState(videoId, channel, false, true);
-
   }
 
 
   return (
     <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
+      <div className="popup-title">Watch Together</div>
       <div id="video">
+        <form id="changeVideoForm" onSubmit={handleSubmit}>
+          <label>
+          New video:
+            <input type="text" placeholer="Enter a video link" name="link" onChange={handleOnChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
         <YoutubeVideoPlayer
           currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
           changeVideoState={changeVideoState}
@@ -40,13 +47,6 @@ const YoutubeSync = ({
           channel={channel}
           syncVideo={syncVideo}
         />
-        <form id="changeVideoForm" onSubmit={handleSubmit}>
-          <label>
-          New video:
-            <input type="text" placeholer="Enter a video link" name="link" onChange={handleOnChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
       </div>
     </div>
   );
