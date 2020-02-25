@@ -438,6 +438,7 @@ background-repeat: no-repeat;
   border-right: 1px solid rgba(128, 128, 128, 0.452);
 }
 
+
 .onlineUsers {
   text-align: center;
 }
@@ -485,7 +486,8 @@ background-repeat: no-repeat;
 .inviteLinkModalButton {
   position:absolute;
   bottom: 40px;
-  left: 10px;
+  left: 12px;
+  font-size: 13px;
 }
 
 .userNameItem {
@@ -594,4 +596,8 @@ aside.emoji-picker-react {
 
 .userList {
   margin-top: 150px;
+}
+
+.MuiInputBase-input {
+  text-align: center;
 }
