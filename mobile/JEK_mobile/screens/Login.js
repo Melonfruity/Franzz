@@ -12,51 +12,56 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+import Constants from 'expo-constants';
+
 const Login = ({ guest, login }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('mobileJEK@gmail.com');
   const [password, setPassword] = useState('password');
 
+  const Separator = () => <View style={styles.separator} />
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text
-        style={styles.text}
-      >
-        Select a Username
-      </Text>
+      <Text style={styles.header}> Select a Username </Text>
+      <Separator />
       <TextInput
-        style={{ ...styles.text, ...styles.border }}
-        placeholder='username'
+        style={styles.input}
+        placeholder='USERNAME'
         onChangeText={(val) => setUsername(val)}
         value={username}
       />
-      <Button
-        title="GO"
-        onPress={() => guest({ username })}
-      />
-      <Text
-        style={styles.text}
-      >
-        OR LOG IN
-      </Text>
+      <Separator />
+      <View style={styles.button}>
+        <Button
+          title="GO"
+          onPress={() => guest({ username })}
+        />
+      </View>
+      <Separator />
+      <Separator />
+      <Text style={styles.header}> Log In </Text>
+      <Separator />
       <TextInput
-        style={{ ...styles.text, ...styles.border }}
-        placeholder='email'
+        style={styles.input}
+        placeholder='EMAIL'
         onChangeText={(val) => setEmail(val)}
         value={email}
       />
       <TextInput
-        style={{ ...styles.text, ...styles.border }}
-        placeholder='password'
+        style={styles.input}
+        placeholder='PASSWORD'
         onChangeText={(val) => setPassword(val)}
         value={password}
         secureTextEntry={true}
       />
-      <Button
-        title="LOG IN"
-        style={styles.button}
-        onPress={() => login({ email, password })}
-      />
+      <Separator />
+      <View style={styles.button}>
+        <Button
+          title="LOG IN"
+          onPress={() => login({ email, password })}
+        />
+      </View>
       {
         Platform.OS === 'android' ? <KeyboardSpacer /> : null
       } 
@@ -66,33 +71,30 @@ const Login = ({ guest, login }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    padding: 8,
-    margin: 2,
-    width: 200,
-    maxHeight: 40,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  border: {
-    borderColor: '#777',
-    borderWidth: 1,
-  },
-  mt: {
-    marginTop: 10,
-  },
   button: {
-    flex: 1,
-    width: 500,
-    marginTop: 50,
+    height: 30,
+    width: 150,
+  },
+  input: {
+    borderColor: '#777',
+    borderWidth: StyleSheet.hairlineWidth,
+    width: 200,
+    height: 40,
+    margin: 3,
+    textAlign: 'center'
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  header: {
+    fontSize: 24,
   }
 })
 

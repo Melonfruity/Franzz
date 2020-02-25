@@ -5,7 +5,7 @@ const NewChannelStack = createStackNavigator();
 
 import NewChannel from '../screens/NewChannel';
 
-const NewChannelStackScreen = ({ joinChannel, createChannel }) => {
+const NewChannelStackScreen = ({ joinChannel, createChannel, logout }) => {
   return (
     <NewChannelStack.Navigator>
       <NewChannelStack.Screen
@@ -19,6 +19,7 @@ const NewChannelStackScreen = ({ joinChannel, createChannel }) => {
             {...props}
             joinChannel={joinChannel}
             createChannel={createChannel}
+            logout={logout}
           />}
       </NewChannelStack.Screen>
     </NewChannelStack.Navigator>

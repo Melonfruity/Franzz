@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Platform,
   View,
@@ -9,32 +9,38 @@ import {
 
 import MapView, { Marker } from 'react-native-maps';
 
-const MapScreen = ({ locations, center, findLocationAsync }) => {    
-    useEffect(() => {
-      findLocationAsync();
-      const locate = setInterval(() => {
-        findLocationAsync();
-      }, 10000);
 
+const MapScreen = ({ locations, center, findLocationAsync }) => {   
+  const [mapReady, setMapReady] = useState(false);
+  useEffect(() => {
+    const locate = setInterval(() => {
+      findLocationAsync();
+    }, 10000);
+    
+    if (center) {
+      setMapReady(true);
+    }
       return () => {
         clearTimeout(locate);
       }
     }, [])
-    const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
-      arr.forEach(e => {
-        if (!obj[e.id]) {
-          obj[e.id] = {
-            id: e.id,
-            coordinates: {
-              latitude: e.location.lat,
-              longitude: e.location.lng,
-            },
-            username: e.username
-          }
+
+  const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
+    arr.forEach(e => {
+      if (!obj[e.id]) {
+        obj[e.id] = {
+          id: e.id,
+          coordinates: {
+            latitude: e.location.lat,
+            longitude: e.location.lng,
+          },
+          username: e.username
         }
-      }); 
-      return obj
-    }, {}))
+      }
+    }); 
+    return obj
+  }, {}))
+
   const locationMarkers = usersLocations.map((user) =>
     <Marker
       key={user.id}
@@ -44,20 +50,20 @@ const MapScreen = ({ locations, center, findLocationAsync }) => {
       <Text>{user.username}</Text>
     </Marker>
   )
-
   return (
     <View style={styles.container}>
-      <MapView
+      {mapReady ? (<MapView
         style={styles.mapStyle}
         initialRegion={{
-          latitude: center.lat ? center.lat : 37.78825,
-          longitude: center.lng ? center.lng : -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: center.lat,
+          longitude: center.lng,
+          latitudeDelta: 0.03,
+          longitudeDelta: 0.03,
         }}
       >
         {locationMarkers}
-      </MapView>
+      </MapView>) :
+      <View />}
     </View>
   )
 }

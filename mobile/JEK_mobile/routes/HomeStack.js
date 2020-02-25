@@ -6,16 +6,22 @@ const HomeStack = createStackNavigator();
 import Home from '../screens/Home';
 import Channel from '../screens/Channel';
 
-const HomeStackScreen = ({ state, logout, socket, setState, joinChannel, createChannel, setCurrentChannel }) => {
+const HomeStackScreen = ({ state, logout, socket, setState, findLocationAsync, joinChannel, createChannel, setCurrentChannel }) => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name='Home' >
+      <HomeStack.Screen
+        name='Home'
+        options={{
+          title: 'Home'
+        }}
+      >
         {props => <Home
           {...props}
           state={state}
           setState={setState}
           logout={logout}
           setCurrentChannel={setCurrentChannel}
+          findLocationAsync={findLocationAsync}
         />}
       </HomeStack.Screen>
       <HomeStack.Screen

@@ -41,6 +41,7 @@ const App = () => {
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
+      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -159,7 +160,7 @@ const App = () => {
 
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
-      axios.post('http://10.0.2.2:8001/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
+      axios.post('https://arcane-bastion-72484.herokuapp.com/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
 
       setState((prev) => (
         {
@@ -179,7 +180,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    socket = io('http://10.0.2.2:8001')
+    // socket = io('http://10.0.2.2:8001')
+    socket = io('https://arcane-bastion-72484.herokuapp.com')
     socket.on('connect', () => {
       socket.on('server message', (data) => {
         // console.log(data)
@@ -225,6 +227,7 @@ const App = () => {
     });
 
     socket.on('update location', (updatedLocations) => {
+      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,
@@ -251,9 +254,9 @@ const App = () => {
                     ? 'md-home'
                     : 'md-home';
                 } else if (route.name === 'Maps') {
-                  iconName = focused ? 'md-google-maps' : 'md-google-maps';
+                  iconName = focused ? 'md-map' : 'md-map';
                 } else if (route.name === 'New Channel'){
-                  iconName = focused ? 'md-add-to-list' : 'md-add-to-list';
+                  iconName = focused ? 'md-chatboxes' : 'md-chatboxes';
                 }
 
                 return <Ionicons name={iconName} size={size} color={color} />;
@@ -262,6 +265,7 @@ const App = () => {
             tabBarOptions={{
               activeTintColor: 'tomato',
               inactiveTintColor: 'gray',
+              keyboardHidesTabBar: true,
             }}
           >
             <Tab.Screen
@@ -278,6 +282,7 @@ const App = () => {
                   joinChannel={joinChannel}
                   createChannel={createChannel}
                   setCurrentChannel={setCurrentChannel}
+                  findLocationAsync={findLocationAsync}
                 />}
             </Tab.Screen>
             <Tab.Screen
@@ -301,6 +306,7 @@ const App = () => {
                   {...props}
                   joinChannel={joinChannel}
                   createChannel={createChannel}
+                  logout={logout}
                 />}
             </Tab.Screen>
           </Tab.Navigator>
