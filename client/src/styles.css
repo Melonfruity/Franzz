@@ -653,3 +653,11 @@ aside.emoji-picker-react {
 .usernameText {
   padding-top:3px;
 }
+
+#chat-container {
+  padding-left: 0;
+}
+
+.chatInputBox {
+  margin-left: 5px;
+}
