@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const HomeStack = createStackNavigator();
 
-import Home from './Home';
-import Channel from './Channel';
+import Home from '../screens/Home';
+import Channel from '../screens/Channel';
 
 const HomeStackScreen = ({ state, logout, socket, setState, joinChannel, createChannel, setCurrentChannel }) => {
   return (

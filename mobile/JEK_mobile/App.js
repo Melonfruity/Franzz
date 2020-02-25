@@ -1,41 +1,27 @@
-import React, { useEffect, useState, useRef } from 'react';
-import {
-  Platform,
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  KeyboardAvoidingView
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
 // import { SplashScreen } from 'expo';
 // import * as Font from 'expo-font';
-// import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import io from 'socket.io-client';
 import Login from './screens/Login';
-import HomeStackScreen from './screens/HomeStack';
-
 import axios from 'axios';
 
 import * as Permissions from 'expo-permissions';
-import * as Location from 'expo-location';
-import Constants from 'expo-constants';
-import * as TaskManager from 'expo-task-manager';
 
 import Global from './Global';
 import service from './utils/service';
 
 let socket;
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import NewChannelStackScreen from './screens/NewChannelStack';
-import MapStackScreen from './screens/MapStack';
+import NewChannelStackScreen from './routes/NewChannelStack';
+import MapStackScreen from './routes/MapStack';
+import HomeStackScreen from './routes/HomeStack';
+
 
 const Tab = createBottomTabNavigator();
-
-const LOCATION_TASK_NAME = 'get current location'
 
 const App = () => {
   const [state, setState] = useState({
@@ -256,9 +242,31 @@ const App = () => {
       {!state.authorization
         ? ( <Login state={state} login={login} guest={guest} /> )
         : (
-          <Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+                if (route.name === 'Home') {
+                  iconName = focused
+                    ? 'md-home'
+                    : 'md-home';
+                } else if (route.name === 'Maps') {
+                  iconName = focused ? 'md-google-maps' : 'md-google-maps';
+                } else if (route.name === 'New Channel'){
+                  iconName = focused ? 'md-add-to-list' : 'md-add-to-list';
+                }
+
+                return <Ionicons name={iconName} size={size} color={color} />;
+              }
+            })}
+            tabBarOptions={{
+              activeTintColor: 'tomato',
+              inactiveTintColor: 'gray',
+            }}
+          >
             <Tab.Screen
               name="Home"
+              
             >
               {props =>
                 <HomeStackScreen
@@ -301,16 +309,5 @@ const App = () => {
     </NavigationContainer>
   );
 }
-
-// TaskManager.defineTask(LOCATION_TASK_NAME, ({ data: { locations }, error }) => {
-//   if (error) {
-//     // check `error.message` for more details.
-//     return;
-//   }
-//   console.log('Received new locations', locations);
-//   const location = { lat: locations[0].coords.latitude, lng: locations[0].coords.longitude }
-//   console.log(location)
-//   service.updateLocation(location);
-// });
 
 export default App;
