@@ -10,6 +10,7 @@ module.exports = (io, socket) => {
   socket.on('change video state', async ({
     url, paused, played, channel, authorization,
   }) => {
+    console.log(url, played, paused, channel);
     try {
       const user = await extractJWT(authorization);
       if (user) {
@@ -28,6 +29,7 @@ module.exports = (io, socket) => {
     try {
       const user = await extractJWT(authorization);
       if (user) {
+        console.log(time, channel);
         socket.to(channel).emit('new time stamp', {
           time, channel,
         });

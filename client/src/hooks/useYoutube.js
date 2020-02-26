@@ -9,6 +9,17 @@ export const useYoutube = (state, setState, socket) => {
         channel,
         authorization: state.authorization,
       };
+      setState((prev) => ({
+        ...prev,
+        videoStates: {
+          ...prev.videoStates,
+          [channel]: {
+            url,
+            paused,
+            played,
+          },
+        },
+      }));
       socket.emit('change video state', videoObj);
     }
   };

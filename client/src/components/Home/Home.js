@@ -140,9 +140,19 @@ const Home = ({ state, setState }) => {
             }
             return obj;
           }, {});
+          const videoStates = channelData.reduce((obj, ele) => {
+            // eslint-disable-next-line no-param-reassign
+            obj[ele.data.channel] = {
+              url: '5mGuCdlCcNM',
+              played: false,
+              paused: true,
+            };
+            return obj;
+          }, {});
           setState((prev) => ({
             ...prev,
             channelStates,
+            videoStates,
             currentChannel: Object.keys(channelStates)[0],
           }));
         });
@@ -192,7 +202,6 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log(userStatus)
       setState((prev) => ({
         ...prev,
         users: {
@@ -221,7 +230,14 @@ const Home = ({ state, setState }) => {
         setState((prev) => (
           {
             ...prev,
-            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
+            videoStates: {
+              ...prev.videoStates,
+              [channel]: {
+                url,
+                paused,
+                played,
+              },
+            },
           }
         ));
       }
@@ -288,7 +304,7 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           emitJoinChannel={emitJoinChannel}
         />
-        <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />
+        <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
       </Router>
     </div>
   );
