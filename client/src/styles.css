@@ -543,9 +543,19 @@ background-repeat: no-repeat;
   font-size: 14px;
 }
 
-.inviteLinkModalButton:hover {
+.button.inviteLinkModalButton.btn.btn-primary:hover {
   background-color: rgb(51, 51, 51);
   border-color: #202020;
+}
+
+.button.inviteLinkModalButton.btn.btn-primary:active {
+  outline: none;
+  background-color: rgb(51, 51, 51);
+}
+
+.button.inviteLinkModalButton.btn.btn-primary:focus {
+  outline: none;
+  background-color: rgb(51, 51, 51);
 }
 
 .userNameItem {
@@ -680,4 +690,12 @@ aside.emoji-picker-react {
   line-height: 1.5;
   font-family: 'Muli';
   font-weight: 800;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+  font-family: 'Muli';
+  color: rgb(15, 15, 15);
 }
