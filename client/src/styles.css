@@ -706,3 +706,10 @@ aside.emoji-picker-react {
   font-family: 'Muli';
   color: rgb(15, 15, 15);
 }
+
+.btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #494949;
+  border-color: #3f3f3f;
+  box-shadow: none;
+}

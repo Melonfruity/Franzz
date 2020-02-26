@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import channelService from '../../../service/channelService';
-
 import Chat from './Container/Chat/Chat';
 import InviteLink from './ChannelUI/InviteLink';
 import RightUI from './ChannelUI/RightUI';
@@ -32,28 +30,12 @@ const Channel = ({
     canvasBox: false,
   });
 
-  const [invite, setInvite] = useState({
-    ready: false,
-    link: '',
-  });
-
-  const createInvite = () => {
-    channelService
-      .getInvite(channel)
-      .then(({ channelID }) => setInvite({
-        ready: true,
-        link: channelID,
-      }));
-  };
 
   return (
     <div id="channel">
       <div id="channelName">{name}</div>
       <InviteLink
         channel={channel}
-        createInvite={createInvite}
-        invite={invite}
-        setInvite={setInvite}
       />
       <div id="chat-righUi">
         <Chat
