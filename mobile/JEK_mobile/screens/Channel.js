@@ -28,7 +28,7 @@ const Channel = ({ state, setState, channel, socket }) => {
             ...prev.channelStates,
             [channel]: {
               ...prev.channelStates[channel],
-              messages: prev.channelStates[channel].messages.concat(newMessageObj),
+              messages: [newMessageObj, ...prev.channelStates[channel].messages],
             },
           },
         }));
@@ -39,7 +39,7 @@ const Channel = ({ state, setState, channel, socket }) => {
     return ({
       _id: msg.id,
       text: msg.message,
-      createdAt: msg.created,
+      createdAt: new Date(),
       user: {
         _id: msg.user.id,
         name: msg.user.username,

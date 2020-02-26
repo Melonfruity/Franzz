@@ -7,7 +7,6 @@ const getLocation = async (updateLocation) => {
     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`)
     .then((res) => {
       const { location } = res.data;
-      console.log('google', location);
       updateLocation(location);
     });
 };

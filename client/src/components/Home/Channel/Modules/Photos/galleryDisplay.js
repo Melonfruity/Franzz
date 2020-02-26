@@ -11,7 +11,6 @@ export default function GalleryDisplay({
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    console.log(path);
     fetch(`${serverURL}/api/photos/getChannelPhotos/${path}`)
       .then((res) => res.json())
       .then((data) => data.resources)

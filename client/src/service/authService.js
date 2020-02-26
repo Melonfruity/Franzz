@@ -8,10 +8,8 @@ const setLocalStorage = (data) => {
     error, token, username, guest, userID,
   } = data;
   if (error) {
-    console.log(error);
     return false;
   }
-  console.log(data);
   window.localStorage.setItem('authorization', token);
   window.localStorage.setItem('username', username);
   window.localStorage.setItem('guest', guest);
