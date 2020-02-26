@@ -94,6 +94,7 @@ body {
   opacity: 50%;
   height: 50px;
   width: 250px;
+  margin-bottom: 27px;
 }
 
 .googleLogin span {
@@ -393,7 +394,10 @@ button#create-channel:hover {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 110px;
+  height: 150px;
+}
+
+.modalFooter.modal-footer {
 }
 
 .NewAccountRegistrationModalForm .signInInput {
