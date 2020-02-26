@@ -4,7 +4,7 @@ function preventDefaults(e) {
 }
 
 async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
-  const url = 'http://localhost:8001/api/photos/uploadPhotos';
+  const url = 'https://arcane-bastion-72484.herokuapp.com/api/photos/uploadPhotos';
   const formData = new FormData();
   formData.append('file', file);
   formData.append('channel', `${channelId}`);
