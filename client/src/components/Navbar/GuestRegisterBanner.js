@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { useField } from '../../hooks/useField';
 import auth from '../../service/authService';
 import GoogleLogin from '../Landing/Login/GoogleLogin';
-import SignInInput from '../Landing/SignInInput';
 
 const GuestRegisterBanner = ({ setState }) => {
   const [show, setShow] = useState(false);
@@ -53,42 +53,33 @@ const GuestRegisterBanner = ({ setState }) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body className="NewAccountModalBody">
-          {/* <section className="registration"> */}
           <form className="NewAccountRegistrationModalForm">
             <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
             <div className="email">
-              {/* <p>E-mail:</p> */}
-              <SignInInput
-                name="Email"
+              <TextField
+                name="email"
+                id="outlined-basic"
+                label="email"
                 placeholder="email"
                 {...email}
                 reset={undefined}
-                handleLogin={handleRegister}
+                onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
+                variant="outlined"
                 className="NewAccountModalInput"
               />
-              {/* <input
-                  placeholder="email"
-                  {...email}
-                  reset={undefined}
-                  onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-                /> */}
             </div>
             <div className="password">
-              {/* <p>Password: </p> */}
-              <SignInInput
-                name="Password"
+              <TextField
+                name="password"
+                id="outlined-basic"
+                label="password"
                 placeholder="password"
                 {...password}
                 reset={undefined}
-                handleLogin={handleRegister}
+                onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
+                variant="outlined"
                 className="NewAccountModalInput"
               />
-              {/* <input
-                  placeholder="password"
-                  {...password}
-                  reset={undefined}
-                  onKeyPress={(e) => (e.key === 'Enter' ? handleRegister(e) : null)}
-                /> */}
             </div>
           </form>
           <div className="guestRegisterModalButtons">
@@ -99,7 +90,6 @@ const GuestRegisterBanner = ({ setState }) => {
               Register
             </Button>
           </div>
-          {/* </section> */}
         </Modal.Body>
         <Modal.Footer className="modalFooter">
           {/* <div className="modalFooter"> */}
@@ -109,7 +99,6 @@ const GuestRegisterBanner = ({ setState }) => {
           <div className="guestModalGoogleLoginButton">
             <GoogleLogin className="googleLogin" setState={setState} />
           </div>
-          {/* </div> */}
         </Modal.Footer>
       </Modal>
     </div>

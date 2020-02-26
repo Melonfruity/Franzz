@@ -20,7 +20,6 @@ const Channel = ({ state, setState, channel, socket }) => {
       authorization: state.authorization,
       username: state.username,
     }
-    console.log(messageObj)
     socket.emit('message', messageObj, (newMessageObj) => {
       setState((prev) => (
         {
@@ -29,7 +28,7 @@ const Channel = ({ state, setState, channel, socket }) => {
             ...prev.channelStates,
             [channel]: {
               ...prev.channelStates[channel],
-              messages: prev.channelStates[channel].messages.concat(newMessageObj),
+              messages: [newMessageObj, ...prev.channelStates[channel].messages],
             },
           },
         }));
@@ -40,13 +39,13 @@ const Channel = ({ state, setState, channel, socket }) => {
     return ({
       _id: msg.id,
       text: msg.message,
-      createdAt: msg.created,
+      createdAt: new Date(),
       user: {
         _id: msg.user.id,
         name: msg.user.username,
       }
     })
-  }).reverse();
+  })
   
   return (
     <View style={{ flex: 1 }}>

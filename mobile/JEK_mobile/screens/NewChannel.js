@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Platform,
-  StatusBar,
   StyleSheet,
   View,
   Text,
   TextInput,
   Button,
-  SafeAreaView,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';

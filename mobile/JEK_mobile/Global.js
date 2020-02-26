@@ -2,7 +2,6 @@ import { AsyncStorage } from 'react-native';
 const serverURL = 'https://arcane-bastion-72484.herokuapp.com/api';
 
 const loadCredentials = async () => {
-  console.log('loading Credentials');
   const credentials = {
     guest: await getLocal('guest'),
     currentUser: await getLocal('userID'),
@@ -13,7 +12,6 @@ const loadCredentials = async () => {
 };
 
 const updateCredentials = async (credentials) => {
-  console.log('updating Credentials');
   const { token, username, guest, userID } = credentials;
   const updatedCredentials = await Promise.all([
     storeLocal('guest', `${guest}`),

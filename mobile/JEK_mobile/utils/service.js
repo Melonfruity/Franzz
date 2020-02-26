@@ -6,7 +6,6 @@ const serverURL = Global.serverURL;
 const guest = async (usernameObj) => {
   const res = await axios.post(`${serverURL}/auth/guest`, usernameObj);
   if (!res.error) {
-    console.log(res.data)
     const { token, username, guest, userID } = res.data;
     Global.updateCredentials(res.data);
     return { authorization: token, username, guest, userID };
@@ -18,7 +17,6 @@ const guest = async (usernameObj) => {
 const login = async (loginObj) => {
   const res = await axios.post(`${serverURL}/auth/login`, loginObj);
   const { token, username, guest, userID } = res.data;
-  console.log(res.data)
   if (!res.error) {
     Global.updateCredentials(res.data);
     return { authorization: token, username, guest, userID };
@@ -64,7 +62,6 @@ const getLocation = async (updateLocation) => {
     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`)
     .then((res) => {
       const { location } = res.data;
-      console.log('google', location);
       updateLocation(location);
     });
 };

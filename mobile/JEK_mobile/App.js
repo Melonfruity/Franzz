@@ -41,7 +41,6 @@ const App = () => {
       authorization: state.authorization,
     };
     socket.emit('update location', locationObj, (locations) => {
-      console.log(locations);
       setState((prev) => ({
         ...prev,
         locations,
@@ -66,8 +65,6 @@ const App = () => {
         error, guest, userID, username, authorization,
       }) => {
         if (!error) {
-          console.log(guest, userID, username, authorization)
-          console.log('updating state')
           setState((prev) => ({
             ...prev,
             guest,
@@ -86,7 +83,6 @@ const App = () => {
         error, guest, userID, username, authorization,
       }) => {
         if (!error) {
-          console.log(guest, userID, username, authorization)
           setState((prev) => ({
             ...prev,
             guest,
@@ -143,7 +139,6 @@ const App = () => {
             },
           }
         ));
-        console.log('joined channel', state)
         cb();
       }
     });
@@ -161,7 +156,6 @@ const App = () => {
       // initializes a folder in the photo cloud for this channel
       const request = { channelId: `${channel}/chat`, albumName: false };
       axios.post('https://arcane-bastion-72484.herokuapp.com/api/photos/createEmptyFolder', { body: JSON.stringify(request) });
-
       setState((prev) => (
         {
           ...prev,
@@ -184,10 +178,8 @@ const App = () => {
     socket = io('https://arcane-bastion-72484.herokuapp.com')
     socket.on('connect', () => {
       socket.on('server message', (data) => {
-        // console.log(data)
       });
       socket.emit('join channels', { authorization: state.authorization }, (data) => {
-        console.log(data);
       });
     });
 
@@ -219,7 +211,7 @@ const App = () => {
               ...prev.channelStates,
               [channelID]: {
                 ...prev.channelStates[channelID],
-                messages: prev.channelStates[channelID].messages.concat(newMessageObj),
+                messages: [newMessageObj, ...prev.channelStates[channelID].messages],
               },
             },
           }));
@@ -227,7 +219,6 @@ const App = () => {
     });
 
     socket.on('update location', (updatedLocations) => {
-      console.log('updatedLocations', updatedLocations);
       if (updatedLocations) {
         setState((prev) => ({
           ...prev,

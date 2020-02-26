@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Platform,
   StatusBar,
@@ -11,8 +11,6 @@ import {
 
 import { ScrollView } from 'react-native-gesture-handler';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-
-import Constants from 'expo-constants';
 
 const Login = ({ guest, login }) => {
   const [username, setUsername] = useState('');
