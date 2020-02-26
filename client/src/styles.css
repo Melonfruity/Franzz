@@ -94,6 +94,7 @@ body {
   opacity: 50%;
   height: 50px;
   width: 250px;
+  margin-bottom: 27px;
 }
 
 .googleLogin span {
@@ -393,7 +394,10 @@ button#create-channel:hover {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 110px;
+  height: 150px;
+}
+
+.modalFooter.modal-footer {
 }
 
 .NewAccountRegistrationModalForm .signInInput {
@@ -476,11 +480,9 @@ background-repeat: no-repeat;
   overflow:hidden;
 }
 
-
 .css-y1c0xs {
   /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
 }
-
 
 .onlineUsers {
   text-align: center;
@@ -517,7 +519,6 @@ background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-
 .newChannelHeader {
   text-align:center;
 }
@@ -525,7 +526,6 @@ background-repeat: no-repeat;
 .invitePopup {
   display:flex;
   flex-direction: column;
-
 }
 
 .inviteLinkButton {
@@ -599,7 +599,6 @@ h5 {
   background: #F0C987;
   color: white;
 }
-
 
 .canvas.resize-box {
   background:transparent;
