@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 const NewChannelModal = () => (
   <Container className="p-3">
     <Jumbotron>
-      <h1 className="newChannelHeader">New Channel</h1>
+      <h1 className="newChannelHeader">Create a channel to get started.</h1>
     </Jumbotron>
   </Container>
 );
