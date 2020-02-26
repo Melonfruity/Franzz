@@ -23,10 +23,12 @@ const YoutubeSync = ({
     if (ampersandPosition !== -1) {
       videoId = videoId.substring(0, ampersandPosition);
     }
+    console.log(videoId) 
     changeUrl((prev) => ({ ...prev, finalUrl: videoId }));
     changeVideoState(videoId, channel, false, true);
   }
 
+  console.log(url.finalUrl)
   return (
     <div className="video-resize-box resize-box" onMouseDown={mouseDownFunction}>
       <div id="videoBox">
@@ -37,7 +39,7 @@ const YoutubeSync = ({
           <input type="submit" value="Submit" />
         </form>
         <YoutubeVideoPlayer
-          currentVideo={videoStates[channel] ? videoStates[channel].url : url.finalUrl}
+          currentVideo={url.finalUrl}
           changeVideoState={changeVideoState}
           paused={videoStates[channel] ? videoStates[channel].paused : false}
           played={videoStates[channel] ? videoStates[channel].played : true}

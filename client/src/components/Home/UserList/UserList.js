@@ -21,12 +21,12 @@ const UserList = ({ userStatus }) => {
 
   return (
     <div className="userListContainer">
-    <p className="onlineUsers">Online Users</p>
-    <div className="userList">
-      <List>
-        {userListContainer}
-      </List>
-    </div>
+      <p className="onlineUsers">Online Users</p>
+      <div className="userList">
+        <List>
+          {userListContainer}
+        </List>
+      </div>
     </div>
   );
 };

@@ -42,6 +42,10 @@ const App = () => {
       locations: {},
       center: {},
       users: {},
+      videoStates: {},
+      loaded: false,
+      currentChannelLoaded: false,
+      newChannelForm: false,
       lines: {},
     });
   };
