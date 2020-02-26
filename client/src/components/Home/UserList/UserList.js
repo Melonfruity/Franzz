@@ -9,15 +9,10 @@ const UserList = ({ userStatus }) => {
     const { username, id, online } = element;
     return (
       <div key={`user${id}`} className="userItems">
-        {online
-          ? (
-            <UserItem
-              name={username}
-            />
-          )
-          : (
-            <div />
-          )}
+        <UserItem
+          name={username}
+          online={online}
+        />
         <Divider />
       </div>
     );
