@@ -1,7 +1,5 @@
-const { info, errm } = require('../utils/logger');
+const { errm } = require('../utils/logger');
 const { extractJWT } = require('../utils/helpers/authHelper');
-const { partOfChannel, getChannel } = require('../utils/helpers/channelHelper');
-const Channel = require('../models/Channel');
 
 module.exports = (io, socket) => {
   socket.on('connect to vid sync', () => {
@@ -10,7 +8,6 @@ module.exports = (io, socket) => {
   socket.on('change video state', async ({
     url, paused, played, channel, authorization,
   }) => {
-    console.log(url, played, paused, channel);
     try {
       const user = await extractJWT(authorization);
       if (user) {
@@ -29,7 +26,6 @@ module.exports = (io, socket) => {
     try {
       const user = await extractJWT(authorization);
       if (user) {
-        console.log(time, channel);
         socket.to(channel).emit('new time stamp', {
           time, channel,
         });

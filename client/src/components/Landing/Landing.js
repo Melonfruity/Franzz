@@ -6,7 +6,7 @@ import GoogleLogin from './Login/GoogleLogin';
 const Landing = ({ setState }) => (
   <section className="landingContainer">
     <div className="landingPage">
-      <h1 id="app-title">JEK</h1>
+      <h1 id="app-title">Stalkaholic</h1>
       <p id="slogan">Stay in touch, no matter where you are in the world.</p>
       <Username setState={setState} />
       <NormalLogin setState={setState} />
