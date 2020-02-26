@@ -39,7 +39,6 @@ body {
 
 .landingPage input {
   width: 500px;
-
   /* background-color:rgba(255, 255, 255, 0.205) */
 }
 
@@ -458,11 +457,9 @@ background-repeat: no-repeat;
   overflow:hidden;
 }
 
-
 .css-y1c0xs {
   /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
 }
-
 
 .onlineUsers {
   text-align: center;
@@ -499,7 +496,6 @@ background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-
 .newChannelHeader {
   text-align:center;
 }
@@ -507,7 +503,6 @@ background-repeat: no-repeat;
 .invitePopup {
   display:flex;
   flex-direction: column;
-
 }
 
 .inviteLinkButton {
@@ -571,7 +566,6 @@ h5 {
   background: #F0C987;
   color: white;
 }
-
 
 .canvas.resize-box {
   background:transparent;
