@@ -8,7 +8,7 @@ async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdat
   const formData = new FormData();
   formData.append('file', file);
   formData.append('channel', `${channelId}`);
-  let path = `albums/${albumName}`;
+  let path = `albums/${albumName.replace(/ /g, '-')}`;
   if (albumName === 'chat') {
     path = 'chat';
   }

@@ -49,7 +49,9 @@ export default function AlbumForm({
   }
 
   function viewUpdatedAlbum() {
-    viewAlbum(`${channelId}/albums/${albumName}`, albumName);
+    const pathName = albumName.replace(/ /g, '-');
+    console.log(pathName)
+    viewAlbum(`${channelId}/albums/${pathName}`, albumName);
   }
 
   function viewAlbums() {
