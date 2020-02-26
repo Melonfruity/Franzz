@@ -114,6 +114,8 @@ const Home = ({ state, setState }) => {
           syncVideo={syncVideo}
           sendLine={sendLine}
           lines={state.lines[id]}
+          isGuest={state.guest}
+          setState={setState}
         />
       </Route>
     );

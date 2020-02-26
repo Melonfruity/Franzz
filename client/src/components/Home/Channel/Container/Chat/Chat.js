@@ -6,6 +6,7 @@ import ImageBox from '../../Modules/Photos/ImageBox';
 import StalkerMap from '../../Modules/StalkerMap/StalkerMap';
 import YoutubeSync from '../../Modules/VideoSync/YoutubeSync';
 import Canvas from '../../Modules/Canvas/Canvas';
+import GuestRegisterBanner from '../../../../Navbar/GuestRegisterBanner';
 
 import './Styling/DragAndDropBox.css';
 import './Chat.css';
@@ -24,6 +25,8 @@ const Chat = ({
   syncVideo,
   sendLine,
   lines,
+  isGuest,
+  setState,
 }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState('');
@@ -35,6 +38,7 @@ const Chat = ({
 
   return (
     <div id="chat-container">
+      {isGuest === 'true' ? <GuestRegisterBanner setState={setState} /> : null}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}

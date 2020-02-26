@@ -328,23 +328,27 @@ h3 {
 }
 
 .guestRegisterBanner {
-  position: absolute;
-  height: 40px;
-  left: 300px;
-  width: 79%;
-  text-align: center;
+  height: 57px;
+  margin-top: -52px;
+  width: 100%;
   display: flex;
   vertical-align: middle;
-  justify-content: center;
+  justify-content: flex-end;
   padding-top: 15px;
   align-items: center;
-  color: black;
-  background-color: rgba(128, 128, 128, 0.055)
+  padding-right: 68px;
+  color: #4c4c4c;
+  font-size: 15px;
+  background: transparent;
+  font-family: 'Muli';
 }
 
 .guestRegisterBanner:hover {
   background-color: rgba(128, 128, 128, 0.123);
   cursor: pointer;
+}
+.guestRegisterBanner:focus {
+  outline: none;
 }
 
 .guestModalGoogleLoginButton {
