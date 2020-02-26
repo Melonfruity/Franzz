@@ -20,11 +20,13 @@ const UserList = ({ userStatus }) => {
   }) : <p>Loading...</p>;
 
   return (
+    <div className="userListContainer">
+    <p className="onlineUsers">Online Users</p>
     <div className="userList">
-      <p className="onlineUsers">Online Users</p>
       <List>
         {userListContainer}
       </List>
+    </div>
     </div>
   );
 };
