@@ -56,6 +56,7 @@ export const useChat = (state, setState, socket) => {
         {
           ...prev,
           videoStates: {
+            ...prev.videoStates,
             [channel]: {
               url: '5mGuCdlCcNM',
             },
@@ -83,11 +84,11 @@ export const useChat = (state, setState, socket) => {
         const { channel } = data;
 
         updateMaps(channel);
-
         setState((prev) => (
           {
             ...prev,
             videoStates: {
+              ...prev.videoStates,
               [channel]: {
                 url: '5mGuCdlCcNM',
               },
