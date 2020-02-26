@@ -62,7 +62,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div id="app">
       <Router>
         <NavBar
           logOut={logOut}

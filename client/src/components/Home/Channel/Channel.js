@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import channelService from '../../../service/channelService';
-
 import Chat from './Container/Chat/Chat';
 import InviteLink from './ChannelUI/InviteLink';
 import RightUI from './ChannelUI/RightUI';
@@ -24,6 +22,8 @@ const Channel = ({
   syncVideo,
   sendLine,
   lines,
+  isGuest,
+  setState,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
@@ -32,28 +32,12 @@ const Channel = ({
     canvasBox: false,
   });
 
-  const [invite, setInvite] = useState({
-    ready: false,
-    link: '',
-  });
-
-  const createInvite = () => {
-    channelService
-      .getInvite(channel)
-      .then(({ channelID }) => setInvite({
-        ready: true,
-        link: channelID,
-      }));
-  };
 
   return (
     <div id="channel">
       <div id="channelName">{name}</div>
       <InviteLink
         channel={channel}
-        createInvite={createInvite}
-        invite={invite}
-        setInvite={setInvite}
       />
       <div id="chat-righUi">
         <Chat
@@ -70,6 +54,8 @@ const Channel = ({
           syncVideo={syncVideo}
           sendLine={sendLine}
           lines={lines}
+          isGuest={isGuest}
+          setState={setState}
         />
         <RightUI
           changeView={changeView}

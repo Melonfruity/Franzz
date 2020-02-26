@@ -3,16 +3,31 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import TextField from '@material-ui/core/TextField';
+import channelService from '../../../../service/channelService';
 
-const InviteLink = ({ invite, createInvite }) => {
+
+const InviteLink = ({ channel }) => {
   const [show, setShow] = useState(false);
+  const [invite, setInvite] = useState({
+    ready: false,
+    link: '',
+  });
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  const createInvite = () => {
+    channelService
+      .getInvite(channel)
+      .then(({ channelID }) => setInvite({
+        ready: true,
+        link: channelID,
+      }))
+      .then(() => { setShow(true); });
+  };
 
   return (
     <>
-      <Button className="inviteLinkModalButton" variant="primary" onClick={handleShow}>
+      <Button className="inviteLinkModalButton" variant="primary" onClick={createInvite}>
         Create Invite Link
       </Button>
 
@@ -21,19 +36,16 @@ const InviteLink = ({ invite, createInvite }) => {
           <Modal.Title>Invite Link</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { invite.ready ? (
-            <div className="invitePopup">
-              <TextField defaultValue={invite.link} />
-              <CopyToClipboard
-                text={invite.link}
-              >
-                <Button type="button">
+          <div className="invitePopup">
+            <TextField defaultValue={invite.link} />
+            <CopyToClipboard
+              text={invite.link}
+            >
+              <Button type="button">
                 Copy to clipboard!
-                </Button>
-              </CopyToClipboard>
-            </div>
-          )
-            : <Button className="inviteLinkButton" type="button" onClick={createInvite}>Generate Invite Link</Button> }
+              </Button>
+            </CopyToClipboard>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

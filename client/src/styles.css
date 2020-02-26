@@ -9,14 +9,14 @@ html {
 
 body {
   background-color: white;
-  height: 90%;
+  height: 100%;
   /* overflow-x: hidden; */
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
 
 #root {
-  height: 90%;
+  height: 100%;
 }
 
 .appContainer {
@@ -328,23 +328,27 @@ h3 {
 }
 
 .guestRegisterBanner {
-  position: absolute;
-  height: 40px;
-  left: 300px;
-  width: 79%;
-  text-align: center;
+  height: 57px;
+  margin-top: -52px;
+  width: 100%;
   display: flex;
   vertical-align: middle;
-  justify-content: center;
+  justify-content: flex-end;
   padding-top: 15px;
   align-items: center;
-  color: black;
-  background-color: rgba(128, 128, 128, 0.055)
+  padding-right: 68px;
+  color: #4c4c4c;
+  font-size: 15px;
+  background: transparent;
+  font-family: 'Muli';
 }
 
 .guestRegisterBanner:hover {
   background-color: rgba(128, 128, 128, 0.123);
   cursor: pointer;
+}
+.guestRegisterBanner:focus {
+  outline: none;
 }
 
 .guestModalGoogleLoginButton {
@@ -520,7 +524,9 @@ background-repeat: no-repeat;
 }
 
 .newChannelHeader {
-  text-align:center;
+  text-align: center;
+  font-family: 'Muli';
+  font-weight: 800;
 }
 
 .invitePopup {
@@ -705,4 +711,33 @@ aside.emoji-picker-react {
   padding: 28px;
   font-family: 'Muli';
   color: rgb(15, 15, 15);
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #494949;
+  border-color: #3f3f3f;
+  box-shadow: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1f1f1f;
+  border-color: #181818;
+  font-family: 'Muli';
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #292929;
+  border-color: #252525;
+}
+
+#noChannelPlaceholder {
+  height: 100%;
+  display: flex;
+  background: #efefef;
+  flex-grow: 15;
+  justify-content: center;
+  align-items: center;
 }
