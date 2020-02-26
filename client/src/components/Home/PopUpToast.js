@@ -51,6 +51,7 @@ const PopupToast = ({
               Create
             </button>
           </form>
+          <div className="divider" />
           <form className="joinChannelForm">
             <p style={{
               textAlign: 'center', fontSize: '20px', color: 'rgb(114, 137, 218)', margin: '0',

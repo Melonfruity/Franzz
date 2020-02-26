@@ -49,22 +49,16 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
         <PopupToast className="toast">
           <div className="seperate">
             <form className="createChannelForm">
-            <p style={{textAlign:'center', fontSize: '20px',color:'rgb(60, 163, 116)',margin:'0'}}>CREATE</p>
-            <p style={{textAlign:'center', fontSize:'12px'}}>Create a new server and invite your friends!</p>
+              <p style={{
+                textAlign: 'center', fontSize: '20px', color: 'rgb(60, 163, 116)', margin: '0',
+              }}
+              >
+CREATE
+              </p>
+              <p style={{ textAlign: 'center', fontSize: '12px' }}>Create a new server and invite your friends!</p>
               <div className="createChannelImageContainer">
-              <div className="joinChannelImage">
+                <div className="joinChannelImage" />
               </div>
-              </div>
-                {/* <JoinCreateChannelInput
-                {...channelName}
-                reset={undefined}
-                name="Channel Name"
-                placeholder="Channel Name"
-                createChannel={createChannel}
-                id="outlined-basic" 
-                label="Channel Name" 
-                variant="outlined">
-                </JoinCreateChannelInput> */}
               <input
                 {...channelName}
                 className="JoinCreateInput"
@@ -72,16 +66,20 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
                 placeholder="Channel Name"
                 onKeyPress={(e) => (e.key === 'Enter' ? createChannel(e) : null)}
               />
-              <button className='createChannelButton' type="button" onClick={(e) => createChannel(e)}>
+              <button className="createChannelButton" type="button" onClick={(e) => createChannel(e)}>
                 Create
               </button>
             </form>
             <form className="joinChannelForm">
-              <p style={{textAlign:'center', fontSize: '20px', color:'rgb(114, 137, 218)',margin:'0'}}>JOIN</p>
-              <p style={{textAlign:'center', fontSize:'12px'}}>Enter an invite and join your friends server!</p>
+              <p style={{
+                textAlign: 'center', fontSize: '20px', color: 'rgb(114, 137, 218)', margin: '0',
+              }}
+              >
+JOIN
+              </p>
+              <p style={{ textAlign: 'center', fontSize: '12px' }}>Enter an invite and join your friends server!</p>
               <div className="createChannelImageContainer">
-              <div className="createChannelImage">
-              </div>
+                <div className="createChannelImage" />
               </div>
               {/* <JoinCreateChannelInput
                 {...channelLink}
@@ -89,8 +87,8 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
                 name="Channel Link"
                 handleJoinCreate={joinChannel}
                 placeholder="Channel Link"
-                id="outlined-basic" 
-                label="Channel Link" 
+                id="outlined-basic"
+                label="Channel Link"
                 variant="outlined" >
                 </JoinCreateChannelInput> */}
               <input
@@ -100,7 +98,7 @@ const Modal = ({ emitCreateChannel, emitJoinChannel }) => {
                 placeholder="Channel Link"
                 onKeyPress={(e) => (e.key === 'Enter' ? joinChannel(e) : null)}
               />
-              <button className='joinChannelButton' type="button" onClick={(e) => joinChannel(e)}>
+              <button className="joinChannelButton" type="button" onClick={(e) => joinChannel(e)}>
                 Join
               </button>
             </form>
