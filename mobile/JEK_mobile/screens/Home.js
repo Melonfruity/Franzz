@@ -1,14 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Platform,
   StatusBar,
   StyleSheet,
-  View,
   Text,
-  TextInput,
   Dimensions,
   FlatList,
-  Button,
   TouchableHighlight,
   SafeAreaView
 } from 'react-native';
@@ -16,7 +12,7 @@ import {
 import service from '../utils/service';
 
 
-const Home = ({ state, setState, logout, setCurrentChannel, navigation, findLocationAsync }) => {
+const Home = ({ state, setState, setCurrentChannel, navigation, findLocationAsync }) => {
 
   useEffect(() => {
     service
@@ -29,7 +25,7 @@ const Home = ({ state, setState, logout, setCurrentChannel, navigation, findLoca
               users,
               name,
               channel,
-              messages: ele.messages,
+              messages: ele.messages.reverse(),
             }
           }
           return obj;
