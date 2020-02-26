@@ -28,14 +28,23 @@ const Marker = ({ title }) => (
   </div>
 );
 
+const rand = (coord) => {
+  const addsub = Math.round(Math.random());
+  if (addsub === 1) {
+    return coord + (Math.random() / 1000);
+  }
+  return coord - (Math.random() / 1000);
+};
+
+
 const StalkerMap = ({ locations, center, channel }) => {
   const locationMarkers = locations ? locations.map((user) => (
     <Marker
       className="googleMapsMarker"
       key={`${channel}${Math.random() * 10}`}
       title={`${user.username}`}
-      lat={user.location.lat}
-      lng={user.location.lng}
+      lat={rand(user.location.lat)}
+      lng={rand(user.location.lng)}
     />
   )) : <Marker title="default location" {...center} />;
 

@@ -24,14 +24,22 @@ const MapScreen = ({ locations, center, findLocationAsync }) => {
       }
     }, [])
 
+  const rand = (coord) => {
+    const addsub = Math.round(Math.random());
+    if (addsub === 1) {
+      return coord + (Math.random() / 1000);
+    }
+    return coord - (Math.random() / 1000);
+  };
+
   const usersLocations = Object.values(Object.values(locations).reduce((obj, arr) => {
     arr.forEach(e => {
       if (!obj[e.id]) {
         obj[e.id] = {
           id: e.id,
           coordinates: {
-            latitude: e.location.lat,
-            longitude: e.location.lng,
+            latitude: rand(e.location.lat),
+            longitude: rand(e.location.lng),
           },
           username: e.username
         }
