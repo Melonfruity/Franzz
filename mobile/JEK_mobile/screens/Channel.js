@@ -9,7 +9,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { GiftedChat } from 'react-native-gifted-chat';
 
-const Channel = ({ state, setState, channel, socket }) => {
+const Channel = ({ state, setState, channel, socket, currentUser }) => {
 
   const { messages, users } = state.channelStates[channel];
 
@@ -36,6 +36,7 @@ const Channel = ({ state, setState, channel, socket }) => {
   }
 
   const formattedMessages = messages.map((msg) => {
+    console.log(msg.user.id, state.currentUser, currentUser)
     return ({
       _id: msg.id,
       text: msg.message,
@@ -55,7 +56,6 @@ const Channel = ({ state, setState, channel, socket }) => {
         user={{
           _id: state.currentUser,
         }}
-        bottomOffset={100}
       />
       {
         Platform.OS === 'android' ? <KeyboardSpacer /> : null

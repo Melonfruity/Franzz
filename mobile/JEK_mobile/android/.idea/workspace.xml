@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/src/service/mapService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/service/mapService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/utils/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routes/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/HomeStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../screens/Channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../screens/Channel.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="611" />
     <option name="y" value="201" />
     <option name="width" value="679" />

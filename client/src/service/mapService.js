@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
+import { GOOGLE_API_KEY } from '../utils/config';
 
 const getLocation = async (updateLocation) => {
   axios
