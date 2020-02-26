@@ -202,7 +202,6 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
-      console.log(userStatus)
       setState((prev) => ({
         ...prev,
         users: {
@@ -228,7 +227,6 @@ const Home = ({ state, setState }) => {
       url, paused, played, channel,
     }) => {
       if (url) {
-        console.log('new url', url, played, paused, channel)
         setState((prev) => (
           {
             ...prev,

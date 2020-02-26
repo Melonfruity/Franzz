@@ -9,7 +9,6 @@ export const useYoutube = (state, setState, socket) => {
         channel,
         authorization: state.authorization,
       };
-      console.log('change vs', !!socket, url, channel, played, paused)
       setState((prev) => ({
         ...prev,
         videoStates: {

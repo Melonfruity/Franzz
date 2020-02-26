@@ -13,7 +13,6 @@ const YoutubeSync = ({
     setNewUrl(e.target.value);
   };
 
-  console.log('video', channel, videoStates[channel]);
   function handleSubmit(e) {
     e.preventDefault();
     if (newUrl) {
