@@ -434,13 +434,15 @@ background-repeat: no-repeat;
 .createChannelForm {
   display: flex;
   flex-direction: column;
+  margin-right: 48px;
 }
 
 .createChannelButton {
-  margin-top:10px;
-  background-color:rgb(60, 163, 116);
+  margin-top: 10px;
+  background-color: rgb(60, 163, 116);
   border-radius: 5px;
   color: white;
+  height: 41px;
   /* width:220px; */
 }
 
@@ -449,6 +451,7 @@ background-repeat: no-repeat;
   background-color:rgb(114, 137, 218);
   border-radius: 5px;
   color: white;
+  height: 41px;
 }
 
 .JoinCreateInput {
@@ -700,7 +703,7 @@ aside.emoji-picker-react {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 28px;
   font-family: 'Muli';
   color: rgb(15, 15, 15);
 }
