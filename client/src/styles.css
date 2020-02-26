@@ -290,9 +290,14 @@ div.jumbotron {
 }
 
 .userList {
-  height: 400px;
+  max-height: 400px;
   width: 100%;
   margin-bottom: 94px;
+  overflow:scroll;
+}
+
+.userListContainer {
+  width: 100%;
 }
 
 hr {
@@ -647,5 +652,5 @@ aside.emoji-picker-react {
 }
 
 .video-resize-box.resize-box:after {
-  display:none;
+  /* display:none; */
 }
