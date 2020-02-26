@@ -82,6 +82,7 @@ const App = () => {
       .then(({
         error, guest, userID, username, authorization,
       }) => {
+        console.log(userID, username, guest, authorization)
         if (!error) {
           setState((prev) => ({
             ...prev,
@@ -189,6 +190,7 @@ const App = () => {
         .then(({
           guest, userID, username, authorization,
         }) => {
+          console.log(guest, userID, username, authorization)
           setState((prev) => ({
             ...prev,
             guest,
@@ -274,6 +276,7 @@ const App = () => {
                   createChannel={createChannel}
                   setCurrentChannel={setCurrentChannel}
                   findLocationAsync={findLocationAsync}
+                  currentUser={state.currentUser}
                 />}
             </Tab.Screen>
             <Tab.Screen
