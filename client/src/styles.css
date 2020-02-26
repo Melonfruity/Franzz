@@ -713,3 +713,16 @@ aside.emoji-picker-react {
   border-color: #3f3f3f;
   box-shadow: none;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #1f1f1f;
+  border-color: #181818;
+  font-family: 'Muli';
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #292929;
+  border-color: #252525;
+}
