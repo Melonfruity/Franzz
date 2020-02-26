@@ -140,9 +140,19 @@ const Home = ({ state, setState }) => {
             }
             return obj;
           }, {});
+          const videoStates = channelData.reduce((obj, ele) => {
+            // eslint-disable-next-line no-param-reassign
+            obj[ele.data.channel] = {
+              url: '5mGuCdlCcNM',
+              played: false,
+              paused: true,
+            };
+            return obj;
+          }, {});
           setState((prev) => ({
             ...prev,
             channelStates,
+            videoStates,
             currentChannel: Object.keys(channelStates)[0],
           }));
         });
@@ -218,10 +228,18 @@ const Home = ({ state, setState }) => {
       url, paused, played, channel,
     }) => {
       if (url) {
+        console.log('new url', url, played, paused, channel)
         setState((prev) => (
           {
             ...prev,
-            videoStates: { ...prev.videoStates, [channel]: { url, paused, played } },
+            videoStates: {
+              ...prev.videoStates,
+              [channel]: {
+                url,
+                paused,
+                played,
+              },
+            },
           }
         ));
       }
@@ -288,7 +306,7 @@ const Home = ({ state, setState }) => {
           emitCreateChannel={emitCreateChannel}
           emitJoinChannel={emitJoinChannel}
         />
-        <Redirect exact from="/home" to={`/channel/${state.currentChannel}`} />
+        <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
       </Router>
     </div>
   );
