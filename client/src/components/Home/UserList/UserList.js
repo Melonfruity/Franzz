@@ -4,16 +4,20 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import UserItem from './UserItem';
 
-// import './channelList.css';
-
 const UserList = ({ userStatus }) => {
-  const userListContainer = userStatus ? userStatus.map((element) => {
-    const { username, id } = element;
+  const userListContainer = userStatus ? userStatus.map((element, i) => {
+    const { username, id, online } = element;
     return (
-      <div key={id} className="userItems">
-        <UserItem
-          name={username}
-        />
+      <div key={`user${id}`} className="userItems">
+        {online
+          ? (
+            <UserItem
+              name={username}
+            />
+          )
+          : (
+            <div />
+          )}
         <Divider />
       </div>
     );

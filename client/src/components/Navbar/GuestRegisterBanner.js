@@ -54,7 +54,9 @@ const GuestRegisterBanner = ({ setState }) => {
         </Modal.Header>
         <Modal.Body className="NewAccountModalBody">
           <form className="NewAccountRegistrationModalForm">
-            <p>Welcome! Claim your account to keep all your servers and chats even after you close the browser.</p>
+            <p>
+              Welcome! Claim your account to keep all your servers and chats even after you close the browser.
+            </p>
             <div className="email">
               <TextField
                 name="email"

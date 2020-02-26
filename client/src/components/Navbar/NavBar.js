@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ state, logOut, setState }) => ((
+const NavBar = ({ state, logOut }) => ((
   <div>
     <nav className="navLogout">
       <div className="username">
