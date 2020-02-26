@@ -9,14 +9,14 @@ html {
 
 body {
   background-color: white;
-  height: 90%;
+  height: 100%;
   /* overflow-x: hidden; */
   /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
   /* background-size: cover; */
 }
 
 #root {
-  height: 90%;
+  height: 100%;
 }
 
 .appContainer {
@@ -520,7 +520,9 @@ background-repeat: no-repeat;
 }
 
 .newChannelHeader {
-  text-align:center;
+  text-align: center;
+  font-family: 'Muli';
+  font-weight: 800;
 }
 
 .invitePopup {
@@ -725,4 +727,13 @@ aside.emoji-picker-react {
   color: #fff;
   background-color: #292929;
   border-color: #252525;
+}
+
+#noChannelPlaceholder {
+  height: 100%;
+  display: flex;
+  background: #efefef;
+  flex-grow: 15;
+  justify-content: center;
+  align-items: center;
 }
