@@ -54,8 +54,6 @@ const Channel = ({
           syncVideo={syncVideo}
           sendLine={sendLine}
           lines={lines}
-          isGuest={isGuest}
-          setState={setState}
         />
         <RightUI
           changeView={changeView}

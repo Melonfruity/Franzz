@@ -1,4 +1,8 @@
 #main-container {
+  height: 100%
+}
+
+#channel-container {
   display:flex;
   flex-direction: row;
   height: 100%;

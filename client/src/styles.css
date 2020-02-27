@@ -24,7 +24,7 @@ body {
 }
 
 .landingContainer {
-  height: 80%;
+  height: 100%;
 }
 
 .landingPage {
@@ -328,16 +328,15 @@ h3 {
 }
 
 .guestRegisterBanner {
-  height: 57px;
-  margin-top: -52px;
+  height: 42px;
   width: 100%;
   display: flex;
   vertical-align: middle;
   justify-content: flex-end;
-  padding-top: 15px;
+  padding-top: 18px;
   align-items: center;
-  padding-right: 68px;
-  color: #4c4c4c;
+  padding-right: 152px;
+  color: white;
   font-size: 15px;
   background: transparent;
   font-family: 'Muli';
