@@ -280,33 +280,31 @@ const Home = ({ state, setState }) => {
 
   return (
     <div id="main-container">
-      <div id="channel-container">
-        <Router>
-          <ChannelList
-            selectCurrentChannel={selectCurrentChannel}
-            channelIdNamePair={channelIdNamePair}
-            emitJoinChannel={emitJoinChannel}
-            emitCreateChannel={emitCreateChannel}
-            toggleForm={toggleForm}
-          />
-          <Switch>
-            {channelItems}
-          </Switch>
-          {state.loaded && !state.currentChannel && (
-          <NewChannelModal
-            emitCreateChannel={emitCreateChannel}
-            emitJoinChannel={emitJoinChannel}
-          />
-          )}
-          <PopupToast
-            show={state.newChannelForm}
-            toggleForm={toggleForm}
-            emitCreateChannel={emitCreateChannel}
-            emitJoinChannel={emitJoinChannel}
-          />
-          <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
-        </Router>
-      </div>
+      <Router>
+        <ChannelList
+          selectCurrentChannel={selectCurrentChannel}
+          channelIdNamePair={channelIdNamePair}
+          emitJoinChannel={emitJoinChannel}
+          emitCreateChannel={emitCreateChannel}
+          toggleForm={toggleForm}
+        />
+        <Switch>
+          {channelItems}
+        </Switch>
+        {state.loaded && !state.currentChannel && (
+        <NewChannelModal
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
+        />
+        )}
+        <PopupToast
+          show={state.newChannelForm}
+          toggleForm={toggleForm}
+          emitCreateChannel={emitCreateChannel}
+          emitJoinChannel={emitJoinChannel}
+        />
+        <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
+      </Router>
     </div>
   );
 };

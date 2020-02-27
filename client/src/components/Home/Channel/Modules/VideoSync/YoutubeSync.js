@@ -21,7 +21,7 @@ const YoutubeSync = ({
       if (ampersandPosition !== -1) {
         videoId = videoId.substring(0, ampersandPosition);
       }
-      console.log('handleSubmit', ...videoId) 
+      console.log('handleSubmit', ...videoId); 
       changeVideoState(videoId, channel, false, true);
     }
   }
