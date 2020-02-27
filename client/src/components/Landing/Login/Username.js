@@ -32,7 +32,7 @@ const Username = ({ setState }) => {
       <form>
         <TextField
           placeholder="username"
-          id="outlined-basic"
+          // id="outlined-basic"
           variant="outlined"
           label="Username"
           {...username}

@@ -200,6 +200,7 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
+      console.log(users, channel)
       setState((prev) => ({
         ...prev,
         users: {

@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { info } = require('./utils/logger');
 
 const shortLinks = {};
 const locations = {};
@@ -45,6 +46,7 @@ const changeOnline = (socketID, user, channels, username, io) => {
           // eslint-disable-next-line no-shadow
           .map(({ username, sockets, id }) => ({ id, username, online: !_.isEmpty(sockets) })),
     };
+    info(userStatus);
     io.in(channel).emit('user status', { userStatus });
   });
 };
@@ -64,9 +66,9 @@ const changeOffline = (socketID, io) => {
         users:
           Object.values(status[channel])
             // eslint-disable-next-line no-shadow
-            .map(({ username, sockets }) => ({ username, online: !_.isEmpty(sockets) })),
+            .map(({ username, sockets, id }) => ({ id, username, online: !_.isEmpty(sockets) })),
       };
-
+      info(userStatus);
       // should emit a new array of new status for each of the users channels
       io.in(channel).emit('user status', { userStatus });
 
@@ -77,6 +79,7 @@ const changeOffline = (socketID, io) => {
           const locationObj = {
             [channelID]: [...Object.values(locations[channelID])],
           };
+          info(locationObj);
           io.in(channelID).emit('update location', locationObj);
         }
       });

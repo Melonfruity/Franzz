@@ -1,10 +1,11 @@
 const { serverURL } = require('../../../../../../utils/config');
-function preventDefaults(e) {
+
+const preventDefaults = (e) => {
   e.preventDefault();
   e.stopPropagation();
-}
+};
 
-async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
+const uploadFile = async (file, channelId, albumName, emitSendMessage, viewUpdatedAlbum) => {
   const url = `${serverURL}/api/photos/uploadPhotos`;
   const formData = new FormData();
   formData.append('file', file);
@@ -32,23 +33,22 @@ async function uploadFile(file, channelId, albumName, emitSendMessage, viewUpdat
       }
     })
     .catch((err) => { console.log(err); });
-}
+};
 
-function handleFiles(files, channelId, albumName, emitSendMessage, viewUpdatedAlbum) {
+const handleFiles = (files, channelId, albumName, emitSendMessage, viewUpdatedAlbum) => {
   [...files].forEach((file) => {
     uploadFile(file, channelId, albumName, emitSendMessage, viewUpdatedAlbum);
   });
-}
+};
 
-function handleDrop(e, channelId, albumName, emitSendMessage) {
+const handleDrop = (e, channelId, albumName, emitSendMessage) => {
   // get emitsendmessage to be passed through as a function
   preventDefaults(e);
   const dt = e.dataTransfer;
   const { files } = dt;
 
   handleFiles(files, channelId, albumName, emitSendMessage);
-}
-
+};
 
 module.exports = {
   preventDefaults,
