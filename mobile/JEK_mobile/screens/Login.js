@@ -14,7 +14,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 const Login = ({ guest, login }) => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('mobileJEK@gmail.com');
+  const [email, setEmail] = useState('JanelleFan@gmail.com');
   const [password, setPassword] = useState('password');
 
   const Separator = () => <View style={styles.separator} />
