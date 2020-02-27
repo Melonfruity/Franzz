@@ -279,7 +279,6 @@ const Home = ({ state, setState }) => {
 
   return (
     <div id="main-container">
-      <div id="channel-container">
       <Router>
         <ChannelList
           selectCurrentChannel={selectCurrentChannel}
@@ -305,7 +304,6 @@ const Home = ({ state, setState }) => {
         />
         <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
       </Router>
-      </div>
     </div>
   );
 };

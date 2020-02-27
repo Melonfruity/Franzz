@@ -46,7 +46,7 @@ const YoutubeVideoPlayer = ({
   }
 
   const opts = {
-    height: '500',
+    height: '520',
     width: '840',
     playerVars: { // https://developers.google.com/youtube/player_parameters
       autoplay: 1,

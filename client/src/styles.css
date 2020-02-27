@@ -251,6 +251,7 @@ body {
 .channelList {
   max-height: 610px;
   margin-top: 10px;
+  min-width: 230px;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Muli';
