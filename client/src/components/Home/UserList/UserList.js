@@ -5,10 +5,11 @@ import Divider from '@material-ui/core/Divider';
 import UserItem from './UserItem';
 
 const UserList = ({ userStatus }) => {
-  const userListContainer = userStatus ? userStatus.map((element, i) => {
+  const userListContainer = userStatus ? userStatus.map((element) => {
     const { username, id, online } = element;
+    console.log(username, id, online)
     return (
-      <div key={`user${id}`} className="userItems">
+      <div key={`${id}`} className="userItems">
         <UserItem
           name={username}
           online={online}
