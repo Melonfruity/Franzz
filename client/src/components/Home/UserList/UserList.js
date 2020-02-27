@@ -7,14 +7,20 @@ import UserItem from './UserItem';
 const UserList = ({ userStatus }) => {
   const userListContainer = userStatus ? userStatus.map((element) => {
     const { username, id, online } = element;
-    console.log(username, id, online)
+    console.log(username, id, online);
     return (
       <div key={`${id}`} className="userItems">
-        <UserItem
-          name={username}
-          online={online}
-        />
-        <Divider />
+        {id
+          ? (
+            <div>
+              <UserItem
+                name={username}
+                online={online}
+              />
+              <Divider />
+            </div>
+          )
+          : <div />}
       </div>
     );
   }) : <p>Loading...</p>;
