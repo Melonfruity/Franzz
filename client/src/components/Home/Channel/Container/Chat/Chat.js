@@ -25,8 +25,6 @@ const Chat = ({
   syncVideo,
   sendLine,
   lines,
-  isGuest,
-  setState,
 }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState('');
@@ -38,7 +36,6 @@ const Chat = ({
 
   return (
     <div id="chat-container">
-      {isGuest === 'true' ? <GuestRegisterBanner setState={setState} /> : null}
       <TextContainer
         messages={messages}
         emitDeleteMessage={emitDeleteMessage}
