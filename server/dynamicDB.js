@@ -64,7 +64,7 @@ const changeOffline = (socketID, io) => {
         users:
           Object.values(status[channel])
             // eslint-disable-next-line no-shadow
-            .map(({ username, sockets }) => ({ username, online: !_.isEmpty(sockets) })),
+            .map(({ username, sockets, id }) => ({ id, username, online: !_.isEmpty(sockets) })),
       };
 
       // should emit a new array of new status for each of the users channels

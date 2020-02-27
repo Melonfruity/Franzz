@@ -60,7 +60,6 @@ const GuestRegisterBanner = ({ setState }) => {
             <div className="email">
               <TextField
                 name="email"
-                id="outlined-basic"
                 label="email"
                 placeholder="email"
                 {...email}
@@ -73,7 +72,6 @@ const GuestRegisterBanner = ({ setState }) => {
             <div className="password">
               <TextField
                 name="password"
-                id="outlined-basic"
                 label="password"
                 placeholder="password"
                 {...password}

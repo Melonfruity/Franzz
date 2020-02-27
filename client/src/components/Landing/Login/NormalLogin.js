@@ -34,7 +34,7 @@ const NormalLogin = ({ setState }) => {
         <TextField
           placeholder="email"
           label="E-mail"
-          id="outlined-basic"
+          // id="outlined-basic"
           variant="outlined"
           {...email}
           reset={undefined}
@@ -43,7 +43,7 @@ const NormalLogin = ({ setState }) => {
         <TextField
           placeholder="password"
           labal="Password"
-          id="outlined-basic"
+          // id="outlined-basic"
           variant="outlined"
           {...password}
           reset={undefined}

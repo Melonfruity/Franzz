@@ -5,6 +5,9 @@ import Divider from '@material-ui/core/Divider';
 import UserItem from './UserItem';
 
 const UserList = ({ userStatus }) => {
+
+  console.log(userStatus)
+
   const userListContainer = userStatus ? userStatus.map((element) => {
     const { username, id, online } = element;
     console.log(username, id, online);

@@ -200,6 +200,7 @@ const Home = ({ state, setState }) => {
 
     socket.on('user status', ({ userStatus }) => {
       const { channel, users } = userStatus;
+      console.log(users, channel)
       setState((prev) => ({
         ...prev,
         users: {
@@ -280,31 +281,31 @@ const Home = ({ state, setState }) => {
   return (
     <div id="main-container">
       <div id="channel-container">
-      <Router>
-        <ChannelList
-          selectCurrentChannel={selectCurrentChannel}
-          channelIdNamePair={channelIdNamePair}
-          emitJoinChannel={emitJoinChannel}
-          emitCreateChannel={emitCreateChannel}
-          toggleForm={toggleForm}
-        />
-        <Switch>
-          {channelItems}
-        </Switch>
-        {state.loaded && !state.currentChannel && (
-        <NewChannelModal
-          emitCreateChannel={emitCreateChannel}
-          emitJoinChannel={emitJoinChannel}
-        />
-        )}
-        <PopupToast
-          show={state.newChannelForm}
-          toggleForm={toggleForm}
-          emitCreateChannel={emitCreateChannel}
-          emitJoinChannel={emitJoinChannel}
-        />
-        <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
-      </Router>
+        <Router>
+          <ChannelList
+            selectCurrentChannel={selectCurrentChannel}
+            channelIdNamePair={channelIdNamePair}
+            emitJoinChannel={emitJoinChannel}
+            emitCreateChannel={emitCreateChannel}
+            toggleForm={toggleForm}
+          />
+          <Switch>
+            {channelItems}
+          </Switch>
+          {state.loaded && !state.currentChannel && (
+          <NewChannelModal
+            emitCreateChannel={emitCreateChannel}
+            emitJoinChannel={emitJoinChannel}
+          />
+          )}
+          <PopupToast
+            show={state.newChannelForm}
+            toggleForm={toggleForm}
+            emitCreateChannel={emitCreateChannel}
+            emitJoinChannel={emitJoinChannel}
+          />
+          <Redirect exact from="/home" to={state.currentChannel ? `/channel/${state.currentChannel}` : '/home'} />
+        </Router>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f7727aaa.chunk.css",
+    "main.js": "/static/js/main.1f21f6ec.chunk.js",
+    "main.js.map": "/static/js/main.1f21f6ec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.844668cf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.844668cf.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.6dba02e4.chunk.js": "/static/js/2.6dba02e4.chunk.js",
+    "static/js/2.6dba02e4.chunk.js.map": "/static/js/2.6dba02e4.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8f0905f25631755c6629b046a2a88514.js": "/precache-manifest.8f0905f25631755c6629b046a2a88514.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.f7727aaa.chunk.css.map": "/static/css/main.f7727aaa.chunk.css.map",
+    "static/js/2.6dba02e4.chunk.js.LICENSE.txt": "/static/js/2.6dba02e4.chunk.js.LICENSE.txt",
+    "static/media/channelStyling.css": "/static/media/map.dc8c3298.png",
+    "static/media/DragAndDropBox.css": "/static/media/emoticon-with-happy-face.c9a62c03.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.844668cf.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.6dba02e4.chunk.js",
+    "static/css/main.f7727aaa.chunk.css",
+    "static/js/main.1f21f6ec.chunk.js"
+  ]
+}

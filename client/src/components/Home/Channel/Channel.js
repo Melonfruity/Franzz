@@ -22,8 +22,6 @@ const Channel = ({
   syncVideo,
   sendLine,
   lines,
-  isGuest,
-  setState,
 }) => {
   const [moduleView, changeView] = useState({
     stalkerMap: false,
