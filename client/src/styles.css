@@ -333,9 +333,10 @@ h3 {
   display: flex;
   vertical-align: middle;
   justify-content: flex-end;
-  padding-top: 18px;
+  padding-top: 15px;
   align-items: center;
-  padding-right: 152px;
+  padding-right: 57px;
+  padding-left: 33px;
   color: white;
   font-size: 15px;
   background: transparent;
