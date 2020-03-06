@@ -17,11 +17,11 @@ Franzz is a messaging web application focused on connecting groups of franzz (fr
 
 ## Work Distribution
 
-Julie:
+### juliebede
 
-Eric:
+### melonfruity
 
-Kalvin:
+### ke2low
 
 ## Screenshots 📸
 
