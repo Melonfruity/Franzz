@@ -1,8 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "author": "Eric Luo",
-  "private": true,
+  "author": "Eric Luo, Julie Nyugen",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -10,6 +9,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint ."
   },
+  "license": "MIT",
   "eslintConfig": {
     "extends": "react-app"
   },

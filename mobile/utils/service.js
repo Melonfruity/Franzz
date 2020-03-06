@@ -1,9 +1,9 @@
-import axios from 'axios';
-import Global from '../Global';
+import axios from "axios";
+import Global from "../Global";
 
-const serverURL = Global.serverURL;
+const { GOOGLE_API_KEY, serverURL } = Global;
 
-const guest = async (usernameObj) => {
+const guest = async usernameObj => {
   const res = await axios.post(`${serverURL}/auth/guest`, usernameObj);
   if (!res.error) {
     const { token, username, guest, userID } = res.data;
@@ -14,7 +14,7 @@ const guest = async (usernameObj) => {
   }
 };
 
-const login = async (loginObj) => {
+const login = async loginObj => {
   const res = await axios.post(`${serverURL}/auth/login`, loginObj);
   const { token, username, guest, userID } = res.data;
   if (!res.error) {
@@ -25,11 +25,15 @@ const login = async (loginObj) => {
   }
 };
 
-const register = async (registerObj) => {
+const register = async registerObj => {
   const config = {
-    headers: { authorization: await Global.getLocal('authorization') },
+    headers: { authorization: await Global.getLocal("authorization") }
   };
-  const res = await axios.post(`${serverURL}/auth/register`, registerObj, config);
+  const res = await axios.post(
+    `${serverURL}/auth/register`,
+    registerObj,
+    config
+  );
   if (!res.error) {
     const { token, username, guest, userID } = res.data;
     Global.updateCredentials(res.data);
@@ -41,26 +45,29 @@ const register = async (registerObj) => {
 
 const initialize = async () => {
   const config = {
-    headers: { authorization: await Global.getLocal('authorization') },
+    headers: { authorization: await Global.getLocal("authorization") }
   };
   const res = await axios.get(`${serverURL}/channel/initialize`, config);
   return res.data;
-}
+};
 
-const invite = async (channelID) => {
+const invite = async channelID => {
   const config = {
-    headers: { authorization: await Global.getLocal('authorization') },
+    headers: { authorization: await Global.getLocal("authorization") }
   };
-  const res = await axios.get(`${serverURL}/channel/invite/${channelID}`, config);
+  const res = await axios.get(
+    `${serverURL}/channel/invite/${channelID}`,
+    config
+  );
   return res.data;
-}
+};
 
-const GOOGLE_API_KEY = 'AIzaSyBri0PKsTN8-kTlzAROVisAsALmAryij_A';
-
-const getLocation = async (updateLocation) => {
+const getLocation = async updateLocation => {
   axios
-    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`)
-    .then((res) => {
+    .post(
+      `https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`
+    )
+    .then(res => {
       const { location } = res.data;
       updateLocation(location);
     });
@@ -72,5 +79,5 @@ export default {
   register,
   initialize,
   invite,
-  getLocation,
-}
+  getLocation
+};

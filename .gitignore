@@ -2,3 +2,5 @@ node_modules
 .gitignore
 .git
 .DS_Store
+
+.env
