@@ -1,6 +1,8 @@
 # Franzz 🤗
 
-Franzz is a messaging web application focused on connecting groups of franzz (friends) together with multiple unique features, including...
+Franzz is a messaging web application focused on connecting groups of franzz (friends) together with multiple unique features.
+
+### Features
 
 1. Stalking map: View your group's live location on a map
 2. Photo gallery: Create share high quality photos and videos with your friends by creating albums
@@ -9,7 +11,17 @@ Franzz is a messaging web application focused on connecting groups of franzz (fr
 
 ## Installation 👾
 
-Run npm install for client and server.
+## Deployment
+
+## Dependancies
+
+## Work Distribution
+
+Julie:
+
+Eric:
+
+Kalvin:
 
 ## Screenshots 📸
 

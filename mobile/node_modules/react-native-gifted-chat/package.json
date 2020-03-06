@@ -1,0 +1,121 @@
+{
+  "name": "react-native-gifted-chat",
+  "version": "0.13.0",
+  "description": "The most complete chat UI for React Native",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaridSafi/react-native-gifted-chat.git"
+  },
+  "keywords": [
+    "android",
+    "ios",
+    "react-native",
+    "react",
+    "react-component",
+    "messenger",
+    "message",
+    "chat"
+  ],
+  "author": "Farid Safi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FaridSafi/react-native-gifted-chat/issues"
+  },
+  "homepage": "https://github.com/FaridSafi/react-native-gifted-chat#readme",
+  "scripts": {
+    "config:dev": "json -I -f package.json -e 'this.main=\"node_modules/expo/AppEntry.js\"'",
+    "config:npm": "json -I -f package.json -e 'this.main=\"lib/index.js\"'",
+    "lint": "tslint --project .",
+    "tsc": "node_modules/.bin/tsc --noEmit",
+    "start": "yarn config:dev && expo start",
+    "start:web": "yarn config:dev && expo start -w --dev",
+    "build": "rm -rf lib/ && node_modules/.bin/tsc && cp flow-typedefs/*.js.flow lib/",
+    "test": "TZ=Europe/Paris jest --no-watchman",
+    "test:watch": "TZ=Europe/Paris jest --watch",
+    "test:coverage": "TZ=Europe/Paris jest --coverage",
+    "prepublishOnly": "yarn lint && yarn build && yarn test && yarn config:npm",
+    "postpublish": "yarn config:dev"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFiles": [
+      "./tests/setup.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "testMatch": [
+      "**/*.test.ts?(x)"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example-expo",
+      "<rootDir>/example-slack-message"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./src/__tests__/"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jest": "24.0.17",
+    "@types/react": "16.9.16",
+    "@types/react-native": "^0.57.19",
+    "@types/react-native-communications": "2.2.1",
+    "@types/react-test-renderer": "16.8.3",
+    "@types/uuid": "3.4.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.7.1",
+    "babel-preset-expo": "^7.0.0",
+    "expo": "^36.0.0",
+    "expo-constants": "~8.0.0",
+    "expo-image-picker": "~8.0.0",
+    "expo-location": "~8.0.0",
+    "expo-permissions": "~8.0.0",
+    "flow-bin": "^0.108.0",
+    "husky": "^3.0.0",
+    "jest-expo": "^36.0.0",
+    "json": "^9.0.6",
+    "prettier": "1.18.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react-native-maps": "0.26.1",
+    "react-native-nav": "2.0.2",
+    "react-native-web": "0.11.7",
+    "react-native-web-maps": "0.2.0",
+    "react-test-renderer": "16.5.1",
+    "tslint": "5.12.0",
+    "tslint-config-prettier": "1.17.0",
+    "typescript": "3.4.5"
+  },
+  "dependencies": {
+    "@expo/react-native-action-sheet": "3.4.1",
+    "moment": "^2.19.0",
+    "prop-types": "15.7.2",
+    "react-native-communications": "2.2.1",
+    "react-native-iphone-x-helper": "^1.2.0",
+    "react-native-lightbox": "^0.8.1",
+    "react-native-parsed-text": "https://github.com/EvanBacon/react-native-parsed-text.git",
+    "uuid": "3.3.3"
+  },
+  "peerDependencies": {
+    "moment": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn tsc"
+    }
+  }
+}

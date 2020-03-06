@@ -1,0 +1,62 @@
+{
+  "name": "react-native-storage",
+  "version": "1.0.1",
+  "description": "A local storage wrapper for both react-native(AsyncStorage) and browser(localStorage).",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunnylqm/react-native-storage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sunnylqm/react-native-storage/issues"
+  },
+  "homepage": "https://github.com/sunnylqm/react-native-storage#readme",
+  "keywords": [
+    "react-native",
+    "localStorage",
+    "AsyncStorage"
+  ],
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "author": "sunnylqm",
+  "main": "lib/storage.cjs.js",
+  "jsnext:main": "lib/storage.esm.js",
+  "module": "lib/storage.esm.js",
+  "react-native": "src/storage.js",
+  "typings": "lib/storage.d.ts",
+  "scripts": {
+    "clean": "rm -rf lib/",
+    "build": "yarn clean && rollup -c && cp src/storage.d.ts lib/",
+    "prepare": "yarn build",
+    "test": "jest",
+    "postinstall": "opencollective-postinstall"
+  },
+  "jest": {
+    "verbose": true,
+    "bail": true,
+    "setupFiles": [
+      "./jestSupport/mockStorage.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "rollup": "^1.10.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-terser": "^4.0.4"
+  },
+  "dependencies": {
+    "opencollective-postinstall": "^2.0.2",
+    "opencollective": "^1.0.3"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/react-native-storage"
+  }
+}
