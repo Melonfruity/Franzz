@@ -1,6 +1,6 @@
 node_modules
+build
+.env
 .gitignore
 .git
 .DS_Store
-
-/server/.env
