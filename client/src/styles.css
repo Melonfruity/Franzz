@@ -1,0 +1,736 @@
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: white;
+}
+
+body {
+  background-color: white;
+  height: 100%;
+  /* overflow-x: hidden; */
+  /* background-image: url(./assets/Man-on-a-mountain-in-Romania.jpg); */
+  /* background-size: cover; */
+}
+
+#root {
+  height: 100%;
+}
+
+.appContainer {
+  height: 100%;
+}
+
+.landingContainer {
+  height: 100%;
+}
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  position: relative;
+  top: 90px;
+  height: 60%;
+  width: 50%;
+  padding: 21px;
+}
+
+.landingPage input {
+  width: 500px;
+  background-color: rgb(250, 250, 250);
+  text-align: left;
+  font-family: 'Muli';
+}
+
+.landingPage input ::placeholder {
+  color: grey;
+}
+
+
+
+.landingPage button {
+  width: 500px;
+  background-color: #202020;
+  color: white;
+  font-family: 'Muli';
+  margin-top: 9px;
+}
+
+.landingPage button:hover {
+  background-color: #353535;
+}
+
+.normalLogin {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.normalLogin form{
+  width: 500px;
+}
+
+.usernameLogin form {
+  width: 500px;
+}
+
+.googleLogin {
+  background-color: rgb(255, 255, 255); display: inline-flex; align-items: center; color: rgba(0, 0, 0, 0.54); box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px; padding: 0px; border-radius: 2px; border: 1px solid transparent; font-size: 14px; font-weight: 500; font-family: Roboto, sans-serif;
+}
+
+.googleLogin span {
+  width: 170px;
+}
+
+.landingPage .googleLogin span {
+  width: 405px;
+}
+
+.channelItems {
+  list-style: none;
+}
+
+.userHome {
+  display: flex;
+}
+
+.chatContainer {
+  color: 'blue';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}
+
+.chatInput {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.registration {
+  display: flex;
+  flex-direction: row;
+}
+
+.registration form {
+  display: flex;
+  flex-direction: row;
+}
+
+.navLogout {
+  display: flex;
+  flex-direction: row;
+  background: rgb(32, 32, 32);
+  color: white;
+  height: 43px;
+  justify-content: space-between;
+}
+
+.fas {
+  width: 50px;
+  height: 10px;
+}
+
+.fa-user-circle {
+  font-size: 30px;
+  color:rgba(255, 255, 255, 0.829);
+}
+
+.username {
+  margin-left: 24px;
+  display: flex;
+  margin-top: 4px;
+  width: 150px;
+  text-align: center;
+  font-family: 'Muli';
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.username p {
+  position:relative;
+  top: 10px;
+}
+
+.googleLoginButton {
+  position: relative;
+  margin-right: 10px;
+  right: 110px;
+}
+
+.logoutButton {
+  padding-right: 43px;
+  margin-top: 8px;
+  font-family: 'Muli';
+  color: white;
+}
+
+.logoutButton:hover {
+  color: white;
+  opacity: 70%;
+  text-decoration: none;
+}
+
+
+.leftBarUI {
+  margin-top: 1px;
+  border-right:1px solid #f3f3f3;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.NewAccountRegistrationModalForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewAccountRegistrationModalForm p {
+  text-align: center;
+}
+
+.NewAccountModal {
+  top: 120px;
+  height: 700px;
+}
+
+.NewAccountRegistrationModalForm div {
+  margin-bottom: 10px;
+}
+
+.NewAccountRegistrationModalForm input {
+  width: 300px;
+  margin-left: 5px;
+}
+
+
+.NewAccountModal form {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.channelList {
+  max-height: 610px;
+  margin-top: 10px;
+  min-width: 230px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: 'Muli';
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.signInInput {
+  width: 500px;
+  height: 60px;
+}
+
+.channelLink {
+  text-decoration: none;
+  color: black;
+}
+
+.channelLink:hover {
+  color: black;
+  text-decoration: none;
+}
+
+div.jumbotron {
+  /* background-color: #36405D;  */
+  /* /* background: linear-gradient(188deg, #36405D 10%, rgb(48, 57, 83) 100%); */
+}
+
+.modalButton {
+  position: absolute;
+  left: 215px;
+  top: 157px;
+}
+
+.chatInputBox {
+  width: 1100px;
+}
+
+.homeNav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rightBarUI {
+  z-index: 1;
+  width: 213px;
+  display: flex;
+  margin-top: -52px;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-left: 1px solid rgba(128, 128, 128, 0.459);
+}
+
+.userList {
+  height: 350px;
+  width: 100%;
+  margin-bottom: 94px;
+  overflow:scroll;
+}
+
+.userListContainer {
+  width: 100%;
+}
+
+hr {
+  width: 80%;
+  margin: 36px;
+  border-radius: 63px;
+}
+
+
+h3 {
+  width: 200px;
+}
+
+.guestRegisterBanner {
+  height: 42px;
+  width: 100%;
+  display: flex;
+  vertical-align: middle;
+  justify-content: flex-end;
+  padding-top: 15px;
+  align-items: center;
+  padding-right: 57px;
+  padding-left: 33px;
+  color: white;
+  font-size: 15px;
+  background: transparent;
+  font-family: 'Muli';
+}
+
+.guestRegisterBanner:hover {
+  background-color: rgba(128, 128, 128, 0.123);
+  cursor: pointer;
+}
+.guestRegisterBanner:focus {
+  outline: none;
+}
+
+.guestModalGoogleLoginButton {
+  position: absolute;
+  width: 400px;
+  left: 122px;
+  bottom:5px;
+}
+
+.guestRegisterModalCloseButton {
+  margin-left: 20px;
+}
+
+button#create-channel {
+  /* background: transparent; */
+  /* margin-top: 50px; */
+  background-color: white;
+  border: none;
+  font-size: 15px;
+  width: 100%;
+  height: 124%;
+  padding:0px;
+  font-family: 'Muli';
+  color: black;
+}
+
+button#create-channel:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+#leftBarTitle {
+  background: transparent;
+  z-index: 1;
+  border: none;
+  font-size: 2px;
+  margin-top: -1px;
+  height: 41px;
+}
+
+.guestRegisterModalButtons {
+  margin:auto;
+  text-align: center;
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 150px;
+}
+
+.modalFooter.modal-footer {
+}
+
+.NewAccountRegistrationModalForm .signInInput {
+  width: 400px;
+}
+
+
+.createChannelImage {
+  margin-left: 80px;
+  margin-bottom: 10px;
+  background-image: url(./assets/845d431ebfc24e13a0b31f7e64fc612b.png);
+  width: 97px;
+  height: 65px;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+.joinChannelImage {
+margin-left: 52px;
+margin-bottom: 10px;
+background-image: url(./assets/8fb52ec5260dfe6c5b93d211d3b6ecde.png);
+width: 135px;
+height: 65px;
+background-size:contain;
+background-repeat: no-repeat;
+}
+
+.toast {
+  height: 320px;
+  width: 1000px;
+}
+
+.joinChannelForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.createChannelForm {
+  display: flex;
+  flex-direction: column;
+  margin-right: 48px;
+}
+
+.createChannelButton {
+  margin-top: 10px;
+  background-color: rgb(60, 163, 116);
+  border-radius: 5px;
+  color: white;
+  height: 41px;
+  /* width:220px; */
+}
+
+.joinChannelButton {
+  margin-top:10px;
+  background-color:rgb(114, 137, 218);
+  border-radius: 5px;
+  color: white;
+  height: 41px;
+}
+
+.JoinCreateInput {
+  margin: 5px;
+  height: 50px;
+}
+
+.newChannelModal {
+  top: 200px;
+}
+
+.seperate {
+  display:flex;
+}
+
+.googleMapsMarkerLabel {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px black solid;
+  text-align:center;
+  font-size: 14px;
+  overflow:hidden;
+}
+
+.css-y1c0xs {
+  /* border-right: 1px solid rgba(128, 128, 128, 0.452); */
+}
+
+.onlineUsers {
+  text-align: center;
+  margin-bottom: -4px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Muli';
+}
+
+/* #outlined-basic {
+  width: 500px;
+} */
+
+.usernameLogin .MuiInputBase-root {
+  width: 500px;
+}
+
+.normalLogin .MuiInputBase-root {
+  width: 500px;
+}
+
+.inviteButton {
+  position: absolute;
+  right: 200px;
+  top:15px;
+}
+
+.MuiDivider-root {
+  border: none;
+  height: 1px;
+  margin: 0;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.newChannelHeader {
+  text-align: center;
+  font-family: 'Muli';
+  font-weight: 800;
+}
+
+.invitePopup {
+  display:flex;
+  flex-direction: column;
+}
+
+.inviteLinkButton {
+  text-align:center;
+  display:flex;
+  margin:auto;
+  justify-self:center;
+}
+
+.inviteLinkModalContainer {
+  top: 30vh;
+}
+
+.inviteLinkModalButton {
+  position:absolute;
+  bottom: 40px;
+  left: 46px;
+  font-size: 13px;
+  color: #fff;
+  background-color: #202020;
+  border-color: #202020;
+  font-family: 'Muli';
+  font-size: 14px;
+}
+
+.button.inviteLinkModalButton.btn.btn-primary:hover {
+  background-color: rgb(51, 51, 51);
+  border-color: #202020;
+}
+
+.button.inviteLinkModalButton.btn.btn-primary:active {
+  outline: none;
+  background-color: rgb(51, 51, 51);
+}
+
+.button.inviteLinkModalButton.btn.btn-primary:focus {
+  outline: none;
+  background-color: rgb(51, 51, 51);
+}
+
+.userNameItem {
+  margin-top:17px;
+  font-size: 14px;
+}
+
+.userItems .MuiListItem-root {
+  padding: 1px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+.user {
+  padding: 7px 15px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  background: #EE92C2;
+  margin: 10px 0;
+}
+.guest {
+  background: #F0C987;
+  color: white;
+}
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+.canvas.resize-box {
+  background:transparent;
+  width: 100%;
+}
+
+.canvas.resize-box::after {
+  display:none;
+}
+
+.bannerMessage {
+  margin:0;
+  position: relative;
+  bottom: 10px;
+}
+
+/* .p3-container {
+  margin-top: 50px;
+} */
+
+.jumbotron {
+  margin-top:40px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.color-guide {
+  margin: 20px 40px;
+}
+h5 {
+  margin-bottom: 10px;
+}
+
+aside.emoji-picker-react {
+  position: relative;
+  top:130px;
+  right:120px;
+  z-index: 2;
+}
+
+.MuiInputBase-input {
+  text-align: center;
+}
+
+.MuiList-padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: 'Muli';
+}
+
+.MuiListItemAvatar-root {
+  min-width: 49px;
+  flex-shrink: 0;
+}
+
+.usernameText {
+  padding-top:3px;
+}
+
+#chat-container {
+  padding-left: 0;
+}
+
+.chatInputBox {
+  margin-left: 5px;
+}
+
+.video-resize-box.resize-box:after {
+  display:none;
+}
+
+#app-title {
+  font-size: 2.5rem;
+  font-family: 'Muli';
+  font-weight: 800;
+}
+
+#slogan {
+  font-family: 'Muli';
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  font-family: 'Muli';
+  font-weight: 800;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 28px;
+  font-family: 'Muli';
+  color: rgb(15, 15, 15);
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #494949;
+  border-color: #3f3f3f;
+  box-shadow: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1f1f1f;
+  border-color: #181818;
+  font-family: 'Muli';
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #292929;
+  border-color: #252525;
+}
+
+#noChannelPlaceholder {
+  height: 100%;
+  display: flex;
+  background: #efefef;
+  flex-grow: 15;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  width: 2px;
+  background: #dee2e7;
+  margin-left: -30px;
+  margin-right: 22px;
+}

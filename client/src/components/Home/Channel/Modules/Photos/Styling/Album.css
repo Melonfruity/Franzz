@@ -1,0 +1,29 @@
+.albumCover {
+  width: 122px;
+  padding: 1px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  margin-right: 24px;
+}
+
+.coverPhoto {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 7px;
+}
+
+.coverPhoto:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+#album-box {
+  display: flex;
+  padding-left: 16px;
+  flex-wrap: wrap;
+}

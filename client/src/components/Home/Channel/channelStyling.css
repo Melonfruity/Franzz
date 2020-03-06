@@ -1,0 +1,91 @@
+#channel {
+  flex-grow: 10;
+  background: #fdfdfd;
+}
+
+div#chat-righUi {
+  display: flex;
+}
+
+.widgetList {
+  display: flex;
+  flex-direction: column;
+}
+
+#photoGalleryButton {
+  background-image: url('../../../assets/imageBox.png');
+  background-repeat: no-repeat;
+  width: 39px;
+  height: 36px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+}
+
+#photoGalleryButton:focus {
+  outline: none;
+}
+
+#photoGalleryButton:hover {
+  opacity: 80%;
+}
+
+#stalkerMapButton {
+  background-image: url('../../../assets/map.png');
+  background-repeat: no-repeat;
+  width: 39px;
+  height: 41px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  margin-top: 51px;
+}
+
+#stalkerMapButton:focus {
+  outline: none;
+}
+
+#stalkerMapButton:hover {
+  opacity: 80%;
+}
+
+#videoSyncButton {
+  background-image: url('../../../assets/youtube.png');
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 37px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+}
+
+#videoSyncButton:focus {
+  outline: none;
+}
+
+#videoSyncButton:hover {
+  opacity: 80%;
+}
+
+#photoCanvasButton {
+  background-image: url('../../../assets/art.png');
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 37px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+}
+
+div#channelName {
+  font-family: 'Muli';
+  font-size: 21px;
+  padding-left: 25px;
+  font-weight: 300;
+  padding-top: 13px;
+  padding-bottom: 10px;
+  background: #fdfdfd;
+}
