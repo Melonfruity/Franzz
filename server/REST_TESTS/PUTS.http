@@ -1,7 +1,0 @@
-### join a channel with existing user
-PUT http://localhost:8001/api/channel/join/5e3a3e18c1ec242383b9352d
-content-type: application/json
-
-{
-  "userID": "5e3a326727648612d25e530f"
-}
