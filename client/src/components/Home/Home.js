@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useParams,
 } from 'react-router-dom';
 import io from 'socket.io-client';
 import { serverURL } from '../../utils/config';
@@ -26,6 +27,8 @@ import '../../styles.css';
 let socket;
 
 const Home = ({ state, setState }) => {
+  let { id } = useParams();
+  console.log('channel', id)
   const {
     emitSendMessage,
     emitJoinChannel,
@@ -151,7 +154,7 @@ const Home = ({ state, setState }) => {
             ...prev,
             channelStates,
             videoStates,
-            currentChannel: Object.keys(channelStates)[0],
+            // currentChannel: Object.keys(channelStates)[0],
           }));
         });
     }

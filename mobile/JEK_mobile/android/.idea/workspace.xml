@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="" />
+    <list default="true" id="aa443da2-3da2-4fcb-b080-2e95e57536f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/precache-manifest.aef4f1fc99757db612bd1c256822f8a2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/build/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/static/css/main.f7727aaa.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/static/css/main.f7727aaa.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/static/js/main.868ca60d.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/build/static/js/main.868ca60d.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../client/src/components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../client/src/components/Home/Home.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +45,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
