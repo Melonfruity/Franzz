@@ -105,7 +105,7 @@ My focus for Franz was working with the Youtube Syncing feature (back-end to fro
 
 ### :sweat_drops: melonfruity
 
-I focused on building the general structure of the application and managing the project as I had the overall view of everyones work. I designed the file management system for both client and server side as well as the data hierarchy, flow and file structure for React client. This was done along-side the applications authentification, core chat functionality, the maps and canvas plugins and building the React Native app to our server. Finally, I supported my group members by helping fix bugs and giving suggestions to their focuses if they needed it.
+I focused on building the general structure of the application and managing the project as I had the overall view of everyones work. I designed the file management system for both client and server side as well as the data hierarchy, flow and file structure for the React client. This was done along-side the applications authentification, core chat functionality, the maps and canvas plugins and building the React Native app. Finally, I supported my group members by helping fix bugs and giving suggestions to their focuses if they needed it.
 
 ### ke2low
 
