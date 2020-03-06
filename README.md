@@ -9,28 +9,9 @@ Franzz is a messaging web application focused on connecting groups of franzz (fr
 3. Youtube: Watch Youtube together with your group of friends while messaging
 4. Drawing board: Need to sketch something out together? You can do it using this drawing board!
 
-## Installation 👾
-
-For both client and server run:
-
-```
-npm install
-```
-
-For mobile, expo CLI is required:
-
-```
-npm i -g expo-cli
-```
-
-then install dependencies and start:
-
-```
-npm install
-expo start
-```
-
 ## Setup
+
+### Cloudinary
 
 ### GOOGLE
 
@@ -46,7 +27,29 @@ and
 
 ### MongoDB
 
-Create a database and add connection string to server/.env
+Create a database and add the connection string to server/.env
+
+## Installation 👾
+
+For both client and server run:
+
+```
+npm install
+npm start
+```
+
+For mobile, expo CLI is required:
+
+```
+npm i -g expo-cli
+```
+
+then install dependencies and start:
+
+```
+npm install
+expo start
+```
 
 ## Deployment
 
