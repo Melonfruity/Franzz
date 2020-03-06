@@ -84,7 +84,14 @@ Server - [Franzz API](https://arcane-bastion-72484.herokuapp.com)
 ### Server
 
 ```
-
+"axios": "^0.19.2",
+"bcrypt": "^3.0.7",
+"cloudinary": "^1.19.0",
+"body-parser": "^1.19.0",
+"jsonwebtoken": "^8.5.1",
+"mongoose": "^5.8.10",
+"passport": "^0.4.1",
+"socket.io": "^2.3.0",
 ```
 
 ## Work Distribution
@@ -94,6 +101,8 @@ Server - [Franzz API](https://arcane-bastion-72484.herokuapp.com)
 ### melonfruity
 
 ### ke2low
+
+?
 
 ## Screenshots 📸
 
