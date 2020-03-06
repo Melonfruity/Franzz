@@ -13,11 +13,11 @@ Franzz is a messaging web application focused on connecting groups of franzz (fr
 
 ## Deployment
 
-## Dependancies
+## Dependencies
 
 ## Work Distribution
 
-### juliebede
+### :muscle: juliebede
 
 ### melonfruity
 
