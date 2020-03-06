@@ -69,7 +69,7 @@ Server - [Franzz API](https://arcane-bastion-72484.herokuapp.com)
 "react-router-dom": "^5.1.2",
 "react-youtube": "^7.9.0",
 "socket.io-client": "^2.3.0"
-    "@react-native-community/async-storage": "^1.8.0",
+"@react-native-community/async-storage": "^1.8.0",
 ```
 
 ### Mobile
