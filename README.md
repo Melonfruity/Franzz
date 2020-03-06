@@ -101,7 +101,11 @@ Server - [Franzz API](https://arcane-bastion-72484.herokuapp.com)
 
 ### :muscle: juliebede
 
-### melonfruity
+My focus for Franz was working with the Youtube Syncing feature (back-end to front-end), this includes connecting clients using SocketIO as well as using the Youtube API. I had also created the photo gallery feature (back-end to front-end), using the Cloudinary API. In specific, I built the platform to integrate media data transfer into the chat textbox, input to be used between our client and server with the cloudinary API. I also assisted in the overall UI design and style of the application in addition to helping clean up inconsistencies that may occured.
+
+### :sweat_drops: melonfruity
+
+I focused on building the general structure of the application and managing the project as I had the overall view of everyones work. I designed the file management system for both client and server side as well as the data hierarchy, flow and file structure for React client. This was done along-side the applications authentification, core chat functionality, the maps and canvas plugins and building the React Native app to our server. Finally, I supported my group members by helping fix bugs and giving suggestions to their focuses if they needed it.
 
 ### ke2low
 
