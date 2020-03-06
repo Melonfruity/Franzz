@@ -58,21 +58,33 @@ Server - [Franzz API](https://arcane-bastion-72484.herokuapp.com)
 ### Client
 
 ```
-  "@material-ui/core": "^4.9.3",
-  "@material-ui/icons": "^4.9.1",
-  "axios": "^0.19.2",
-  "bootstrap": "^4.4.1",
-  "cloudinary": "^1.19.0",
-  "google-map-react": "^1.1.6",
-  "materialize-css": "^1.0.0-rc.2",
-  "moment": "^2.24.0",
-  "react": "^16.12.0",
-  "react-bootstrap": "^1.0.0-beta.16",
-  "react-dom": "^16.12.0",
-  "react-google-login": "^5.0.7",
-  "react-router-dom": "^5.1.2",
-  "react-youtube": "^7.9.0",
-  "socket.io-client": "^2.3.0"
+"axios": "^0.19.2",
+"cloudinary": "^1.19.0",
+"google-map-react": "^1.1.6",
+"react": "^16.12.0",
+"react-dom": "^16.12.0",
+"react-router-dom": "^5.1.2",
+"react-youtube": "^7.9.0",
+"socket.io-client": "^2.3.0"
+    "@react-native-community/async-storage": "^1.8.0",
+```
+
+### Mobile
+
+```
+"socket.io-client": "2.1.1"
+"axios": "^0.19.2",
+"expo": "~36.0.0",
+"@react-navigation/native": "^5.0.0",
+"react-native-gifted-chat": "^0.13.0",
+"react-native-storage": "^1.0.1",
+"react-native-maps": "^0.26.1",
+```
+
+### Server
+
+```
+
 ```
 
 ## Work Distribution
