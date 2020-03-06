@@ -130,5 +130,3 @@ I focused on building the general structure of the application and managing the 
 !["Home"](docs/m-home.png)
 
 !["Channel"](docs/m-channel.png)
-
-!["New Channel"](docs/m-new-channel.png)
