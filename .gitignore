@@ -3,4 +3,4 @@ node_modules
 .git
 .DS_Store
 
-.env
+/server/.env
